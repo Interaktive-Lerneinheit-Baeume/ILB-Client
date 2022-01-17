@@ -1,0 +1,1192 @@
+*, *::before, *::after {
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 13pt;
+}
+  
+body {
+    /* --emerald-color: #11998e;
+    --emerald-hell-color: #a9cec1; */
+    --emerald-color: var(--black);
+    --emerald-hell-color: var(--hell-brown);
+    --emerald-hell-another-color: rgba(178, 224, 209, 0.651);
+    --black: black;
+    --own-gray: #9b9b9b;
+    --hell-gray: #cccccc;
+    --hell-gray: #dfdddd;
+    --hell-brown: rgba(179, 128, 77, 0.6);
+    --noble-brown: #47331fe6;
+    --white: #fdfcfc;
+    --font: "Georgia";
+
+    background-color: var(--black);
+    color: var(--black);
+    /* background: linear-gradient( var(--emerald-hell-color), var(--emerald-hell-another-color)); */
+  
+    height: 100%;
+    font-family: var(--font); 
+    font-size: 13pt;
+    /* perspective: 70em; */
+	/* overflow-y: scroll; */
+}
+
+
+.book * {
+    /* transform-style: preserve-3d; 
+    -webkit-transform-style: preserve-3d; */
+    backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    /* overflow: scroll; */
+}
+
+
+/* https://codepen.io/carpenumidium/pen/EoxGg */
+.book {
+    height: 90%;
+
+    width: 87%;
+    background-image: 
+      linear-gradient(
+        90deg,
+        var(--hell-brown),
+        var(--noble-brown),
+        var(--hell-brown) 90%
+        ),
+      url('http://inspirationhut3.inspirationhut.netdna-cdn.com/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    
+    border: 2px solid var(--black);
+    border-radius: 5px;
+    /* overflow-y: scroll; */
+    /* box-shadow: 0 0 150px var(--own-gray); */
+    /* overflow: scroll; */
+    }
+  
+  .page {
+    height: 100%;
+    width: 50%;
+    line-height: 1.5;
+    border-right: 10px solid transparent;
+    position: absolute;
+    top: 0; right: 0;
+    transform-origin: 0 50%;
+    transition: .8s;
+    /*animation: unflip .3s linear;*/
+    }
+
+
+::-webkit-scrollbar {width:10%}
+
+::-webkit-scrollbar-track {background: transparent;}
+
+::selection {
+  background: var(--black); 
+  color: var(--noble-brown);
+  }
+::-moz-selection {
+  background: var(--black);
+  color: var(--noble-brown);
+  }
+
+    [class*='side'] {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background-color: var(--hell-brown);
+      background-image: url('http://inspirationhut3.inspirationhut.netdna-cdn.com/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
+      background-size: 100% 100%;
+      overflow-y: scroll;
+      /* backface-visibility: hidden; */
+      
+      padding: 5% 8%;
+      }
+
+    .side-1 {
+      z-index: 2;
+      box-shadow: inset 50px 0 50px var(--noble-brown);
+      transition: .5s;
+       
+    }
+
+    .side-2 {
+    
+      transform:
+        rotateY(180deg);
+        
+      box-shadow: inset -50px 0 50px var(--noble-brown);
+    }
+
+    .flipped > .side-1 {
+      box-shadow: inset 50px 0 50px var(--noble-brown);   
+      transition: .6s;
+      }
+      
+    .flipped > [class*='side'] {
+      pointer-events: auto;
+      
+      }
+
+ 
+
+    .page.flipped::after {
+        transform-style: flat; 
+      transform:
+        rotateY(180deg);
+
+      }
+
+    #next-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 5%;
+        min-width: 10px;
+        height: 6%;
+        min-height: 10px;
+        position: fixed;
+        bottom: 10px;
+        border: none;
+        
+        font-size: 13pt;
+        top: 5%;
+        right: 1%;
+        background-color: var(--own-gray);
+        color: var(--black);
+        font-family: var(--font);
+        border-radius: 5px;
+    }
+
+    #next-button:hover {
+        background-color: var(--hell-brown);
+        color: var(--white);
+        border-color: var(--white);
+        border-style: solid 2px;
+    }
+
+/* 
+    @keyframes hide {
+      0% {opacity: 0;}
+      85% {opacity: 0;}
+      100% {opacity: 1;}
+      } */
+
+  .flipped {
+    transform:
+      rotateY(-180deg);
+    
+    /*animation: flip .3s linear;
+    animation-fill-mode: forwards;*/
+    }
+    
+  .no-anim,
+    .no-anim:after {
+    animation: none;/* disable animation when page loads */
+    }
+  @keyframes flip {
+    to {
+      transform:
+        rotateY(-180deg);    
+      }
+    }
+  @keyframes unflip {
+    from {
+      transform:
+        rotateY(-180deg);    
+      }
+    to {
+      transform:
+        rotateY(0deg);    
+      }
+    }
+/* */ 
+
+
+
+
+
+
+
+
+#beantworten {
+    text-align: center;
+}
+
+#skills-legend {
+    padding-top: 17px;
+    color: var(--own-gray);
+}
+
+#timeover-element {
+    width: 100%;
+    display: inline-block;
+}
+
+#timeover {
+    width: 100%;
+    text-align: justify;
+    font-size: 18pt;
+}
+
+.in_der_aufgabe {
+    width: 100%;
+    margin: auto;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+
+.aufgabe {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    /* background-color: var(--hell-gray); */
+    text-align: justify;
+}
+
+.panel-trees-selection {
+    width: 260px;
+    height: 250px;
+}
+
+/* hier noch width, height */
+.trees-selection {
+    width: 30%;
+    height: 230px;
+    float: left;
+    margin-bottom: 10px;
+}
+        
+ul {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 3px;
+    border-radius: 5px;
+    border-color: var(--own-brown);
+  }
+  
+  ul li {
+    display: inline-block;
+    position: relative;
+    padding: 5px;
+  }
+  
+  ul li:not(:last-child) {
+    margin-bottom: 16px;
+  }
+  
+  ul li:before {
+    content: "";
+    position: absolute;
+    top: 1.2em;
+    left: -30px;
+    margin-top: -.9em;
+    background: linear-gradient(45deg, var(--black), var(--emerald-hell-color));;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+  }
+      
+  .numeration-of-trees {
+      font-size: 12pt;
+      /* padding-right: 80px; */
+      text-align: center;
+      color: var(--noble-brown);
+      
+  }
+  
+  ul li:after {
+    position: absolute;
+    content: "";
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;
+  }
+
+::-webkit-input-placeholder {
+    font-family: var(--font); 
+}
+
+::-moz-placeholder {
+    font-family: var(--font); 
+}
+
+:-ms-input-placeholder {
+    font-family: var(--font); 
+}
+
+::placeholder {
+    font-family: var(--font); 
+}
+
+#viewing {
+    margin: 20px;
+    /* margin: 40px; */
+}
+
+#constructing {
+    /* margin: 40px; */
+}
+
+/* #explanation {
+    border-color: var(--emerald-color);
+    border-style: solid;
+    background-color: var(--hell-gray);
+    color: black;
+    font-size: 16pt;
+    margin: auto;
+    width: 95%;
+    padding: 2px;
+    -webkit-columns: 40px 2;
+    /* Chrome, Safari, Opera */
+    /* -moz-columns: 60px 2; */
+    /* Firefox */
+    /* columns: 60px 2; */
+
+/* }  */
+
+
+.theorie {
+    /* float: left; */
+    width: 100%;
+    /* background-color: var(--hell-gray); */
+    text-align: justify;
+
+} 
+
+/* #explanation {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: nowrap;
+} */
+
+
+.participant {
+    width: 100%;
+    font-size: 16pt;
+    /* padding: 10px; */
+    display: flex;
+
+    margin: 15px;
+}
+
+
+#hello-appeal {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: var(--black);
+    font-size: 20pt;
+    margin-bottom: 25px;
+}
+
+.datastructure-detection {
+    width: 100%;
+	font-size: 18pt;
+    margin: 17px;
+    /* overflow: hidden; */
+}
+
+#statement-checkboxes {
+    clear: both;
+    margin-top: 50px;
+    padding-top: 40px;
+    width: 100%;
+    
+}
+
+
+.tasks {
+    width: 100%;
+    margin-top: 55px;
+    margin-bottom: 30px;
+}
+
+.question-title {
+    /* background: var(--hell-gray); */
+    color: var(--black);
+    margin: 7px;
+    margin-top: 15px;
+    text-align: left;
+    font-size: 14pt;
+    clear: both;
+    text-align: justify;
+}
+
+.worst-case{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.private_data {
+    margin-top: 15px;
+    margin-left: 20px;
+    position: relative;
+    width: 50%;
+    color: var(--own-gray);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/* hier noch */
+
+#start-button {
+    height: 32px;
+    width: 32px;
+    border: none;
+    margin-top: 4px;
+ 
+}
+
+#start-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+
+#pause-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+#start-button:hover{
+	transform: scale(1.1);
+}
+
+#start-button img {
+    /* width: 20px;
+	height: 20px;
+    border:0 none;
+    margin-top: 5px;
+    margin-bottom: 5px; */
+    position: relative;
+    top: 50%;
+    left: 51%;
+    width: 28px;
+	height: 28px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+}
+
+#skills-checkboxes {
+    margin-left: 15px;
+}
+
+
+
+/* control play/pause buttons */
+
+/* https://codepen.io/TimonK/pen/QrzVjL */
+/* Copyright (c) 2021 by Timon (https://codepen.io/TimonK/pen/QrzVjL)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ */
+
+
+#pause-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+    position: relative; 
+    
+	/* bottom : -600px; */
+	/* left : 50%; */
+	margin-left: 5px;
+    margin-top: 4px;
+	width: 32px;
+	height: 32px;
+	perspective: 5px; 
+	perspective-origin: center right; 
+  
+	transform: scale(1);
+	transition: transform .1s, perspective 1s;
+}    
+
+#pause-button:hover{
+	transform: scale(1.1);
+}
+
+#pause-button::before,
+#pause-button::after {
+		display: block;
+		content: "";
+		float: left;
+		background: var(--black);
+		width: 50%;
+		height: 100%;
+		transform-origin: center left;
+		transform : rotateY(90deg);
+		transition: transform 1s;
+}
+
+#pause-button::after{
+		transform: rotateY(90deg) scale(10, .5);
+}
+
+#pause-button.pause{
+		perspective: 5px;
+}
+	
+#pause-button.pause::before{
+		transform: rotateY(0) scale(.6, 1);
+}
+
+#pause-button.pause::after{
+		transform: rotateY(0) scale(.6, 1);
+}
+
+.buttons-group {
+    margin: 5%;
+    margin-left: 5%;
+    width: 90%;
+    padding: 3%;
+    padding: 20px;
+    margin-left: 15%;
+}
+
+.button {
+    float: left;
+    
+}
+
+/* speed slider https://codepen.io/jonnaru/pen/JjXyKYM */
+
+.speed-slider {
+    -webkit-appearance: none;
+    width: 55%;
+    height: 10px;
+    background: var(--black);
+    outline: none;
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 15px;
+  } 
+
+  /* for chrome/safari */
+  .speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2%;
+    height: 20px;
+    background: var(--black);
+    cursor: pointer;
+    border: 4px solid var(--black);
+    border-radius: 4px;
+  }
+
+  /* .speed-slider::-webkit-slider-runnable-track{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2%;
+    height: 20px;
+    background: var(--black);
+    cursor: pointer;
+    border: 4px solid var(--black);
+    border-radius: 4px;
+  } */
+  
+  /* for firefox */
+  .speed-slider::-moz-range-thumb {
+    width: 2%;
+    height: 20px;
+    background: var(--black);
+    cursor: pointer;
+    border: 4px solid var(--black);
+    border-radius: 4px;
+  }
+
+
+
+.keys-cloud {
+    float: left;
+}
+
+
+#sequence-constructing-task {
+    width: 58%;
+}
+
+#cloud {
+    width: 38%;
+    height: 200px;
+}
+
+#sequence-constructing {
+    clear: both;
+    
+}
+
+.print-tree {
+    float: left;
+    /* width: 50%; */
+    height: 300px;
+}
+
+#print-tree-panel {
+    width: 300px;
+}
+
+#print-code-panel {
+    width: 215px;
+}
+
+.kind_node_info {
+    font-family: var(--font) !important;
+    font-size: 16pt !important;
+    font-weight: normal !important;
+    color: var(--hell-brown) !important;
+    
+    border-color: var(--hell-brown) !important;
+    border-style: solid 2px !important;
+    background-color: var(--hell-brown);
+}
+
+.position_precise {
+    font-family: var(--font) !important;
+    color: var(--black);
+    border-color: var(--own-brown) !important;
+}
+
+.swal2-button {
+    font-family: var(--font);
+    border-color: var(--hell-brown) !important;
+    background-color: var(--black) !important;
+}
+
+/* radio-buttons for gender https://codepen.io/avstorm/pen/eYNLwVd*/
+.rad {
+    padding: 6px;
+    border-radius: 50px;
+    display: inline-flex;
+    cursor: pointer;
+    transition: background .2s ease;
+    margin-right: 8px;
+    color: var(--own-gray);
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle
+}
+
+.rad:hover,
+:focus {
+    background: var(--own-gray);
+    color: var(--black);
+}
+
+input[type=radio]:checked {
+    color: var(--black);
+}
+
+#radio-buttons label::after {
+    color: var(--black);
+}
+
+#radio-buttons label:checked {
+    color: var(--black);
+}
+
+.radios {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 0;
+    box-shadow: inset 0 0 0 1px var(--own-gray);
+    appearance: none;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    transition: box-shadow 150ms cubic-bezier(.95,.15,.5,1.25);
+    /* pointer-events: none; */
+}
+
+
+.radios label {
+    color: var(--black);
+}
+
+.radios:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+    color: var(--black);
+}
+
+.radios:checked {
+    box-shadow: inset 0 0 0 6px var(--black);
+    color: var(--black);
+}
+
+.rad > input[type = "radio"]:checked {
+    color: var(--black)
+}
+/* name, age, number https://codepen.io/lucasyem/pen/ZEEYKdj */
+.form_group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.form_field {
+    font-family: var(--font);
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid var(--own-gray);
+    outline: 0;
+    font-size: 15pt;
+    color: var(--black);
+    padding: 15px 0;
+    padding-bottom: 10px;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form_label {
+    position: absolute;
+    top: 0;
+    padding-bottom: 10px;
+    display: block;
+    transition: 0.2s;
+    font-size: 15pt;
+    color: var(--own-gray);
+}
+
+.form_field:focus {
+   
+    padding-bottom: 10px;  
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, var(--black), var(--hell-brown));
+    border-image-slice: 1;
+}
+
+.form_field:focus ~ label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 18pt;
+    color: var(--black);
+    font-weight:700;    
+}
+
+.form_field input::required,::invalid { 
+    box-shadow: none; 
+}
+
+input[type="checkbox"] {
+    padding-top: 2px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--hell-brown);
+    /* border-color:  #11998e;
+    box-shadow:  #11998e;
+    color: #474554;
+    margin-left: 10px;
+    font: inherit; */
+    width: 1em;
+    height: 1em;
+    top: 1px;
+    border: 0.15em solid var(--own-gray);
+    position: relative;
+}
+
+input[type="checkbox"]:checked + label {
+    position: relative;
+    color: var(--black);
+    
+}
+
+input[type="checkbox"] + label {
+    position: relative;
+    color: var(--own-gray);
+}
+
+input[type="checkbox"]:checked {
+    box-shadow: 0 0 0 3px var(--black);
+    border: 0.15em solid var(--black);
+}
+
+/* .checkbox {
+    margin-top: 2px;
+    margin-left: 5px;
+    color: var(--own-gray);
+} */
+
+#panel-viewing {
+    border-color: var(--noble-brown);
+    border-style: solid;
+    border-width: 5px;
+    margin-top: 25px;
+    /* margin-left: 20px; */
+    width: 450px;
+    height: 450px;
+    margin: auto;
+    clear: both;
+}
+
+#panel-constructing {
+    border-color: var(--noble-brown);
+    border-style: solid;
+    border-width: 5px;
+    /* margin-left: 20px; */
+    width: 450px;
+    height: 450px;
+    margin: auto;
+}
+
+#panel-main-code-viewing {
+    border-top: 15px;
+    border-left: none;
+    margin-top: 50px;
+}
+
+#panel-code-alg {
+    height: 500px;
+}
+
+#panel-main-code-constructing {
+    border-top: 15px;
+    border-left: none;
+    margin-top: 50px;
+}
+
+.panel {
+    width: 600px;
+    height: 600px;
+    /* margin-top: 10px; */
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    /* -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; */
+}
+
+.panel-knowledge {
+    width: 350px;
+    height: 350px;
+}
+
+#panel-knowledge-2 {
+    width: 550px;
+    height: 350px;
+}
+
+#end-element {
+    text-align: center;
+    font-size: 24pt;
+    width: 100%;
+}
+
+.test-questions {
+    width: 100%;
+    margin: auto;
+}
+
+.textarea_input:focus { 
+    outline: none;
+    background-color: var(--black);
+    color: var(--hell-gray);
+}
+
+.textarea_input {
+    width: 100%;
+    margin: auto; 
+    height: 150px;
+    font-size: 15pt;
+    font-family: var(--font); 
+    box-sizing: border-box; 
+    letter-spacing: 1px;
+    color: var(--black);
+    background-color: var(--hell-brown);
+    border: 3px solid var(--black); 
+    border-radius: 5px;
+    padding: 7px 14px 9px; 
+    transition: 0.4s;
+}
+
+#tree-height-textarea {
+    width: 100%;
+    height: 120px;
+    
+}
+
+.swal-runtime {
+    font-family: var(--font) !important;
+    font-size: 8.5pt !important;
+    width: 650px !important;
+    height: 350px !important;
+}
+
+#print-sequence {
+    clear: both;
+}
+
+
+
+
+/* Vollbildschirm */
+/* @media screen and (min-width: 800px) {  
+
+
+    .theorie {
+ 
+        width: 95%;
+        padding: 5px;
+        text-align: justify;
+        
+    } 
+
+    #explanation {
+        display: inline-flex;
+  
+    }
+
+    #viewing_aufgabe {
+        width: 100%;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    #fragen-beantworten {
+        width: 100%;
+        margin: auto;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    #animation_aufgabe {
+        text-align: center;
+        width: 100%;
+    }
+
+    #beantworten {
+        text-align: center;
+    }
+
+    .aufgabe {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .in_der_aufgabe {
+        width: 70%;
+        margin: auto;
+        padding-top: 15px;
+        padding-bottom: 10px;
+  
+    }
+
+	.participant {
+        margin: 20px;
+    }
+       
+    .comprehen { 
+        float: left;
+        width: 25%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 16pt;
+	}
+
+    .tasks {
+        margin-top: 55px;
+        margin-bottom: 30px;
+    }
+
+    
+    .question-title {
+        margin: 7px;
+        margin-top: 15px;
+        clear: both;
+        color: black;
+        text-align: justify;
+
+    }
+
+    .goto-button {
+        margin: 45px;   
+    }
+    
+    .datastructure-detection {
+        width: 100%;
+        font-size: 16pt;
+        margin: 20px;
+        margin-bottom: 10px;
+    }
+
+
+    .numeration-of-trees {
+        text-align: center;
+        padding-right: 100px;
+        font-size: 16pt;
+    }
+
+    #viewing {
+        margin-left: 60px;
+    } 
+
+    .panel  {
+        width: 30%;
+        height: 600px;
+        float: left;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 10px;
+    }
+
+    #panel-viewing {
+        width: 500px;
+        padding-left: 20px;
+    }
+
+    #panel-code {
+        width: 600px;
+    }
+
+    #panel-constructing {
+        width: 500px;
+        padding-left: 20px;
+        margin-left: 20px;
+    }
+
+    #panel-main-code {
+        border-left: solid var(--emerald-color);
+        border-top: none;
+        width: 500px;
+    }
+
+    .panel-trees-selection {
+        width: 250px;
+        height: 250px;
+    }
+
+    .buttons-group {
+        margin-left: 55px;
+        padding-left: 10px;
+
+    }
+
+    #goto-questions-button {
+        clear: both;
+    }
+
+    .textarea_input:focus { 
+        outline: none;
+        background-color: var(--emerald-color);
+        color: var(--hell-gray);
+    }
+
+    .textarea_input {
+        width: 100%;
+        margin: auto; 
+        height: 200px;
+        font-size: 16pt;
+        font-family: "Georgia"; 
+        box-sizing: border-box; 
+        letter-spacing: 1px;
+        color: black;
+        background-color: var(--emerald-hell-color);
+        border: 3px solid var(--emerald-color); 
+        border-radius: 5px;
+        padding: 7px 14px 9px; 
+        transition: 0.4s;
+    }
+
+    .trees-selection {
+        float: left;
+        margin: 10px;
+        width: 30%;
+        height: 250px;
+    }
+
+    #tree-print-task {
+        clear: both;
+    }
+
+    .print-tree {
+        margin-top: 10px;
+        float: left;
+        width: 380px;
+        height: 380px;
+    }
+
+    #print-sequence {
+        width: 30%;
+    }
+
+    #goto-end-button {
+        clear: both;
+    }
+
+    #statement-checkboxes {
+        margin-top: 30px;
+        padding-top: 20px;
+        clear: both;
+    }
+
+    .checkbox {
+        
+        color: var(--own-gray);
+        margin-left: 3px;
+    }
+
+    #tree-height-textarea {
+        width: 40%;
+        height: 70px;
+        margin: auto;
+    }
+
+    .keys-cloud {
+        float: left;
+    }
+
+    #sequence-constructing-task {
+        width: 75%;
+    }
+
+    #sequence-constructing {
+        clear: both;
+        width: 100%;
+    }
+
+    #cloud {
+        width: 200px;
+        height: 200px;
+    }
+
+    #skills-legend {
+        padding-top: 15px;
+    } */
+   

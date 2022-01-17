@@ -1,0 +1,226 @@
+<div class='side-2' id='p2'>
+    <div class='content'>
+
+
+        <div id="explanation" class="main-element">
+            <div id="first-theorie" class="theorie">
+                <p>
+                    <strong> &nbsp;&nbsp;&nbsp;Baum</strong> ist ein aus Knoten und Kanten bestehender
+                    <i>Graph</i>,
+                    besitzt dabei immer genau <i>eine Wurzel</i> und enthält <i>keine Zyklen</i>.
+                    Außer der Wurzel sind alle Knoten durch genau eine Kante (Pfad) mit <i>einem
+                        Elternknoten</i> (Vorgänger) verbunden und wird als dessen <i>Kindknoten</i>
+                    (Nachfolger) bezeichnet.
+                    Knoten ohne Nachfolger heißen <i>Blatt</i>. Alle Knoten mit Nachfolgern werden als
+                    innere Knoten bezeichnet. Bäume wachsen in diesem Kontext „unnatürlich“ von oben
+                    (Wurzel) nach unten (Blatt).<br>
+                <!-- </p>
+                <p> -->
+                    <strong> &nbsp;&nbsp;&nbsp;Binärer Baum</strong> ist ein geordneter Baum, bei dem jeder
+                    Knoten maximal
+                    zwei Nachfolger hat: einen linken und einen rechten.
+                    Unter der Ordnung eines binären Baums versteht man die maximale Anzahl von
+                    Kindknoten pro Knoten.<br>
+                <!-- </p>
+                <p> -->
+                    <strong> &nbsp;&nbsp;&nbsp;Binärer Suchbaum</strong> ist ein geordneter binärer Baum,
+                    dessen Knoten
+                    Schlüsselwerte enthalten.
+                    Über diese Werte erfolgt die Suche im Baum. Alle Knoten enthalten einen
+                    Schlüsselwert data. Auf die Kindknoten wird über left und right zugegriffen.
+                    Für jeden Knoten k eines binären Suchbaums gilt dabei:
+                <ul>
+                    <li>Alle Schlüsselwerte im linken Teilbaum <i>k.left sind kleiner</i> als der
+                        Schlüsselwert k.data.</li>
+                    <li>Alle Schlüsselwerte im rechten Teilbaum <i>k.right sind grösser</i> als der
+                        Schlüsselwert k.data.</li>
+                </ul>
+                </p>
+                
+                <!-- </div> -->
+                <!-- <div id="second-theorie" class="theorie"> -->
+                <div id="panel-code-alg" class="panel code view"></div>    
+                <p>
+                    &nbsp;&nbsp;&nbsp;Die Höhe des Baums entspricht dem längsten Pfad von der Wurzel zum
+                    tiefesten Blatt
+                    plus 1.<br>
+                    Bei der Umsetzung eines binären Suchbaums wird dessen rekursive Verarbeitung dadurch
+                    sichergestellt, dass jeder Knoten Verweise auf seine jeweiligen Kinder besitzt.
+                    Bei der rekursiven Suche im Baum wird zuerst die Wurzel des Baums angegeben, alle
+                    anderen Knoten sind durch das Verfolgen der Verweise erreichbar.<br>
+                <!-- </p>
+                <p> -->
+                    <i> &nbsp;&nbsp;&nbsp;Die Laufzeiten</i> des Insert-Algorithmus in binären
+                    Suchbäumen hängen von
+                    der Form des Baums ab, die wiederum von der Reihenfolge abhängt, in der die
+                    Schlüssel eingefügt werden.<br>
+                <ul>
+                    <li><i>Im Best-Case (günstigsten)</i> Fall könnte ein Baum mit N Knoten perfekt
+                        ausgeglichen sein (jeder innere Knoten besitzt zwei Nachfolger): mit ∼O(lg N)
+                        Knoten zwischen der Wurzel und jeder null-Referenz (Blatt).</li>
+                    <li><i>Der durchschnittliche</i> Fall nach N zufälligen Einfügeoperationen beträgt
+                        ∼O(1.39 lg N).</li>
+                    <li><i>Im Worst-Case (ungünstigsten)</i> Fall beträgt die Laufzeitkomplexität O(N),
+                        wenn alle N Knoten genau auf einem Suchpfad liegen, und die Laufzeitkomplexität
+                        somit der Höhe des Baums entspricht.</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+        <!--explanation .main-element-->
+
+    </div><!-- .content -->
+</div><!-- #.side-2 -->
+</div><!-- .page 1 -->
+
+
+<div id='page-2' class='page no-anim second-page'>
+<div class='side-1 main-element' id='p3'>
+    <div class="content">
+        <div id="viewing_aufgabe" class="aufgabe">
+            <div id="animation_aufgabe" class="in_der_aufgabe">
+                Schauen Sie sich die Animation an. Sie können die Animation selbst kontrollieren,
+                in dem Sie sie pausieren oder vorspulen können.
+            </div>
+        </div>
+
+        <div id="viewing">
+            <div class="buttons-group">
+                <button id="start-button" class="start button" title="start/backward">
+                    <img src="backward.png">
+                </button>
+                <button id="pause-button" class="button pause" title="pause/play"></button>
+                <input type="range" class="speed-slider button" id="speed-range" min="1" max="100" value="50">
+            </div>
+            <div id="panel-viewing" class="panel viewing"></div>
+            <!-- <div id="panel-code-viewing" class="panel code view"></div> -->
+            <div id="panel-main-code-viewing" class="panel main-methode view"></div>
+        </div>
+
+
+        <div id="constructing">
+            <div class="aufgabe">
+                <div class="in_der_aufgabe content">
+                    <p>
+                    &nbsp;&nbsp;&nbsp;Konstruieren Sie einen binären Suchbaum aus Menge der schrittweise
+                    angebotenen
+                    Schlüsselwerte.
+                    Die Wurzel des Suchbaums ist schon gegeben und steht an der richtigen Position.
+                    Den weiteren Knoten mit dem Wert 63, sowie alle nachfolgenden Schlüsselwerte, sollen
+                    Sie
+                    durch Drag-and-Drop des Knotens selbst richtig positionieren.<br>
+                    <!-- </p>
+                    <p> -->
+                    &nbsp;&nbsp;&nbsp;Berüchsichtigen Sie den Programmcode für die Visualisierung.
+                    Jeder Knoten mit dem Schlüsselwert soll präzise lokalisiert werden.
+                    Das System meldet den Hinweis, wenn Hilfe benötigt wird.
+                    Die Zeit steht Ihnen für die Aufgabe unbegrenzt zur Verfügung.
+                    </p>
+                </div>
+                <!-- ???Oder doch erwähnen, so ein einhalb Stunden??? -->
+            </div>
+            <div id="panel-constructing" class="panel constructing"></div>
+            <!-- <div id="panel-code-constructing" class="panel code constr"></div> -->
+            <div id="panel-main-code-constructing" class="panel main-methode constr"></div>
+        </div>
+
+        <!-- <button class="goto-button" id="goto-questions-button">Weiter</button> -->
+    </div> <!-- #.content -->
+</div><!-- #.side-1 -->
+
+<div class='side-2' id='p4'>
+    <div class="content">
+
+        <!-- <div id="fragen-beantworten" class="aufgabe">
+                <div id="beantworten" class="in_der_aufgabe">
+                    Bitte beantworten Sie folgende Fragen:
+                </div>
+            </div> -->
+        <div class="test-questions main-element">
+            <div id="first-knowl_task" class="questions-knowledge">
+                <div class="tasks">
+                    <div class="question-title"><strong>Aufgabe 1)</strong> Welche dieser Aussagen
+                        treffen
+                        auf den abgebildeten Graphen zu? Bitte berücksichtigen Sie, alle angekreuzten
+                        Antworten
+                        ergeben nur 0 Punkte.</div>
+
+                    <div id="panel-knowledge-1" class="panel-knowledge"></div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="zyklus" name="zyklus" value="zyklus">
+                        <label for="zyklus">Es handelt sich um einen Zyklus</label>
+                    </div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="binary-tree" name="binary-tree" value="binary-tree">
+                        <label for="binary-tree">Es handelt sich um einen binären Suchbaum</label>
+                    </div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="binary-search-tree" name="binary-search-tree"
+                            value="binary-search-tree">
+                        <label for="binary-search-tree">Es handelt sich um einen binären Baum</label>
+                    </div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="node-graph" name="node-graph" value="node-graph">
+                        <label for="node-graph">Es handelt sich um einen Knoten-Graph</label>
+                    </div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="array" name="array" value="array">
+                        <label for="array">Es handelt sich um ein Array</label>
+                    </div>
+                </div>
+
+                <div class="tasks">
+                    <div class="question-title"><strong>Aufgabe 2)</strong> Welche dieser Aussagen
+                        treffen
+                        auf den abgebildeten Graphen zu?</div>
+
+                    <div id="panel-knowledge-2" class="panel-knowledge"></div>
+
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="knowledge-2-binary-search-tree"
+                            name="knowledge-2-binary-search-tree" value="knowledge-2-binary-search-tree">
+                        <label for="knowledge-2-binary-search-tree">Es handelt sich um einen binären
+                            Baum</label>
+                    </div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="knowledge-2-binary-tree" name="knowledge-2-binary-tree"
+                            value="knowledge-2-binary-tree">
+                        <label for="knowledge-2-binary-tree">Es handelt sich um einen binären
+                            Suchbaum</label>
+                    </div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="knowledge-2-array" name="knowledge-2-array"
+                            value="knowledge-2-array">
+                        <label for="knowledge-2-array">Es handelt sich um ein Array</label>
+                    </div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="knowledge-2-node-graph" name="knowledge-2-node-graph"
+                            value="knowledge-2-node-graph">
+                        <label for="knowledge-2-node-graph">Es handelt sich um einen
+                            Knoten-Graph</label>
+                    </div>
+                    <div class="datastructure-detection">
+                        <input type="checkbox" id="knowledge-2-zyklus" name="knowledge-2-zyklus"
+                            value="knowledge-2-zyklus">
+                        <label for="knowledge-2-zyklus">Es handelt sich um einen Zyklus</label>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="first-compr_task" class="questions-comprehension">
+                <div class="tasks">
+                    <div id="difference-task" class="question-title"><strong>Aufgabe 3)</strong> Nennen
+                        Sie
+                        stichpunktartig eine Gemeinsamkeit und einen Unterschied von binären Bäumen und
+                        binären Suchbäumen.</div>
+                    <textarea class="textarea_input" id="difference-of-trees"
+                        placeholder="Notieren Sie Ihre Antworten stichpunktartig in diesem Format: &#10;- Gemeinsamkeit: … &#10;- Unterschied: …"
+                        name="difference-of-trees"></textarea>
+                </div>
+            </div>
+        </div>
+    </div><!-- .content -->
+</div><!-- #.side-2 -->
+</div><!-- .page 2 -->

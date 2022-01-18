@@ -45,6 +45,8 @@ function getDataFromJSON(dataForAdding, id, dataExisting, typeOfMethode){
       dataExisting.modus = dataForAdding.modus;
       dataExisting.gender = dataForAdding.gender;
       dataExisting.skills = dataForAdding.skills;
+      dataExisting.java_knowledge = dataForAdding.java_knowledge;
+      dataExisting.another_languages = dataForAdding.another_languages;
       dataExisting.start_time = dataForAdding.start_time;
     }
     else if(typeOfMethode === "closeExperiment"){

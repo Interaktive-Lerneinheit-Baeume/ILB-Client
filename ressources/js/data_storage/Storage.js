@@ -1,7 +1,7 @@
 /* eslint-env browser */
 
-const API_BASE_URL = "http://localhost:8001/api/experiment";
-
+// const API_BASE_URL = "http://localhost:8001/api/experiment";
+const API_BASE_URL = "https://ilb-server.software-engineering.education";
 
 function makeAPICall(route, method, data) {
   let url = API_BASE_URL + route;

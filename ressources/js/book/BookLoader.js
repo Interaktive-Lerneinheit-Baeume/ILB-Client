@@ -1,4 +1,4 @@
-const BOOK_PAGES = ["pages/page-01/index.html", "pages/page-02/index.html", "pages/page-03/index.html"],
+const BOOK_PAGES = ["./pages/page-01/index.html", "./pages/page-02/index.html", "./pages/page-03/index.html"],
     ROOT_ELEMENT = document.querySelector(".book");
 
 
@@ -7,7 +7,7 @@ async function loadPage(path) {
         html = await response.text(),
         node = document.createElement("div");
     node.innerHTML = html;
-    return node.firstChild;
+    return node.firstChild; 
 }
 
 async function loadPages() {

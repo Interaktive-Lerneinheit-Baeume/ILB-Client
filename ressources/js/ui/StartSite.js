@@ -2,11 +2,20 @@ import { Observable, Event } from "../utils/Observable.js";
 
 
 let wholeInfo = {}, radios = [], radioLabels = [],
-nextButton, now;
+nextButton, now,
+javaKnowledges;
 
 const darkBlueColor = "#474554",
     ownGrayColor = "#9b9b9b",
-    blackColor = "#000000";
+    blackColor = "#000000",
+    whiteColor = "#FFFFFF";
+
+function allCirclesAtBeginDesign(){
+    for (let index = 0; index < javaKnowledges.length; index++) {
+        const element = javaKnowledges[index];
+        element.style.background = whiteColor;
+    }
+} 
 
 class StartSite extends Observable {
 
@@ -19,6 +28,41 @@ class StartSite extends Observable {
         this.age = el.querySelector(".participant-age").querySelector("input");
         this.gender = el.querySelector(".participant-gender").querySelector("#radio-buttons");
         this.skills = el.querySelector(".participant-skills").querySelector("#skills-checkboxes");
+        this.anotherSkills = el.querySelector("#another-skills");
+
+        javaKnowledges = el.getElementsByClassName("circle");
+        for (let index = 0; index < javaKnowledges.length; index++) {
+            const element = javaKnowledges[index];
+            element.addEventListener("click", function (e) {
+                allCirclesAtBeginDesign();
+
+                if(e.target.id == "1_circle"){
+                    e.target.style.background = blackColor;
+                }
+                else if(e.target.id == "2_circle"){
+                    document.getElementById("1_circle").style.background = blackColor;
+                    e.target.style.background = blackColor;
+                }
+                else if(e.target.id == "3_circle"){
+                    document.getElementById("1_circle").style.background = blackColor;
+                    document.getElementById("2_circle").style.background = blackColor;
+                    e.target.style.background = blackColor;
+                }
+                else if(e.target.id == "4_circle"){
+                    document.getElementById("1_circle").style.background = blackColor;
+                    document.getElementById("2_circle").style.background = blackColor;
+                    document.getElementById("3_circle").style.background = blackColor;
+                    e.target.style.background = blackColor;
+                }
+                else {
+                    document.getElementById("1_circle").style.background = blackColor;
+                    document.getElementById("2_circle").style.background = blackColor;
+                    document.getElementById("3_circle").style.background = blackColor;
+                    document.getElementById("4_circle").style.background = blackColor;
+                    e.target.style.background = blackColor;
+                }
+            });
+        }
 
         now = Date(Date.now()).toString();
 
@@ -50,6 +94,10 @@ class StartSite extends Observable {
 
         this.number.addEventListener("focus", this.onNumberFocused.bind(this));
         this.number.addEventListener("blur", this.onNumberBlured.bind(this));
+    }
+
+    getCirclesColored() {
+
     }
 
     onNumberBlured() {
@@ -89,6 +137,8 @@ class StartSite extends Observable {
     getAllInfo() {
         let gender = this.getGenderInfo();
         let skills = this.getSkillsInfo();
+        let anotherLanguages = this.anotherSkills.value;
+        let javaKnowledge = this.getJavaKnowledge();
 
         return {
             "age": this.getAge(),
@@ -97,9 +147,21 @@ class StartSite extends Observable {
             "modus": "startDataReceived",
             "skills": skills,
             "gender": gender,
-
+            "another_languages": anotherLanguages,
+            "java_knowledge": javaKnowledge,
             "start_time": now
         }
+    }
+
+    getJavaKnowledge() {
+        let counter = 0;
+        for (let index = 0; index < javaKnowledges.length; index++) {
+            const element = javaKnowledges[index];
+            if(element.style.backgroundColor == "rgb(0, 0, 0)") {
+                counter += 1;
+            }
+        }
+        return counter;
     }
 
     getName() {
@@ -128,6 +190,9 @@ class StartSite extends Observable {
         }
         if (this.skills.querySelector("#mme").checked) {
             wholeSkillsAsString += "mme, ";
+        }
+        if (this.skills.querySelector("#android").checked) {
+            wholeSkillsAsString += "android, ";
         }
 
         return wholeSkillsAsString;

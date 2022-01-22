@@ -1,12 +1,23 @@
-import BookLoader from "./book/BookLoader.js";
 import StartSite from "./ui/StartSite.js";
 import MainSite from "./ui/MainSite.js";
 import Storage from "./data_storage/Storage.js";
+import ExperienceQuestions from "./ui/ExperienceQuestions.js";
+import BookLoader from "./book/BookLoader.js";
 
-
-let startSite, mainSites, startEl, mainEls, endEl, timeoverEl, dataStorage, dataID,
+let startSite,
+  mainSites,
+  experienceQuestions,
+  experienceEl,
+  startEl,
+  mainEls,
+  endEl,
+  timeoverEl,
+  dataStorage,
+  dataID,
   applAnalQuestions,
-  startInfo = {}, finishInfo = {}, nextButton,
+  startInfo = {},
+  finishInfo = {},
+  nextButton,
   explanation,
   engagement,
   intervalForCheckingFocus,
@@ -14,26 +25,26 @@ let startSite, mainSites, startEl, mainEls, endEl, timeoverEl, dataStorage, data
   viewingAufgabe,
   pageIndex = 0;
 
-const hellBrownColor = "#b3804d99";
+const grayColor = "#acacace6";
 
 const Toast = Swal.mixin({
   toast: true,
-  position: 'top-end',
+  position: "top-end",
   showConfirmButton: false,
   timer: 4000,
   timerProgressBar: true,
   didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
 });
 
 function infoAboutInputValues() {
   Toast.fire({
-    icon: 'info',
+    icon: "info",
     width: 500,
-    iconColor: hellBrownColor,
-    title: "Bitte Name, Alter und Gender eintragen!"
+    iconColor: grayColor,
+    title: "Bitte Name, Alter und Gender eintragen!",
   });
 }
 
@@ -47,9 +58,8 @@ function init() {
 }
 
 function onNextButtonClicked(ev) {
-
-  pages = document.getElementsByClassName('page');
-  pages[pageIndex].classList.remove('no-anim');
+  pages = document.getElementsByClassName("page");
+  pages[pageIndex].classList.remove("no-anim");
   pages[pageIndex].classList.add("flipped");
 
   if (pageIndex == 0) {
@@ -65,15 +75,16 @@ function onNextButtonClicked(ev) {
     // else {
     startSite.gotoAnimation();
     // }
-  }
-  else if (pageIndex == 1) {
+  } else if (pageIndex == 1) {
     mainSites.sendToQuestionsButtonClicked();
-  }
-  else if (pageIndex == 2) {
-    mainSites.sendToEndButtonClicked();
+  } else if (pageIndex == 2) {
+    mainSites.sendToExperienceButtonClicked();
+    nextButton.innerHTML = "Abschließen";
+  } else if (pageIndex == 3) {
+    experienceQuestions.sendToEndButtonClicked();
   }
 
-  if (pageIndex == 2) {
+  if (pageIndex == 3) {
     hideElement(nextButton);
   }
 
@@ -102,9 +113,9 @@ function reorder() {
 }
 
 function listenForClosingTheSite() {
-  window.addEventListener('beforeunload', function (e) {
+  window.addEventListener("beforeunload", function (e) {
     e.preventDefault();
-    e.returnValue = '';
+    e.returnValue = "";
     dataStorage.breakProcess(dataID);
   });
 }
@@ -119,12 +130,10 @@ async function initJSONStorage() {
         engagement = data.engagement;
         onGoingToAnimButtonClick();
       });
-    }
-    else {
+    } else {
       alert("Error 404!!!!!!");
     }
-  }
-  else {
+  } else {
     dataStorage.pickRandomExperiment().then(function (data) {
       dataID = data.id;
       engagement = data.engagement;
@@ -149,15 +158,15 @@ function showElement(el) {
 }
 
 function makeHoverText() {
-
   if (pageIndex == 0) {
     nextButton.setAttribute("title", "zur Visualisierung");
-  }
-  else if (pageIndex == 1) {
+  } else if (pageIndex == 1) {
     nextButton.setAttribute("title", "zum Wissenstest");
+  } else if (pageIndex == 2) {
+    nextButton.setAttribute("title", "zu kurzer Befragung");
   }
 
-  if (pageIndex == 2) {
+  if (pageIndex == 3) {
     nextButton.setAttribute("title", "zu Ende");
   }
 }
@@ -170,18 +179,35 @@ function initView() {
   mainEls = document.getElementsByClassName("main-element");
   mainSites = new MainSite(mainEls);
 
+  experienceEl = document.querySelector("#experience_questions");
+  experienceQuestions = new ExperienceQuestions(experienceEl);
+  hideElement(experienceEl);
+
   applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
 
-  startSite.addEventListener("onGotoAnimationButtonClicked", onGotoAnimationButtonClicked);
-  mainSites.addEventListener("onSendToQuestionsButtonClick", onSendToQuestionsButtonClicked);
-  mainSites.addEventListener("onSendToEndButtonClick", onSendToEndButtonClicked);
+  startSite.addEventListener(
+    "onGotoAnimationButtonClicked",
+    onGotoAnimationButtonClicked
+  );
+  mainSites.addEventListener(
+    "onSendToQuestionsButtonClick",
+    onSendToQuestionsButtonClicked
+  );
+  mainSites.addEventListener(
+    "onSendToExperienceButtonClick",
+    onSendToExperienceButtonClicked
+  );
+  experienceQuestions.addEventListener(
+    "onSendToEndButtonClick",
+    onSendToEndButtonClicked
+  );
 
   viewingAufgabe = document.querySelector("#viewing_aufgabe");
 
   hideElement(viewingAufgabe);
 
   nextButton = document.querySelector("#next-button");
-  nextButton.addEventListener("mouseover", makeHoverText);  // setButtonUnClickable();
+  nextButton.addEventListener("mouseover", makeHoverText); // setButtonUnClickable();
   nextButton.addEventListener("click", onNextButtonClicked);
 
   for (let index = 0; index < mainEls.length; index++) {
@@ -197,6 +223,10 @@ function initView() {
 
   explanation = document.querySelector("#explanation");
   hideElement(explanation);
+
+  document.querySelectorAll("code").forEach((el) => {
+    hljs.highlightElement(el);
+  });
 }
 
 function setButtonUnClickable() {
@@ -205,11 +235,11 @@ function setButtonUnClickable() {
 
 function showTimeOverElement() {
   showElement(timeoverEl);
-  let page_3 = document.querySelector("#page-3");
-  let side_2 = page_3.querySelector(".side-2");
-  page_3.classList.add("flipped");
-  side_2.style.zIndex = "3";
-  page_3.style.zIndex = "3";
+  let page_4 = document.querySelector("#page-4");
+  let side_2 = page_4.querySelector(".side-2");
+  page_4.classList.add("flipped");
+  side_2.style.zIndex = "4";
+  page_4.style.zIndex = "4";
 }
 
 function checkPageFocus() {
@@ -218,7 +248,6 @@ function checkPageFocus() {
   if (document.hasFocus()) {
     dataStorage.getExperiment(dataID).then(function (data) {
       if (data.state == "open") {
-
         mainSites.hideConstructVis();
         mainSites.hideViewingVis();
 
@@ -248,7 +277,6 @@ function checkPageFocus() {
 }
 
 function onGotoAnimationButtonClicked(ev) {
-
   onGoingToAnimButtonClick();
   startInfo = ev.data;
 
@@ -259,24 +287,64 @@ function onGotoAnimationButtonClicked(ev) {
         const element = mainEls[index];
         hideElement(element);
       }
-    }
-    else if (data.state === "close") {
+    } else if (data.state === "close") {
       for (let index = 0; index < mainEls.length; index++) {
         const element = mainEls[index];
         hideElement(element);
       }
       showElement(endEl);
-    }
-    else { //"in-use"->dann weiter 
-      mainEls[0].style.display = "flex"; //theorie
-      mainEls[1].style.display = "flex"; //visualize
+    } else {
+      mainEls[0].style.display = "block";
+      mainEls[1].style.display = "block";
       dataStorage.postExperiment(dataID, startInfo, data);
     }
   });
 }
 
-function onGoingToAnimButtonClick() {
+function onSendToEndButtonClicked(ev) {
+  let experienceAnswers = ev.data;
 
+  dataStorage.getExperiment(dataID).then(function (data) {
+    if (data.state === "open") {
+      showTimeOverElement();
+      for (let index = 0; index < mainEls.length; index++) {
+        const element = mainEls[index];
+        hideElement(element);
+      }
+    } else if (data.state === "close") {
+      for (let index = 0; index < mainEls.length; index++) {
+        const element = mainEls[index];
+        hideElement(element);
+      }
+      showElement(endEl);
+    } else {
+      for (let index = 0; index < mainEls.length; index++) {
+        const element = mainEls[index];
+        hideElement(element);
+      }
+
+      hideElement(experienceEl);
+      dataStorage.closeExperiment(dataID, experienceAnswers, data);
+      showElement(endEl);
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        iconColor: grayColor,
+        title: "Vielen Dank für Ihre Teilnahme!",
+        showConfirmButton: false,
+        timer: 5000,
+        backdrop: `
+            rgba(122, 122, 67, 0.6)
+            left top
+            no-repeat
+          `,
+      });
+    }
+  });
+}
+
+function onGoingToAnimButtonClick() {
   startSite.hideTheSite(startEl);
 
   for (let index = 0; index < mainEls.length; index++) {
@@ -290,11 +358,10 @@ function onGoingToAnimButtonClick() {
   if (engagement === "constructing") {
     mainSites.hideViewingVis();
     mainSites.showConstructVis();
-  }
-  else {
+  } else {
     mainSites.showViewingVis();
     mainSites.hideConstructVis();
-    viewingAufgabe.style.display = "inline-block";
+    viewingAufgabe.style.display = "flex";
   }
 }
 
@@ -302,7 +369,6 @@ function onSendToQuestionsButtonClicked(ev) {
   let applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
 
   dataStorage.getExperiment(dataID).then(function (data) {
-
     if (data.state === "open") {
       showTimeOverElement();
       hideElement(endEl);
@@ -312,9 +378,7 @@ function onSendToQuestionsButtonClicked(ev) {
       }
 
       hideElement(applAnalQuestions);
-    }
-
-    else if (data.state === "in-use") {
+    } else if (data.state === "in-use") {
       mainSites.hideConstructVis();
       mainSites.hideViewingVis();
 
@@ -326,12 +390,11 @@ function onSendToQuestionsButtonClicked(ev) {
   });
 }
 
-function onSendToEndButtonClicked(ev) {
+function onSendToExperienceButtonClicked(ev) {
   let applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
   finishInfo = ev.data;
 
   dataStorage.getExperiment(dataID).then(function (data) {
-
     if (data.state === "open") {
       showElement(timeoverEl);
       hideElement(endEl);
@@ -339,33 +402,18 @@ function onSendToEndButtonClicked(ev) {
         const element = mainEls[index];
         hideElement(element);
       }
-    }
-
-    else if (data.state == "in-use") { //"in-use"->dann schliessen auf close
-      dataStorage.closeExperiment(dataID, finishInfo, data);
+    } else if (data.state == "in-use") {
+      dataStorage.postQuestionsToExperiment(dataID, finishInfo, data);
 
       for (let index = 0; index < mainEls.length; index++) {
         const mainEl = mainEls[index];
         hideElement(mainEl);
       }
 
-      showElement(endEl);
+      hideElement(endEl);
       hideElement(timeoverEl);
       hideElement(applAnalQuestions);
-
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        iconColor: hellBrownColor,
-        title: 'Vielen Dank für Ihre Teilnahme!',
-        showConfirmButton: false,
-        timer: 5000,
-        backdrop: `
-            rgba(179, 128, 77, 0.6)
-            left top
-            no-repeat
-          `
-      })
+      showElement(experienceEl);
     }
   });
 }

@@ -44,7 +44,7 @@ function infoAboutInputValues() {
     icon: "info",
     width: 500,
     iconColor: grayColor,
-    title: "Bitte Name, Alter und Gender eintragen!",
+    title: "Bitte Name, Alter, Gender und erworbene Kurse eintragen!",
   });
 }
 
@@ -58,23 +58,31 @@ function init() {
 }
 
 function onNextButtonClicked(ev) {
-  pages = document.getElementsByClassName("page");
-  pages[pageIndex].classList.remove("no-anim");
-  pages[pageIndex].classList.add("flipped");
-
   if (pageIndex == 0) {
-    // DAS FUNKTIONIERT NICHT!!!
-    // if (startSite.getName() == "" || startSite.getName() == " " || startSite.getName() == null ||
-    //   startSite.getAge() == "" || startSite.getAge() == " " || startSite.getAge() == null ||
-    //   startSite.getGenderInfo() == "" || startSite.getGenderInfo() == " " || startSite.getGenderInfo() == null) {
-
-    //   infoAboutInputValues();
-    //   console.log("startSite.getName(): " + startSite.getName() + ":startSite.getAge():" + startSite.getAge());
-    //   return;
-    // }
-    // else {
-    startSite.gotoAnimation();
-    // }
+    if (
+      startSite.getName() == "" ||
+      startSite.getName() == " " ||
+      startSite.getName() == null ||
+      startSite.getAge() == "" ||
+      startSite.getAge() == " " ||
+      startSite.getAge() == null ||
+      startSite.getGenderInfo() == "" ||
+      startSite.getGenderInfo() == " " ||
+      startSite.getGenderInfo() == null ||
+      startSite.getSkillsInfo() == null || 
+      startSite.getSkillsInfo() == ""
+    ) {
+      infoAboutInputValues();
+      console.log(
+        "startSite.getName(): " +
+          startSite.getName() +
+          ":startSite.getAge():" +
+          startSite.getAge()
+      );
+      return;
+    } else {
+      startSite.gotoAnimation();
+    }
   } else if (pageIndex == 1) {
     mainSites.sendToQuestionsButtonClicked();
   } else if (pageIndex == 2) {
@@ -83,6 +91,10 @@ function onNextButtonClicked(ev) {
   } else if (pageIndex == 3) {
     experienceQuestions.sendToEndButtonClicked();
   }
+
+  pages = document.getElementsByClassName("page");
+  pages[pageIndex].classList.remove("no-anim");
+  pages[pageIndex].classList.add("flipped");
 
   if (pageIndex == 3) {
     hideElement(nextButton);

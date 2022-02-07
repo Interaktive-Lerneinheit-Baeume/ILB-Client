@@ -290,17 +290,16 @@ class ViewingVisualizer extends Observable {
     codeVisualizerViewing = new CodeVisualizer(el, "viewing");
 
     startButton = document.querySelector("#start-button");
-    console.log("startButton", startButton);
     pauseButton = document.querySelector("#pause-button");
 
     idNumbersViewing = document.getElementsByClassName("id-number-viewing");
 
-    for (let index = 0; index < idNumbersViewing.length; index++) {
-      const mainCodeElement = idNumbersViewing[index];
-      mainCodeElement.style.visibility = "hidden";
-    }
+    // for (let index = 0; index < idNumbersViewing.length; index++) {
+    //   const mainCodeElement = idNumbersViewing[index];
+    //   mainCodeElement.style.visibility = "hidden";
+    // }
 
-    selectedMainRow = idNumbersViewing[0];
+    // selectedMainRow = idNumbersViewing[0];
 
     ViewingVisualizer.setPauseButtonUnClickable();
 

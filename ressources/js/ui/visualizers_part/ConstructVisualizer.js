@@ -262,8 +262,10 @@ function continueContructing() {
     radius * 1.1
   );
   addOnPanel(nodeGroupElements[indexPosition]);
-
+  
   idNumbersConstr[indexMainPosition].style.visibility = "visible";
+  idNumbersConstr[0].style.visibility = "visible";
+  idNumbersConstr[1].style.visibility = "visible";
   indexMainPosition += 1;
   selectedMainRow.removeAttribute("id");
 
@@ -487,11 +489,6 @@ class ConstructVisualizer extends Observable {
     panelConstructing = new jsgl.Panel(this.panelElementConstr);
 
     idNumbersConstr = document.getElementsByClassName("id-number-constr");
-
-    for (let index = 2; index < idNumbersConstr.length; index++) {
-      const mainCodeElement = idNumbersConstr[index];
-      mainCodeElement.style.visibility = "hidden";
-    }
 
     selectedMainRow = idNumbersConstr[1];
     selectedMainRow.setAttribute("id", "id_1");

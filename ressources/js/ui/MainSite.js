@@ -6,7 +6,7 @@ import QuestionsArea from "./questions_part/QuestionsArea.js";
 let viewingVisualizer, constructVisualizer, testQuestionsAreaEl, questionsArea;
 
 class MainSite extends Observable {
-  constructor(el) {
+  constructor() {
     super();
 
     this.visualizerElViewing = document.querySelector("#viewing");
@@ -17,9 +17,9 @@ class MainSite extends Observable {
       this.visualizerElConstructing
     );
 
-    testQuestionsAreaEl = el[2];
-    questionsArea = new QuestionsArea(testQuestionsAreaEl);
-    this.hideTheElement(testQuestionsAreaEl);
+    // testQuestionsAreaEl = document.querySelector();
+    questionsArea = new QuestionsArea();
+    // this.hideTheElement(testQuestionsAreaEl);
   }
 
   hideTheElement(el) {
@@ -37,6 +37,7 @@ class MainSite extends Observable {
   showViewingVis() {
     this.visualizerElViewing.style.display = "block";
   }
+  
   hideConstructVis() {
     this.visualizerElConstructing.style.display = "none";
   }

@@ -3,9 +3,9 @@ import Observable from "../../utils/Observable.js";
 let differenceInput;
 
 class QuestionsComprehensionVisual extends Observable {
-  constructor(el) {
+  constructor() {
     super();
-    differenceInput = el.querySelector("#difference-of-trees");
+    differenceInput = document.querySelector("#difference-of-trees");
   }
 
   getAllInfo() {

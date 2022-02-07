@@ -6,13 +6,13 @@ let obstaclesExperience,
   tippExperience;
 
 class ExperienceQuestions extends Observable {
-  constructor(el) {
+  constructor() {
     super();
     this.textAreasExperience = document.getElementsByClassName("experience");
-    obstaclesExperience = el.querySelector("#obstacles-experience");
-    understandableExperience = el.querySelector("#understandable-experience");
-    goodExperience = el.querySelector("#good-experience");
-    tippExperience = el.querySelector("#tipp-experience");
+    obstaclesExperience = document.querySelector("#obstacles-experience");
+    understandableExperience = document.querySelector("#understandable-experience");
+    goodExperience = document.querySelector("#good-experience");
+    tippExperience = document.querySelector("#tipp-experience");
   }
 
   sendToEndButtonClicked() {

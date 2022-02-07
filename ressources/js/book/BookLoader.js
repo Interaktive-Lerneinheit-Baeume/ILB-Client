@@ -3,6 +3,14 @@ const BOOK_PAGES = [
     "./pages/page-02/index.html",
     "./pages/page-03/index.html",
     "./pages/page-04/index.html",
+    "./pages/page-05/index.html",
+    "./pages/page-06/index.html",
+    "./pages/page-07/index.html",
+    "./pages/page-08/index.html",
+    "./pages/page-09/index.html",
+    "./pages/page-10/index.html",
+    "./pages/page-11/index.html",
+    "./pages/page-12/index.html"
   ],
   ROOT_ELEMENT = document.querySelector(".book");
 
@@ -19,6 +27,7 @@ async function loadPages() {
   for (let i = 0; i < BOOK_PAGES.length; i++) {
     let page = await loadPage(BOOK_PAGES[i]);
     ROOT_ELEMENT.append(page);
+    console.log("BOOK_PAGES.length: "+BOOK_PAGES.length);
   }
   return;
 }

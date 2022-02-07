@@ -3,7 +3,7 @@
 *::after {
   padding: 0;
   box-sizing: border-box;
-  font-size: 13pt;
+  /* font-size: 13pt; */
 }
 
 body {
@@ -47,6 +47,10 @@ body {
   color: #000000;
 } */
 
+.set_background_for_first_page {
+  background-color: var(--green-color) !important;
+}
+
 .circle:hover {
   cursor: pointer;
 }
@@ -60,17 +64,25 @@ body {
   -moz-backface-visibility: visible;
 }
 
+.lehrbuch {
+  margin-top: 13%;
+  text-align: center;
+  font-family: 'Allura', cursive;
+  font-size: 30pt;
+
+}
+
 /* https://codepen.io/carpenumidium/pen/EoxGg */
 .book {
   height: 90%;
   width: 97%;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
       90deg,
       var(--hell-brown),
       var(--noble-brown),
       var(--hell-brown) 90%
     ),
-    url("http://inspirationhut3.inspirationhut.netdna-cdn.com/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg");
+    url("http://inspirationhut3.inspirationhut.netdna-cdn.com/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg"); */
   position: absolute;
   top: 0;
   left: 0;
@@ -160,18 +172,85 @@ body {
   position: fixed;
   bottom: 10px;
   border: none;
-
   font-size: 13pt;
-  top: 10%;
+  top: 7%;
   right: 4%;
   background-color: var(--own-gray);
   color: var(--black);
   font-family: var(--font);
   border-radius: 5px;
-  z-index: 5;
+  z-index: 13;
+}
+
+.vorwort {
+  font-family: 'Allura', cursive; 
+  text-align: justify; 
+  font-size: 20pt;
+}
+
+.unterkapitel{
+  font-size: 20pt;
+  margin-left: 30px; 
+  margin-top: 30px;
+
+}
+
+.vorwort strong {
+  font-size: 24pt;
+  margin-left: 25px;
+  margin-top: 30px;
+}
+
+.datastructure-trees {
+  /* margin-left: 25px; */
+  font-size: 16pt;
+}
+
+.vorwort_title {
+  font-size: 26pt;
+  margin-top: 13%;
+}
+
+.vorwort p {
+  text-align: center;
+  margin-top: 13%;
+}
+
+.einrueckung_unterkapitel {
+  margin-left: 30px; 
+  font-size: 16pt;
+}
+
+#back-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 7%;
+  min-width: 10px;
+  height: 5%;
+  min-height: 10px;
+  position: fixed;
+  bottom: 10px;
+  border: none;
+  font-size: 13pt;
+  top: 7%;
+  left: 4%;
+  background-color: var(--own-gray);
+  color: var(--black);
+  font-family: var(--font);
+  border-radius: 5px;
+  z-index: 13;
 }
 
 #next-button:hover {
+  background-color: var(--green-color);
+  color: var(--white);
+  border-color: var(--white);
+  border-style: solid 2px;
+  cursor: pointer;
+}
+
+#back-button:hover {
   background-color: var(--green-color);
   color: var(--white);
   border-color: var(--white);
@@ -208,7 +287,7 @@ body {
 .kenntnisstand {
   font-size: 15pt;
   color: var(--black);
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .hindernisse {
@@ -220,7 +299,7 @@ body {
 }
 
 #skills-legend {
-  padding-top: 17px;
+  /* padding-top: 17px; */
   color: var(--black);
   font-size: 15pt;
 }
@@ -278,11 +357,11 @@ ul {
 ul li {
   display: inline-block;
   position: relative;
-  padding: 5px;
+  padding: 2px;
 }
 
 ul li:not(:last-child) {
-  margin-bottom: 16px;
+  margin-bottom: 5px;
 }
 
 ul li:before {
@@ -346,9 +425,9 @@ ul li:after {
 .participant {
   width: 100%;
   font-size: 15pt;
-  display: flex;
-  margin-top: 60px;
-  margin: 15px;
+  /* display: flex; */
+  /* margin-top: 80px; */
+  /* margin: 15px; */
 }
 
 #another-skills {
@@ -367,8 +446,8 @@ ul li:after {
 
 .datastructure-detection {
   width: 100%;
-  font-size: 18pt;
-  margin: 17px;
+  font-size: 14pt;
+  /* margin: 10px; */
 }
 
 #statement-checkboxes {
@@ -380,8 +459,8 @@ ul li:after {
 
 .tasks {
   width: 100%;
-  margin-top: 70px;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .question-title {
@@ -592,7 +671,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 #print-code-panel {
-  width: 300px;
+  /* width: 300px; */
   margin-bottom: 15px;
 }
 
@@ -774,11 +853,13 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked + label {
   position: relative;
   color: var(--black);
+  font-size: 14pt;
 }
 
 input[type="checkbox"] + label {
   position: relative;
   color: var(--own-gray);
+  font-size: 14pt;
 }
 
 input[type="checkbox"]:checked {
@@ -813,39 +894,37 @@ input[type="checkbox"]:checked {
 
 
 .print-methode.hljs {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 .print-methode > .hljs-number {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 .print-methode > .hljs-title {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 .print-methode > .hljs-variable {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 .print-methode > .hljs-params {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 .print-methode > .hljs-literal {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 .print-methode > .hljs-keyword {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 .print-methode > .hljs-operator {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 .print-methode > .hljs-type {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
-
-
 
 
 .hljs {
   /* padding: 3px 5px; */
-  /* font-size: 10pt !important; */
+  font-size: 10pt !important;
 }
 
 .hljs-number {
@@ -943,7 +1022,7 @@ input[type="checkbox"]:checked {
 }
 
 #panel-code-alg {
-  height: 500px;
+  height: auto;
 }
 
 #panel-main-code-constructing {

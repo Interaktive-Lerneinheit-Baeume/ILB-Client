@@ -292,22 +292,22 @@ function drawCloud() {
 }
 
 class QuestionsApplAnalysisSynthVisual extends Observable {
-  constructor(el) {
+  constructor() {
     super();
 
-    treesSelectionCheckboxesDiv = el.querySelector("#statement-checkboxes");
+    treesSelectionCheckboxesDiv = document.querySelector("#statement-checkboxes");
 
-    sequenceConstructingTextArea = el.querySelector("#sequence-constructing");
-    printSequenceTextArea = el.querySelector("#print-sequence");
-    treeHeightTextArea = el.querySelector("#tree-height-textarea");
+    sequenceConstructingTextArea = document.querySelector("#sequence-constructing");
+    printSequenceTextArea = document.querySelector("#print-sequence");
+    treeHeightTextArea = document.querySelector("#tree-height-textarea");
 
-    panelsTrees.push(new jsgl.Panel(el.querySelector("#first-tree-panel")));
-    panelsTrees.push(new jsgl.Panel(el.querySelector("#sec-tree-panel")));
-    panelsTrees.push(new jsgl.Panel(el.querySelector("#third-tree-panel")));
+    panelsTrees.push(new jsgl.Panel(document.querySelector("#first-tree-panel")));
+    panelsTrees.push(new jsgl.Panel(document.querySelector("#sec-tree-panel")));
+    panelsTrees.push(new jsgl.Panel(document.querySelector("#third-tree-panel")));
 
-    panelCloud = new jsgl.Panel(el.querySelector("#cloud"));
+    panelCloud = new jsgl.Panel(document.querySelector("#cloud"));
 
-    printTreePanel = new jsgl.Panel(el.querySelector("#print-tree-panel"));
+    printTreePanel = new jsgl.Panel(document.querySelector("#print-tree-panel"));
 
     drawThreeTrees();
     drawPrintTreeAndCode();

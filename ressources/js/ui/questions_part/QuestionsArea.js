@@ -5,15 +5,15 @@ import QuestionComprehensionVisual from "./QuestionsComprehensionVisual.js";
 
 let questionsKnowledgeVisual, questionsComprVisual, questionsApplAnSynVisual;
 
-function initQuestions(testQuestionsAreaEl) {
-  let questionsKnowledgeVisualEl = testQuestionsAreaEl.querySelector(
+function initQuestions() {
+  let questionsKnowledgeVisualEl = document.querySelector(
     ".questions-knowledge"
   );
   questionsKnowledgeVisual = new QuestionsKnowledgeVisual(
     questionsKnowledgeVisualEl
   );
 
-  let questionsComprVisualEl = testQuestionsAreaEl.querySelector(
+  let questionsComprVisualEl = document.querySelector(
     ".questions-comprehension"
   );
   questionsComprVisual = new QuestionComprehensionVisual(
@@ -29,10 +29,10 @@ function initQuestions(testQuestionsAreaEl) {
 }
 
 class QuestionsArea extends Observable {
-  constructor(el) {
+  constructor() {
     super();
 
-    initQuestions(el);
+    initQuestions();
   }
 
   getAllQuestionAnswers() {

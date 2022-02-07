@@ -20,24 +20,24 @@ function allCirclesAtBeginDesign() {
 }
 
 class StartSite extends Observable {
-  constructor(el) {
+  constructor() {
     super();
-    this.name = el.querySelector(".participant-name").querySelector("input");
-    this.VPhonor = el.querySelector(".private_data");
+    this.name = document.querySelector(".participant-name").querySelector("input");
+    this.VPhonor = document.querySelector(".private_data");
 
-    this.number = el
+    this.number = document
       .querySelector(".participant-number")
       .querySelector("input");
-    this.age = el.querySelector(".participant-age").querySelector("input");
-    this.gender = el
+    this.age = document.querySelector(".participant-age").querySelector("input");
+    this.gender = document
       .querySelector(".participant-gender")
       .querySelector("#radio-buttons");
-    this.skills = el
+    this.skills = document
       .querySelector(".participant-skills")
       .querySelector("#skills-checkboxes");
-    this.anotherSkills = el.querySelector("#another-skills");
+    this.anotherSkills = document.querySelector("#another-skills");
 
-    javaKnowledges = el.getElementsByClassName("circle");
+    javaKnowledges = document.getElementsByClassName("circle");
     for (let index = 0; index < javaKnowledges.length; index++) {
       const element = javaKnowledges[index];
       element.addEventListener("click", function (e) {
@@ -115,18 +115,10 @@ class StartSite extends Observable {
     el.style.display = "block";
   }
 
-  gotoAnimation() {
+  sendDemographicData() {
     wholeInfo = this.getAllInfo();
-    // if (this.getName() == "" || this.getName() == " " || this.getName() == null ||
-    //     this.getGenderInfo() == "" || this.getGenderInfo() == " " || this.getGenderInfo() == null ||
-    //     this.getAge() == "" || this.getAge() == " " || this.getAge() == null) {
-    //     console.log("nuuul" + wholeInfo.name + ": :" + wholeInfo.json);
-    //     return;
-    // }
-    // else {
     let event = new Event("onGotoAnimationButtonClicked", wholeInfo);
     this.notifyAll(event);
-    // }
   }
 
   setButtonClickable() {

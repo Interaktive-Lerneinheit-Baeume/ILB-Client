@@ -18,6 +18,7 @@ let startSite,
   startInfo = {},
   finishInfo = {},
   nextButton,
+  backButton,
   explanation,
   engagement,
   intervalForCheckingFocus,
@@ -57,47 +58,62 @@ function init() {
   });
 }
 
+function onBackButtonClicked(ev) {
+  if(pageIndex != 0){
+    pages[pageIndex-1].classList.add("no-anim");
+    pages[pageIndex-1].classList.remove("flipped");
+    pageIndex -= 1;
+
+    reorder();
+  }
+}
+
 function onNextButtonClicked(ev) {
+  if(pageIndex != 0){
+    let side_1_without_zIndex = document.querySelector(".side-1");
+    side_1_without_zIndex.classList.remove("set_background_for_first_page");
+  }
+
   if (pageIndex == 0) {
-    if (
-      startSite.getName() == "" ||
-      startSite.getName() == " " ||
-      startSite.getName() == null ||
-      startSite.getAge() == "" ||
-      startSite.getAge() == " " ||
-      startSite.getAge() == null ||
-      startSite.getGenderInfo() == "" ||
-      startSite.getGenderInfo() == " " ||
-      startSite.getGenderInfo() == null ||
-      startSite.getSkillsInfo() == null || 
-      startSite.getSkillsInfo() == ""
-    ) {
-      infoAboutInputValues();
-      console.log(
-        "startSite.getName(): " +
-          startSite.getName() +
-          ":startSite.getAge():" +
-          startSite.getAge()
-      );
-      return;
-    } else {
-      startSite.gotoAnimation();
-    }
-  } else if (pageIndex == 1) {
-    mainSites.sendToQuestionsButtonClicked();
+    // if (
+    //   startSite.getName() == "" ||
+    //   startSite.getName() == " " ||
+    //   startSite.getName() == null ||
+    //   startSite.getAge() == "" ||
+    //   startSite.getAge() == " " ||
+    //   startSite.getAge() == null ||
+    //   startSite.getGenderInfo() == "" ||
+    //   startSite.getGenderInfo() == " " ||
+    //   startSite.getGenderInfo() == null ||
+    //   startSite.getSkillsInfo() == null || 
+    //   startSite.getSkillsInfo() == ""
+    // ) {
+    //   infoAboutInputValues();
+    //   console.log(
+    //     "startSite.getName(): " +
+    //       startSite.getName() +
+    //       ":startSite.getAge():" +
+    //       startSite.getAge()
+    //   );
+    //   return;
+    // } else {
+      // startSite.gotoAnimation();
+    // }
   } else if (pageIndex == 2) {
+    startSite.sendDemographicData();
+  } else if (pageIndex == 9) {
     mainSites.sendToExperienceButtonClicked();
-    nextButton.innerHTML = "Abschließen";
-  } else if (pageIndex == 3) {
+    // nextButton.innerHTML = "Abschließen";
+  } else if (pageIndex == 10) {
     experienceQuestions.sendToEndButtonClicked();
   }
 
-  pages = document.getElementsByClassName("page");
   pages[pageIndex].classList.remove("no-anim");
   pages[pageIndex].classList.add("flipped");
 
-  if (pageIndex == 3) {
+  if (pageIndex == 10) {
     hideElement(nextButton);
+    hideElement(backButton);
   }
 
   pageIndex += 1;
@@ -105,13 +121,30 @@ function onNextButtonClicked(ev) {
 }
 
 function reorder() {
+  if(pageIndex == 11){
+    let page_12 =  document.querySelector("#page-12");
+    let side_1_without_zIndex = page_12.querySelector(".side-2");
+    side_1_without_zIndex.classList.add("set_background_for_first_page");
+    hideElement(backButton);
+    hideElement(nextButton);
+  }
+  
+  if(pageIndex == 0 || pageIndex == 1 || pageIndex == 2 || pageIndex == 3 || pageIndex == 6 || pageIndex == 10){
+    hideElement(backButton);
+  }
+  else {
+    showElement(backButton);
+  }
+
   document.querySelectorAll(".book").forEach(function () {
-    pages = document.querySelectorAll(".page");
+    // pages = document.querySelectorAll(".page");
     var pages_flipped = document.querySelectorAll(".flipped");
 
     for (let index = 0; index < pages.length; index++) {
       const element = pages[index];
       element.style.zIndex = pages.length - index;
+      let side_1_without_zIndex = element.querySelector(".side-1");
+      side_1_without_zIndex.style.zIndex = element.style.zIndex;
     }
 
     for (let index = 0; index < pages_flipped.length; index++) {
@@ -119,7 +152,7 @@ function reorder() {
       element.style.zIndex = index + 1;
 
       let side_1_without_zIndex = element.querySelector(".side-1");
-      side_1_without_zIndex.style.zIndex = "auto";
+      side_1_without_zIndex.style.zIndex = 0;
     }
   });
 }
@@ -150,7 +183,6 @@ async function initJSONStorage() {
       dataID = data.id;
       engagement = data.engagement;
       window.location.hash = dataID;
-
       intervalForCheckingFocus = setInterval(checkPageFocus, 60000); //60000 = 1 Min * 60 Sek (1000 MilliSek)
     });
   }
@@ -170,31 +202,30 @@ function showElement(el) {
 }
 
 function makeHoverText() {
-  if (pageIndex == 0) {
-    nextButton.setAttribute("title", "zur Visualisierung");
-  } else if (pageIndex == 1) {
-    nextButton.setAttribute("title", "zum Wissenstest");
-  } else if (pageIndex == 2) {
-    nextButton.setAttribute("title", "zu kurzer Befragung");
-  }
+  // if (pageIndex == 0) {
+  //   nextButton.setAttribute("title", "zur Visualisierung");
+  // } else if (pageIndex == 1) {
+  //   nextButton.setAttribute("title", "zum Wissenstest");
+  // } else if (pageIndex == 2) {
+  //   nextButton.setAttribute("title", "zu kurzer Befragung");
+  // }
 
-  if (pageIndex == 3) {
-    nextButton.setAttribute("title", "zu Ende");
-  }
+  // if (pageIndex == 3) {
+  //   nextButton.setAttribute("title", "zu Ende");
+  // }
 }
 
 function initView() {
   startEl = document.querySelector("#start-element");
-  startSite = new StartSite(startEl);
-  startSite.showTheSite(startEl);
+  startSite = new StartSite();
 
   mainEls = document.getElementsByClassName("main-element");
-  mainSites = new MainSite(mainEls);
+  mainSites = new MainSite();
 
   experienceEl = document.querySelector("#experience_questions");
-  experienceQuestions = new ExperienceQuestions(experienceEl);
-  hideElement(experienceEl);
+  experienceQuestions = new ExperienceQuestions();
 
+  pages = document.getElementsByClassName("page");
   applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
 
   startSite.addEventListener(
@@ -216,42 +247,52 @@ function initView() {
 
   viewingAufgabe = document.querySelector("#viewing_aufgabe");
 
-  hideElement(viewingAufgabe);
-
   nextButton = document.querySelector("#next-button");
+  backButton = document.querySelector("#back-button");
+
   nextButton.addEventListener("mouseover", makeHoverText); // setButtonUnClickable();
   nextButton.addEventListener("click", onNextButtonClicked);
-
-  for (let index = 0; index < mainEls.length; index++) {
-    const element = mainEls[index];
-    hideElement(element);
-  }
+  backButton.addEventListener("click", onBackButtonClicked);
 
   endEl = document.querySelector("#end-element");
-  hideElement(endEl);
-
   timeoverEl = document.querySelector("#timeover-element");
-  hideElement(timeoverEl);
-
-  explanation = document.querySelector("#explanation");
-  hideElement(explanation);
 
   document.querySelectorAll("code").forEach((el) => {
     hljs.highlightElement(el);
   });
+
+  if(pageIndex == 0){
+    let side_1_without_zIndex = document.querySelector(".side-1");
+    side_1_without_zIndex.classList.add("set_background_for_first_page");
+  }
 }
 
 function setButtonUnClickable() {
   nextButton.disabled = true;
 }
 
-function showTimeOverElement() {
-  showElement(timeoverEl);
-  let page_4 = document.querySelector("#page-4");
-  let side_2 = page_4.querySelector(".side-2");
-  page_4.classList.add("flipped");
-  side_2.style.zIndex = "4";
-  page_4.style.zIndex = "4";
+function showTimeOverOrEndElement(timeOverOrEnd) {
+  let page_12 = document.querySelector("#page-12");
+  let side_2 = page_12.querySelector(".side-2");
+  side_2.classList.add("set_background_for_first_page");
+
+  for (let index = 0; index < pages.length; index++) {
+    const element = pages[index];
+    element.classList.add("flipped");
+  }
+
+  page_12.style.zIndex = 13;
+  side_2.style.zIndex = 13;
+
+  if(timeOverOrEnd == "time_over"){
+    hideElement(endEl);
+    showElement(timeoverEl);
+  }
+  else {
+    showElement(endEl);
+    hideElement(timeoverEl);
+  }
+  
 }
 
 function checkPageFocus() {
@@ -263,25 +304,9 @@ function checkPageFocus() {
         mainSites.hideConstructVis();
         mainSites.hideViewingVis();
 
-        hideElement(endEl);
-        hideElement(applAnalQuestions);
-        hideElement(explanation);
-        hideElement(viewingAufgabe);
-        hideElement(nextButton);
-
         startSite.hideTheSite(startEl);
 
-        for (let index = 0; index < mainEls.length; index++) {
-          const element = mainEls[index];
-          hideElement(element);
-        }
-
-        for (let index = 0; index < pages.length; index++) {
-          const element = pages[index];
-          element.classList.add("flipped");
-        }
-        showTimeOverElement();
-
+        showTimeOverOrEndElement("time_over");
         clearInterval(intervalForCheckingFocus);
       }
     });
@@ -294,20 +319,9 @@ function onGotoAnimationButtonClicked(ev) {
 
   dataStorage.getExperiment(dataID).then(function (data) {
     if (data.state === "open") {
-      showTimeOverElement();
-      for (let index = 0; index < mainEls.length; index++) {
-        const element = mainEls[index];
-        hideElement(element);
-      }
+      showTimeOverOrEndElement("time_over");
     } else if (data.state === "close") {
-      for (let index = 0; index < mainEls.length; index++) {
-        const element = mainEls[index];
-        hideElement(element);
-      }
-      showElement(endEl);
     } else {
-      mainEls[0].style.display = "block";
-      mainEls[1].style.display = "block";
       dataStorage.postExperiment(dataID, startInfo, data);
     }
   });
@@ -318,26 +332,11 @@ function onSendToEndButtonClicked(ev) {
 
   dataStorage.getExperiment(dataID).then(function (data) {
     if (data.state === "open") {
-      showTimeOverElement();
-      for (let index = 0; index < mainEls.length; index++) {
-        const element = mainEls[index];
-        hideElement(element);
-      }
+      showTimeOverOrEndElement("time_over");
     } else if (data.state === "close") {
-      for (let index = 0; index < mainEls.length; index++) {
-        const element = mainEls[index];
-        hideElement(element);
-      }
-      showElement(endEl);
     } else {
-      for (let index = 0; index < mainEls.length; index++) {
-        const element = mainEls[index];
-        hideElement(element);
-      }
-
-      hideElement(experienceEl);
+      showTimeOverOrEndElement("end-time");
       dataStorage.closeExperiment(dataID, experienceAnswers, data);
-      showElement(endEl);
 
       Swal.fire({
         position: "center",
@@ -359,21 +358,25 @@ function onSendToEndButtonClicked(ev) {
 function onGoingToAnimButtonClick() {
   startSite.hideTheSite(startEl);
 
-  for (let index = 0; index < mainEls.length; index++) {
-    const element = mainEls[index];
-    showElement(element);
-  }
-
-  hideElement(applAnalQuestions);
-  explanation.style.display = "flex";
-
   if (engagement === "constructing") {
     mainSites.hideViewingVis();
     mainSites.showConstructVis();
+
+    let idNumbersConstr = document.getElementsByClassName("id-number-constr");
+    for (let index = 2; index < idNumbersConstr.length; index++) {
+      const mainCodeElement = idNumbersConstr[index];
+      mainCodeElement.style.visibility = "hidden";
+    }
   } else {
+    let idNumbersViewing = document.getElementsByClassName("id-number-viewing");
     mainSites.showViewingVis();
     mainSites.hideConstructVis();
     viewingAufgabe.style.display = "flex";
+
+    for (let index = 0; index < idNumbersViewing.length; index++) {
+      const mainCodeElement = idNumbersViewing[index];
+      mainCodeElement.style.visibility = "hidden";
+    }
   }
 }
 
@@ -382,50 +385,22 @@ function onSendToQuestionsButtonClicked(ev) {
 
   dataStorage.getExperiment(dataID).then(function (data) {
     if (data.state === "open") {
-      showTimeOverElement();
-      hideElement(endEl);
-      for (let index = 0; index < mainEls.length; index++) {
-        const mainEl = mainEls[index];
-        hideElement(mainEl);
-      }
-
-      hideElement(applAnalQuestions);
+      showTimeOverOrEndElement("time_over");
     } else if (data.state === "in-use") {
       mainSites.hideConstructVis();
       mainSites.hideViewingVis();
-
-      hideElement(explanation);
-      hideElement(viewingAufgabe);
-
       showElement(applAnalQuestions);
     }
   });
 }
 
 function onSendToExperienceButtonClicked(ev) {
-  let applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
   finishInfo = ev.data;
 
   dataStorage.getExperiment(dataID).then(function (data) {
     if (data.state === "open") {
-      showElement(timeoverEl);
-      hideElement(endEl);
-      for (let index = 0; index < mainEls.length; index++) {
-        const element = mainEls[index];
-        hideElement(element);
-      }
     } else if (data.state == "in-use") {
       dataStorage.postQuestionsToExperiment(dataID, finishInfo, data);
-
-      for (let index = 0; index < mainEls.length; index++) {
-        const mainEl = mainEls[index];
-        hideElement(mainEl);
-      }
-
-      hideElement(endEl);
-      hideElement(timeoverEl);
-      hideElement(applAnalQuestions);
-      showElement(experienceEl);
     }
   });
 }

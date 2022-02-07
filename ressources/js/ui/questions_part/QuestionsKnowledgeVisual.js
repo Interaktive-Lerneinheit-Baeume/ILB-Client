@@ -298,22 +298,20 @@ function drawOnPanel_2() {
 class QuestionsKnowledgeVisual extends Observable {
   constructor(el) {
     super();
-    panelKnowledge_1 = new jsgl.Panel(el.querySelector("#panel-knowledge-1"));
-    panelKnowledge_2 = new jsgl.Panel(el.querySelector("#panel-knowledge-2"));
+    panelKnowledge_1 = new jsgl.Panel(document.querySelector("#panel-knowledge-1"));
+    panelKnowledge_2 = new jsgl.Panel(document.querySelector("#panel-knowledge-2"));
 
-    this.zyklus = el.querySelector("#zyklus");
-    this.binaryTree = el.querySelector("#binary-tree");
-    this.binarySearchTree = el.querySelector("#binary-search-tree");
-    this.nodeGraph = el.querySelector("#node-graph");
-    this.arrayCheckbox = el.querySelector("#array");
+    this.zyklus = document.querySelector("#zyklus");
+    this.binaryTree = document.querySelector("#binary-tree");
+    this.binarySearchTree = document.querySelector("#binary-search-tree");
+    this.nodeGraph = document.querySelector("#node-graph");
+    this.arrayCheckbox = document.querySelector("#array");
 
-    this.zyklusKnowl_2 = el.querySelector("#knowledge-2-zyklus");
-    this.binaryTreeKnowl_2 = el.querySelector("#knowledge-2-binary-tree");
-    this.binarySearchTreeKnowl_2 = el.querySelector(
-      "#knowledge-2-binary-search-tree"
-    );
-    this.nodeGraphKnowl_2 = el.querySelector("#knowledge-2-node-graph");
-    this.arrayCheckboxKnowl_2 = el.querySelector("#knowledge-2-array");
+    this.zyklusKnowl_2 = document.querySelector("#knowledge-2-zyklus");
+    this.binaryTreeKnowl_2 = document.querySelector("#knowledge-2-binary-tree");
+    this.binarySearchTreeKnowl_2 = document.querySelector("#knowledge-2-binary-search-tree");
+    this.nodeGraphKnowl_2 = document.querySelector("#knowledge-2-node-graph");
+    this.arrayCheckboxKnowl_2 = document.querySelector("#knowledge-2-array");
 
     drawOnPanel_1();
     drawOnPanel_2();

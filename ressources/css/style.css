@@ -29,6 +29,16 @@ body {
   font-size: 13pt;
 }
 
+.table_of_contents {
+  font-size: 20pt;
+  text-align: center;
+}
+
+.toc {
+  font-size: 13pt;
+  margin-left: 7%;
+}
+
 .circle {
   width: 25px;
   height: 25px;
@@ -41,11 +51,6 @@ body {
   margin-left: 12%;
   margin-bottom: 60px;
 }
-/* 
-.hljs {
-  background: #ffffff;
-  color: #000000;
-} */
 
 .set_background_for_first_page {
   background-color: var(--green-color) !important;
@@ -159,6 +164,47 @@ body {
 .page.flipped::after {
   transform-style: flat;
   transform: rotateY(180deg);
+}
+
+#left-numbering {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* width: 4%;
+  min-width: 10px;
+  height: 4%; */
+  width: 20px;
+  min-width: 15px;
+  height: 20px;
+  min-height: 5px;
+  position: fixed;
+  bottom: 10px;
+  border: none;
+  font-size: 18pt;
+  bottom: 9%;
+  left: 3.5%;
+  color: var(--black);
+  font-family: var(--font);
+  z-index: 13;
+}
+
+#right-numbering {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  min-width: 15px;
+  height: 20px;
+  min-height: 15px;
+  position: fixed;
+  bottom: 10px;
+  border: none;
+  font-size: 18pt;
+  bottom: 9%;
+  right: 3.5%;
+  color: var(--black);
+  font-family: var(--font);
+  z-index: 13;
 }
 
 #next-button {
@@ -307,12 +353,13 @@ body {
 #timeover-element {
   width: 100%;
   display: inline-block;
+  font-size: 14pt;
 }
 
 #timeover {
   width: 100%;
   text-align: justify;
-  font-size: 18pt;
+  font-size: 14pt;
 }
 
 .in_der_aufgabe {
@@ -349,6 +396,7 @@ ul {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  list-style-image: url("./backward.png");
   /* border: solid 3px; */
   /* border-radius: 5px; */
   /* border-color: var(--own-brown); */
@@ -357,23 +405,31 @@ ul {
 ul li {
   display: inline-block;
   position: relative;
-  padding: 2px;
+  padding: 1px;
+  
+  /* background: url("./leaf.png"); */
 }
 
 ul li:not(:last-child) {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
+/* https://icon-icons.com/de/symbol/Bl%C3%A4tter-Blatt-Natur-Anlage-gr%C3%BCn-%C3%B6kologie/150469 */
+/* https://www.flaticon.com/de/kostenloses-icon/blatt-hand-gezeichnete-form_35624 */
 ul li:before {
   content: "";
   position: absolute;
   top: 1.8em;
-  left: -30px;
-  margin-top: -0.9em;
-  background: linear-gradient(45deg, var(--black), var(--emerald-hell-color));
-  height: 12px;
-  width: 12px;
+  left: -25px;
+  margin-top: -1.2em;
+  /* background: "./leaf.png"; */
+  /* background: linear-gradient(45deg, var(--black), var(--emerald-hell-color)); */
   border-radius: 50%;
+  background-image: url("./leaf.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 25px;
+  width: 35px;
 }
 
 .numeration-of-trees {

@@ -11,6 +11,8 @@ let startSite,
   startEl,
   mainEls,
   endEl,
+  leftNumbering,
+  rightNumbering,
   timeoverEl,
   dataStorage,
   dataID,
@@ -121,6 +123,13 @@ function onNextButtonClicked(ev) {
 }
 
 function reorder() {
+  if(pageIndex !== 0 && pageIndex !== 1){
+    leftNumbering.innerHTML = pageIndex * 2 - 3;
+    rightNumbering.innerHTML = pageIndex * 2 - 2;
+    showElement(leftNumbering);
+    showElement(rightNumbering);
+  }
+
   if(pageIndex == 11){
     let page_12 =  document.querySelector("#page-12");
     let side_1_without_zIndex = page_12.querySelector(".side-2");
@@ -225,6 +234,12 @@ function initView() {
   experienceEl = document.querySelector("#experience_questions");
   experienceQuestions = new ExperienceQuestions();
 
+  leftNumbering = document.querySelector("#left-numbering");
+  rightNumbering = document.querySelector("#right-numbering");
+
+  hideElement(leftNumbering);
+  hideElement(rightNumbering);
+  
   pages = document.getElementsByClassName("page");
   applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
 

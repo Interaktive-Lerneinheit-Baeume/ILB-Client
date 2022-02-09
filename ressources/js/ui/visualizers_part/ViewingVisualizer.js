@@ -294,13 +294,6 @@ class ViewingVisualizer extends Observable {
 
     idNumbersViewing = document.getElementsByClassName("id-number-viewing");
 
-    // for (let index = 0; index < idNumbersViewing.length; index++) {
-    //   const mainCodeElement = idNumbersViewing[index];
-    //   mainCodeElement.style.visibility = "hidden";
-    // }
-
-    // selectedMainRow = idNumbersViewing[0];
-
     ViewingVisualizer.setPauseButtonUnClickable();
 
     startButton.addEventListener(

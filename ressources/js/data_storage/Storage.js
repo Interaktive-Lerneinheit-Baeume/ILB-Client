@@ -75,7 +75,6 @@ function getDataFromJSON(dataForAdding, id, dataExisting, typeOfMethode) {
         dataForAdding.knowl_arrayCheckboxChecked;
       dataExisting.knowl_nodeGraphChecked =
         dataForAdding.knowl_nodeGraphChecked;
-       console.log("dataForAdding.knowl_2_datastructure_checked ",dataForAdding.knowl_2_datastructure_checked); 
       dataExisting.knowl_2_datastructure_checked =
         dataForAdding.knowl_2_datastructure_checked;
 

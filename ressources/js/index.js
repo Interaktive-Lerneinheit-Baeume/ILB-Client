@@ -76,7 +76,7 @@ function onNextButtonClicked(ev) {
     side_1_without_zIndex.classList.remove("set_background_for_first_page");
   }
 
-  if (pageIndex == 0) {
+  if (pageIndex == 2) {
     // if (
     //   startSite.getName() == "" ||
     //   startSite.getName() == " " ||
@@ -91,25 +91,19 @@ function onNextButtonClicked(ev) {
     //   startSite.getSkillsInfo() == ""
     // ) {
     //   infoAboutInputValues();
-    //   console.log(
-    //     "startSite.getName(): " +
-    //       startSite.getName() +
-    //       ":startSite.getAge():" +
-    //       startSite.getAge()
-    //   );
-    //   return;
-    // } else {
-      // startSite.gotoAnimation();
+      // return;
+    // } 
+    // else {
+      startSite.sendDemographicData();
     // }
-  } else if (pageIndex == 2) {
-    startSite.sendDemographicData();
+   
   } else if (pageIndex == 9) {
+    nextButton.innerHTML = "Abschließen";
     mainSites.sendToExperienceButtonClicked();
-    // nextButton.innerHTML = "Abschließen";
-  } else if (pageIndex == 10) {
+  } else if (pageIndex == 10 || pageIndex == 11) {
     experienceQuestions.sendToEndButtonClicked();
   }
-
+  
   pages[pageIndex].classList.remove("no-anim");
   pages[pageIndex].classList.add("flipped");
 
@@ -146,7 +140,6 @@ function reorder() {
   }
 
   document.querySelectorAll(".book").forEach(function () {
-    // pages = document.querySelectorAll(".page");
     var pages_flipped = document.querySelectorAll(".flipped");
 
     for (let index = 0; index < pages.length; index++) {
@@ -211,17 +204,19 @@ function showElement(el) {
 }
 
 function makeHoverText() {
-  // if (pageIndex == 0) {
-  //   nextButton.setAttribute("title", "zur Visualisierung");
-  // } else if (pageIndex == 1) {
-  //   nextButton.setAttribute("title", "zum Wissenstest");
-  // } else if (pageIndex == 2) {
-  //   nextButton.setAttribute("title", "zu kurzer Befragung");
-  // }
-
-  // if (pageIndex == 3) {
-  //   nextButton.setAttribute("title", "zu Ende");
-  // }
+  if (pageIndex == 2) {
+    nextButton.setAttribute("title", "zum Lernmaterial");
+  } else if (pageIndex == 5) {
+    nextButton.setAttribute("title", "zum Wissenstest. Unrückgängig!");
+  } else if (pageIndex == 10) {
+    nextButton.setAttribute("title", "Ende des Experiments");
+  }
+  else if (pageIndex == 9) {
+    nextButton.setAttribute("title", "zur Umfrage. Unrückgängig!");
+  }
+  else {
+    nextButton.removeAttribute("title");
+  }
 }
 
 function initView() {
@@ -234,13 +229,14 @@ function initView() {
   experienceEl = document.querySelector("#experience_questions");
   experienceQuestions = new ExperienceQuestions();
 
+  pages = document.getElementsByClassName("page");
+
   leftNumbering = document.querySelector("#left-numbering");
   rightNumbering = document.querySelector("#right-numbering");
 
   hideElement(leftNumbering);
   hideElement(rightNumbering);
-  
-  pages = document.getElementsByClassName("page");
+
   applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
 
   startSite.addEventListener(
@@ -302,10 +298,12 @@ function showTimeOverOrEndElement(timeOverOrEnd) {
   if(timeOverOrEnd == "time_over"){
     hideElement(endEl);
     showElement(timeoverEl);
+    hideElement(nextButton);
   }
   else {
     showElement(endEl);
     hideElement(timeoverEl);
+    hideElement(nextButton);
   }
   
 }
@@ -331,7 +329,6 @@ function checkPageFocus() {
 function onGotoAnimationButtonClicked(ev) {
   onGoingToAnimButtonClick();
   startInfo = ev.data;
-
   dataStorage.getExperiment(dataID).then(function (data) {
     if (data.state === "open") {
       showTimeOverOrEndElement("time_over");
@@ -372,7 +369,6 @@ function onSendToEndButtonClicked(ev) {
 
 function onGoingToAnimButtonClick() {
   startSite.hideTheSite(startEl);
-
   if (engagement === "constructing") {
     mainSites.hideViewingVis();
     mainSites.showConstructVis();
@@ -382,10 +378,13 @@ function onGoingToAnimButtonClick() {
       const mainCodeElement = idNumbersConstr[index];
       mainCodeElement.style.visibility = "hidden";
     }
-  } else {
+  } 
+  else {
     let idNumbersViewing = document.getElementsByClassName("id-number-viewing");
+
     mainSites.showViewingVis();
     mainSites.hideConstructVis();
+
     viewingAufgabe.style.display = "flex";
 
     for (let index = 0; index < idNumbersViewing.length; index++) {
@@ -410,6 +409,7 @@ function onSendToQuestionsButtonClicked(ev) {
 }
 
 function onSendToExperienceButtonClicked(ev) {
+  let applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
   finishInfo = ev.data;
 
   dataStorage.getExperiment(dataID).then(function (data) {

@@ -319,7 +319,6 @@ class QuestionsKnowledgeVisual extends Observable {
 
   getAllInfo() {
     let dataStrucuteCheckedAsString = this.getTreesSelectedInfo();
-    console.log(" getTreesSelectedInfo() ", dataStrucuteCheckedAsString);
     return {
       knowl_zyklusChecked: this.zyklus.checked,
       knowl_binaryTreeChecked: this.binaryTree.checked,

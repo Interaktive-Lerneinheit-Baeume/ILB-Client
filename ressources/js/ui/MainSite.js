@@ -17,9 +17,7 @@ class MainSite extends Observable {
       this.visualizerElConstructing
     );
 
-    // testQuestionsAreaEl = document.querySelector();
     questionsArea = new QuestionsArea();
-    // this.hideTheElement(testQuestionsAreaEl);
   }
 
   hideTheElement(el) {
@@ -37,7 +35,7 @@ class MainSite extends Observable {
   showViewingVis() {
     this.visualizerElViewing.style.display = "block";
   }
-  
+
   hideConstructVis() {
     this.visualizerElConstructing.style.display = "none";
   }

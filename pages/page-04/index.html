@@ -1,61 +1,37 @@
-<div id='page-4' class='page no-anim first-page'>
-  <div class='side-1' id='p1'>
-      <div class="tasks">
-          <p>
-              <strong>&nbsp;&nbsp;&nbsp;Baum</strong> ist ein aus Knoten und Kanten bestehender
-              <i>Graph</i>,
-              besitzt dabei immer genau <i>eine Wurzel</i> und enthält <i>keine Zyklen</i>.
-              Außer der Wurzel sind alle Knoten durch genau eine Kante (Pfad) mit <i>einem
-                  Elternknoten</i> (Vorgänger) verbunden und wird als dessen <i>Kindknoten</i>
-              (Nachfolger) bezeichnet.
-              Knoten ohne Nachfolger heißen <i>Blatt</i>. Alle Knoten mit Nachfolgern werden als
-              innere Knoten bezeichnet. Bäume wachsen in diesem Kontext „unnatürlich“ von oben
-              (Wurzel) nach unten (Blatt).<br>
-
-              <strong>&nbsp;&nbsp;&nbsp;Binärer Baum</strong> ist ein geordneter Baum, bei dem jeder
-              Knoten maximal
-              zwei Nachfolger hat: einen linken - <code class="intellij-light language-java">k.left</code> und einen rechten - <code class="intellij-light language-java">k.right</code>.
-              Unter der Ordnung eines binären Baums versteht man die maximale Anzahl von
-              Kindknoten pro Knoten.<br>
-
-              <strong>&nbsp;&nbsp;&nbsp;Binärer Suchbaum</strong> ist ein geordneter binärer Baum,
-              dessen Knoten
-              Schlüsselwerte enthalten.
-              Über diese Werte erfolgt die Suche im Baum. Alle Knoten <code class="intellij-light language-java">k</code> enthalten einen
-              Schlüsselwert <code class="intellij-light language-java">k.data</code>. Auf die Kindknoten wird über <code class="intellij-light language-java">k.left</code> und <code class="intellij-light language-java">k.right</code> zugegriffen.
-              Die Höhe des Baums entspricht dem längsten Pfad von der Wurzel zum
-              tiefesten Blatt
-              plus 1.<br>
-          </p>
+<div id="page-4" class="page no-anim first-page">
+  <div class="side-1" id="p5">
+    <div class="tasks">
+      <div class="table_of_contents">Inhaltsverzeichnis</div>
+      <br />
+      <br />
+      <div class="toc kapitel_toc">
+        Kapitel 1. Datenstrukturen Bäume..............................1
       </div>
-
+      <div class="toc unterkapitel_toc">
+        &nbsp;&nbsp;<i>1.1. Binäre Bäume und binäre Suchbäume</i
+        >...............1
+      </div>
+      <div class="toc unterkapitel_toc">
+        <i>&nbsp;&nbsp;1.2. Wissenstest</i
+        >..........................................................7
+      </div>
+      <div class="toc erfahrung_top">
+        Erfahrung....................................................................15
+      </div>
+    </div>
   </div><!-- .side-1 -->
-  <div class='side-2' id='p'>
-      <div class="tasks">
-        &nbsp;&nbsp;&nbsp;&nbsp;Für jeden Knoten <code class="intellij-light language-java">k</code> eines binären Suchbaums gilt dabei:
-          <ul>
-              <li>Alle Schlüsselwerte im linken Teilbaum <code class="intellij-light">k.left</code> sind <i>kleiner</i> als der
-                  Schlüsselwert <code class="intellij-light language-java">k.data.</code></li>
-              <li>Alle Schlüsselwerte im rechten Teilbaum <code class="intellij-light language-java">k.right</code> sind <i>grösser</i> als der
-                  Schlüsselwert <code class="intellij-light language-java">k.data</code></li>
-          </ul>
+
+  <div class="side-2" id="p6">
+    <div class="tasks">
+      <div class="vorwort_title"><strong>Kapitel 1.</strong></div>
+      <div>
+        <strong class="datastructure-trees"> Datenstrukturen Bäume</strong>
       </div>
-      <div>Hier ist der Insert-Algorithmus für den binären Suchbaum:</div>
-      <div id="panel-code-alg" class="panel code view">
-          <code class="intellij-light language-java">public class BinarySearchTree {</code><br>
-          <!-- <br>     -->
-          <code class="id-number intellij-light language-java">private Node insertNodeRecursive(Node head, int data) {</code><br> 
-          <code class="id-number-this intellij-light language-java">if (head == null) {</code><br>
-          <code class="id-number-this-this intellij-light language-java">return new Node(data);</code><br>
-          <code class="id-number-this intellij-light language-java">} else if (data > head.data) {</code><br>
-          <code class="id-number-this-this intellij-light language-java">head.right = insertNodeRecursive(head.right, data);</code><br>
-          <code class="id-number-this intellij-light language-java">} else if (data <= head.data) {</code><br>
-          <code class="id-number-this-this intellij-light language-java">head.left = insertNodeRecursive(head.left, data);</code><br>
-          <code class="id-number-this intellij-light language-java">}</code><br>
-          <code class="id-number-this intellij-light language-java">return head; </code><br>
-          <code class="id-number intellij-light language-java">}</code><br>
-          <!-- <br> -->
-          <code class="intellij-light language-java">}</code><br>
-      </div>    
+      <div class="unterkapitel"><strong>Unterkapitel 1.1.</strong></div>
+      <div class="einrueckung_unterkapitel">
+        <strong>Binäre Bäume und binäre Suchbäume</strong>
+      </div>
+    </div>
   </div><!-- .side-2 -->
-</div> <!-- .page-4 -->
+</div>
+<!-- .page-4 -->

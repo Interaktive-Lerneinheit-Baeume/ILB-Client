@@ -170,9 +170,7 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  /* width: 4%;
-  min-width: 10px;
-  height: 4%; */
+
   width: 20px;
   min-width: 15px;
   height: 20px;
@@ -185,7 +183,7 @@ body {
   left: 3.5%;
   color: var(--black);
   font-family: var(--font);
-  z-index: 13;
+  z-index: 14;
 }
 
 #right-numbering {
@@ -204,7 +202,7 @@ body {
   right: 3.5%;
   color: var(--black);
   font-family: var(--font);
-  z-index: 13;
+  z-index: 14;
 }
 
 #next-button {
@@ -225,7 +223,7 @@ body {
   color: var(--black);
   font-family: var(--font);
   border-radius: 5px;
-  z-index: 13;
+  z-index: 14;
 }
 
 .vorwort {
@@ -285,7 +283,7 @@ body {
   color: var(--black);
   font-family: var(--font);
   border-radius: 5px;
-  z-index: 13;
+  z-index: 14;
 }
 
 #next-button:hover {
@@ -923,10 +921,13 @@ input[type="checkbox"]:checked {
   border: 0.15em solid var(--black);
 }
 
-/* #id_1.hljs-number:first-child {
-  color: #1750eb;
-  font-size: 18pt !important;
-} */
+.checkboxgroup {
+  display: inline-block;
+  text-align: center;
+}
+.checkboxgroup label {
+  display: block;
+}
 
 .id-number-constr {
   margin-left: 35px !important;

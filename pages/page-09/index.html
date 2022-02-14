@@ -1,84 +1,46 @@
-<div id="page-9" class='page no-anim'>
+<div id='page-9' class='page no-anim first-page'>
     <div class='side-1' id='p'>
         <div class="tasks">
-            <div id="trees-selection-task" class="question-title"><strong>Aufgabe 6)</strong> Die
-                numerischen Schlüsselwerte von 1 bis einschließlich 6 wurden in
-                <strong>unbekannter</strong> Reihenfolge in einen binären Suchbaum eingefügt. Welche
-                Aussage zu den abgebildeten Graphen ist korrekt?
-            </div>
-            <div class="trees-selection-checkboxes">
-                <div class="trees-selection">
-                    <div class="numeration-of-trees">Abbildung 1</div>
-                    <div id="first-tree-panel" class="panel-trees-selection"></div>
-                </div>
-                <div class="trees-selection">
-                    <div class="numeration-of-trees">Abbildung 2</div>
-                    <div id="sec-tree-panel" class="panel-trees-selection"></div>
-                </div>
-                <div class="trees-selection">
-                    <div class="numeration-of-trees">Abbildung 3</div>
-                    <div id="third-tree-panel" class="panel-trees-selection"></div>
-                </div>
-                <div id="statement-checkboxes">
-                    <div class="datastructure-detection">
-                        <input type="checkbox" id="first-statement" name="datastructure-statement"
-                            value="first-statement">
-                        <label class="checkbox" for="first-statement">Abbildung 2 zeigt möglichen
-                            Suchbaum für die zufällig eingefügten Schlüssel</label>
-                    </div>
-                    <div class="datastructure-detection">
-                        <input type="checkbox" id="second-statement" name="datastructure-statement"
-                            value="second-statement">
-                        <label class="checkbox" for="second-statement">Abbildungen 2 und 3 zeigen
-                            möglichen Suchbaum für die zufällig eingefügten Schlüssel</label>
-                    </div>
-                    <div class="datastructure-detection">
-                        <input type="checkbox" id="third-statement" name="datastructure-statement"
-                            value="third-statement">
-                        <label class="checkbox" for="third-statement">Alle Abbildungen zeigen
-                            möglichen
-                            Suchbaum für die zufällig eingefügten Schlüssel</label>
-                    </div>
-                    <div class="datastructure-detection">
-                        <input type="checkbox" id="fourth-statement" name="datastructure-statement"
-                            value="fourth-statement">
-                        <label class="checkbox" for="fourth-statement">Abbildungen 1 und 2 zeigen
-                            möglichen Suchbaum für die zufällig eingefügten Schlüssel</label>
-                    </div>
-                </div>
-            </div>
+            <div id="difference-task" class="question-title"><strong>Aufgabe 3)</strong> Nennen
+                Sie
+                stichpunktartig eine Gemeinsamkeit und einen Unterschied von binären Bäumen und
+                binären Suchbäumen.</div>
+            <textarea class="textarea_input" id="difference-of-trees"
+                placeholder="Notieren Sie Ihre Antworten stichpunktartig in diesem Format: &#10;- Gemeinsamkeit: … &#10;- Unterschied: …"
+                name="difference-of-trees"></textarea>
         </div>
-    </div><!--.side-1-->
-
-    <div class='side-2' id='p'>
         <div class="tasks">
-            <div id="tree-print-task" class="question-title"><strong>Aufgabe 7)</strong> Die Methode
-                <code class="intellij-light hljs-title language-java function_">print</code> wird rekursiv auf den abgebildeten binären Suchbaum angewendet. Notieren Sie
-                die
-                Ausgabesequenz, die durch den Aufruf der Methode erzeugt wird.
-                <i>Hinweis:</i> Gehen Sie davon aus, dass die jeweiligen Knoten durch den Parameter <code class="intellij-light language-java">node</code>
-                repräsentiert werden.
-                Die zugehörige Klasse <code class="intellij-light language-java">Node</code> verfügt über die Eigenschaften <code class="intellij-light language-java">node.data</code> (Inhalt des Knoten),
-                <code class="intellij-light language-java">node.left</code>
-                (linker Kindknoten) und <code class="intellij-light language-java">node.right</code> (rechter Kindknoten).
-                Nicht vorhandene Knoten werden durch den Wert null repräsentiert.</div>
-
-            <div id="print-tree-panel" class="print-tree"></div>
-            <div id="print-code-panel" class="print-tree">
-                <code id="print_code" class="print-methode  intellij-light language-java">
-                    private void print(Node node) {</code><br>
-                        <code class="print-methode id-number intellij-light language-java">if (node == null) {</code><br>
-                        <code class="print-methode id-number-this intellij-light language-java">return;</code><br>
-                        <code class="print-methode id-number intellij-light language-java">}</code><br>
-                        <code class="print-methode id-number intellij-light language-java">print(node.left);</code><br>
-                        <code class="print-methode id-number intellij-light language-java">System.out.print(node.data);</code><br>
-                        <code class="print-methode id-number intellij-light language-java">print(node.right);</code><br>
-                        <code class="print-methode id-number intellij-light language-java">}</code><br>
-                    <code class="print-methode intellij-light language-java">}</code><br>
-            </div>
-        
-            <textarea id="print-sequence" class="textarea_input"
-                placeholder="Notieren Sie hier Ihre Antwort" name="print-sequence"></textarea>
+            <div class="question-title"><strong>Aufgabe 4)</strong> Die folgenden Zahlen werden in
+                der
+                angegebenen Reihenfolge in einen <strong> anfänglich leeren</strong> binären
+                Suchbaum
+                eingefügt: 10, 1, 3, 5, 15, 12, 16. Wie hoch ist der binäre Suchbaum anschließend an
+                tiefster Stelle?
+                <i>Hinweis:</i> Gehen Sie davon aus, dass die Höhe des Baums der Länge des
+                Pfads zwischen Wurzel und tiefstem Blatt plus 1 entspricht.</div>
+            <textarea id="tree-height-textarea" class="textarea_input"
+                placeholder="Notieren Sie hier Ihre Antwort" name="tree-height-textarea"></textarea>
         </div>
-    </div><!--.side-2-->
-</div><!--page-9--> 
+
+    </div><!-- .side-1 -->
+    <div class='side-2' id='p'>
+
+        <div class="tasks">
+            <div id="sequence-constructing-task" class="question-title keys-cloud"><strong>Aufgabe
+                    5)</strong> Als Worst-Case-Szenario werden Baumstrukturen bezeichnet, die
+                aufgrund
+                der Anordnung der Knoten die schlechtmöglichste Laufzeit erzeugen, z.B. weil alle
+                Knoten
+                auf einem Suchpfad liegen. Notieren Sie drei mögliche dieser
+                Worst-Case-Reihenfolgen,
+                die sich ergeben können, wenn alle angegebenen Schlüssel in einen
+                <strong>anfänglich</strong> leeren Suchbaum eingefügt werden.
+            </div>
+            <div id="cloud" class="keys-cloud"></div>
+            <textarea id="sequence-constructing" class="textarea_input"
+                placeholder="Notieren Sie alle Ihre Antworten in diesem Format: &#10;Reihenfolge 1: …"
+                name="sequence-constructing"></textarea>
+        </div>
+
+    </div><!-- .side-2 -->
+</div> <!-- .page-9 -->

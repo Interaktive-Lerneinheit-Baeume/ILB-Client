@@ -11,6 +11,19 @@ let startSite,
   startEl,
   mainEls,
   endEl,
+
+  startTimeOfLearningAndVisualisation,
+  endTimeOfLearningAndVisualisation,
+  durationTimeOfLearningAndVisualisation,
+
+  startTimeOfVisualisation,
+  endTimeOfVisualisation,
+  durationTimeOfVisualisation,
+
+  startTimeOfKnowledgeTest,
+  endTimeOfKnowledgeTest,
+  durationTimeOfKnowledgeTest,
+
   leftNumbering,
   rightNumbering,
   timeoverEl,
@@ -42,28 +55,38 @@ const Toast = Swal.mixin({
   },
 });
 
-function infoAboutInputValues() {
-  Toast.fire({
-    icon: "info",
-    width: 500,
-    iconColor: grayColor,
-    title: "Bitte Name, Alter, Gender und erworbene Kurse eintragen!",
-  });
+function infoAboutInputValues(type) {
+  if (type == "demographische_daten") {
+    Toast.fire({
+      icon: "info",
+      width: 500,
+      iconColor: grayColor,
+      title: "Bitte Name, Alter, Gender und erworbene Kurse eintragen!",
+    });
+  } else {
+    Toast.fire({
+      icon: "info",
+      width: 500,
+      iconColor: grayColor,
+      title: "Bitte Datenstrukturen in den Aufgaben 1,2 und 6 auswählen!",
+    });
+  }
 }
 
 function init() {
+
   BookLoader.load().then(() => {
     initView();
     initJSONStorage();
-    // listenForClosingTheSite(); 
+    // listenForClosingTheSite();
     reorder();
   });
 }
 
 function onBackButtonClicked(ev) {
-  if(pageIndex != 0){
-    pages[pageIndex-1].classList.add("no-anim");
-    pages[pageIndex-1].classList.remove("flipped");
+  if (pageIndex != 0) {
+    pages[pageIndex - 1].classList.add("no-anim");
+    pages[pageIndex - 1].classList.remove("flipped");
     pageIndex -= 1;
 
     reorder();
@@ -71,12 +94,36 @@ function onBackButtonClicked(ev) {
 }
 
 function onNextButtonClicked(ev) {
-  if(pageIndex != 0){
+
+  if(pageIndex == 4){
+    startTimeOfLearningAndVisualisation = Date.now();
+  }
+  if(pageIndex == 6) {
+    startTimeOfVisualisation = Date.now();
+  }
+  if(pageIndex == 8) {
+    endTimeOfLearningAndVisualisation = Date.now();
+    durationTimeOfLearningAndVisualisation = endTimeOfLearningAndVisualisation - startTimeOfLearningAndVisualisation; //in milliseconds
+
+    endTimeOfVisualisation = Date.now();
+    durationTimeOfVisualisation = endTimeOfVisualisation - startTimeOfVisualisation;
+  }
+  if(pageIndex == 11){
+    startTimeOfKnowledgeTest = Date.now();
+  }
+  if(pageIndex == 12) {
+    endTimeOfKnowledgeTest = Date.now();
+    durationTimeOfKnowledgeTest = endTimeOfKnowledgeTest - startTimeOfKnowledgeTest;
+  }
+
+  
+  if (pageIndex != 0) {
     let side_1_without_zIndex = document.querySelector(".side-1");
     side_1_without_zIndex.classList.remove("set_background_for_first_page");
   }
 
-  if (pageIndex == 2) {
+  if (pageIndex == 3) {
+    // VOR DEM RELEASE auskommentieren
     // if (
     //   startSite.getName() == "" ||
     //   startSite.getName() == " " ||
@@ -87,29 +134,43 @@ function onNextButtonClicked(ev) {
     //   startSite.getGenderInfo() == "" ||
     //   startSite.getGenderInfo() == " " ||
     //   startSite.getGenderInfo() == null ||
-    //   startSite.getSkillsInfo() == null || 
+    //   startSite.getSkillsInfo() == null ||
     //   startSite.getSkillsInfo() == ""
     // ) {
-    //   infoAboutInputValues();
-      // return;
-    // } 
-    // else {
-      startSite.sendDemographicData();
+    //   infoAboutInputValues("demographische_daten");
+    // return;
     // }
-   
-  } else if (pageIndex == 9) {
-    nextButton.innerHTML = "Abschließen";
-    mainSites.sendToExperienceButtonClicked();
-  } else if (pageIndex == 10 || pageIndex == 11) {
+    // else {
+    startSite.sendDemographicData();
+    // }
+  } else if (pageIndex == 10) {
+    // VOR DEM RELEASE auskommentieren
+    // if (
+    //   mainSites.getQuestionArea().getNotNullInfoFromApplAnSynVisual() == null ||
+    //   mainSites.getQuestionArea().getNotNullInfoFromApplAnSynVisual() == "" ||
+    //   mainSites.getQuestionArea().getNotNullInfoFromKnowledge() == null ||
+    //   mainSites.getQuestionArea().getNotNullInfoFromKnowledge() == ""
+    // ) {
+    //   infoAboutInputValues("wissenstest");
+    //   return;
+    // } else {
+      nextButton.innerHTML = "Abschließen";
+      mainSites.sendToExperienceButtonClicked();
+    // }
+  } else if (pageIndex == 12) {
+    
+    experienceQuestions.setAllDurationTimes(durationTimeOfLearningAndVisualisation, durationTimeOfVisualisation, durationTimeOfKnowledgeTest);
     experienceQuestions.sendToEndButtonClicked();
+    
   }
-  
+
   pages[pageIndex].classList.remove("no-anim");
   pages[pageIndex].classList.add("flipped");
 
-  if (pageIndex == 10) {
+  if (pageIndex == 12) {
     hideElement(nextButton);
     hideElement(backButton);
+    hideElement(leftNumbering);
   }
 
   pageIndex += 1;
@@ -117,25 +178,34 @@ function onNextButtonClicked(ev) {
 }
 
 function reorder() {
-  if(pageIndex !== 0 && pageIndex !== 1){
-    leftNumbering.innerHTML = pageIndex * 2 - 3;
-    rightNumbering.innerHTML = pageIndex * 2 - 2;
+  console.log("now ",Date.now(), new Date(Date.now()).getMinutes(), new Date(Date.now()).getMinutes() - new Date(Date.now()).getMinutes(), Date.now()-Date.now());
+  if (pageIndex !== 0 && pageIndex !== 1 && pageIndex !== 2 && pageIndex !=3) {
+    leftNumbering.innerHTML = pageIndex * 2 - 7;
+    rightNumbering.innerHTML = pageIndex * 2 - 6;
     showElement(leftNumbering);
     showElement(rightNumbering);
   }
 
-  if(pageIndex == 11){
-    let page_12 =  document.querySelector("#page-12");
-    let side_1_without_zIndex = page_12.querySelector(".side-2");
+  if (pageIndex == 13) {
+    let page_13 = document.querySelector("#page-13");
+    let side_1_without_zIndex = page_13.querySelector(".side-2");
     side_1_without_zIndex.classList.add("set_background_for_first_page");
-    hideElement(backButton);
     hideElement(nextButton);
   }
-  
-  if(pageIndex == 0 || pageIndex == 1 || pageIndex == 2 || pageIndex == 3 || pageIndex == 6 || pageIndex == 10){
+
+  if (
+    pageIndex == 0 ||
+    pageIndex == 1 ||
+    pageIndex == 2 ||
+    pageIndex == 4 ||
+    pageIndex == 7 ||
+    pageIndex == 11 ||
+    pageIndex == 12 ||
+    pageIndex == 13
+  ) {
     hideElement(backButton);
-  }
-  else {
+    hideElement(leftNumbering);
+  } else {
     showElement(backButton);
   }
 
@@ -204,22 +274,21 @@ function showElement(el) {
 }
 
 function makeHoverText() {
-  if (pageIndex == 2) {
+  if (pageIndex == 3) {
     nextButton.setAttribute("title", "zum Lernmaterial");
-  } else if (pageIndex == 5) {
+  } else if (pageIndex == 6) {
     nextButton.setAttribute("title", "zum Wissenstest. Unrückgängig!");
-  } else if (pageIndex == 10) {
+  } else if (pageIndex == 11) {
     nextButton.setAttribute("title", "Ende des Experiments");
-  }
-  else if (pageIndex == 9) {
+  } else if (pageIndex == 10) {
     nextButton.setAttribute("title", "zur Umfrage. Unrückgängig!");
-  }
-  else {
+  } else {
     nextButton.removeAttribute("title");
   }
 }
 
 function initView() {
+
   startEl = document.querySelector("#start-element");
   startSite = new StartSite();
 
@@ -272,7 +341,7 @@ function initView() {
     hljs.highlightElement(el);
   });
 
-  if(pageIndex == 0){
+  if (pageIndex == 0) {
     let side_1_without_zIndex = document.querySelector(".side-1");
     side_1_without_zIndex.classList.add("set_background_for_first_page");
   }
@@ -295,17 +364,15 @@ function showTimeOverOrEndElement(timeOverOrEnd) {
   page_12.style.zIndex = 13;
   side_2.style.zIndex = 13;
 
-  if(timeOverOrEnd == "time_over"){
+  if (timeOverOrEnd == "time_over") {
     hideElement(endEl);
     showElement(timeoverEl);
     hideElement(nextButton);
-  }
-  else {
+  } else {
     showElement(endEl);
     hideElement(timeoverEl);
     hideElement(nextButton);
   }
-  
 }
 
 function checkPageFocus() {
@@ -378,8 +445,7 @@ function onGoingToAnimButtonClick() {
       const mainCodeElement = idNumbersConstr[index];
       mainCodeElement.style.visibility = "hidden";
     }
-  } 
-  else {
+  } else {
     let idNumbersViewing = document.getElementsByClassName("id-number-viewing");
 
     mainSites.showViewingVis();

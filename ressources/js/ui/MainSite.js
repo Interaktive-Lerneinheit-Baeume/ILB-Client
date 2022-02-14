@@ -20,6 +20,10 @@ class MainSite extends Observable {
     questionsArea = new QuestionsArea();
   }
 
+  getQuestionArea(){
+    return questionsArea;
+  }
+
   hideTheElement(el) {
     el.style.display = "none";
   }

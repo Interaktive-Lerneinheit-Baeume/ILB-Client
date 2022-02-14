@@ -1,9 +1,6 @@
 /* eslint-env browser */
 
-// const API_BASE_URL = "http://localhost:8001/api/experiment";
-// const API_BASE_URL = "https://ilb-server.software-engineering.education/api/experiment";
-// const API_BASE_URL = "https://127.0.0.1:5501/api/experiment";
-const API_BASE_URL = "http://127.0.0.1:5501.software-engineering.education/api/experiment";
+const API_BASE_URL = "http://127.0.0.1:8001/api/experiment";
 
 function makeAPICall(route, method, data) {
   let url = API_BASE_URL + route;
@@ -101,6 +98,12 @@ function getDataFromJSON(dataForAdding, id, dataExisting, typeOfMethode) {
       dataExisting.gut_gefallen = dataForAdding.gut_gefallen;
       dataExisting.nicht_gefallen_verbesserungen =
         dataForAdding.nicht_gefallen_verbesserungen;
+
+      dataExisting.duration_time_of_learning_and_visualisation =
+        dataForAdding.duration_time_of_learning_and_visualisation;
+      dataExisting.duration_time_of_visualisation =
+        dataForAdding.duration_time_of_visualisation;
+      dataExisting.duration_time_of_knowledge_test = dataForAdding.duration_time_of_knowledge_test;
     }
   }
 
@@ -141,7 +144,6 @@ class Storage {
       "postQuestionsToExperiment"
     );
   }
-  
 
   closeExperiment(id, dataForAdding, dataExisting) {
     return makeAPICallPOST(

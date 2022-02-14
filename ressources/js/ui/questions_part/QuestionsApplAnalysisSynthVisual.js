@@ -325,6 +325,10 @@ class QuestionsApplAnalysisSynthVisual extends Observable {
     };
   }
 
+  getTreesSelectedChecked() {
+    return treeHeightTextArea.value;
+  }
+
   getTreesSelectedInfo() {
     let wholeSkillsAsString = "";
     if (treesSelectionCheckboxesDiv.querySelector("#first-statement").checked) {

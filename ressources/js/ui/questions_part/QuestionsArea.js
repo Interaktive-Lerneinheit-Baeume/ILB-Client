@@ -35,6 +35,16 @@ class QuestionsArea extends Observable {
     initQuestions();
   }
 
+  getNotNullInfoFromKnowledge() {
+    let wholeInfoTarget = questionsKnowledgeVisual.getAllInfo();
+    return wholeInfoTarget;
+  }
+
+  getNotNullInfoFromApplAnSynVisual() {
+    let wholeInfoTarget = questionsApplAnSynVisual.getTreesSelectedChecked();
+    return wholeInfoTarget;
+  }
+
   getAllQuestionAnswers() {
     let wholeInfoTarget = Object.assign(
       questionsKnowledgeVisual.getAllInfo(),

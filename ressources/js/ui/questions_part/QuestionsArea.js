@@ -35,13 +35,18 @@ class QuestionsArea extends Observable {
     initQuestions();
   }
 
-  getNotNullInfoFromKnowledge() {
-    let wholeInfoTarget = questionsKnowledgeVisual.getAllInfo();
+  getNotNullInfoFromKnowledgeFirst() {
+    let wholeInfoTarget = questionsKnowledgeVisual.getDataStructureFirstQuestion();
+    return wholeInfoTarget;
+  }
+
+  getNotNullInfoFromKnowledgeSecond() {
+    let wholeInfoTarget = questionsKnowledgeVisual.getDataStructureSecondQuestion();
     return wholeInfoTarget;
   }
 
   getNotNullInfoFromApplAnSynVisual() {
-    let wholeInfoTarget = questionsApplAnSynVisual.getTreesSelectedChecked();
+    let wholeInfoTarget = questionsApplAnSynVisual.getTreesSelectedInfo();
     return wholeInfoTarget;
   }
 

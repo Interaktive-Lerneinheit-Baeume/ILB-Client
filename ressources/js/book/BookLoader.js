@@ -11,7 +11,6 @@ const BOOK_PAGES = [
     "./pages/page-10/index.html",
     "./pages/page-11/index.html",
     "./pages/page-12/index.html",
-    "./pages/page-13/index.html"
   ],
   ROOT_ELEMENT = document.querySelector(".book");
 

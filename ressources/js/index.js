@@ -11,19 +11,15 @@ let startSite,
   startEl,
   mainEls,
   endEl,
-
   startTimeOfLearningAndVisualisation,
   endTimeOfLearningAndVisualisation,
   durationTimeOfLearningAndVisualisation,
-
   startTimeOfVisualisation,
   endTimeOfVisualisation,
   durationTimeOfVisualisation,
-
   startTimeOfKnowledgeTest,
   endTimeOfKnowledgeTest,
   durationTimeOfKnowledgeTest,
-
   leftNumbering,
   rightNumbering,
   timeoverEl,
@@ -39,7 +35,8 @@ let startSite,
   intervalForCheckingFocus,
   pages,
   viewingAufgabe,
-  pageIndex = 0;
+  pageIndex = 0,
+  firstTimeOpeningVisualisation = 0;
 
 const grayColor = "#acacace6";
 
@@ -61,7 +58,7 @@ function infoAboutInputValues(type) {
       icon: "info",
       width: 500,
       iconColor: grayColor,
-      title: "Bitte Name, Alter, Gender und erworbene Kurse eintragen!",
+      title: "Bitte Name, Alter, Gender und Ihren Wissensstand eintragen!",
     });
   } else {
     Toast.fire({
@@ -74,7 +71,6 @@ function infoAboutInputValues(type) {
 }
 
 function init() {
-
   BookLoader.load().then(() => {
     initView();
     initJSONStorage();
@@ -94,29 +90,46 @@ function onBackButtonClicked(ev) {
 }
 
 function onNextButtonClicked(ev) {
-
-  if(pageIndex == 4){
+  if (pageIndex == 3) {
     startTimeOfLearningAndVisualisation = Date.now();
+    console.log(
+      "startTimeOfLearningAndVisualisation " +
+        startTimeOfLearningAndVisualisation
+    );
   }
-  if(pageIndex == 6) {
-    startTimeOfVisualisation = Date.now();
+  if (pageIndex == 5) {
+    if (firstTimeOpeningVisualisation == 0) {
+      startTimeOfVisualisation = Date.now();
+      firstTimeOpeningVisualisation += 1;
+    }
   }
-  if(pageIndex == 8) {
+  if (pageIndex == 6) {
     endTimeOfLearningAndVisualisation = Date.now();
-    durationTimeOfLearningAndVisualisation = endTimeOfLearningAndVisualisation - startTimeOfLearningAndVisualisation; //in milliseconds
+    durationTimeOfLearningAndVisualisation =
+      endTimeOfLearningAndVisualisation - startTimeOfLearningAndVisualisation; //in milliseconds
+    console.log(
+      "durationTimeOfLearningAndVisualisation " +
+        durationTimeOfLearningAndVisualisation / 1000
+    );
 
     endTimeOfVisualisation = Date.now();
-    durationTimeOfVisualisation = endTimeOfVisualisation - startTimeOfVisualisation;
-  }
-  if(pageIndex == 11){
+    durationTimeOfVisualisation =
+      endTimeOfVisualisation - startTimeOfVisualisation;
+
     startTimeOfKnowledgeTest = Date.now();
+    console.log(
+      "durationTimeOfVisualisation " + durationTimeOfVisualisation / 1000
+    );
   }
-  if(pageIndex == 12) {
+  if (pageIndex == 10) {
     endTimeOfKnowledgeTest = Date.now();
-    durationTimeOfKnowledgeTest = endTimeOfKnowledgeTest - startTimeOfKnowledgeTest;
+    durationTimeOfKnowledgeTest =
+      endTimeOfKnowledgeTest - startTimeOfKnowledgeTest;
+    console.log(
+      "durationTimeOfKnowledgeTest " + durationTimeOfKnowledgeTest / 1000
+    );
   }
 
-  
   if (pageIndex != 0) {
     let side_1_without_zIndex = document.querySelector(".side-1");
     side_1_without_zIndex.classList.remove("set_background_for_first_page");
@@ -124,44 +137,53 @@ function onNextButtonClicked(ev) {
 
   if (pageIndex == 3) {
     // VOR DEM RELEASE auskommentieren
-    // if (
-    //   startSite.getName() == "" ||
-    //   startSite.getName() == " " ||
-    //   startSite.getName() == null ||
-    //   startSite.getAge() == "" ||
-    //   startSite.getAge() == " " ||
-    //   startSite.getAge() == null ||
-    //   startSite.getGenderInfo() == "" ||
-    //   startSite.getGenderInfo() == " " ||
-    //   startSite.getGenderInfo() == null ||
-    //   startSite.getSkillsInfo() == null ||
-    //   startSite.getSkillsInfo() == ""
-    // ) {
-    //   infoAboutInputValues("demographische_daten");
-    // return;
-    // }
-    // else {
+    if (
+      startSite.getName() == "" ||
+      startSite.getName() == " " ||
+      startSite.getName() == null ||
+      startSite.getAge() == "" ||
+      startSite.getAge() == " " ||
+      startSite.getAge() == null ||
+      startSite.getGenderInfo() == "" ||
+      startSite.getGenderInfo() == " " ||
+      startSite.getGenderInfo() == null ||
+      startSite.getSkillsInfo() == null ||
+      startSite.getSkillsInfo() == "" ||
+      startSite.getMmeValuesCheckedAsString() == "" ||
+      startSite.getAdpValuesCheckedAsString() == "" ||
+      startSite.getOopValuesCheckedAsString() == ""
+    ) {
+      infoAboutInputValues("demographische_daten");
+    return;
+    }
+    else {
     startSite.sendDemographicData();
-    // }
+    }
   } else if (pageIndex == 10) {
     // VOR DEM RELEASE auskommentieren
-    // if (
-    //   mainSites.getQuestionArea().getNotNullInfoFromApplAnSynVisual() == null ||
-    //   mainSites.getQuestionArea().getNotNullInfoFromApplAnSynVisual() == "" ||
-    //   mainSites.getQuestionArea().getNotNullInfoFromKnowledge() == null ||
-    //   mainSites.getQuestionArea().getNotNullInfoFromKnowledge() == ""
-    // ) {
-    //   infoAboutInputValues("wissenstest");
-    //   return;
-    // } else {
-      nextButton.innerHTML = "Abschließen";
-      mainSites.sendToExperienceButtonClicked();
-    // }
-  } else if (pageIndex == 12) {
-    
-    experienceQuestions.setAllDurationTimes(durationTimeOfLearningAndVisualisation, durationTimeOfVisualisation, durationTimeOfKnowledgeTest);
+    if (
+      mainSites.getQuestionArea().getDataStructureSecondQuestion() == null ||
+      mainSites.getQuestionArea().getDataStructureSecondQuestion() == "" ||
+      mainSites.getQuestionArea().getDataStructureFirstQuestion() == null ||
+      mainSites.getQuestionArea().getDataStructureFirstQuestion() == "" ||
+      mainSites.getQuestionArea().getNotNullInfoFromKnowledgeSecond() == null ||
+      mainSites.getQuestionArea().getNotNullInfoFromKnowledgeSecond() == "" ||
+      mainSites.getQuestionArea().getNotNullInfoFromKnowledgeFirst() == null ||
+      mainSites.getQuestionArea().getNotNullInfoFromKnowledgeFirst() == ""
+    ) {
+      infoAboutInputValues("wissenstest");
+      return;
+    } else {
+    nextButton.innerHTML = "Abschließen";
+    mainSites.sendToExperienceButtonClicked();
+    }
+  } else if (pageIndex == 11) {
+    experienceQuestions.setAllDurationTimes(
+      durationTimeOfLearningAndVisualisation / 1000,
+      durationTimeOfVisualisation / 1000,
+      durationTimeOfKnowledgeTest / 1000
+    );
     experienceQuestions.sendToEndButtonClicked();
-    
   }
 
   pages[pageIndex].classList.remove("no-anim");
@@ -178,8 +200,14 @@ function onNextButtonClicked(ev) {
 }
 
 function reorder() {
-  console.log("now ",Date.now(), new Date(Date.now()).getMinutes(), new Date(Date.now()).getMinutes() - new Date(Date.now()).getMinutes(), Date.now()-Date.now());
-  if (pageIndex !== 0 && pageIndex !== 1 && pageIndex !== 2 && pageIndex !=3) {
+  console.log(
+    "now ",
+    Date.now(),
+    new Date(Date.now()).getMinutes(),
+    new Date(Date.now()).getMinutes() - new Date(Date.now()).getMinutes(),
+    Date.now() - Date.now()
+  );
+  if (pageIndex !== 0 && pageIndex !== 1 && pageIndex !== 2 && pageIndex != 3) {
     leftNumbering.innerHTML = pageIndex * 2 - 7;
     rightNumbering.innerHTML = pageIndex * 2 - 6;
     showElement(leftNumbering);
@@ -193,6 +221,10 @@ function reorder() {
     hideElement(nextButton);
   }
 
+  if (pageIndex == 12) {
+    hideElement(leftNumbering);
+  }
+
   if (
     pageIndex == 0 ||
     pageIndex == 1 ||
@@ -200,11 +232,9 @@ function reorder() {
     pageIndex == 4 ||
     pageIndex == 7 ||
     pageIndex == 11 ||
-    pageIndex == 12 ||
-    pageIndex == 13
+    pageIndex == 12
   ) {
     hideElement(backButton);
-    hideElement(leftNumbering);
   } else {
     showElement(backButton);
   }
@@ -275,7 +305,7 @@ function showElement(el) {
 
 function makeHoverText() {
   if (pageIndex == 3) {
-    nextButton.setAttribute("title", "zum Lernmaterial");
+    nextButton.setAttribute("title", "zum Lernmaterial. Unrückgängig!");
   } else if (pageIndex == 6) {
     nextButton.setAttribute("title", "zum Wissenstest. Unrückgängig!");
   } else if (pageIndex == 11) {
@@ -288,7 +318,6 @@ function makeHoverText() {
 }
 
 function initView() {
-
   startEl = document.querySelector("#start-element");
   startSite = new StartSite();
 
@@ -312,6 +341,11 @@ function initView() {
     "onGotoAnimationButtonClicked",
     onGotoAnimationButtonClicked
   );
+
+  // startSite.addEventListener("on");
+  // startSite.addEventListener();
+  // startSite.addEventListener();
+
   mainSites.addEventListener(
     "onSendToQuestionsButtonClick",
     onSendToQuestionsButtonClicked

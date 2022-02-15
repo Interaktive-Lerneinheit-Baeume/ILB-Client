@@ -318,7 +318,7 @@ class QuestionsKnowledgeVisual extends Observable {
   }
 
   getAllInfo() {
-    let dataStrucuteCheckedAsString = this.getTreesSelectedInfo();
+    let dataStrucuteCheckedAsString = this.getDataStructureSecondQuestion();
     return {
       knowl_zyklusChecked: this.zyklus.checked,
       knowl_binaryTreeChecked: this.binaryTree.checked,
@@ -329,7 +329,12 @@ class QuestionsKnowledgeVisual extends Observable {
     };
   }
 
-  getTreesSelectedInfo() {
+  getDataStructureFirstQuestion() {
+    let resString = "";
+    return resString + this.zyklus.checked + this.binaryTree.checked + this.binarySearchTree.checked + this.nodeGraph.checked + this.arrayCheckbox.checked;
+  }
+
+  getDataStructureSecondQuestion() {
     let dataStrucuteCheckedAsString = "";
     if (this.zyklusKnowl_2.checked) {
       dataStrucuteCheckedAsString += "zyklus checked, ";

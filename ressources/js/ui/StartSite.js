@@ -198,33 +198,35 @@ class StartSite extends Observable {
   getSkillsInfo() {
     let wholeSkillsAsString = "";
 
-    let labelsOop = oopEl.getElementsByClassName("labels");
     //oop
-
     if (
       oopEl
         .querySelector("#radio-buttons")
         .querySelector("#my_radio_button_id1").checked
     ) {
       oopValuesCheckedAsString += "object-oriented programming: gar nicht; ";
+      wholeSkillsAsString += "object-oriented programming: gar nicht; ";
     } else if (
       oopEl
         .querySelector("#radio-buttons")
         .querySelector("#my_radio_button_id2").checked
     ) {
       oopValuesCheckedAsString += "object-oriented programming: wenig; ";
+      wholeSkillsAsString += "object-oriented programming: wenig; ";
     } else if (
       oopEl
         .querySelector("#radio-buttons")
         .querySelector("#my_radio_button_id3").checked
     ) {
       oopValuesCheckedAsString += "object-oriented programming: gut; ";
+      wholeSkillsAsString += "object-oriented programming: gut; ";
     } else if (
       oopEl
         .querySelector("#radio-buttons")
         .querySelector("#my_radio_button_id4").checked
     ) {
       oopValuesCheckedAsString += "object-oriented programming: sehr gut; ";
+      wholeSkillsAsString += "object-oriented programming: sehr gut; ";
     } else if (
       oopEl
         .querySelector("#radio-buttons")
@@ -232,9 +234,10 @@ class StartSite extends Observable {
     ) {
       oopValuesCheckedAsString +=
         "object-oriented programming: ausgezeichnet; ";
+      wholeSkillsAsString += "object-oriented programming: ausgezeichnet ";
     }
 
-    wholeSkillsAsString += oopValuesCheckedAsString;
+    // wholeSkillsAsString += oopValuesCheckedAsString;
 
     //adp
     if (
@@ -243,24 +246,31 @@ class StartSite extends Observable {
         .querySelector("#adp-my_radio_button_id1").checked
     ) {
       adpValuesCheckedAsString += "algorithm and datastructure: gar nicht; ";
+      wholeSkillsAsString += "algorithm and datastructure: gar nicht; ";
     } else if (
       adpEl
         .querySelector("#radio-buttons")
         .querySelector("#adp-my_radio_button_id2").checked
     ) {
-      adpValuesCheckedAsString += "algorithm and datastructure: ein bisschen; ";
+      adpValuesCheckedAsString += "algorithm and datastructure: wenig; ";
+      wholeSkillsAsString += "algorithm and datastructure: wenig; ";
+
     } else if (
       adpEl
         .querySelector("#radio-buttons")
         .querySelector("#adp-my_radio_button_id3").checked
     ) {
       adpValuesCheckedAsString += "algorithm and datastructure: gut; ";
+      wholeSkillsAsString += "algorithm and datastructure: gut; ";
+
     } else if (
       adpEl
         .querySelector("#radio-buttons")
         .querySelector("#adp-my_radio_button_id4").checked
     ) {
       adpValuesCheckedAsString += "algorithm and datastructure: sehr gut; ";
+      wholeSkillsAsString += "algorithm and datastructure: sehr gut; ";
+
     } else if (
       adpEl
         .querySelector("#radio-buttons")
@@ -268,9 +278,11 @@ class StartSite extends Observable {
     ) {
       adpValuesCheckedAsString +=
         "algorithm and datastructure: ausgezeichnet; ";
+      wholeSkillsAsString += "algorithm and datastructure: ausgezeichnet; ";
+
     }
 
-    wholeSkillsAsString += adpValuesCheckedAsString;
+    // wholeSkillsAsString += adpValuesCheckedAsString;
 
     //mme
     if (
@@ -279,34 +291,41 @@ class StartSite extends Observable {
         .querySelector("#mme-my_radio_button_id1").checked
     ) {
       mmeValuesCheckedAsString += "javascript programming: gar nicht; ";
+      wholeSkillsAsString += "javascript programming: gar nicht; ";
+
     } else if (
       mmeEl
         .querySelector("#radio-buttons")
         .querySelector("#mme-my_radio_button_id2").checked
     ) {
-      mmeValuesCheckedAsString += "javascript programming: ein bisschen; ";
+      mmeValuesCheckedAsString += "javascript programming: wenig; ";
+      wholeSkillsAsString += "javascript programming: wenig; ";
+
     } else if (
       mmeEl
         .querySelector("#radio-buttons")
         .querySelector("#mme-my_radio_button_id3").checked
     ) {
       mmeValuesCheckedAsString += "javascript programming: gut; ";
+      wholeSkillsAsString += "javascript programming: gut; ";
+
     } else if (
       mmeEl
         .querySelector("#radio-buttons")
         .querySelector("#mme-my_radio_button_id4").checked
     ) {
       mmeValuesCheckedAsString += "javascript programming: sehr gut; ";
+      wholeSkillsAsString += "javascript programming: sehr gut; ";
+
     } else if (
       mmeEl
         .querySelector("#radio-buttons")
         .querySelector("#mme-my_radio_button_id5").checked
     ) {
       mmeValuesCheckedAsString += "javascript programming: ausgezeichnet; ";
+      wholeSkillsAsString += "javascript programming: ausgezeichnet; ";
+
     }
-
-    wholeSkillsAsString += mmeValuesCheckedAsString;
-
     return wholeSkillsAsString;
   }
 }

@@ -19,7 +19,6 @@ async function loadPage(path) {
     html = await response.text(),
     node = document.createElement("div");
   node.innerHTML = html;
-  console.log(node.innerHTML);
   return node.firstChild;
 }
 
@@ -27,7 +26,6 @@ async function loadPages() {
   for (let i = 0; i < BOOK_PAGES.length; i++) {
     let page = await loadPage(BOOK_PAGES[i]);
     ROOT_ELEMENT.append(page);
-    console.log("BOOK_PAGES.length: "+BOOK_PAGES.length);
   }
   return;
 }

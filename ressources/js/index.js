@@ -92,10 +92,6 @@ function onBackButtonClicked(ev) {
 function onNextButtonClicked(ev) {
   if (pageIndex == 3) {
     startTimeOfLearningAndVisualisation = Date.now();
-    console.log(
-      "startTimeOfLearningAndVisualisation " +
-        startTimeOfLearningAndVisualisation
-    );
   }
   if (pageIndex == 5) {
     if (firstTimeOpeningVisualisation == 0) {
@@ -107,27 +103,13 @@ function onNextButtonClicked(ev) {
     endTimeOfLearningAndVisualisation = Date.now();
     durationTimeOfLearningAndVisualisation =
       endTimeOfLearningAndVisualisation - startTimeOfLearningAndVisualisation; //in milliseconds
-    console.log(
-      "durationTimeOfLearningAndVisualisation " +
-        durationTimeOfLearningAndVisualisation / 1000
-    );
 
     endTimeOfVisualisation = Date.now();
     durationTimeOfVisualisation =
       endTimeOfVisualisation - startTimeOfVisualisation;
 
     startTimeOfKnowledgeTest = Date.now();
-    console.log(
-      "durationTimeOfVisualisation " + durationTimeOfVisualisation / 1000
-    );
-  }
-  if (pageIndex == 10) {
-    endTimeOfKnowledgeTest = Date.now();
-    durationTimeOfKnowledgeTest =
-      endTimeOfKnowledgeTest - startTimeOfKnowledgeTest;
-    console.log(
-      "durationTimeOfKnowledgeTest " + durationTimeOfKnowledgeTest / 1000
-    );
+
   }
 
   if (pageIndex != 0) {
@@ -137,46 +119,47 @@ function onNextButtonClicked(ev) {
 
   if (pageIndex == 3) {
     // VOR DEM RELEASE auskommentieren
-    if (
-      startSite.getName() == "" ||
-      startSite.getName() == " " ||
-      startSite.getName() == null ||
-      startSite.getAge() == "" ||
-      startSite.getAge() == " " ||
-      startSite.getAge() == null ||
-      startSite.getGenderInfo() == "" ||
-      startSite.getGenderInfo() == " " ||
-      startSite.getGenderInfo() == null ||
-      startSite.getSkillsInfo() == null ||
-      startSite.getSkillsInfo() == "" ||
-      startSite.getMmeValuesCheckedAsString() == "" ||
-      startSite.getAdpValuesCheckedAsString() == "" ||
-      startSite.getOopValuesCheckedAsString() == ""
-    ) {
-      infoAboutInputValues("demographische_daten");
-    return;
-    }
-    else {
-    startSite.sendDemographicData();
-    }
+    // if (
+    //   startSite.getName() == "" ||
+    //   startSite.getName() == " " ||
+    //   startSite.getName() == null ||
+    //   startSite.getAge() == "" ||
+    //   startSite.getAge() == " " ||
+    //   startSite.getAge() == null ||
+    //   startSite.getGenderInfo() == "" ||
+    //   startSite.getGenderInfo() == " " ||
+    //   startSite.getGenderInfo() == null ||
+    //   startSite.getSkillsInfo() == null ||
+    //   startSite.getSkillsInfo() == "" ||
+    //   startSite.getMmeValuesCheckedAsString() == "" ||
+    //   startSite.getAdpValuesCheckedAsString() == "" ||
+    //   startSite.getOopValuesCheckedAsString() == ""
+    // ) {
+    //   infoAboutInputValues("demographische_daten");
+    //   return;
+    // } else {
+      startSite.sendDemographicData();
+    // }
   } else if (pageIndex == 10) {
     // VOR DEM RELEASE auskommentieren
-    if (
-      mainSites.getQuestionArea().getDataStructureSecondQuestion() == null ||
-      mainSites.getQuestionArea().getDataStructureSecondQuestion() == "" ||
-      mainSites.getQuestionArea().getDataStructureFirstQuestion() == null ||
-      mainSites.getQuestionArea().getDataStructureFirstQuestion() == "" ||
-      mainSites.getQuestionArea().getNotNullInfoFromKnowledgeSecond() == null ||
-      mainSites.getQuestionArea().getNotNullInfoFromKnowledgeSecond() == "" ||
-      mainSites.getQuestionArea().getNotNullInfoFromKnowledgeFirst() == null ||
-      mainSites.getQuestionArea().getNotNullInfoFromKnowledgeFirst() == ""
-    ) {
-      infoAboutInputValues("wissenstest");
-      return;
-    } else {
-    nextButton.innerHTML = "Abschließen";
-    mainSites.sendToExperienceButtonClicked();
-    }
+    // if (
+    //   mainSites.getQuestionArea().getNotNullInfoFromApplAnSynVisual() == null ||
+    //   mainSites.getQuestionArea().getNotNullInfoFromApplAnSynVisual() == "" ||
+    //   mainSites.getQuestionArea().getNotNullInfoFromKnowledgeSecond() == null ||
+    //   mainSites.getQuestionArea().getNotNullInfoFromKnowledgeSecond() == "" ||
+    //   mainSites.getQuestionArea().getNotNullInfoFromKnowledgeFirst() == null ||
+    //   mainSites.getQuestionArea().getNotNullInfoFromKnowledgeFirst() == ""
+    // ) {
+    //   infoAboutInputValues("wissenstest");
+    //   return;
+    // } else {
+      nextButton.innerHTML = "Abschließen";
+      mainSites.sendToExperienceButtonClicked();
+
+      endTimeOfKnowledgeTest = Date.now();
+      durationTimeOfKnowledgeTest =
+        endTimeOfKnowledgeTest - startTimeOfKnowledgeTest;
+    // }
   } else if (pageIndex == 11) {
     experienceQuestions.setAllDurationTimes(
       durationTimeOfLearningAndVisualisation / 1000,
@@ -200,13 +183,7 @@ function onNextButtonClicked(ev) {
 }
 
 function reorder() {
-  console.log(
-    "now ",
-    Date.now(),
-    new Date(Date.now()).getMinutes(),
-    new Date(Date.now()).getMinutes() - new Date(Date.now()).getMinutes(),
-    Date.now() - Date.now()
-  );
+
   if (pageIndex !== 0 && pageIndex !== 1 && pageIndex !== 2 && pageIndex != 3) {
     leftNumbering.innerHTML = pageIndex * 2 - 7;
     rightNumbering.innerHTML = pageIndex * 2 - 6;
@@ -430,6 +407,7 @@ function checkPageFocus() {
 function onGotoAnimationButtonClicked(ev) {
   onGoingToAnimButtonClick();
   startInfo = ev.data;
+
   dataStorage.getExperiment(dataID).then(function (data) {
     if (data.state === "open") {
       showTimeOverOrEndElement("time_over");

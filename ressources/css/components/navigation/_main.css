@@ -1,0 +1,50 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 4vh;
+  color: var(--color-secondary);
+}
+
+.navigation .pagenumber {
+  flex-grow: 2;
+  text-align: center;
+  background-color: var(--color-primary);
+  line-height: 4vh;
+  font-size: 1em;
+}
+
+.navigation .pagenumber .current::after {
+  content: "/";
+  margin: 0 1em;
+}
+
+.navigation .nav-button {
+  display: inline-block;
+  height: 4vh;
+  padding: 0 2vh;
+  border: none;
+  background-color: var(--color-primary);
+  line-height: 4vh;
+  text-decoration: none;
+  font-family: var(--font-buttons) !important;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.navigation .nav-button:hover {
+  cursor: pointer;
+  color:  var(--color-accent-four);
+}
+
+.navigation .nav-button.disabled {
+  opacity: 0.5;
+  color: var(--color-secondary);
+}
+
+.navigation .nav-button.disabled:hover {
+  cursor: not-allowed;
+  color: var(--color-secondary);
+}

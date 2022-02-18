@@ -1,3 +1,10 @@
+@import url("theme/ilb-default-theme.css");
+@import url("theme/fixes.css");
+@import url("components/external/_main.css");
+@import url("components/menu/_main.css");
+@import url("components/book/_main.css");
+@import url("components/navigation/_main.css");
+
 *,
 *::before,
 *::after {
@@ -6,9 +13,16 @@
   /* font-size: 13pt; */
 }
 
-body {
-  --green-color: #7a7a43;
+.hidden {
+  display: none;
+}
 
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  --green-color: #7a7a43;
   --emerald-hell-color: var(--hell-brown);
   --emerald-hell-another-color: rgba(178, 224, 209, 0.651);
   --black: #000000;
@@ -18,26 +32,12 @@ body {
   --hell-brown: rgba(255, 255, 255, 1);
   --noble-brown: #acacace6;
   --white: #fdfcfc;
-  --font: "Georgia";
-  line-height: 2;
-
-  background-color: var(--black);
-  color: var(--black);
-
   height: 100%;
-  font-family: var(--font);
-  font-size: 13pt;
+  background-color: var(--color-background);
+  font-family: var(--font-text);
+  color: var(--color-text);
 }
 
-.table_of_contents {
-  font-size: 20pt;
-  text-align: center;
-}
-
-.toc {
-  font-size: 13pt;
-  margin-left: 7%;
-}
 
 .circle {
   width: 25px;
@@ -52,9 +52,6 @@ body {
   margin-bottom: 60px;
 }
 
-.set_background_for_first_page {
-  background-color: var(--green-color) !important;
-}
 
 .circle:hover {
   cursor: pointer;
@@ -64,265 +61,12 @@ body {
   text-align: center;
 }
 
-.book * {
-  backface-visibility: visible;
-  -moz-backface-visibility: visible;
-}
-
-.lehrbuch {
-  margin-top: 13%;
-  text-align: center;
-  font-family: 'Allura', cursive;
-  font-size: 30pt;
-
-}
-
-/* https://codepen.io/carpenumidium/pen/EoxGg */
-.book {
-  height: 90%;
-  width: 97%;
-  /* background-image: linear-gradient(
-      90deg,
-      var(--hell-brown),
-      var(--noble-brown),
-      var(--hell-brown) 90%
-    ),
-    url("http://inspirationhut3.inspirationhut.netdna-cdn.com/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg"); */
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-
-  border: 2px solid var(--black);
-  border-radius: 5px;
-  /* line-height: 1.5; */
-}
-
-.page {
-  height: 100%;
-  width: 50%;
-  /* line-height: 1.5; */
-  border-right: 10px solid transparent;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform-origin: 0 50%;
-  transition: 0.8s;
-}
-
-::-webkit-scrollbar {
-  width: 10%;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::selection {
-  background: var(--black);
-  color: var(--noble-brown);
-}
-::-moz-selection {
-  background: var(--black);
-  color: var(--noble-brown);
-}
-
-[class*="side"] {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  background-color: var(--hell-brown);
-  /* background-image: url('http://inspirationhut3.inspirationhut.netdna-cdn.com/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg'); */
-  background-size: 100% 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: 5% 8%;
-}
-
-.side-1 {
-  z-index: 2;
-  box-shadow: inset 10px 0 10px var(--hell-gray);
-  transition: 0.5s;
-}
-
-.side-2 {
-  transform: rotateY(180deg);
-  box-shadow: inset -10px 0 10px var(--hell-gray);
-}
-
-.flipped > .side-1 {
-  box-shadow: inset 10px 0 10px var(--hell-gray);
-  transition: 0.6s;
-}
-
-.flipped > [class*="side"] {
-  pointer-events: auto;
-}
-
-.page.flipped::after {
-  transform-style: flat;
-  transform: rotateY(180deg);
-}
-
-#left-numbering {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  width: 20px;
-  min-width: 15px;
-  height: 20px;
-  min-height: 5px;
-  position: fixed;
-  bottom: 10px;
-  border: none;
-  font-size: 18pt;
-  bottom: 9%;
-  left: 3.5%;
-  color: var(--black);
-  font-family: var(--font);
-  z-index: 14;
-}
-
-#right-numbering {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 20px;
-  min-width: 15px;
-  height: 20px;
-  min-height: 15px;
-  position: fixed;
-  bottom: 10px;
-  border: none;
-  font-size: 18pt;
-  bottom: 9%;
-  right: 3.5%;
-  color: var(--black);
-  font-family: var(--font);
-  z-index: 14;
-}
-
-#next-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 7%;
-  min-width: 10px;
-  height: 5%;
-  min-height: 10px;
-  position: fixed;
-  bottom: 10px;
-  border: none;
-  font-size: 13pt;
-  top: 7%;
-  right: 4%;
-  background-color: var(--own-gray);
-  color: var(--black);
-  font-family: var(--font);
-  border-radius: 5px;
-  z-index: 13;
-}
-
-.vorwort {
-  font-family: 'Allura', cursive; 
-  text-align: justify; 
-  font-size: 20pt;
-}
-
-.unterkapitel{
-  font-size: 20pt;
-  margin-left: 30px; 
-  margin-top: 30px;
-
-}
-
-.vorwort strong {
-  font-size: 24pt;
-  margin-left: 25px;
-  margin-top: 30px;
-}
 
 .datastructure-trees {
   /* margin-left: 25px; */
   font-size: 16pt;
 }
 
-.vorwort_title {
-  font-size: 26pt;
-  margin-top: 13%;
-}
-
-.vorwort p {
-  text-align: center;
-  margin-top: 13%;
-}
-
-.einrueckung_unterkapitel {
-  margin-left: 30px; 
-  font-size: 16pt;
-}
-
-#back-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 7%;
-  min-width: 10px;
-  height: 5%;
-  min-height: 10px;
-  position: fixed;
-  bottom: 10px;
-  border: none;
-  font-size: 13pt;
-  top: 7%;
-  left: 4%;
-  background-color: var(--own-gray);
-  color: var(--black);
-  font-family: var(--font);
-  border-radius: 5px;
-  z-index: 13;
-}
-
-#next-button:hover {
-  background-color: var(--green-color);
-  color: var(--white);
-  border-color: var(--white);
-  border-style: solid 2px;
-  cursor: pointer;
-}
-
-#back-button:hover {
-  background-color: var(--green-color);
-  color: var(--white);
-  border-color: var(--white);
-  border-style: solid 2px;
-  cursor: pointer;
-}
-
-.flipped {
-  transform: rotateY(-180deg);
-}
-
-.no-anim,
-.no-anim:after {
-  animation: none; /* disable animation when page loads */
-}
-@keyframes flip {
-  to {
-    transform: rotateY(-180deg);
-  }
-}
-@keyframes unflip {
-  from {
-    transform: rotateY(-180deg);
-  }
-  to {
-    transform: rotateY(0deg);
-  }
-}
 
 #another-kenntnisstand {
   clear: both;
@@ -399,7 +143,7 @@ ul {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  list-style-image: url("./backward.png");
+  list-style-image: url("./assets/backward.png");
   /* border: solid 3px; */
   /* border-radius: 5px; */
   /* border-color: var(--own-brown); */
@@ -409,7 +153,7 @@ ul li {
   display: inline-block;
   position: relative;
   padding: 1px;
-  
+
   /* background: url("./leaf.png"); */
 }
 
@@ -471,8 +215,7 @@ ul li:after {
   margin: 20px;
 }
 
-#constructing {
-}
+#constructing {}
 
 .theorie {
   width: 100%;
@@ -589,122 +332,6 @@ button:hover {
   margin-left: 15px;
 }
 
-/* control play/pause buttons */
-
-/* https://codepen.io/TimonK/pen/QrzVjL */
-/* Copyright (c) 2021 by Timon (https://codepen.io/TimonK/pen/QrzVjL)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
- */
-
-#pause-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-  position: relative;
-
-  margin-left: 5px;
-  margin-top: 4px;
-  width: 32px;
-  height: 32px;
-  perspective: 5px;
-  perspective-origin: center right;
-
-  transform: scale(1);
-  transition: transform 0.1s, perspective 1s;
-}
-
-#pause-button:hover {
-  transform: scale(1.1);
-}
-
-#pause-button::before,
-#pause-button::after {
-  display: block;
-  content: "";
-  float: left;
-  background: var(--black);
-  width: 50%;
-  height: 100%;
-  transform-origin: center left;
-  transform: rotateY(90deg);
-  transition: transform 1s;
-}
-
-#pause-button::after {
-  transform: rotateY(90deg) scale(10, 0.5);
-}
-
-#pause-button.pause {
-  perspective: 5px;
-}
-
-#pause-button.pause::before {
-  transform: rotateY(0) scale(0.6, 1);
-}
-
-#pause-button.pause::after {
-  transform: rotateY(0) scale(0.6, 1);
-}
-
-.buttons-group {
-  margin: 5%;
-  margin-left: 5%;
-  width: 90%;
-  padding: 3%;
-  padding: 20px;
-  margin-left: 15%;
-}
-
-.button {
-  float: left;
-}
-
-/* speed slider https://codepen.io/jonnaru/pen/JjXyKYM */
-
-.speed-slider {
-  -webkit-appearance: none;
-  width: 55%;
-  height: 10px;
-  background: var(--black);
-  outline: none;
-  border: 2px solid var(--white);
-  border-radius: 5px;
-  margin-left: 10px;
-  margin-top: 15px;
-}
-
-/* for chrome/safari */
-.speed-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 2%;
-  height: 20px;
-  background: var(--black);
-  cursor: pointer;
-  border: 4px solid var(--black);
-  border-radius: 4px;
-}
-
-/* for firefox */
-.speed-slider::-moz-range-thumb {
-  width: 2%;
-  height: 20px;
-  background: var(--black);
-  cursor: pointer;
-  border: 4px solid var(--black);
-  border-radius: 4px;
-}
-
 .keys-cloud {
   float: left;
 }
@@ -736,18 +363,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   margin-bottom: 15px;
 }
 
-/* .hljs {
-  font-size: 10pt !important;
-}
-
-.hljs-title {
-  font-weight: 80 !important;
-}
-
-.hljs-strong {
-	font-weight: 80 !important;
-} */
-
 .kind_node_info {
   font-family: var(--font) !important;
   font-size: 16pt !important;
@@ -771,125 +386,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   background-color: var(--black) !important;
 }
 
-/* radio-buttons for gender https://codepen.io/avstorm/pen/eYNLwVd*/
-.rad {
-  padding: 6px;
-  border-radius: 50px;
-  display: inline-flex;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  margin-right: 8px;
-  color: var(--own-gray);
-  -webkit-tap-highlight-color: transparent;
-  vertical-align: middle;
-}
-
-.rad:hover,
-:focus {
-  background: var(--own-gray);
-  color: var(--black);
-}
-
-input[type="radio"]:checked {
-  color: var(--black);
-}
-
-#radio-buttons label::after {
-  color: var(--black);
-}
-
-#radio-buttons label:checked {
-  color: var(--black);
-}
-
-.radio-buttons > div{
-  justify-content: space-between;
-}
-
-.radios {
-  vertical-align: middle;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  border: 0;
-  box-shadow: inset 0 0 0 2px var(--own-gray);
-  appearance: none;
-  padding: 0;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-  transition: box-shadow 150ms cubic-bezier(0.95, 0.15, 0.5, 1.25);
-}
-
-.radios label {
-  color: var(--black);
-}
-
-.radios:focus {
-  outline: max(2px, 0.15em) solid currentColor;
-  outline-offset: max(2px, 0.15em);
-  color: var(--black);
-}
-
-.radios:checked {
-  box-shadow: inset 0 0 0 6px var(--black);
-  color: var(--black);
-}
-
-.rad > input[type="radio"]:checked {
-  color: var(--black);
-}
-
-/* name, age, number https://codepen.io/lucasyem/pen/ZEEYKdj */
-.form_group {
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 50%;
-}
-
-.form_field {
-  font-family: var(--font);
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid var(--own-gray);
-  outline: 0;
-  font-size: 15pt;
-  color: var(--black);
-  padding: 15px 0;
-  padding-bottom: 10px;
-  background: transparent;
-  transition: border-color 0.2s;
-}
-
-.form_label {
-  position: absolute;
-  top: 0;
-  padding-bottom: 10px;
-  display: block;
-  transition: 0.2s;
-  font-size: 15pt;
-  color: var(--black);
-}
-
-.form_field:focus {
-  padding-bottom: 10px;
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, var(--black), var(--hell-gray));
-  border-image-slice: 1;
-}
-
-.form_field:focus ~ label {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 18pt;
-  color: var(--black);
-  font-weight: 700;
-}
-
 .form_field input::required,
 ::invalid {
   box-shadow: none;
@@ -899,9 +395,9 @@ input[type="checkbox"]:hover {
   cursor: pointer;
 }
 
-.checkbox:hover{
+.checkbox:hover {
   cursor: pointer;
-} 
+}
 
 input[type="checkbox"] {
   padding-top: 2px;
@@ -915,13 +411,13 @@ input[type="checkbox"] {
   position: relative;
 }
 
-input[type="checkbox"]:checked + label {
+input[type="checkbox"]:checked+label {
   position: relative;
   color: var(--black);
   font-size: 14pt;
 }
 
-input[type="checkbox"] + label {
+input[type="checkbox"]+label {
   position: relative;
   color: var(--own-gray);
   font-size: 14pt;
@@ -938,23 +434,23 @@ input[type="checkbox"]:checked {
   margin-right: 40px;
 }
 
-#radio-buttons > div{
+#radio-buttons>div {
   justify-content: space-between;
 }
 
-.checkboxgroup > label {
+.checkboxgroup>label {
   color: var(--own-gray);
 }
 
-.checkboxgroup > label {
+.checkboxgroup>label {
   color: var(--own-gray);
 }
 
-.checkboxgroup > label::after {
+.checkboxgroup>label::after {
   color: var(--black);
 }
 
-.checkboxgroup input[type="radio"]:checked + label {
+.checkboxgroup input[type="radio"]:checked+label {
   color: var(--black);
 }
 
@@ -987,105 +483,7 @@ input[type="checkbox"]:checked {
 }
 
 
-.print-methode.hljs {
-  font-size: 8pt !important;
-}
-.print-methode > .hljs-number {
-  font-size: 8pt !important;
-}
-.print-methode > .hljs-title {
-  font-size: 8pt !important;
-}
-.print-methode > .hljs-variable {
-  font-size: 8pt !important;
-}
-.print-methode > .hljs-params {
-  font-size: 8pt !important;
-}
-.print-methode > .hljs-literal {
-  font-size: 8pt !important;
-}
-.print-methode > .hljs-keyword {
-  font-size: 8pt !important;
-}
-.print-methode > .hljs-operator {
-  font-size: 8pt !important;
-}
-.print-methode > .hljs-type {
-  font-size: 8pt !important;
-}
 
-
-.hljs {
-  /* padding: 3px 5px; */
-  font-size: 10pt !important;
-}
-
-.hljs-number {
-  color: #1750eb;
-}
-
-#id_1.hljs {
-  font-size: 18pt !important;
-}
-
-#id_1 > .hljs-number {
-  font-size: 18pt !important;
-}
-#id_1 > .hljs-title {
-  font-size: 18pt !important;
-}
-#id_1 > .hljs-variable {
-  font-size: 18pt !important;
-}
-#id_1 > .hljs-keyword {
-  font-size: 18pt !important;
-}
-#id_1 > .hljs-operator {
-  font-size: 18pt !important;
-}
-#id_1 > .hljs-type {
-  font-size: 18pt !important;
-}
-#id_1 > .hljs-params {
-  font-size: 18pt !important;
-}
-#id_1 > .hljs-literal {
-  font-size: 18pt !important;
-}
-
-#print_code .hljs {
-  /* padding: 3px 5px; */
-  font-size: 18pt !important;
-}
-
-#print_code code.hljs {
-  /* padding: 3px 5px; */
-  font-size: 18pt !important;
-}
-
-
-/* #id_1 .hljs-title {
-  font-weight: 500 !important;
-} */
-
-/* #id_1 .hljs-subst {
-  font-weight: 500 !important;
-  font-size: 18pt !important;
-
-}
-
-#id_1 .hljs-title {
-  font-weight: 500 !important;
-  font-size: 18pt !important;
-
-}
-
-#id_1 .hljs-strong {
-  font-size: 18pt !important;
-
-	font-weight: 500 !important;
-}  */
 
 #panel-viewing {
   border-color: var(--noble-brown);

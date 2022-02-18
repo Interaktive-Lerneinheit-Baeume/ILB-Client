@@ -1,0 +1,17 @@
+/* @import url("animations.css"); */
+@import url("chapters.css");
+@import url("pages.css");
+@import url("toc.css");
+
+.book * {
+    backface-visibility: visible;
+    -moz-backface-visibility: visible;
+}
+
+/* https://codepen.io/carpenumidium/pen/EoxGg */
+.book {
+    position: relative;
+    height: 90vh;
+    width: 100vw;
+    border: none;
+}

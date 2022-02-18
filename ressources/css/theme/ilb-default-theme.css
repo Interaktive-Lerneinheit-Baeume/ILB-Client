@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100;300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap");
+
+:root {
+  --color-primary: #2d3047ff;
+  --color-secondary: #f8ffe5ff ;
+  --color-disabled: #B1B1B1 ;
+  --color-accent-one: #419d78ff;
+  --color-accent-two: #efe9aeff;
+  --color-accent-three: #b4656fff;
+  --color-accent-four: #7678edff  ;
+  --color-background: #FAFAFA;
+  --color-text: #111;
+  --font-text: "Roboto Serif", serif;
+  --font-header: "Roboto", sans-serif;
+  --font-buttons: "Roboto", sans-serif;
+}
+
+
+

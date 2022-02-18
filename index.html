@@ -28,14 +28,23 @@
   </head>
 
   <body>
-    <button id="next-button" class="next-buttons">Weiter</button>
-    <button id="back-button" class="next-buttons">Zurück</button>
-
-    <div id="left-numbering">0</div>
-    <div id="right-numbering">0</div>
-    
+    <div class="menu">
+      <span class="title"><a href="#">Lektion: Binäre Suchbäume</a></span>
+      <span class="links">
+        <a href="mailto:kontakt@email.de"" target="_blank">Kontakt</a>
+        <a href="https://www.uni-regensburg.de/sprache-literatur-kultur/medieninformatik/aktuelles/index.html" target="_blank">Impressum</a>
+      </span>
+    </div>
     <div class="book"></div>
+    <div class="navigation">
+      <button id="back-button" class="back-buttons nav-button previous">Zurück</button>
+      <span class="pagenumber">
+        <span id="left-numbering" class="current">0</span>
+        <span id="right-numbering"class="total">0</span>
+      </span>
+      <button id="next-button" class="next-buttons nav-button next">Weiter</button>
+    </div>
   </body>
 
-  <script type="module" src="./ressources/js/index.js"></script>
+  <script type="module" src="./ressources/js/index1.js"></script>
 </html>

@@ -1,0 +1,34 @@
+.toc {
+    font-family: var(--font-text);
+}
+
+.toc ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.toc li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.toc li .title {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.toc li.chapter-title {
+    margin-top: 1em;
+}
+
+.toc li.chapter-title .title {
+    font-size: 1.25em;
+    font-weight: 700;
+}
+
+.toc li .page-number {
+    font-weight: 700;
+}

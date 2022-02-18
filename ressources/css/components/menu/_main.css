@@ -1,0 +1,33 @@
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 6vh;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.menu .title {
+    margin-left: 2vh;
+}
+
+.menu .title a {
+    text-decoration: none;
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+.menu .links {
+    padding: 0 2vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu .links a {
+    margin: 0 1vh;
+    font-size: 0.9em;
+    color: var(--color-secondary);
+}

@@ -211,7 +211,7 @@ function reorder() {
     pageIndex == 11 ||
     pageIndex == 12
   ) {
-    hideElement(backButton);
+    //hideElement(backButton);
   } else {
     showElement(backButton);
   }
@@ -309,8 +309,8 @@ function initView() {
   leftNumbering = document.querySelector("#left-numbering");
   rightNumbering = document.querySelector("#right-numbering");
 
-  hideElement(leftNumbering);
-  hideElement(rightNumbering);
+  //hideElement(leftNumbering);
+  //hideElement(rightNumbering);
 
   applAnalQuestions = document.querySelector(".questions-appl-anal-synth");
 

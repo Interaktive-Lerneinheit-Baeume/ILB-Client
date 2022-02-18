@@ -1,8 +1,12 @@
-const BOOK_PAGES = [
-    "./pages/page-01/index.html",
-    "./pages/page-02/index.html",
-    "./pages/page-03/index.html",
-    "./pages/page-04/index.html",
+import Page from "./Page.js";
+
+const BOOK_PAGE_URLS = [
+    "./pages/cover.html",
+    "./pages/empty.html",
+    "./pages/preface.html",
+    "./pages/demographics.html",
+    "./pages/self-assessment.html",
+    "./pages/toc.html",/*
     "./pages/page-05/index.html",
     "./pages/page-06/index.html",
     "./pages/page-07/index.html",
@@ -10,11 +14,11 @@ const BOOK_PAGES = [
     "./pages/page-09/index.html",
     "./pages/page-10/index.html",
     "./pages/page-11/index.html",
-    "./pages/page-12/index.html",
+    "./pages/page-12/index.html",*/
   ],
   ROOT_ELEMENT = document.querySelector(".book");
 
-async function loadPage(path) {
+async function loadPageElement(path) {
   let response = await fetch(path),
     html = await response.text(),
     node = document.createElement("div");
@@ -23,11 +27,19 @@ async function loadPage(path) {
 }
 
 async function loadPages() {
-  for (let i = 0; i < BOOK_PAGES.length; i++) {
-    let page = await loadPage(BOOK_PAGES[i]);
-    ROOT_ELEMENT.append(page);
+  let pageElements = [],
+    pages = [];
+  for (let i = 0; i < BOOK_PAGE_URLS.length; i++) {
+    let element = await loadPageElement(BOOK_PAGE_URLS[i]);
+    pageElements.push(element);
+    ROOT_ELEMENT.append(element);
   }
-  return;
+  pages = pageElements.map((element) => Page.fromElement(element));
+  for (let i = 0; i < pages.length; i++) {
+      pages[i].previousPage = pages[i - 1];
+      pages[i].nextPage = pages[i + 1];
+  }
+  return pages;
 }
 
 export default {

@@ -4,7 +4,7 @@ const BOOK_PAGE_URLS = [
     "./pages/cover.html",
     "./pages/preface.html",
     "./pages/demographics.html",
-    "./pages/self-assessment.html",
+    "./pages/self-assessment-java.html",
     "./pages/toc.html",/*
     "./pages/page-05/index.html",
     "./pages/page-06/index.html",

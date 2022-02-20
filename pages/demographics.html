@@ -3,58 +3,80 @@
     <h1>Demographische Angaben</h1>
     <p>(Erklärung zu den erhobenen Daten einfügen)</p>
 
+    <form class="field-set">
+        <span class="instruction">Die folgenden Angaben werden nur pseudonymisiert ausgewertet und nicht zur Identifizierung Ihrer Person verwendet.</span>
+        <ul>
+            <li>
+                <span class="label">Alter<span class="hint">(in Jahren)</span></span>
+                <input type="text" data-question-label="participant-age" data-question-id="1" placeholder="z.B. 42">
+            </li>
+            <li>
+                <span class="label">Geschlecht<span class="hint">(optional)</span></span>
+                <input type="text" data-question-label="participant-gender" data-question-id="2" placeholder="z.B. 'weiblich'">
+            </li>
+            <li>
+                <span class="label">Studiengang<span class="hint">Hauptfach</span></span>
+                <input type="text" data-question-label="participant-major" data-question-id="3" placeholder="z.B. 'Medieninformatik'">
+            </li>
+            <li>
+                <span class="label">Fachsemester<span class="hint"></span></span>
+                <input type="text" data-question-label="participant-semester" data-question-id="4" placeholder="z.B. 2">
+            </li>
+        </ul>
+    </form>
 
-    <div class="likert-battery">
+    <form class="likert-battery">
         <span class="instruction">Bitte geben Sie an, in wie weit Sie diesen Aussagen zustimmen.</span>
-        <span class="question">Meine Kenntnisse der Programmiersprache Java schätze ich sehr hoch ein.<span>
-                <ul class="likert-scale" data-question-label="self-assesment-overall-knowledge-java" data-question-id="1"> 
+        <span class="question">Meine Kenntnisse der Programmiersprache Java schätze ich sehr hoch ein.</span>
+                <ul class="likert-scale" data-question-label="self-assesment-overall-knowledge-java"
+                    data-question-id="2">
                     <li class="text left">stimme nicht zu</li>
                     <li class="likert-selector">
                         <label class="container" data-value="1">
-                            <input type="radio"  name="radio">
+                            <input type="radio" name="radio">
                             <span class="radiobutton"></span>
-                          </label>
+                        </label>
                     </li>
                     <li class="likert-selector">
                         <label class="container" data-value="2">
                             <input type="radio" name="radio">
                             <span class="radiobutton"></span>
-                          </label>
+                        </label>
                     </li>
                     <li class="likert-selector">
                         <label class="container" data-value="3">
                             <input type="radio" name="radio">
                             <span class="radiobutton"></span>
-                          </label>
+                        </label>
                     </li>
                     <li class="likert-selector">
                         <label class="container" data-value="4">
                             <input type="radio" name="radio">
                             <span class="radiobutton"></span>
-                          </label>
+                        </label>
                     </li>
                     <li class="likert-selector">
                         <label class="container" data-value="5">
                             <input type="radio" name="radio">
                             <span class="radiobutton"></span>
-                          </label>
+                        </label>
                     </li>
                     <li class="likert-selector">
                         <label class="container" data-value="6">
                             <input type="radio" name="radio">
                             <span class="radiobutton"></span>
-                          </label>
+                        </label>
                     </li>
                     <li class="likert-selector">
                         <label class="container" data-value="7">
                             <input type="radio" name="radio">
                             <span class="radiobutton"></span>
-                          </label>
+                        </label>
                     </li>
                     </li>
                     <li class="text right">stimme zu</li>
                 </ul>
-    </div>
+    </form>
     <!--
     <div class="participant participant-age form_group">
         <input type="text" class="form_field" name="age" id="age" required />

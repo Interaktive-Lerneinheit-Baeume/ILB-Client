@@ -5,7 +5,7 @@ import {
 
 let isInitialized = false;
 
-function onRadioButtonClicked(event) {
+function onRadioButtonChanged(event) {
     let likertValue = event.target.closest("label").getAttribute("data-value"),
     questionLabel = event.target.closest(".likert-scale").getAttribute("data-question-label"),
     questionId = event.target.closest(".likert-scale").getAttribute("data-question-id");
@@ -16,9 +16,22 @@ function onRadioButtonClicked(event) {
     }));
 }
 
+function onInputFormChanged(event) {
+    let inputValue = event.target.value,
+    questionLabel = event.target.getAttribute("data-question-label"),
+    questionId = event.target.getAttribute("data-question-id");
+    this.notifyAll(new Event("formInputChanged", {
+        label: questionLabel,
+        id: questionId,
+        value: inputValue
+    }));
+}
+
 function findForms(context) {
-    let likertScaleButtons = document.querySelectorAll(".likert-scale input[type=\"radio\"]");
-    likertScaleButtons.forEach((button) => button.addEventListener("change", onRadioButtonClicked.bind(context)));
+    let likertScaleButtons = document.querySelectorAll(".likert-scale input[type=\"radio\"]"),
+    formInputs = document.querySelectorAll(".field-set input");
+    likertScaleButtons.forEach((button) => button.addEventListener("change", onRadioButtonChanged.bind(context)));
+    formInputs.forEach((inputs) => inputs.addEventListener("change", onInputFormChanged.bind(context)));
 }
 
 class FormsWatcher extends Observable {

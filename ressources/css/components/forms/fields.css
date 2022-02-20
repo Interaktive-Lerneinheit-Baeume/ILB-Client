@@ -1,0 +1,51 @@
+.field-set {
+
+}
+
+.field-set .instruction {
+    margin: 1em 0 0.5em 0;
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.field-set ul {
+    list-style-type: none;
+    margin: 1vh 0;
+    padding: 0;
+}
+
+.field-set ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vh 0;
+}
+
+.field-set ul li .label {
+    flex-basis: 40%;
+    padding-right: 1vw;
+    text-align: right;
+    font-weight: 600;
+    color: var(--color-accent-one);
+}
+
+.field-set ul li .label .hint {
+    margin-left: 0.5vw;
+    color: var(--color-text);
+    font-weight: 300;
+    font-size: 0.9em;
+} 
+
+.field-set ul li input {
+    flex-basis: 60%;
+    border: none;
+    background-color: var(--color-background);
+    outline: none;
+    line-height: 2em;
+    padding: 0 0.5em;
+}
+
+.field-set ul li input:focus {
+    background-color: var(--color-accent-one);
+    color: var(--color-background);
+}

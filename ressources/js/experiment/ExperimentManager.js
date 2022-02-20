@@ -8,6 +8,10 @@ function onLikertItemChanged(event) {
     console.log(event);
 }
 
+function onInputValueChanged(event) {
+    console.log(event);
+}
+
 class ExperimentManager extends Observable {
 
     constructor() {
@@ -21,6 +25,7 @@ class ExperimentManager extends Observable {
     watchForms() {
        FormsWatcher.init();
        FormsWatcher.addEventListener("likertItemChanged", onLikertItemChanged.bind(this));
+       FormsWatcher.addEventListener("formInputChanged", onInputValueChanged.bind(this));
     }
 
     processPageSelection(page) {

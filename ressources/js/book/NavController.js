@@ -34,7 +34,6 @@ class NavController extends Observable {
     }
 
     setPage(page) {
-        console.log(page);
         this.setCurrentPageNumber(page.pageNumber);
         if (page.nextPage !== null) {
             this.enableNextPageButton();

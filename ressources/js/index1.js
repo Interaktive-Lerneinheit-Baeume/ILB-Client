@@ -19,6 +19,7 @@ function initPages(pages) {
     NavController.setTotalPageNumber(pages.length);
     PageController.addEventListener("pageSelected", onPageSelected);
     PageController.setPages(pages);
+    ExperimentManager.watchForms();
 }
 
 function onPreviousPageRequested() {

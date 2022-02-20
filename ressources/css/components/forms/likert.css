@@ -10,34 +10,74 @@
     font-size: 0.85em;
 }
 
-.likert-battery .question{  
+.likert-battery .question {
+    margin-top: 0.5em;
     font-size: 1.05em;
 }
 
 .likert-battery ul {
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
 }
 
-.likert-battery .label {
-    
+.likert-battery ul li {
 }
 
-.likert-battery .label.left {
-    
+
+
+.likert-battery u li.text {
+    font-size: 0.85em;
 }
 
-.likert-battery .label.right {
-    
+.likert-battery ul li.text.left {
+    text-align: right;
+    margin-right: 2vh;
 }
 
-.likert-battery .likert-selector {
-    
+.likert-battery ul li.text.right {
+    text-align: left;
+    margin-left: 2vh;
 }
 
-.likert-battery .likert-selector input {
-    
+.likert-battery ul li.likert-selector {
+    width: 4vh;
 }
 
-.likert-battery .likert-selector .radio{
-    
+.likert-battery ul li.likert-selector label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
+.likert-battery ul li.likert-selector label input {
+    position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.likert-battery ul li.likert-selector label .radiobutton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2vh;
+    height: 2vh;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--color-accent-one);
+    background-color: var(--color-background);
+}
+
+.likert-battery ul li.likert-selector label:hover input ~ .radiobutton {
+    cursor: pointer;
+    background-color: var(--color-accent-one);
+}
+
+.likert-battery ul li.likert-selector label input:checked ~ .radiobutton {
+    background-color: var(--color-accent-one);
+  }

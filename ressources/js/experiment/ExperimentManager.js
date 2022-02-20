@@ -2,6 +2,11 @@ import {
     Event,
     Observable
 } from "../utils/Observable.js";
+import FormsWatcher from "./FormsWatcher.js";
+
+function onLikertItemChanged(event) {
+    console.log(event);
+}
 
 class ExperimentManager extends Observable {
 
@@ -11,6 +16,11 @@ class ExperimentManager extends Observable {
 
     async fetchExperiment() {
         return null; // TODO: Fetch Experiment from Server and return from Promise
+    }
+
+    watchForms() {
+       FormsWatcher.init();
+       FormsWatcher.addEventListener("likertItemChanged", onLikertItemChanged.bind(this));
     }
 
     processPageSelection(page) {

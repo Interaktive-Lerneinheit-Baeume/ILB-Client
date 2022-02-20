@@ -5,47 +5,58 @@
   align-items: center;
   width: 100vw;
   height: 4vh;
+  background-color: var(--color-primary);
   color: var(--color-secondary);
   z-index: 14;
 }
 
 .navigation .pagenumber {
-  flex-grow: 2;
+  background-color: var(--color-secondary);
+  padding: 0 2vh;
+  border-radius: 15px 15px 0 0;
   text-align: center;
-  background-color: var(--color-primary);
   line-height: 4vh;
   font-size: 1em;
+  font-family: var(--font-header);
+  color: var(--color-primary);
 }
 
 .navigation .pagenumber .current::after {
   content: "/";
-  margin: 0 1em;
+  margin: 0 0.25em;
 }
 
 .navigation .nav-button {
   display: inline-block;
   height: 4vh;
+  width: 5vw;
   padding: 0 2vh;
   border: none;
-  background-color: var(--color-primary);
+  background-color: var(--color-accent-one);
   line-height: 4vh;
-  text-decoration: none;
-  font-family: var(--font-buttons) !important;
-  font-weight: 700;
-  color: var(--color-secondary);
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.navigation .nav-button.next {
+  border-radius: 15px 0 0 0  ;
+}
+
+.navigation .nav-button.previous {
+  border-radius: 0 15px 0 0;
 }
 
 .navigation .nav-button:hover {
   cursor: pointer;
-  color:  var(--color-accent-four);
+  background-color: var(--color-accent-two);
 }
 
 .navigation .nav-button.disabled {
   opacity: 0.5;
-  color: var(--color-secondary);
+  background-color: var(--color-disabled);
 }
 
 .navigation .nav-button.disabled:hover {
   cursor: not-allowed;
-  color: var(--color-secondary);
+  background-color: var(--color-disabled);
 }

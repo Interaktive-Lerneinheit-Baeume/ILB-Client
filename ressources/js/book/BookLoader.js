@@ -2,7 +2,6 @@ import Page from "./Page.js";
 
 const BOOK_PAGE_URLS = [
     "./pages/cover.html",
-    "./pages/empty.html",
     "./pages/preface.html",
     "./pages/self-assessment.html",
     "./pages/empty_more.html",

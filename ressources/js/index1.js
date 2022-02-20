@@ -1,3 +1,4 @@
+import ExperimentManager from "./experiment/ExperimentManager.js";
 import BookLoader from "./book/BookLoader.js";
 import NavController from "./book/NavController.js";
 import PageController from "./book/PageController.js";

@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="content-type" content="text/html" />
-    <title>Bachelorarbeit</title>
+    <title>Lektion: Binäre Suchbäume</title>
     <link type="text/css" rel="stylesheet" href="./ressources/css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet"> 
+    <link type="text/css" rel="stylesheet" href="./vendors/fontello/css/animation.css" />
+    <link type="text/css" rel="stylesheet" href="./vendors/fontello/css/fontello.css" />  
     
     <!-- client code in client side index.js -->
+    <!--
     <script type="application/javascript" src="./vendors/jsgl.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.6/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.6/sweetalert2.min.js"></script>
@@ -24,10 +24,14 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/intellij-light.min.css"
-    />
+    />-->
   </head>
 
   <body>
+    <div class="splash">
+      <h1>Experiment wird geladen ...</h1>
+      <span><i class="icon-spin animate-spin"></i></span>
+    </div>
     <div class="menu">
       <span class="title"><a href="#">Lektion: Binäre Suchbäume</a></span>
       <span class="links">
@@ -37,12 +41,12 @@
     </div>
     <div class="book"></div>
     <div class="navigation">
-      <button id="back-button" class="back-buttons nav-button previous">Zurück</button>
+      <button id="back-button" class="back-buttons nav-button previous"><i class="icon-previous"></i></button>
       <span class="pagenumber">
         <span id="left-numbering" class="current">0</span>
         <span id="right-numbering"class="total">0</span>
       </span>
-      <button id="next-button" class="next-buttons nav-button next">Weiter</button>
+      <button id="next-button" class="next-buttons nav-button next"><i class="icon-next"></i></button>
     </div>
   </body>
 

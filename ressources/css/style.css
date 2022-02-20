@@ -1,9 +1,11 @@
 @import url("theme/ilb-default-theme.css");
 @import url("theme/fixes.css");
-@import url("components/external/_main.css");
+@import url("components/splash/_main.css");
+/*@import url("components/external/_main.css");*/
 @import url("components/menu/_main.css");
 @import url("components/book/_main.css");
 @import url("components/navigation/_main.css");
+@import url("components/forms/_main.css");
 
 *,
 *::before,
@@ -397,6 +399,7 @@ button:hover {
   background-color: var(--black) !important;
 }
 
+/*
 .form_field input::required,
 ::invalid {
   box-shadow: none;
@@ -458,8 +461,6 @@ input[type="checkbox"]:checked {
 .id-number-this-this {
   margin-left: 50px !important;
 }
-
-
 
 
 #panel-viewing {
@@ -532,6 +533,7 @@ input[type="checkbox"]:checked {
   width: 100%;
   margin: auto;
 }
+
 
 .textarea_input:focus {
   outline: none;

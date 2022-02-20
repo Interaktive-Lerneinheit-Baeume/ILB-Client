@@ -1,11 +1,13 @@
 .menu {
   display: flex;
+  z-index: 9999;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100vw;
   height: 6vh;
   background-color: var(--color-primary);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   color: var(--color-secondary);
 }
 
@@ -15,7 +17,7 @@
 
 .menu .title a {
     text-decoration: none;
-    color: var(--color-secondary);
+    color: var(--color-accent-one);
     font-weight: 700;
 }
 
@@ -30,4 +32,10 @@
     margin: 0 1vh;
     font-size: 0.9em;
     color: var(--color-secondary);
+}
+
+.menu .links a:hover {
+    margin: 0 1vh;
+    font-size: 0.9em;
+    color: var(--color-accent-one);
 }

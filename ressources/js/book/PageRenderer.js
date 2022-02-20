@@ -20,15 +20,15 @@ class PageRenderer extends Observable {
 
     render(page) {
         hideAllPages(this.el);
-        page.el.classList.remove("left", "right");
-        if(page.showPrevious === true && page.previousPage !== null) {
-            page.previousPage.el.classList.add("left");
-            page.previousPage.el.classList.remove("hidden");
-        }
-        page.el.classList.add("right");
+        page.el.classList.add("left");
         page.el.classList.remove("hidden");
+        if (page.nextPage !== null) {
+            page.nextPage.el.classList.add("right");
+            page.nextPage.el.classList.remove("hidden");
+
+        }
     }
 
 }
 
-export default  new PageRenderer(document.querySelector(".book"));
+export default new PageRenderer(document.querySelector(".book"));

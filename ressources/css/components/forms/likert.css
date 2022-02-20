@@ -1,0 +1,43 @@
+.likert-battery {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.likert-battery .instruction {
+    margin: 1em 0 0.5em 0;
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.likert-battery .question{  
+    font-size: 1.05em;
+}
+
+.likert-battery ul {
+    
+}
+
+.likert-battery .label {
+    
+}
+
+.likert-battery .label.left {
+    
+}
+
+.likert-battery .label.right {
+    
+}
+
+.likert-battery .likert-selector {
+    
+}
+
+.likert-battery .likert-selector input {
+    
+}
+
+.likert-battery .likert-selector .radio{
+    
+}

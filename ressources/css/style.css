@@ -1,9 +1,11 @@
 @import url("theme/ilb-default-theme.css");
 @import url("theme/fixes.css");
+@import url("components/splash/_main.css");
 @import url("components/external/_main.css");
 @import url("components/menu/_main.css");
 @import url("components/book/_main.css");
 @import url("components/navigation/_main.css");
+@import url("components/forms/likert.css");
 
 *,
 *::before,

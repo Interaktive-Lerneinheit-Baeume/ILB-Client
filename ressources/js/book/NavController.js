@@ -2,6 +2,7 @@ import {
     Event,
     Observable
 } from "../utils/Observable.js";
+import Page from "./Page.js";
 
 let currentPageNumberElement,
     totalPageNumberElement,
@@ -17,19 +18,34 @@ class NavController extends Observable {
         previousPageButton = el.querySelector(".nav-button.previous");
         nextPageButton = el.querySelector(".nav-button.next");
         previousPageButton.addEventListener("click", () => {
-            if(previousPageButton.classList.contains("disabled")) {
+            if (previousPageButton.classList.contains("disabled")) {
                 return;
             } else {
                 this.notifyAll(new Event("previousPageRequested"));
             }
         });
         nextPageButton.addEventListener("click", () => {
-            if(nextPageButton.classList.contains("disabled")) {
+            if (nextPageButton.classList.contains("disabled")) {
                 return;
             } else {
                 this.notifyAll(new Event("nextPageRequested"));
             }
         });
+    }
+
+    setPage(page) {
+        console.log(page);
+        this.setCurrentPageNumber(page.pageNumber);
+        if (page.nextPage !== null) {
+            this.enableNextPageButton();
+        } else {
+            this.disableNextPageButton();
+        }
+        if (page.canGoBack && page.previousPage !== null) {
+            this.enablePreviousPageButton();
+        } else {
+            this.disablePreviousPageButton();
+        }
     }
 
     setCurrentPageNumber(pageNumber) {

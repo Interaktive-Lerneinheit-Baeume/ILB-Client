@@ -3,9 +3,8 @@
     top: 0;
     height: 90vh;
     width: 50vw;
-    padding: 0;
-    transform-origin: 0 50%;
-    transition: 0.8s;
+    padding: 2vh;
+    background-color: var(--color-primary);
 }
 
 .page.left {
@@ -14,8 +13,8 @@
 
 .page.right {
     border-style: solid;
-    border-width: 0 0 0 2px;
-    border-color: var(--color-primary);
+    border-width: 0 0 0 1px;
+    border-color: var(--color-secondary);
     right: 0;
 }
 
@@ -27,10 +26,29 @@ h4 {
     font-family: var(--header-font);
 }
 
+.page h1 {
+    font-size: 1.5em;
+    color: var(--color-accent-one);
+}
+
+
+h1.title {
+    margin: 1em 0 0 0;
+    font-size: 3em;
+    color: var(--color-accent-one);
+}
+
+p.subtitle {
+    margin-top: 0;
+    font-size: 1em;
+    font-style: italic;
+}
+
 .page p {
-    width: 90%;
+    width: 100%;
     padding: 0 1vh;
-    line-height: 1.5em;
+    line-height: 1.25em;
+    font-size: 0.85em;
     text-align: justify;
 }
 

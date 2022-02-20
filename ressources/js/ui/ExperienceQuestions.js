@@ -18,16 +18,18 @@ class ExperienceQuestions extends Observable {
     tippExperience = document.querySelector("#tipp-experience");
   }
 
-  sendToEndButtonClicked() {
+  static sendToEndButtonClicked() {
     let targetInfo = this.getAllExperienceAnswers();
     let event = new Event("onSendToEndButtonClick", targetInfo);
     this.notifyAll(event);
   }
 
-  setAllDurationTimes(pDurationTimeOfLearningAndVisualisation, pDurationTimeOfVisualisation, pDurationTimeOfKnowledgeTest){
+  static setAllDurationTimes(pDurationTimeOfLearningAndVisualisation, pDurationTimeOfVisualisation, pDurationTimeOfKnowledgeTest){
     durationTimeOfKnowledgeTest = pDurationTimeOfKnowledgeTest;
     durationTimeOfLearningAndVisualisation = pDurationTimeOfLearningAndVisualisation;
     durationTimeOfVisualisation = pDurationTimeOfVisualisation;
+
+    console.log("SET durationTimeOfKnowledgeTest "+durationTimeOfKnowledgeTest +" durationTimeOfLearningAndVisualisation "+durationTimeOfLearningAndVisualisation);
   }
 
   getAllExperienceAnswers() {

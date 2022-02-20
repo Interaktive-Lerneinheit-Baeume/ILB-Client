@@ -15,6 +15,7 @@ class NavController extends Observable {
         currentPageNumberElement = el.querySelector(".pagenumber .current");
         totalPageNumberElement = el.querySelector(".pagenumber .total");
         previousPageButton = el.querySelector(".nav-button.previous");
+        
         nextPageButton = el.querySelector(".nav-button.next");
         previousPageButton.addEventListener("click", () => {
             if(previousPageButton.classList.contains("disabled")) {
@@ -32,30 +33,35 @@ class NavController extends Observable {
         });
     }
 
-    setCurrentPageNumber(pageNumber) {
+    static getPreviousButton(){
+        return previousPageButton;
+    }
+
+    static setCurrentPageNumber(pageNumber) {
         currentPageNumberElement.innerHTML = pageNumber;
     }
 
-    setTotalPageNumber(pageNumber) {
+    static setTotalPageNumber(pageNumber) {
         totalPageNumberElement.innerHTML = pageNumber;
     }
 
-    enablePreviousPageButton() {
+    static enablePreviousPageButton() {
         previousPageButton.classList.remove("disabled");
     }
 
-    enableNextPageButton() {
+    static enableNextPageButton() {
         nextPageButton.classList.remove("disabled");
     }
 
-    disablePreviousPageButton() {
+    static disablePreviousPageButton() {
         previousPageButton.classList.add("disabled");
     }
 
-    disableNextPageButton() {
+    static disableNextPageButton() {
         nextPageButton.classList.add("disabled");
     }
 
 }
 
-export default new NavController(document.querySelector(".navigation"));
+export default NavController;
+// export default new NavController(document.querySelector(".navigation"));

@@ -28,14 +28,7 @@ function allCirclesAtBeginDesign() {
 class StartSite extends Observable {
   constructor() {
     super();
-    this.name = document
-      .querySelector(".participant-name")
-      .querySelector("input");
-    this.VPhonor = document.querySelector(".private_data");
 
-    this.number = document
-      .querySelector(".participant-number")
-      .querySelector("input");
     this.age = document
       .querySelector(".participant-age")
       .querySelector("input");
@@ -104,8 +97,8 @@ class StartSite extends Observable {
       });
     }
 
-    this.number.addEventListener("focus", this.onNumberFocused.bind(this));
-    this.number.addEventListener("blur", this.onNumberBlured.bind(this));
+    // this.number.addEventListener("focus", this.onNumberFocused.bind(this));
+    // this.number.addEventListener("blur", this.onNumberBlured.bind(this));
   }
 
   getCirclesColored() {}
@@ -128,7 +121,8 @@ class StartSite extends Observable {
 
   sendDemographicData() {
     wholeInfo = this.getAllInfo();
-    let event = new Event("onGotoAnimationButtonClicked", wholeInfo);
+    console.log("onGotoVisualizationButtonClicked " + wholeInfo);
+    let event = new Event("onGotoVisualizationButtonClicked", wholeInfo);
     this.notifyAll(event);
   }
 
@@ -144,8 +138,7 @@ class StartSite extends Observable {
 
     return {
       age: this.getAge(),
-      studentNumber: this.number.value,
-      name: this.getName(),
+      // studentNumber: this.number.value,
       modus: "startDataReceived",
       skills: skills,
       gender: gender,
@@ -191,8 +184,12 @@ class StartSite extends Observable {
     return adpValuesCheckedAsString;
   }
 
-  getMmeValuesCheckedAsString(){
+  getMmeValuesCheckedAsString() {
     return mmeValuesCheckedAsString;
+  }
+
+  getStartSite() {
+    return this;
   }
 
   getSkillsInfo() {
@@ -254,7 +251,6 @@ class StartSite extends Observable {
     ) {
       adpValuesCheckedAsString += "algorithm and datastructure: wenig; ";
       wholeSkillsAsString += "algorithm and datastructure: wenig; ";
-
     } else if (
       adpEl
         .querySelector("#radio-buttons")
@@ -262,7 +258,6 @@ class StartSite extends Observable {
     ) {
       adpValuesCheckedAsString += "algorithm and datastructure: gut; ";
       wholeSkillsAsString += "algorithm and datastructure: gut; ";
-
     } else if (
       adpEl
         .querySelector("#radio-buttons")
@@ -270,7 +265,6 @@ class StartSite extends Observable {
     ) {
       adpValuesCheckedAsString += "algorithm and datastructure: sehr gut; ";
       wholeSkillsAsString += "algorithm and datastructure: sehr gut; ";
-
     } else if (
       adpEl
         .querySelector("#radio-buttons")
@@ -279,7 +273,6 @@ class StartSite extends Observable {
       adpValuesCheckedAsString +=
         "algorithm and datastructure: ausgezeichnet; ";
       wholeSkillsAsString += "algorithm and datastructure: ausgezeichnet; ";
-
     }
 
     // wholeSkillsAsString += adpValuesCheckedAsString;
@@ -292,7 +285,6 @@ class StartSite extends Observable {
     ) {
       mmeValuesCheckedAsString += "javascript programming: gar nicht; ";
       wholeSkillsAsString += "javascript programming: gar nicht; ";
-
     } else if (
       mmeEl
         .querySelector("#radio-buttons")
@@ -300,7 +292,6 @@ class StartSite extends Observable {
     ) {
       mmeValuesCheckedAsString += "javascript programming: wenig; ";
       wholeSkillsAsString += "javascript programming: wenig; ";
-
     } else if (
       mmeEl
         .querySelector("#radio-buttons")
@@ -308,7 +299,6 @@ class StartSite extends Observable {
     ) {
       mmeValuesCheckedAsString += "javascript programming: gut; ";
       wholeSkillsAsString += "javascript programming: gut; ";
-
     } else if (
       mmeEl
         .querySelector("#radio-buttons")
@@ -316,7 +306,6 @@ class StartSite extends Observable {
     ) {
       mmeValuesCheckedAsString += "javascript programming: sehr gut; ";
       wholeSkillsAsString += "javascript programming: sehr gut; ";
-
     } else if (
       mmeEl
         .querySelector("#radio-buttons")
@@ -324,7 +313,6 @@ class StartSite extends Observable {
     ) {
       mmeValuesCheckedAsString += "javascript programming: ausgezeichnet; ";
       wholeSkillsAsString += "javascript programming: ausgezeichnet; ";
-
     }
     return wholeSkillsAsString;
   }

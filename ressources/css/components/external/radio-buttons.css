@@ -5,10 +5,11 @@
     display: inline-flex;
     cursor: pointer;
     transition: background 0.2s ease;
-    margin-right: 8px;
+    margin-right: 4vh;
     color: var(--own-gray);
     -webkit-tap-highlight-color: transparent;
     vertical-align: middle;
+    /* justify-content: space-between; */
 }
 
 .rad:hover,
@@ -29,7 +30,12 @@ input[type="radio"]:checked {
     color: var(--black);
 }
 
-.radio-buttons>div {
+#radio-buttons {
+    display: inline;
+    justify-content: space-between;
+}
+
+.radio-buttons {
     justify-content: space-between;
 }
 
@@ -66,3 +72,35 @@ input[type="radio"]:checked {
 .rad>input[type="radio"]:checked {
     color: var(--black);
 }
+
+.checkboxgroup {
+    display: inline-block;
+    text-align: center;
+    margin-right: 40px;
+  }
+  
+  #radio-buttons {
+    justify-content: space-between;
+  }
+  
+  .checkboxgroup > label {
+    color: var(--own-gray);
+    padding-top: 1h;
+  }
+  
+  .checkboxgroup > label::after {
+    color: var(--black);
+  }
+  
+  .checkboxgroup input[type="radio"]:checked+label {
+    color: var(--black);
+  }
+  
+  .left_float_delete {
+    clear: none;
+  }
+  
+  .checkboxgroup label {
+    display: block;
+    padding-top: 5px;
+  }

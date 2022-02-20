@@ -6,6 +6,7 @@
   width: 100vw;
   height: 4vh;
   color: var(--color-secondary);
+  z-index: 14;
 }
 
 .navigation .pagenumber {

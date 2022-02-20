@@ -48,7 +48,7 @@ class MainSite extends Observable {
     this.visualizerElViewing.style.display = "none";
   }
 
-  sendToExperienceButtonClicked() {
+  static sendToExperienceButtonClicked() {
     let wholeQuestionAnswers = questionsArea.getAllQuestionAnswers();
     let counterPopUp = constructVisualizer.getAllInfo();
 
@@ -62,7 +62,7 @@ class MainSite extends Observable {
     this.notifyAll(event);
   }
 
-  sendToQuestionsButtonClicked() {
+  static sendToQuestionsButtonClicked() {
     let event = new Event("onSendToQuestionsButtonClick");
     this.notifyAll(event);
 

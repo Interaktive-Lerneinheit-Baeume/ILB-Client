@@ -7,6 +7,7 @@
   height: 6vh;
   background-color: var(--color-primary);
   color: var(--color-secondary);
+  z-index: 14;
 }
 
 .menu .title {
@@ -30,4 +31,9 @@
     margin: 0 1vh;
     font-size: 0.9em;
     color: var(--color-secondary);
+
+}
+
+.menu .links a:hover {
+    color: var(--color-accent-four);
 }

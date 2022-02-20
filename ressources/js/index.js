@@ -91,7 +91,7 @@ function onBackButtonClicked(ev) {
 
 function onNextButtonClicked(ev) {
   if (pageIndex == 3) {
-    startTimeOfLearningAndVisualisation = Date.now();
+     = Date.now();startTimeOfLearningAndVisualisation
   }
   if (pageIndex == 5) {
     if (firstTimeOpeningVisualisation == 0) {
@@ -161,7 +161,7 @@ function onNextButtonClicked(ev) {
         endTimeOfKnowledgeTest - startTimeOfKnowledgeTest;
     // }
   } else if (pageIndex == 11) {
-    experienceQuestions.setAllDurationTimes(
+    ExperienceQuestions.setAllDurationTimes(
       durationTimeOfLearningAndVisualisation / 1000,
       durationTimeOfVisualisation / 1000,
       durationTimeOfKnowledgeTest / 1000

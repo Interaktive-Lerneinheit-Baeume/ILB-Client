@@ -25,6 +25,7 @@ h3,
 h4 {
     padding: 0 1vh;
     font-family: var(--header-font);
+    font-size: 18pt;
 }
 
 .page p {

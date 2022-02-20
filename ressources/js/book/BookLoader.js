@@ -4,9 +4,9 @@ const BOOK_PAGE_URLS = [
     "./pages/cover.html",
     "./pages/empty.html",
     "./pages/preface.html",
-    "./pages/demographics.html",
     "./pages/self-assessment.html",
-    "./pages/toc.html",/*
+    "./pages/empty_more.html",
+    "./pages/toc.html",
     "./pages/page-05/index.html",
     "./pages/page-06/index.html",
     "./pages/page-07/index.html",
@@ -14,7 +14,7 @@ const BOOK_PAGE_URLS = [
     "./pages/page-09/index.html",
     "./pages/page-10/index.html",
     "./pages/page-11/index.html",
-    "./pages/page-12/index.html",*/
+    "./pages/page-12/index.html",
   ],
   ROOT_ELEMENT = document.querySelector(".book");
 
@@ -29,14 +29,18 @@ async function loadPageElement(path) {
 async function loadPages() {
   let pageElements = [],
     pages = [];
+  // console.log("BOOK_PAGE_URLS.length "+BOOK_PAGE_URLS.length);  
+
   for (let i = 0; i < BOOK_PAGE_URLS.length; i++) {
     let element = await loadPageElement(BOOK_PAGE_URLS[i]);
     pageElements.push(element);
     ROOT_ELEMENT.append(element);
   }
+  
   pages = pageElements.map((element) => Page.fromElement(element));
   for (let i = 0; i < pages.length; i++) {
       pages[i].previousPage = pages[i - 1];
+      // console.log("pages[i] sendToSave" +pages[i].sendToSave);
       pages[i].nextPage = pages[i + 1];
   }
   return pages;
@@ -44,4 +48,4 @@ async function loadPages() {
 
 export default {
   load: loadPages,
-};
+}

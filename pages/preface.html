@@ -1,11 +1,79 @@
-<div id="page-1" class="page" data-title="preface" data-chapter="Vorfragebogen" data-show-chapter="false" data-show-page-number="true" data-can-go-back="true">
-    <div class="side-1" id="p1">
-        <h1>Vorwort</h1>
-        <p>Vielen Dank für Ihre Teilnahme an dem Experiment!
-            In diesem Buch lernen Sie komplexe Datenstrukturen binäre Bäume.
-            Sie erhalten dafür das theoretische Material und Visualisierung.
-            AbschließFend werden Ihnen Fragen zu dem erworbenen Wissen gestellt.
-            Bitte nehmen Sie sich so viel Zeit, wie Sie brauchen.</p>
-        <p><emph>Viel Spaß und viel Erfolg!</emph></p>
+<div
+  id="page-1"
+  class="page no-anim"
+  data-title="preface"
+  data-chapter="Vorfragebogen"
+  data-show-chapter="false"
+  data-show-page-number="true"
+  data-can-go-back="false"
+  data-send-to-save = ""
+>
+  <div class="side-1" id="p1">
+    <h1>Vorwort</h1>
+    <p>
+      Vielen Dank für Ihre Teilnahme an dem Experiment! In diesem Buch lernen
+      Sie komplexe Datenstrukturen binäre Bäume. Sie erhalten dafür das
+      theoretische Material und Visualisierung. AbschließFend werden Ihnen
+      Fragen zu dem erworbenen Wissen gestellt. Bitte nehmen Sie sich so viel
+      Zeit, wie Sie brauchen.
+    </p>
+    <p><emph>Viel Spaß und viel Erfolg!</emph></p>
+  </div>
+
+  <div class="side-2" id="p2">
+    <h1>Demographische Angaben</h1>
+    <p>(Erklärung zu den erhobenen Daten einfügen)</p>
+    <div class="participant participant-age form_group">
+      <input type="text" class="form_field" name="age" id="age" required />
+      <label for="age" class="form_label skill">Alter:</label>
     </div>
+
+    <div class="participant participant-gender tasks">
+      <div id="radio-buttons">
+        <label for="male" class="rad"
+          >männlich
+          <input
+            type="radio"
+            id="male"
+            class="radios"
+            value="male"
+            name="genders"
+          />
+        </label>
+
+        <label for="female" class="rad"
+          >weiblich
+          <input
+            type="radio"
+            id="female"
+            class="radios"
+            value="female"
+            name="genders"
+          />
+        </label>
+
+        <label for="diverse" class="rad"
+          >divers
+          <input
+            type="radio"
+            id="diverse"
+            class="radios"
+            value="diverse"
+            name="genders"
+          />
+        </label>
+      </div>
+    </div>
+    <div>
+      <div class="participant kenntnisstand">
+        Wie würden Sie Ihre Kenntnisse in Programmiersprache Java einschätzen?
+      </div>
+
+      <div id="1_circle" class="circle"></div>
+      <div id="2_circle" class="circle"></div>
+      <div id="3_circle" class="circle"></div>
+      <div id="4_circle" class="circle"></div>
+      <div id="5_circle" class="circle"></div>
+    </div>
+  </div>
 </div>

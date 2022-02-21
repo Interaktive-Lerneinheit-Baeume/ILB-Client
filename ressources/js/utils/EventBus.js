@@ -6,8 +6,10 @@ class EventBus extends Observable {
         super();
     }
 
-    broadcast(data) {
-        this.notifyAll(new Event("event", data));
+    relayEvent(event) {
+        this.notifyAll(new Event("globalEvent", {
+            originalEvent: event
+        }));
     }
 
 }

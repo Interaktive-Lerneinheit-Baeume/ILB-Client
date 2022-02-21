@@ -3,8 +3,8 @@ import Page from "./Page.js";
 const BOOK_PAGE_URLS = [
     "./pages/empty.html",
     "./pages/cover.html",
-    "./pages/empty.html",
     "./pages/preface.html",
+    "./pages/empty.html",
     "./pages/demographics-01.html",
     "./pages/demographics-02.html",
     "./pages/self-assessment-java.html",

@@ -1,18 +1,23 @@
 .navigation {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: 4vh;
-  background-color: var(--color-background);
+  height: 6vh;
+  background-color: transparent;
   color: var(--color-secondary);
 }
 
 .navigation .nav-button {
   display: inline-block;
   height: 4vh;
-  width: 5vw;
+  width: 4vw;
+  margin: 1vh 0;
   padding: 0 2vh;
   border: none;
   background-color: var(--color-accent-one);
@@ -22,11 +27,13 @@
 }
 
 .navigation .nav-button.next {
-  border-radius: 15px 0 0 0  ;
+  border-radius: 15px 0 0 15px;
+  text-align: right;
 }
 
 .navigation .nav-button.previous {
-  border-radius: 0 15px 0 0;
+  border-radius: 0 15px 15px 0;
+  text-align: left;
 }
 
 .navigation .nav-button:hover {

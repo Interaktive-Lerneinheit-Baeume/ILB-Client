@@ -22,21 +22,12 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
   margin: 0;
   padding: 0;
-  --green-color: #7a7a43;
-  --emerald-hell-color: var(--hell-brown);
-  --emerald-hell-another-color: rgba(178, 224, 209, 0.651);
-  --black: #000000;
-  --own-gray: #9b9b9b;
-  --hell-gray: #cccccc;
-  --hell-gray: #dfdddd;
-  --hell-brown: rgba(255, 255, 255, 1);
-  --noble-brown: #acacace6;
-  --white: #fdfcfc;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background-color: var(--color-background);
   font-family: var(--font-text);
   color: var(--color-text);

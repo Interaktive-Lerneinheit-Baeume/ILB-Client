@@ -7,7 +7,8 @@ import Page from "./Page.js";
 let currentPageNumberElement,
     totalPageNumberElement,
     previousPageButton,
-    nextPageButton;
+    nextPageButton,
+    chapterIndicator;
 
 class NavController extends Observable {
 
@@ -15,6 +16,7 @@ class NavController extends Observable {
         super();
         previousPageButton = el.querySelector(".nav-button.previous");
         nextPageButton = el.querySelector(".nav-button.next");
+        chapterIndicator = document.querySelector(".menu .chapter");
         previousPageButton.addEventListener("click", () => {
             if (previousPageButton.classList.contains("disabled")) {
                 return;
@@ -42,6 +44,7 @@ class NavController extends Observable {
         } else {
             this.disablePreviousPageButton();
         }
+        chapterIndicator.innerHTML = page.chapter;
     }
 
     enablePreviousPageButton() {

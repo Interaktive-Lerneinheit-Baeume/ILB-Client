@@ -26,8 +26,8 @@ function getFieldDataFromTarget(el) {
 
 function getListDataFromTarget(el) {
     return {
-        label: el.closest(".multiple-choice-list").getAttribute("data-question-label"),
-        id: el.closest(".multiple-choice-list").getAttribute("data-question-id"),
+        label: el.closest("[class*=\"-choice-list\"]").getAttribute("data-question-label"),
+        id: el.closest("[class*=\"-choice-list\"]").getAttribute("data-question-id"),
         value: el.getAttribute("data-value"),
         status: el.checked
     };
@@ -36,7 +36,7 @@ function getListDataFromTarget(el) {
 function onInputFormChanged(event) {
     let target = event.target,
         data = null;
-    if (target.getAttribute("type") === "checkbox") {
+    if (["checkbox", "radio"].includes(target.getAttribute("type"))) {
         data = getListDataFromTarget(target);
     } else {
         data = getFieldDataFromTarget(target);
@@ -46,9 +46,11 @@ function onInputFormChanged(event) {
 
 function findForms(context) {
     let likertScaleButtons = document.querySelectorAll(".likert-scale input[type=\"radio\"]"),
-        formInputs = document.querySelectorAll(".field-set input");
+        formInputs = document.querySelectorAll(".field-set input"),
+        textAreaInputs = document.querySelectorAll("textarea"); // TODO: Combine with previous selector if possible
     likertScaleButtons.forEach((button) => button.addEventListener("change", onRadioButtonChanged.bind(context)));
     formInputs.forEach((inputs) => inputs.addEventListener("change", onInputFormChanged.bind(context)));
+    textAreaInputs.forEach((inputs) => inputs.addEventListener("change", onInputFormChanged.bind(context)));
 }
 
 class FormsWatcher extends Observable {

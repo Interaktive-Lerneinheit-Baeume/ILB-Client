@@ -24,6 +24,7 @@
     padding-right: 1vw;
     line-height: 2em;
     text-align: right;
+    overflow-wrap: anywhere;
     font-weight: 600;
     color: var(--color-accent-one);
 }
@@ -40,14 +41,46 @@
     border: none;
     background-color: var(--color-background);
     outline: none;
+    font-size: 1em;
     line-height: 2em;
     padding: 0 0.5em;
+    font-family: var(--font-input);
 }
 
 .field-set ul li input:focus {
     background-color: var(--color-accent-one);
     color: var(--color-background);
 }
+
+.field-set ul li textarea {
+    flex-basis: 60%;
+    height: 5em;
+    border: none;
+    background-color: var(--color-background);
+    outline: none;
+    resize: none;
+    padding: 0.5em;
+    font-family: var(--font-input);
+}
+
+.field-set ul li textarea:focus {
+    background-color: var(--color-accent-one);
+    color: var(--color-background);
+}
+
+.field-set ul li textarea::-webkit-scrollbar {
+    width: 1em;
+}
+
+.field-set ul li textarea::-webkit-scrollbar-track {
+    background-color: var(--color-accent-one-transparent);
+}
+
+.field-set ul li textarea::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent-one);
+    outline: none;
+}
+
 
 .field-set ul.multiple-choice-list {
     display: flex;
@@ -58,29 +91,29 @@
     padding: 0;
 }
 
-.field-set ul.multiple-choice-list li {
+.field-set ul.multiple-choice-list li, .field-set ul.single-choice-list li {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
 }
 
-.field-set ul.multiple-choice-list li input {
+.field-set ul.multiple-choice-list li input, .field-set ul.single-choice-list li input {
     flex-basis: 10%;
 }
 
-.field-set ul.multiple-choice-list li .checkbox-label {
+.field-set ul.multiple-choice-list li .option-label, .field-set ul.single-choice-list li {
     flex-basis: 90%;
 }
 
-.field-set ul.multiple-choice-list li input[type="checkbox"] {
+.field-set ul.multiple-choice-list li input[type="checkbox"], .field-set ul.single-choice-list li input[type="radio"] {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
     background-color: var(--color-primary);
 }
 
-.field-set ul.multiple-choice-list li input[type="checkbox"]::before {
+.field-set ul.multiple-choice-list li input[type="checkbox"]::before, .field-set ul.single-choice-list li input[type="radio"]:before {
     display: inline-block;
     content: "";
     width: 2vh;
@@ -92,15 +125,20 @@
     background-color: var(--color-background);
 }
 
-.field-set ul.multiple-choice-list li input[type="checkbox"]:hover::before {
+.field-set ul.multiple-choice-list li input[type="checkbox"]:hover::before, .field-set ul.single-choice-list li input[type="radio"]:hover::before {
     cursor: pointer;
-    background-color: var(--color-accent-one);
+    background-color: var(--color-accent-one-transparent);
 }
 
-.field-set ul.multiple-choice-list li input[type="checkbox"]:focus {
+.field-set ul.multiple-choice-list li input[type="checkbox"]:focus, .field-set ul.single-choice-list li input[type="radio"]:focus {
     background-color: var(--color-primary);
 }
 
-.field-set ul.multiple-choice-list li input[type="checkbox"]:checked::before {
+.field-set ul.multiple-choice-list li input[type="checkbox"]:checked::before, .field-set ul.single-choice-list li input[type="radio"]:checked::before {
     background-color: var(--color-accent-one);
+}
+
+.field-set ul.multiple-choice-list li input[type="checkbox"]:checked:hover::before, .field-set ul.single-choice-list li input[type="radio"]:checked:hover::before {
+    cursor: pointer;
+    background-color: var(--color-accent-one-transparent);
 }

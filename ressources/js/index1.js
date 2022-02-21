@@ -1,3 +1,5 @@
+import {Event} from "./utils/Observable.js";
+import EventBus from "./utils/EventBus.js";
 import ExperimentManager from "./experiment/ExperimentManager.js";
 import BookLoader from "./book/BookLoader.js";
 import NavController from "./book/NavController.js";
@@ -9,6 +11,11 @@ function init() {
         BookLoader.load().then((pages) => {
             initPages(pages);
             document.querySelector(".splash").classList.add("hidden");
+            EventBus.broadcast({
+                time: Date.now(),
+                key: "experiment-udpate",
+                value: "experiment started"
+            });
         });
     });
 }

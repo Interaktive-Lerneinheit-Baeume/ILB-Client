@@ -2,6 +2,7 @@ import {
     Event,
     Observable
 } from "../utils/Observable.js";
+import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 
 function onLikertItemChanged(event) {
@@ -12,14 +13,22 @@ function onInputValueChanged(event) {
     console.log(event);
 }
 
+function onGlobalEvent(event) {
+    console.log(event);
+}
+
+let currentExperiment;
+
 class ExperimentManager extends Observable {
 
     constructor() {
         super();
+        EventBus.addEventListener("event", onGlobalEvent.bind(this));
     }
 
     async fetchExperiment() {
-        return null; // TODO: Fetch Experiment from Server and return from Promise
+    
+        return null; // TODO: Fetch Experiment from Server, save in currentExperiment and return from Promise
     }
 
     watchForms() {
@@ -30,6 +39,10 @@ class ExperimentManager extends Observable {
 
     processPageSelection(page) {
         // TODO: Process page for necessary experiment logging
+    }
+
+    endExperiment() {
+
     }
 
 }

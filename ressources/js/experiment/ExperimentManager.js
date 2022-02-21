@@ -23,7 +23,7 @@ class ExperimentManager extends Observable {
 
     constructor() {
         super();
-        EventBus.addEventListener("event", onGlobalEvent.bind(this));
+        EventBus.addEventListener("globalEvent", onGlobalEvent.bind(this));
     }
 
     async fetchExperiment() {

@@ -1,9 +1,9 @@
 .page {
     position: absolute;
     top: 0;
-    height: 90vh;
+    height: 95vh;
     width: 50vw;
-    padding: 2vh;
+    padding: 2vh 2vh;
     background-color: var(--color-primary);
 }
 

@@ -22,7 +22,7 @@ class PageRenderer extends Observable {
         hideAllPages(this.el);
         page.el.classList.add("left");
         page.el.classList.remove("hidden");
-        if (page.nextPage !== null) {
+        if (page.nextPage !== null && page.nextPage !== undefined) {
             page.nextPage.el.classList.add("right");
             page.nextPage.el.classList.remove("hidden");
 

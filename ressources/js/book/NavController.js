@@ -13,8 +13,6 @@ class NavController extends Observable {
 
     constructor(el) {
         super();
-        currentPageNumberElement = el.querySelector(".pagenumber .current");
-        totalPageNumberElement = el.querySelector(".pagenumber .total");
         previousPageButton = el.querySelector(".nav-button.previous");
         nextPageButton = el.querySelector(".nav-button.next");
         previousPageButton.addEventListener("click", () => {
@@ -34,25 +32,16 @@ class NavController extends Observable {
     }
 
     setPage(page) {
-        this.setCurrentPageNumber(page.pageNumber);
-        if (page.nextPage !== null) {
+        if (page.nextPage !== null && page.nextPage !== undefined) {
             this.enableNextPageButton();
         } else {
             this.disableNextPageButton();
         }
-        if (page.canGoBack && page.previousPage !== null) {
+        if (page.canGoBack && page.previousPage !== null && page.previousPage !== undefined) {
             this.enablePreviousPageButton();
         } else {
             this.disablePreviousPageButton();
         }
-    }
-
-    setCurrentPageNumber(pageNumber) {
-        currentPageNumberElement.innerHTML = pageNumber;
-    }
-
-    setTotalPageNumber(pageNumber) {
-        totalPageNumberElement.innerHTML = pageNumber;
     }
 
     enablePreviousPageButton() {

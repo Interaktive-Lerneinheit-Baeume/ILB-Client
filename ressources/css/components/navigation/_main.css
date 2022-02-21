@@ -5,24 +5,8 @@
   align-items: center;
   width: 100vw;
   height: 4vh;
-  background-color: var(--color-primary);
+  background-color: var(--color-background);
   color: var(--color-secondary);
-}
-
-.navigation .pagenumber {
-  background-color: var(--color-secondary);
-  padding: 0 2vh;
-  border-radius: 15px 15px 0 0;
-  text-align: center;
-  line-height: 4vh;
-  font-size: 1em;
-  font-family: var(--font-header);
-  color: var(--color-primary);
-}
-
-.navigation .pagenumber .current::after {
-  content: "/";
-  margin: 0 0.25em;
 }
 
 .navigation .nav-button {

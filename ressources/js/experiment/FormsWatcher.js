@@ -46,9 +46,11 @@ function onInputFormChanged(event) {
 
 function findForms(context) {
     let likertScaleButtons = document.querySelectorAll(".likert-scale input[type=\"radio\"]"),
-        formInputs = document.querySelectorAll(".field-set input");
+        formInputs = document.querySelectorAll(".field-set input"),
+        textAreaInputs = document.querySelectorAll("textarea"); // TODO: Combine with previous selector if possible
     likertScaleButtons.forEach((button) => button.addEventListener("change", onRadioButtonChanged.bind(context)));
     formInputs.forEach((inputs) => inputs.addEventListener("change", onInputFormChanged.bind(context)));
+    textAreaInputs.forEach((inputs) => inputs.addEventListener("change", onInputFormChanged.bind(context)));
 }
 
 class FormsWatcher extends Observable {

@@ -6,8 +6,9 @@ const BOOK_PAGE_URLS = [
     "./pages/preface.html",
     "./pages/demographics.html",
     "./pages/self-assessment-java.html",
-    "./pages/toc.html",
-    /*
+    "./pages/empty.html",/*
+    "./pages/toc.html",*/
+
         "./pages/page-05/index.html",
         "./pages/page-06/index.html",
         "./pages/page-07/index.html",
@@ -15,7 +16,7 @@ const BOOK_PAGE_URLS = [
         "./pages/page-09/index.html",
         "./pages/page-10/index.html",
         "./pages/page-11/index.html",
-        "./pages/page-12/index.html",*/
+        "./pages/page-12/index.html",
   ],
   ROOT_ELEMENT = document.querySelector(".book");
 

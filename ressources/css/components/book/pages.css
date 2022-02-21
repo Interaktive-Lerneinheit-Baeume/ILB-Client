@@ -14,7 +14,7 @@
 .page.right {
     border-style: solid;
     border-width: 0 0 0 1px;
-    border-color: var(--color-secondary);
+    border-color: var(--color-accent-one-transparent);
     right: 0;
 }
 

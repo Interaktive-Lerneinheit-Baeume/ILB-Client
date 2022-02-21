@@ -30,14 +30,14 @@ class PageController extends Observable {
     }
 
     next() {
-        let result = this.shift(1);
+        let result = this.shift(2);
         if (result) {
             this.notifyAll(new Event("pageSelected", this.currentPage));
         }
     }
 
     previous() {
-        let result = this.shift(-1);
+        let result = this.shift(-2);
         if (result) {
             this.notifyAll(new Event("pageSelected", this.currentPage));
         }

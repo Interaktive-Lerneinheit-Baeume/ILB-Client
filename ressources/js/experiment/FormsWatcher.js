@@ -9,6 +9,7 @@ function onRadioButtonChanged(event) {
     let likertValue = event.target.closest("label").getAttribute("data-value"),
         questionLabel = event.target.closest(".likert-scale").getAttribute("data-question-label"),
         questionId = event.target.closest(".likert-scale").getAttribute("data-question-id");
+    
     this.notifyAll(new Event("likertItemChanged", {
         label: questionLabel,
         id: questionId,
@@ -37,7 +38,7 @@ function onInputFormChanged(event) {
     let target = event.target,
         data = null;
     if (["checkbox", "radio"].includes(target.getAttribute("type"))) {
-        data = getListDataFromTarget(target);
+        data = getListDataFromTarget(target); //text - type
     } else {
         data = getFieldDataFromTarget(target);
     }
@@ -48,7 +49,8 @@ function findForms(context) {
     let likertScaleButtons = document.querySelectorAll(".likert-scale input[type=\"radio\"]"),
         formInputs = document.querySelectorAll(".field-set input"),
         textAreaInputs = document.querySelectorAll("textarea"); // TODO: Combine with previous selector if possible
-    likertScaleButtons.forEach((button) => button.addEventListener("change", onRadioButtonChanged.bind(context)));
+    
+    likertScaleButtons.forEach((radioButton) => radioButton.addEventListener("change", onRadioButtonChanged.bind(context)));
     formInputs.forEach((inputs) => inputs.addEventListener("change", onInputFormChanged.bind(context)));
     textAreaInputs.forEach((inputs) => inputs.addEventListener("change", onInputFormChanged.bind(context)));
 }

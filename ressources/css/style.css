@@ -2,7 +2,7 @@
 @import url("theme/fixes.css");
 @import url("theme/lists.css");
 @import url("components/splash/_main.css");
-/*@import url("components/external/_main.css");*/
+@import url("components/external/_main.css");
 @import url("components/menu/_main.css");
 @import url("components/book/_main.css");
 @import url("components/navigation/_main.css");
@@ -166,42 +166,11 @@ body {
   color: var(--own-gray);
 }
 
+
 button:hover {
   cursor: pointer;
 }
 
-#start-button {
-  height: 32px;
-  width: 32px;
-  border: none;
-  margin-top: 4px;
-}
-
-#start-button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-#pause-button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-#start-button:hover {
-  transform: scale(1.1);
-}
-
-#start-button img {
-  position: relative;
-  top: 50%;
-  left: 51%;
-  width: 28px;
-  height: 28px;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
 
 #skills-checkboxes {
   margin-left: 15px;

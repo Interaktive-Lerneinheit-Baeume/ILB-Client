@@ -1,0 +1,10 @@
+@import url("panels.css");
+@import url("aufgaben.css");
+
+.tasks {
+  width: 100%;
+  margin-top: 3vh;
+  margin-bottom: 2vh;
+  text-align: justify;
+}
+

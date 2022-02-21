@@ -16,8 +16,8 @@
 }
 
 .toc li .title {
-    font-size: 1em;
-    font-weight: 500;
+    /* font-size: 1em; */
+    /* font-weight: 500; */
 }
 
 .toc li.chapter-title {
@@ -25,10 +25,10 @@
 }
 
 .toc li.chapter-title .title {
-    font-size: 1.25em;
-    font-weight: 700;
+    /* font-size: 1.25em; */
+    /* font-weight: 700; */
 }
 
 .toc li .page-number {
-    font-weight: 700;
+    /* font-weight: 700; */
 }

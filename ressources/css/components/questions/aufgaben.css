@@ -1,0 +1,46 @@
+.in_der_aufgabe {
+  /* width: 100%; */
+  /* margin: auto; */
+  /* padding-top: 15px; */
+  /* padding-bottom: 10px; */
+  text-align: justify;
+}
+
+.aufgabe {
+  width: 100%;
+  /* margin-top: 55px; */
+  /* margin-bottom: 15px; */
+  /* display: inline-block; */
+  text-align: justify;
+}
+
+/* hier noch width, height */
+.trees-selection {
+  width: 30%;
+  height: 230px;
+  float: left;
+  margin-bottom: 10px;
+}
+
+.numeration-of-trees {
+  /* font-size: 12pt; */
+  text-align: center;
+  color: var(--noble-brown);
+}
+/* 
+.keys-cloud {
+  float: left;
+} */
+
+#sequence-constructing-task {
+  width: 58%;
+}
+
+#cloud {
+  width: 38%;
+  height: 200px;
+}
+
+#sequence-constructing {
+  clear: both;
+}

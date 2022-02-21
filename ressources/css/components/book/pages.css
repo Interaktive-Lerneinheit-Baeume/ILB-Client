@@ -33,23 +33,29 @@ h4 {
 
 
 h1.title {
-    margin: 1em 0 0 0;
-    font-size: 3em;
+    /* margin: 1em 0 0 0; */
+    font-size: 1.6em;
     color: var(--color-accent-one);
+    text-align: center;
 }
 
 p.subtitle {
-    margin-top: 0;
-    font-size: 1em;
-    font-style: italic;
+    /* margin-top: 0; */
+    /* font-size: 1em; */
+    /* font-style: italic; */
+    text-align: center;
 }
 
 .page p {
     width: 100%;
     padding: 0 1vh;
-    line-height: 1.5em;
-    font-size: 1em;
+    line-height: 1.25em;
+    /* font-size: 0.85em; */
     text-align: justify;
+}
+
+.centering {
+    margin-top: 20vh;
 }
 
 [class*="side"] {

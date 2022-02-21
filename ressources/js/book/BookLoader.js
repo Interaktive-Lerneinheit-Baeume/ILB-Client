@@ -18,7 +18,8 @@ const BOOK_PAGE_URLS = [
 
     "./pages/page-07/binary_tree_5.html",
 
-    "./pages/page-08/chapter.html",
+    // "./pages/page-08/chapter.html",
+    "./pages/toc.html",
     "./pages/page-08/test_1.html",
     "./pages/page-08/test_2.html",
 

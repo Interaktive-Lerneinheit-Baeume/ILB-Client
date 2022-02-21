@@ -26,8 +26,8 @@ function getFieldDataFromTarget(el) {
 
 function getListDataFromTarget(el) {
     return {
-        label: el.closest(".multiple-choice-list").getAttribute("data-question-label"),
-        id: el.closest(".multiple-choice-list").getAttribute("data-question-id"),
+        label: el.closest("[class*=\"-choice-list\"]").getAttribute("data-question-label"),
+        id: el.closest("[class*=\"-choice-list\"]").getAttribute("data-question-id"),
         value: el.getAttribute("data-value"),
         status: el.checked
     };
@@ -36,7 +36,7 @@ function getListDataFromTarget(el) {
 function onInputFormChanged(event) {
     let target = event.target,
         data = null;
-    if (target.getAttribute("type") === "checkbox") {
+    if (["checkbox", "radio"].includes(target.getAttribute("type"))) {
         data = getListDataFromTarget(target);
     } else {
         data = getFieldDataFromTarget(target);

@@ -7,8 +7,9 @@ const BOOK_PAGE_URLS = [
     "./pages/preface.html",
     "./pages/demographics.html",
     "./pages/self-assessment-java.html",
-    "./pages/empty.html", 
-    "./pages/toc.html",
+    // "./pages/empty.html", 
+
+    // "./pages/toc.html",
     "./pages/page-05/chapter.html",
     "./pages/page-05/binary_tree_1.html",
     "./pages/page-05/binary_tree_2.html",
@@ -18,7 +19,8 @@ const BOOK_PAGE_URLS = [
 
     "./pages/page-07/binary_tree_5.html",
 
-    "./pages/page-08/chapter.html",
+    // "./pages/page-08/chapter.html",
+    "./pages/toc.html",
     "./pages/page-08/test_1.html",
     "./pages/page-08/test_2.html",
 

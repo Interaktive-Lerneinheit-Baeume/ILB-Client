@@ -5,7 +5,7 @@ ul {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    list-style-image: url("./assets/backward.png");
+    list-style-image: url("./../assets/leaf.png");
     /* border: solid 3px; */
     /* border-radius: 5px; */
     /* border-color: var(--own-brown); */
@@ -34,7 +34,7 @@ ul {
     /* background: "./leaf.png"; */
     /* background: linear-gradient(45deg, var(--black), var(--emerald-hell-color)); */
     border-radius: 50%;
-    background-image: url("./leaf.png");
+    background-image: url("./../assets/leaf.png");
     background-size: contain;
     background-repeat: no-repeat;
     height: 25px;

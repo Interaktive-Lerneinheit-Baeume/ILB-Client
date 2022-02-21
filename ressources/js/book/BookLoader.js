@@ -8,10 +8,9 @@ const BOOK_PAGE_URLS = [
     "./pages/demographics-01.html",
     "./pages/demographics-02.html",
     "./pages/self-assessment-java.html",
-    // "./pages/empty.html", 
+    "./pages/empty.html", 
 
-    // "./pages/toc.html",
-    "./pages/page-05/chapter.html",
+    "./pages/empty.html",
     "./pages/page-05/binary_tree_1.html",
     "./pages/page-05/binary_tree_2.html",
 
@@ -20,8 +19,6 @@ const BOOK_PAGE_URLS = [
 
     "./pages/page-07/binary_tree_5.html",
 
-    // "./pages/page-08/chapter.html",
-    "./pages/toc.html",
     "./pages/page-08/test_1.html",
     "./pages/page-08/test_2.html",
 
@@ -30,7 +27,6 @@ const BOOK_PAGE_URLS = [
 
     "./pages/page-10/test_6.html",
     "./pages/page-10/test_7.html",
-    "./pages/empty.html",
 
     "./pages/page-11/experience_1.html",
     "./pages/page-11/experience_2.html",

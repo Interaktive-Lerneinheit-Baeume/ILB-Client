@@ -1,7 +1,7 @@
 .field-set {}
 
 .field-set .instruction {
-    margin: 1em 0 0.5em 0;
+    /* margin: 1em 0 0.5em 0; */
     font-weight: 500;
     font-size: 0.85em;
 }
@@ -10,20 +10,21 @@
     list-style-type: none;
     margin: 1vh 0;
     padding: 0;
+    flex-basis: 60%;
 }
 
 .field-set ul li {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin: 1vh 0;
+    /* margin: 1vh 0; */
 }
 
 .field-set ul li .label {
-    flex-basis: 40%;
+    flex-basis: 60%;
     padding-right: 1vw;
     line-height: 2em;
-    text-align: right;
+    text-align: left;
     overflow-wrap: anywhere;
     font-weight: 600;
     color: var(--color-accent-one);

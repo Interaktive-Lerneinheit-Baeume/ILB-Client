@@ -1,0 +1,29 @@
+
+.textarea_input {
+    width: 90%;
+    height: 5em;
+    border: none;
+    background-color: var(--color-background);
+    outline: none;
+    resize: none;
+    padding: 0.5em;
+    font-family: var(--font-input);
+}
+
+.textarea_input:focus {
+    background-color: var(--color-accent-one);
+    color: var(--color-background);
+}
+
+.textarea_input::-webkit-scrollbar {
+    width: 1em;
+}
+
+.textarea_input::-webkit-scrollbar-track {
+    background-color: var(--color-accent-one-transparent);
+}
+
+.textarea_input::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent-one);
+    outline: none;
+}

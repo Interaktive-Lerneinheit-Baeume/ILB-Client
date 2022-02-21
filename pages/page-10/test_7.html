@@ -7,8 +7,8 @@
   data-show-page-number="false"
   data-can-go-back="true"
 >
-    <!-- <div class='side-1' id='p'> -->
-        <!-- <div class="tasks">
+  <!-- <div class='side-1' id='p'> -->
+  <!-- <div class="tasks">
             <div id="trees-selection-task" class="question-title"><strong>Aufgabe 6)</strong> Die
                 numerischen Schlüsselwerte von 1 bis einschließlich 6 wurden in
                 <strong>unbekannter</strong> Reihenfolge in einen binären Suchbaum eingefügt. Welche
@@ -56,37 +56,50 @@
                 </div>
             </div>
         </div> -->
-    <!-- </div> -->
+  <!-- </div> -->
 
-    <!-- <div class='side-2' id='p'> -->
-        <div class="tasks">
-            <div id="tree-print-task" class="question-title"><strong>Aufgabe 7)</strong> Die Methode
-                <code class="hljs-title function_">print</code> wird rekursiv auf den abgebildeten binären Suchbaum angewendet. Notieren Sie
-                die
-                Ausgabesequenz, die durch den Aufruf der Methode erzeugt wird.
-                <i>Hinweis:</i> Gehen Sie davon aus, dass die jeweiligen Knoten durch den Parameter <code class="">node</code>
-                repräsentiert werden.
-                Die zugehörige Klasse <code class="">Node</code> verfügt über die Eigenschaften <code class="">node.data</code> (Inhalt des Knoten),
-                <code class="">node.left</code>
-                (linker Kindknoten) und <code class="">node.right</code> (rechter Kindknoten).
-                Nicht vorhandene Knoten werden durch den Wert null repräsentiert.</div>
+  <!-- <div class='side-2' id='p'> -->
+  <div class="tasks">
+    <div id="tree-print-task" class="question-title">
+      <strong>Aufgabe 7)</strong> Die Methode
+      <code class="hljs-title function_">print</code> wird rekursiv auf den
+      abgebildeten binären Suchbaum angewendet. Notieren Sie die Ausgabesequenz,
+      die durch den Aufruf der Methode erzeugt wird. <i>Hinweis:</i> Gehen Sie
+      davon aus, dass die jeweiligen Knoten durch den Parameter
+      <code class="">node</code> repräsentiert werden. Die zugehörige Klasse
+      <code class="">Node</code> verfügt über die Eigenschaften
+      <code class="">node.data</code> (Inhalt des Knoten),
+      <code class="">node.left</code>
+      (linker Kindknoten) und <code class="">node.right</code> (rechter
+      Kindknoten). Nicht vorhandene Knoten werden durch den Wert null
+      repräsentiert.
+    </div>
 
-            <div id="print-tree-panel" class="print-tree"></div>
-            <div id="print-code-panel" class="print-tree">
-                <code id="print_code" class="print-methode  ">
-                    private void print(Node node) {</code><br>
-                        <code class="print-methode id-number ">if (node == null) {</code><br>
-                        <code class="print-methode id-number-this ">return;</code><br>
-                        <code class="print-methode id-number ">}</code><br>
-                        <code class="print-methode id-number ">print(node.left);</code><br>
-                        <code class="print-methode id-number ">System.out.print(node.data);</code><br>
-                        <code class="print-methode id-number ">print(node.right);</code><br>
-                        <code class="print-methode id-number ">}</code><br>
-                    <code class="print-methode ">}</code><br>
-            </div>
-        
-            <textarea id="print-sequence" class="textarea_input"
-                placeholder="Notieren Sie hier Ihre Antwort" name="print-sequence"></textarea>
-        </div>
-    <!-- </div> -->
-</div><!--page-10--> 
+    <div id="print-tree-panel" class="print-tree"></div>
+    <div id="print-code-panel" class="print-tree">
+      <code id="print_code" class="print-methode">
+        private void print(Node node) {</code
+      ><br />
+      <code class="print-methode id-number">if (node == null) {</code><br />
+      <code class="print-methode id-number-this">return;</code><br />
+      <code class="print-methode id-number">}</code><br />
+      <code class="print-methode id-number">print(node.left);</code><br />
+      <code class="print-methode id-number">System.out.print(node.data);</code
+      ><br />
+      <code class="print-methode id-number">print(node.right);</code><br />
+      <code class="print-methode id-number">}</code><br />
+      <code class="print-methode">}</code><br />
+    </div>
+
+    <textarea
+      id="print-sequence"
+      class="textarea_input"
+      data-question-label="auf-7-participant-print-methode"
+      data-question-id=""
+      placeholder="Notieren Sie hier Ihre Antwort"
+      name="print-sequence"
+    ></textarea>
+  </div>
+  <!-- </div> -->
+</div>
+<!--page-10-->

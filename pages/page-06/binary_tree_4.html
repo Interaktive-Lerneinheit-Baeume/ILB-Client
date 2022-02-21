@@ -1,0 +1,116 @@
+<div
+  id="page-6-binary_tree_4"
+  class="page page-6-binary_tree_4"
+  data-title=""
+  data-chapter=""
+  data-show-chapter="false"
+  data-show-page-number="false"
+  data-can-go-back="true"
+>
+  <!-- <div class='side-1' id='p'> -->
+  <!-- <div class="tasks">
+            <p>
+                &nbsp;&nbsp;&nbsp;Bei der Umsetzung eines binären Suchbaums wird dessen rekursive Verarbeitung dadurch
+                sichergestellt, dass jeder Knoten Verweise auf seine jeweiligen Kinder besitzt.
+                Bei der rekursiven Suche im Baum wird zuerst die Wurzel des Baums angegeben, alle
+                anderen Knoten sind durch das Verfolgen der Verweise erreichbar.<br>
+            
+                <i>&nbsp;&nbsp;&nbsp;Die Laufzeiten</i> des Insert-Algorithmus in binären
+                Suchbäumen hängen von
+                der Form des Baums ab, die wiederum von der Reihenfolge abhängt, in der die
+                Schlüssel eingefügt werden.
+            <ul>
+                <li><i>Im Best-Case (günstigsten)</i> Fall könnte ein Baum mit N Knoten perfekt
+                    ausgeglichen sein (jeder innere Knoten besitzt zwei Nachfolger): mit ∼O(lg N)
+                    Knoten zwischen der Wurzel und jeder null-Referenz (Blatt).</li>
+                <li><i>Der durchschnittliche</i> Fall nach N zufälligen Einfügeoperationen beträgt
+                    ∼O(1.39 lg N).</li>
+                <li><i>Im Worst-Case (ungünstigsten)</i> Fall beträgt die Laufzeitkomplexität O(N),
+                    wenn alle N Knoten genau auf einem Suchpfad liegen, und die Laufzeitkomplexität
+                    somit der Höhe des Baums entspricht.</li>
+            </ul>
+            </p>
+        </div> -->
+
+  <!-- </div> -->
+  <!-- <div class='side-2' id='p3'> -->
+  <div class="tasks">
+    <code class="intellij-light language-java">public class Node {</code><br />
+    <code class="id-number intellij-light language-java"
+      >protected int data;</code
+    ><br />
+    <code class="id-number intellij-light language-java"
+      >protected Node left;</code
+    ><br />
+    <code class="id-number intellij-light language-java"
+      >protected Node right;</code
+    ><br />
+    <!-- <br> -->
+    <code class="id-number intellij-light language-java"
+      >public Node(int data) {</code
+    ><br />
+    <code class="id-number-this intellij-light language-java"
+      >this.data = data;</code
+    ><br />
+    <code class="id-number-this intellij-light language-java"
+      >this.left = left;</code
+    ><br />
+    <code class="id-number-this intellij-light language-java"
+      >this.right = right;</code
+    ><br />
+    <code class="id-number intellij-light language-java">}</code><br />
+    <!-- <br> -->
+    <code class="intellij-light language-java"
+      >&nbsp;&nbsp;public static void main(String[] args) {</code
+    ><br />
+    <code class="id-number-this intellij-light language-java"
+      >BinarySearchTree bst = new BinarySearchTree();</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >Node root = new Node(59);</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 63); </code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 71);</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 83);</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 92);</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 52);</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 36);</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 69);</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 48);</code
+    ><br />
+    <code
+      class="id-number-constr id-number-viewing intellij-light language-java"
+      >bst.insertNodeRecursive(root, 14);</code
+    ><br />
+    <code class="id-number intellij-light language-java">}</code><br />
+    <!-- <br> -->
+    <code class="intellij-light language-java">}</code><br />
+    <!-- <br>  -->
+  </div>
+  <!--</div>.side-2 -->
+</div>
+<!-- .page-6 -->

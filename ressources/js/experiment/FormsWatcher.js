@@ -38,9 +38,9 @@ function onInputFormChanged(event) {
     let target = event.target,
         data = null;
     if (["checkbox", "radio"].includes(target.getAttribute("type"))) {
-        data = getListDataFromTarget(target); //text - type
+        data = getListDataFromTarget(target); 
     } else {
-        data = getFieldDataFromTarget(target);
+        data = getFieldDataFromTarget(target); //text - type
     }
     this.notifyAll(new Event("formInputChanged", data));
 }

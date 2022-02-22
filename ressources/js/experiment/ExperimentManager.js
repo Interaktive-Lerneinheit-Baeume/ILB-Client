@@ -3,13 +3,62 @@ import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 import Storage from "./../data_storage/Storage.js";
 
-let storage, dataID;
+let storage,
+  dataID,
+  currentExperiment = {};
 
 function onLikertItemChanged(event) {
+  console.log("onlikert");
+  let elementToAdd = event.data;
+  if(elementToAdd.id === "experience"){
+    if (currentExperiment["experience"] == null) {
+        currentExperiment["experience"] = [];
+        currentExperiment["experience"].push(elementToAdd);
+      } else {
+        currentExperiment["experience"].push(elementToAdd);
+      }
+  }
+  else if(elementToAdd.id === "test-questions"){
+    if (currentExperiment["test-questions"] == null) {
+        currentExperiment["test-questions"] = [];
+        currentExperiment["test-questions"].push(elementToAdd);
+      } else {
+        currentExperiment["test-questions"].push(elementToAdd);
+      }
+  }
+  else if(elementToAdd.id === "self-assessment"){
+    if (currentExperiment["self-assessment"] == null) {
+        currentExperiment["self-assessment"] = [];
+        currentExperiment["self-assessment"].push(elementToAdd);
+      } else {
+        currentExperiment["self-assessment"].push(elementToAdd);
+      }
+  }
+  else if(elementToAdd.id === "demographic_data"){
+    if (currentExperiment["demographic_data"] == null) {
+        currentExperiment["demographic_data"] = [];
+        currentExperiment["demographic_data"].push(elementToAdd);
+      } else {
+        currentExperiment["demographic_data"].push(elementToAdd);
+      }
+  }
+  
+  console.log(currentExperiment);
   console.log(event);
 }
 
-function onInputValueChanged(event) {
+function onFormInputChanged(event) {
+  console.log("onInput");
+  let elementToAdd = event.data;
+  console.log("elementToAdd");
+  console.log(elementToAdd);
+  if (currentExperiment["test-questions"] == null) {
+    currentExperiment["test-questions"] = [];
+    currentExperiment["test-questions"].push(elementToAdd);
+  } else {
+    currentExperiment["test-questions"].push(elementToAdd);
+  }
+  console.log(currentExperiment);
   console.log(event);
 }
 
@@ -32,7 +81,6 @@ class ExperimentManager extends Observable {
   }
 
   async fetchExperiment() {
-    let currentExperiment = {};
     dataID = getIDFromURL();
     console.log("dataID " + dataID);
 
@@ -73,7 +121,7 @@ class ExperimentManager extends Observable {
     );
     FormsWatcher.addEventListener(
       "formInputChanged",
-      onInputValueChanged.bind(this)
+      onFormInputChanged.bind(this)
     );
   }
 

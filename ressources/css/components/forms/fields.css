@@ -114,12 +114,24 @@
     background-color: var(--color-primary);
 }
 
-.field-set ul.multiple-choice-list li input[type="checkbox"]::before, .field-set ul.single-choice-list li input[type="radio"]:before {
+.field-set ul.single-choice-list li input[type="radio"]:before {
     display: inline-block;
     content: "";
     width: 2vh;
     height: 2vh;
     border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--color-accent-one);
+    background-color: var(--color-background);
+}
+
+.field-set ul.multiple-choice-list li input[type="checkbox"]::before {
+    display: inline-block;
+    content: "";
+    width: 2vh;
+    height: 2vh;
+    border-radius: 10%;
     border-style: solid;
     border-width: 2px;
     border-color: var(--color-accent-one);

@@ -3,28 +3,53 @@
   class="page page-demographics"
   data-title="demographics"
   data-chapter="Vorfragebogen"
-  data-show-chapter="true"
-  data-show-page-number="true"
   data-can-go-back="true"
 >
+  <form class="field-set">
+    <span class="instruction tasks">
+      Die folgenden Angaben werden nur pseudonymisiert ausgewertet und nicht zur
+      Identifizierung Ihrer Person verwendet.</span
+    >
+    <ul>
+      <li>
+        <span class="label"
+          >Lieblingsprogrammiersprache<span class="hint"></span
+        ></span>
+        <textarea
+          data-question-label="participant-favourite-programming-language"
+          data-question-id="demographic_data"
+          placeholder="z.B. 'Java'"
+        ></textarea>
+      </li>
+    </ul>
   
-    <form class="field-set">
-      <span class="instruction tasks">
-        Die folgenden Angaben werden nur pseudonymisiert ausgewertet und nicht
-        zur Identifizierung Ihrer Person verwendet.</span
-      >
-      <ul>
-        <li>
-          <span class="label"
-            >Lieblingsprogrammiersprache<span class="hint"></span
-          ></span>
-          <textarea
-            data-question-label="participant-favourite-programming-language"
-            data-question-id="demographic_data"
-            placeholder="z.B. 'Java'"
-          ></textarea>
-        </li>
-        <li>
+
+  <!-- <div class="label">Abgeschlossene Kurse<span class="hint"></span></div> -->
+  <div
+    class="multiple-choice-list"
+    data-question-label="participant-visited-classes"
+    data-question-id="demographic_data"
+  >
+    <span class="label">Abgeschlossene Kurse<span class="hint"></span></span>
+    <!-- <div class="label visited-classes">Abgeschlossene Kurse</div> -->
+    <!-- <div class="visited-classes"> -->
+      <div class="datastructure-detection">
+        <input type="checkbox" data-value="OOP" name="OOP"/>
+        <label class="option-label" for="OOP">Einführung in die objekt-orientierte Programmierung</span
+        >
+      </div>
+      <div class="datastructure-detection">
+        <input type="checkbox" data-value="ADP" name="ADP" />
+        <label for="ADP" class="option-label">Algorithmen und Datenstrukturen</span>
+      </div>
+    <!-- </div> -->
+  </div>
+</form>
+  <!-- <li>
+              <input type="checkbox" data-value="MME" />
+              <span class="option-label">Multimedia Engineering</span>
+            </li> -->
+  <!-- <li>
           <span class="label"
             >Abgeschlossene Kurse<span class="hint"></span
           ></span>
@@ -44,14 +69,13 @@
               <span class="option-label"
                 >Algorithmen und Datenstrukturen</span
               >
-            </li>
-            <!-- <li>
+            </li> -->
+  <!-- <li>
               <input type="checkbox" data-value="MME" />
               <span class="option-label">Multimedia Engineering</span>
             </li> -->
-          </ul>
-        </li>
-      </ul>
-    </form>
-  
+  <!-- </ul> -->
+  <!-- </li> -->
+  <!-- </ul>
+    </form> -->
 </div>

@@ -1,5 +1,6 @@
 import { Event, Observable } from "../utils/Observable.js";
 import NavController from "./NavController.js";
+import EventBus from "./../utils/EventBus.js";
 
 function hideAllPages(parent) {
   let pages = parent.querySelectorAll(".page");
@@ -29,6 +30,7 @@ class PageRenderer extends Observable {
     } else {
       NavController.enablePreviousPageButton();
     }
+
   }
 }
 

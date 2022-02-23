@@ -295,11 +295,11 @@ class QuestionsApplAnalysisSynthVisual extends Observable {
   constructor() {
     super();
 
-    treesSelectionCheckboxesDiv = document.querySelector("#statement-checkboxes");
+    // treesSelectionCheckboxesDiv = document.querySelector("#statement-checkboxes");
 
-    sequenceConstructingTextArea = document.querySelector("#sequence-constructing");
-    printSequenceTextArea = document.querySelector("#print-sequence");
-    treeHeightTextArea = document.querySelector("#tree-height-textarea");
+    // sequenceConstructingTextArea = document.querySelector("#sequence-constructing");
+    // printSequenceTextArea = document.querySelector("#print-sequence");
+    // treeHeightTextArea = document.querySelector("#tree-height-textarea");
 
     panelsTrees.push(new jsgl.Panel(document.querySelector("#first-tree-panel")));
     panelsTrees.push(new jsgl.Panel(document.querySelector("#sec-tree-panel")));
@@ -314,42 +314,42 @@ class QuestionsApplAnalysisSynthVisual extends Observable {
     drawCloud();
   }
 
-  getAllInfo() {
-    let treesSelectedChecked = this.getTreesSelectedInfo();
+  // getAllInfo() {
+  //   let treesSelectedChecked = this.getTreesSelectedInfo();
 
-    return {
-      applAnSyn_treeHeightSequence: treeHeightTextArea.value,
-      applAnSyn_sequencesConstructed: sequenceConstructingTextArea.value,
-      applAnSyn_treesSelected: treesSelectedChecked,
-      applAnSyn_printMethod: printSequenceTextArea.value,
-    };
-  }
+  //   return {
+  //     applAnSyn_treeHeightSequence: treeHeightTextArea.value,
+  //     applAnSyn_sequencesConstructed: sequenceConstructingTextArea.value,
+  //     applAnSyn_treesSelected: treesSelectedChecked,
+  //     applAnSyn_printMethod: printSequenceTextArea.value,
+  //   };
+  // }
 
-  getTreesSelectedInfo() {
-    let wholeSkillsAsString = "";
-    if (treesSelectionCheckboxesDiv.querySelector("#first-statement").checked) {
-      wholeSkillsAsString +=
-        "Abbildung 2 zeigt möglichen Suchbaum für die zufällig eingefügten Schlüssel";
-    }
-    if (
-      treesSelectionCheckboxesDiv.querySelector("#second-statement").checked
-    ) {
-      wholeSkillsAsString +=
-        "Abbildungen 2 und 3 zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
-    }
-    if (treesSelectionCheckboxesDiv.querySelector("#third-statement").checked) {
-      wholeSkillsAsString +=
-        "Alle Abbildungen zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
-    }
-    if (
-      treesSelectionCheckboxesDiv.querySelector("#fourth-statement").checked
-    ) {
-      wholeSkillsAsString +=
-        "Abbildungen 1 und 2 zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
-    }
+  // getTreesSelectedInfo() {
+  //   let wholeSkillsAsString = "";
+  //   if (treesSelectionCheckboxesDiv.querySelector("#first-statement").checked) {
+  //     wholeSkillsAsString +=
+  //       "Abbildung 2 zeigt möglichen Suchbaum für die zufällig eingefügten Schlüssel";
+  //   }
+  //   if (
+  //     treesSelectionCheckboxesDiv.querySelector("#second-statement").checked
+  //   ) {
+  //     wholeSkillsAsString +=
+  //       "Abbildungen 2 und 3 zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
+  //   }
+  //   if (treesSelectionCheckboxesDiv.querySelector("#third-statement").checked) {
+  //     wholeSkillsAsString +=
+  //       "Alle Abbildungen zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
+  //   }
+  //   if (
+  //     treesSelectionCheckboxesDiv.querySelector("#fourth-statement").checked
+  //   ) {
+  //     wholeSkillsAsString +=
+  //       "Abbildungen 1 und 2 zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
+  //   }
 
-    return wholeSkillsAsString;
-  }
+  //   return wholeSkillsAsString;
+  // }
 }
 
 export default QuestionsApplAnalysisSynthVisual;

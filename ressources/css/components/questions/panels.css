@@ -59,17 +59,17 @@
 }
 
 #print-tree-panel {
-  width: 300px;
+  /* width: 300px; */
+  width: 50%;
 }
 
 #print-code-panel {
-  margin-bottom: 15px;
-}
+  /* margin-bottom: 15px; */
+  width: 50%;
+} 
 
 .panel-trees-selection {
   width: 260px;
   height: 250px;
 }
-
-/* hier noch width, height */
 

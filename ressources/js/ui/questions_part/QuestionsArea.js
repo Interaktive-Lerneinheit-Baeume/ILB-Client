@@ -1,7 +1,7 @@
 import Observable from "../../utils/Observable.js";
 import QuestionsKnowledgeVisual from "./QuestionsKnowledgeVisual.js";
 import QuestionsApplAnalysisSynthVisual from "./QuestionsApplAnalysisSynthVisual.js";
-import QuestionComprehensionVisual from "./QuestionsComprehensionVisual.js";
+import QuestionComprehensionVisual from "../../unnoetige_dateien/QuestionsComprehensionVisual.js";
 
 let questionsKnowledgeVisual, questionsComprVisual, questionsApplAnSynVisual;
 
@@ -35,29 +35,29 @@ class QuestionsArea extends Observable {
     initQuestions();
   }
 
-  getNotNullInfoFromKnowledgeFirst() {
-    let wholeInfoTarget = questionsKnowledgeVisual.getDataStructureFirstQuestion();
-    return wholeInfoTarget;
-  }
+  // getNotNullInfoFromKnowledgeFirst() {
+  //   let wholeInfoTarget = questionsKnowledgeVisual.getDataStructureFirstQuestion();
+  //   return wholeInfoTarget;
+  // }
 
-  getNotNullInfoFromKnowledgeSecond() {
-    let wholeInfoTarget = questionsKnowledgeVisual.getDataStructureSecondQuestion();
-    return wholeInfoTarget;
-  }
+  // getNotNullInfoFromKnowledgeSecond() {
+  //   let wholeInfoTarget = questionsKnowledgeVisual.getDataStructureSecondQuestion();
+  //   return wholeInfoTarget;
+  // }
 
-  getNotNullInfoFromApplAnSynVisual() {
-    let wholeInfoTarget = questionsApplAnSynVisual.getTreesSelectedInfo();
-    return wholeInfoTarget;
-  }
+  // getNotNullInfoFromApplAnSynVisual() {
+  //   let wholeInfoTarget = questionsApplAnSynVisual.getTreesSelectedInfo();
+  //   return wholeInfoTarget;
+  // }
 
-  getAllQuestionAnswers() {
-    let wholeInfoTarget = Object.assign(
-      questionsKnowledgeVisual.getAllInfo(),
-      questionsComprVisual.getAllInfo(),
-      questionsApplAnSynVisual.getAllInfo()
-    );
-    return wholeInfoTarget;
-  }
+  // getAllQuestionAnswers() {
+  //   let wholeInfoTarget = Object.assign(
+  //     questionsKnowledgeVisual.getAllInfo(),
+  //     questionsComprVisual.getAllInfo(),
+  //     questionsApplAnSynVisual.getAllInfo()
+  //   );
+  //   return wholeInfoTarget;
+  // }
 }
 
 export default QuestionsArea;

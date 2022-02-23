@@ -176,10 +176,6 @@ button:hover {
   margin-left: 15px;
 }
 
-.print-tree {
-  float: left;
-  height: 300px;
-}
 
 .kind_node_info {
   font-family: var(--font) !important;
@@ -319,8 +315,4 @@ input[type="checkbox"]:checked {
   font-size: 8.5pt !important;
   width: 650px !important;
   height: 450px !important;
-}
-
-#print-sequence {
-  clear: both;
 }

@@ -301,59 +301,59 @@ class QuestionsKnowledgeVisual extends Observable {
     panelKnowledge_1 = new jsgl.Panel(document.querySelector("#panel-knowledge-1"));
     panelKnowledge_2 = new jsgl.Panel(document.querySelector("#panel-knowledge-2"));
 
-    this.zyklus = document.querySelector("#zyklus");
-    this.binaryTree = document.querySelector("#binary-tree");
-    this.binarySearchTree = document.querySelector("#binary-search-tree");
-    this.nodeGraph = document.querySelector("#node-graph");
-    this.arrayCheckbox = document.querySelector("#array");
+    // this.zyklus = document.querySelector("#zyklus");
+    // this.binaryTree = document.querySelector("#binary-tree");
+    // this.binarySearchTree = document.querySelector("#binary-search-tree");
+    // this.nodeGraph = document.querySelector("#node-graph");
+    // this.arrayCheckbox = document.querySelector("#array");
 
-    this.zyklusKnowl_2 = document.querySelector("#knowledge-2-zyklus");
-    this.binaryTreeKnowl_2 = document.querySelector("#knowledge-2-binary-tree");
-    this.binarySearchTreeKnowl_2 = document.querySelector("#knowledge-2-binary-search-tree");
-    this.nodeGraphKnowl_2 = document.querySelector("#knowledge-2-node-graph");
-    this.arrayCheckboxKnowl_2 = document.querySelector("#knowledge-2-array");
+    // this.zyklusKnowl_2 = document.querySelector("#knowledge-2-zyklus");
+    // this.binaryTreeKnowl_2 = document.querySelector("#knowledge-2-binary-tree");
+    // this.binarySearchTreeKnowl_2 = document.querySelector("#knowledge-2-binary-search-tree");
+    // this.nodeGraphKnowl_2 = document.querySelector("#knowledge-2-node-graph");
+    // this.arrayCheckboxKnowl_2 = document.querySelector("#knowledge-2-array");
 
     drawOnPanel_1();
     drawOnPanel_2();
   }
 
-  getAllInfo() {
-    let dataStrucuteCheckedAsString = this.getDataStructureSecondQuestion();
-    return {
-      knowl_zyklusChecked: this.zyklus.checked,
-      knowl_binaryTreeChecked: this.binaryTree.checked,
-      knowl_binarySearchTreeChecked: this.binarySearchTree.checked,
-      knowl_nodeGraphChecked: this.nodeGraph.checked,
-      knowl_arrayCheckboxChecked: this.arrayCheckbox.checked,
-      knowl_2_datastructure_checked: dataStrucuteCheckedAsString,
-    };
-  }
+  // getAllInfo() {
+  //   let dataStrucuteCheckedAsString = this.getDataStructureSecondQuestion();
+  //   return {
+  //     knowl_zyklusChecked: this.zyklus.checked,
+  //     knowl_binaryTreeChecked: this.binaryTree.checked,
+  //     knowl_binarySearchTreeChecked: this.binarySearchTree.checked,
+  //     knowl_nodeGraphChecked: this.nodeGraph.checked,
+  //     knowl_arrayCheckboxChecked: this.arrayCheckbox.checked,
+  //     knowl_2_datastructure_checked: dataStrucuteCheckedAsString,
+  //   };
+  // }
 
-  getDataStructureFirstQuestion() {
-    let resString = "";
-    return resString + this.zyklus.checked + this.binaryTree.checked + this.binarySearchTree.checked + this.nodeGraph.checked + this.arrayCheckbox.checked;
-  }
+  // getDataStructureFirstQuestion() {
+  //   let resString = "";
+  //   return resString + this.zyklus.checked + this.binaryTree.checked + this.binarySearchTree.checked + this.nodeGraph.checked + this.arrayCheckbox.checked;
+  // }
 
-  getDataStructureSecondQuestion() {
-    let dataStrucuteCheckedAsString = "";
-    if (this.zyklusKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "zyklus checked, ";
-    }
-    if (this.binarySearchTreeKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "binarySearchTree checked, ";
-    }
-    if (this.binaryTreeKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "binaryTree checked, ";
-    }
-    if (this.arrayCheckboxKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "array checked, ";
-    }
-    if (this.nodeGraphKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "nodeGraph checked, ";
-    }
+  // getDataStructureSecondQuestion() {
+  //   let dataStrucuteCheckedAsString = "";
+  //   if (this.zyklusKnowl_2.checked) {
+  //     dataStrucuteCheckedAsString += "zyklus checked, ";
+  //   }
+  //   if (this.binarySearchTreeKnowl_2.checked) {
+  //     dataStrucuteCheckedAsString += "binarySearchTree checked, ";
+  //   }
+  //   if (this.binaryTreeKnowl_2.checked) {
+  //     dataStrucuteCheckedAsString += "binaryTree checked, ";
+  //   }
+  //   if (this.arrayCheckboxKnowl_2.checked) {
+  //     dataStrucuteCheckedAsString += "array checked, ";
+  //   }
+  //   if (this.nodeGraphKnowl_2.checked) {
+  //     dataStrucuteCheckedAsString += "nodeGraph checked, ";
+  //   }
 
-    return dataStrucuteCheckedAsString;
-  }
+  //   return dataStrucuteCheckedAsString;
+  // }
 }
 
 export default QuestionsKnowledgeVisual;

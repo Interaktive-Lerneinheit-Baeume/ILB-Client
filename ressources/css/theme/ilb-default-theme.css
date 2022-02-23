@@ -10,7 +10,8 @@
   --color-accent-four: #7678edff;
   --color-accent-one-transparent: #419d78aa;
   --color-background: #fafafa;
-  --color-text: #222;
+  --color-text: rgb(0, 0, 0);
+  
   --font-text: "Roboto Serif", serif;
   --font-header: "Roboto", sans-serif;
   --font-buttons: "Roboto", sans-serif;

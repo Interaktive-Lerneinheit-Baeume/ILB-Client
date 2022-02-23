@@ -8,7 +8,7 @@ const BOOK_PAGE_URLS = [
     "./pages/demographics-01.html",
     "./pages/demographics-02.html",
     "./pages/self-assessment-java.html",
-    "./pages/empty.html", 
+    "./pages/empty.html",
 
     "./pages/empty.html",
     "./pages/page-05/binary_tree_1.html",
@@ -30,10 +30,7 @@ const BOOK_PAGE_URLS = [
 
     "./pages/page-11/experience_1.html",
     "./pages/page-11/experience_2.html",
-    // "./pages/page-08/index.html",
-    // "./pages/page-09/index.html",
-    // "./pages/page-10/index.html",
-    // "./pages/page-11/index.html",
+
     "./pages/page-12/index.html",
   ],
   ROOT_ELEMENT = document.querySelector(".book");

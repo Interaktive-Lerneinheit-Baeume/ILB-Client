@@ -39,7 +39,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     display: block;
     content: "";
     float: left;
-    background: var(--black);
+    background: var(--color-text);
     width: 50%;
     height: 100%;
     transform-origin: center left;

@@ -1,7 +1,7 @@
 import TreePanelController from "../controller_part/TreePanelController.js";
 import { Observable, Event } from "../../utils/Observable.js";
 import BinarySearchTree from "../binary_search_tree/BinarySearchTree.js";
-
+import EventBus from "./../../utils/EventBus.js";
 import CodeVisualizer from "./CodeVisualizer.js";
 
 let panelViewing,
@@ -31,7 +31,8 @@ let panelViewing,
   animatorsWholeTree = [],
   startAnimationIndex = 0,
   indexMainPosition = 0,
-  innerIndex = 0;
+  innerIndex = 0,
+  counterOfAnimationButtonClicked = 0;
 
 const grayColor = "#acacace6";
 
@@ -285,7 +286,8 @@ function animateMoveAtLoc(startAnimationIndex) {
 class ViewingVisualizer extends Observable {
   constructor(el) {
     super();
-    this.panelElementViewing = document.getElementsByClassName("panel viewing")[0];
+    this.panelElementViewing =
+      document.getElementsByClassName("panel viewing")[0];
 
     codeVisualizerViewing = new CodeVisualizer(el, "viewing");
 
@@ -321,6 +323,16 @@ class ViewingVisualizer extends Observable {
   onViewingStartButtonClick(ev) {
     ViewingVisualizer.setStartButtonUnClickable();
     this.startViewingAnimation();
+
+    counterOfAnimationButtonClicked += 1;
+
+    EventBus.relayEvent(
+      new Event("playAnimationButtonClicked", {
+        time: Date(Date.now()).toString(),
+        info: "playAnimationButtonClicked",
+        occurency_overall: counterOfAnimationButtonClicked,
+      })
+    );
   }
 
   onViewingPauseButtonClick(ev) {

@@ -13,6 +13,7 @@ class MainSite extends Observable {
     this.visualizerElConstructing = document.querySelector("#constructing");
 
     viewingVisualizer = new ViewingVisualizer(this.visualizerElViewing);
+    
     constructVisualizer = new ConstructVisualizer(
       this.visualizerElConstructing
     );
@@ -32,21 +33,21 @@ class MainSite extends Observable {
   //   el.style.display = "block";
   // }
 
-  // showConstructVis() {
-  //   this.visualizerElConstructing.style.display = "block";
-  // }
+  showConstructVis() {
+    this.visualizerElConstructing.style.display = "block";
+  }
 
-  // showViewingVis() {
-  //   this.visualizerElViewing.style.display = "block";
-  // }
+  showViewingVis() {
+    this.visualizerElViewing.style.display = "block";
+  }
 
-  // hideConstructVis() {
-  //   this.visualizerElConstructing.style.display = "none";
-  // }
+  hideConstructVis() {
+    this.visualizerElConstructing.style.display = "none";
+  }
 
-  // hideViewingVis() {
-  //   this.visualizerElViewing.style.display = "none";
-  // }
+  hideViewingVis() {
+    this.visualizerElViewing.style.display = "none";
+  }
 
   // sendToExperienceButtonClicked() {
   //   let wholeQuestionAnswers = questionsArea.getAllQuestionAnswers();

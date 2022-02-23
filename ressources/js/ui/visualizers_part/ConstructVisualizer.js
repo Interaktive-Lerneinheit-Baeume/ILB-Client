@@ -2,6 +2,7 @@ import TreePanelController from "../controller_part/TreePanelController.js";
 import { Observable, Event } from "../../utils/Observable.js";
 import BinarySearchTree from "../binary_search_tree/BinarySearchTree.js";
 import CodeVisualizer from "./CodeVisualizer.js";
+import EventBus from "./../../utils/EventBus.js";
 
 let BST,
   panelConstructing,
@@ -22,7 +23,8 @@ let BST,
   selectedMainRow,
   indexMainPosition = 1,
   indexPosition = 0,
-  counterOfErrorPopUp = 0;
+  counterOfErrorPopUpLeftNode = 0,
+  counterOfErrorPopUpRightNode = 0;
 
 const grayColor = "#acacace6";
 
@@ -297,7 +299,15 @@ function proveTheRightPosition(index) {
           iconColor: grayColor,
         }).then((result) => {
           if (result.isConfirmed) {
-            counterOfErrorPopUp += 1;
+            counterOfErrorPopUpLeftNode += 1;
+
+            EventBus.relayEvent(
+              new Event("constructingWarningOccurencyLeftNode", {
+                time: Date(Date.now()).toString(),
+                info:  "Dieser Knoten ist ein linkes Kind von seinem Vaterknoten",
+                occurency_overall: counterOfErrorPopUpLeftNode
+              })
+            );
           }
         });
       } else {
@@ -372,7 +382,15 @@ function proveTheRightPosition(index) {
           iconColor: grayColor,
         }).then((result) => {
           if (result.isConfirmed) {
-            counterOfErrorPopUp += 1;
+            counterOfErrorPopUpRightNode += 1;
+
+            EventBus.relayEvent(
+              new Event("constructingWarningOccurencyRightNode", {
+                time: Date(Date.now()).toString(),
+                info:  "Dieser Knoten ist ein rechtes Kind von seinem Vaterknoten",
+                occurency_overall: counterOfErrorPopUpRightNode
+              })
+            );
           }
         });
 

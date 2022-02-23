@@ -5,8 +5,6 @@ import BookLoader from "./book/BookLoader.js";
 import NavController from "./book/NavController.js";
 import PageController from "./book/PageController.js";
 import PageRenderer from "./book/PageRenderer.js";
-import Storage from "./data_storage/Storage.js";
-import QuestionsArea from "./ui/questions_part/QuestionsArea.js";
 import MainSite from "./ui/MainSite.js";
 
 let dataStorage,
@@ -18,8 +16,6 @@ let dataStorage,
 function init() {
   ExperimentManager.fetchExperiment().then(
     (experiment) => {
-      console.log(experiment);
-
       BookLoader.load().then((pages) => {
         initPages(pages);
         document.querySelector(".splash").classList.add("hidden");
@@ -31,12 +27,9 @@ function init() {
           })
         );
 
-        console.log("currentexp " + currentExperiment);
-        console.log(currentExperiment);
+        currentExperiment = experiment;
         initViews();
       });
-      currentExperiment = experiment;
-      console.log(currentExperiment);
     },
     () => {
       document
@@ -80,6 +73,15 @@ function initViews() {
   document.querySelectorAll("code").forEach((el) => {
     hljs.highlightElement(el);
   });
+
+  if (currentExperiment.engagement === "constructing") {
+    console.log("construcitng");
+    mainSite.showConstructVis();
+    mainSite.hideViewingVis();
+  } else {
+    mainSite.hideConstructVis();
+    mainSite.showViewingVis();
+  }
 }
 
 function initPages(pages) {
@@ -110,16 +112,20 @@ function onPageSelected(event) {
   console.log(event.data);
 
   //   ExperimentManager.processPageSelection(event.data, timeStamp);
+  if (event.data.nextPage !== undefined && event.data.nextPage !== null) {
+    console.log("nuuuul");
+    EventBus.relayEvent(
+      new Event("pageIteration", {
+        time: Date(Date.now()).toString(),
+        value: "pageIteration",
+        left_page_chapter: event.data.chapter,
+        right_page_chapter: event.data.nextPage.chapter,
+      })
+    );
+  }
 
-  EventBus.relayEvent(
-    new Event("pageIteration", {
-      time: Date(Date.now()).toString(),
-      value: "pageIteration",
-      page_chapter: event.data.chapter
-    })
-  );
-
-  if (event.data.chapter === "Binäre Bäume") {
+  if (event.data.chapter === "time-end-over") {
+    console.log("endExperiment()" + event.data.chapter);
     EventBus.relayEvent(
       new Event("experimentEnded", {
         time: Date(Date.now()).toString(),
@@ -127,7 +133,6 @@ function onPageSelected(event) {
       })
     );
   }
-  //   console.log("endExperiment()");
 
   //   ExperimentManager.endExperiment();
 }

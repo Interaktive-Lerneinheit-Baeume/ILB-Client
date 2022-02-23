@@ -8,20 +8,54 @@ let storage,
   currentExperiment = {};
 
 function endExperiment() {
-  console.log("CURR");
-  console.log(currentExperiment);
   storage.closeExperiment(currentExperiment.id, currentExperiment);
-  console.log("THE END");
+}
+
+function onExperimentEventHandling(elementToAdd) {
+  if (currentExperiment["global-control"] == null) {
+    currentExperiment["global-control"] = [];
+    currentExperiment["global-control"].push(elementToAdd.originalEvent);
+  } else {
+    currentExperiment["global-control"].push(elementToAdd.originalEvent);
+  }
 }
 
 function onPageLogging(elementToAdd) {
-  console.log("pageLogging");
   if (currentExperiment["page-iterations"] == null) {
     currentExperiment["page-iterations"] = [];
     currentExperiment["page-iterations"].push(elementToAdd.originalEvent);
   } else {
-    doubleChecking(currentExperiment["page-iterations"]);
+    // doubleChecking(currentExperiment["page-iterations"]);
     currentExperiment["page-iterations"].push(elementToAdd.originalEvent);
+  }
+}
+
+function onConstructControl(event) {
+  let elementToAdd = event.data;
+
+  if (currentExperiment["constructing-control"] == null) {
+    currentExperiment["constructing-control"] = [];
+    currentExperiment["constructing-control"].push(elementToAdd);
+  } else {
+    currentExperiment["constructing-control"].forEach((element) => {
+      if (element.info === elementToAdd.info) {
+        doubleChecking(currentExperiment["constructing-control"], elementToAdd);
+      } else {
+        doubleChecking(currentExperiment["constructing-control"], elementToAdd);
+        currentExperiment["constructing-control"].push(elementToAdd);
+      }
+    });
+  }
+}
+
+function onPlayAnimationButtonClicked(elementToAdd) {
+    console.log("elementToAdd.originalEvent");
+    console.log(elementToAdd.originalEvent);
+  if (currentExperiment["animation-control"] == null) {
+    currentExperiment["animation-control"] = [];
+    currentExperiment["animation-control"].push(elementToAdd.originalEvent);
+  } else {
+    doubleChecking(currentExperiment["animation-control"], elementToAdd.originalEvent);
   }
 }
 
@@ -38,21 +72,19 @@ function onLikertItemChanged(event) {
     }
   }
 
-  console.log(currentExperiment);
-  console.log(event);
+  //   console.log(currentExperiment);
+  //   console.log(event);
 }
 
 function onFormInputChanged(event) {
-  //   console.log("onInput");
   let elementToAdd = event.data;
-  //   console.log("elementToAdd");
-  //   console.log(elementToAdd);
+
   if (elementToAdd.id === "experience") {
     if (currentExperiment["experience"] == null) {
       currentExperiment["experience"] = [];
       currentExperiment["experience"].push(elementToAdd);
     } else {
-      doubleChecking(currentExperiment["experience"]);
+      //   doubleChecking(currentExperiment["experience"]);
       currentExperiment["experience"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "test-questions") {
@@ -60,7 +92,7 @@ function onFormInputChanged(event) {
       currentExperiment["test-questions"] = [];
       currentExperiment["test-questions"].push(elementToAdd);
     } else {
-      doubleChecking(currentExperiment["test-questions"]);
+      //   doubleChecking(currentExperiment["test-questions"]);
       currentExperiment["test-questions"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "self-assessment") {
@@ -68,7 +100,7 @@ function onFormInputChanged(event) {
       currentExperiment["self-assessment"] = [];
       currentExperiment["self-assessment"].push(elementToAdd);
     } else {
-      doubleChecking(currentExperiment["self-assessment"]);
+      //   doubleChecking(currentExperiment["self-assessment"]);
       currentExperiment["self-assessment"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "demographic_data") {
@@ -78,47 +110,57 @@ function onFormInputChanged(event) {
     } else {
       doubleChecking(currentExperiment["demographic_data"], elementToAdd);
     }
-    //   currentExperiment["demographic_data"].push(elementToAdd);
   }
 }
-//   console.log(currentExperiment);
-//   console.log(event);
 
 // TODO wenn wir immer die Daten von den Listeners überschreiben wollen
 //momentan nur für participan-degree - Ausbildungsinfo
 function doubleChecking(keyFieldOfExperiment, elementToAdd) {
-  console.log("keyFieldOfExperiment.length " + keyFieldOfExperiment.length);
+    console.log("elementToAdd");
+    console.log(elementToAdd);
+    console.log("keyFieldOfExperiment" + keyFieldOfExperiment.length);
+    console.log(keyFieldOfExperiment);
 
   for (let index = 0; index < keyFieldOfExperiment.length; index++) {
     let demographicObject = keyFieldOfExperiment[index];
     if (demographicObject.label === "participant-degree") {
-      // keyFieldOfExperiment.slice(0, 1);
-      // keyFieldOfExperiment.push(elementToAdd);
-
       demographicObject.value = elementToAdd.value;
       demographicObject.status = elementToAdd.status;
     }
+    if (demographicObject.info === elementToAdd.info && elementToAdd.info !== undefined) {
+      demographicObject.time = elementToAdd.time;
+      demographicObject.occurency_overall = elementToAdd.occurency_overall;
+    }
+    if (demographicObject.type === elementToAdd.type && elementToAdd.type !== undefined) {
+        demographicObject.data.time = elementToAdd.data.time;
+        demographicObject.data.occurency_overall = elementToAdd.data.occurency_overall;
+      }
   }
 }
 
 function onGlobalEvent(event) {
   let elementToAdd = event.data;
 
-  if (elementToAdd.originalEvent.type === "pageIteration") {
-    onPageLogging(event.data); // - > "page-iterations" Object aus Array
-  } else {
-    //experimentEnded or experimentStarted - > "global-control" Object aus Array
-    if (currentExperiment["global-control"] == null) {
-      currentExperiment["global-control"] = [];
-      currentExperiment["global-control"].push(elementToAdd.originalEvent);
-    } else {
-      doubleChecking(currentExperiment["global-control"]);
-      currentExperiment["global-control"].push(elementToAdd.originalEvent);
-    }
-
-    if (elementToAdd.originalEvent.type === "experimentEnded") {
+  switch (elementToAdd.originalEvent.type) {
+    case "pageIteration":
+      onPageLogging(event.data);
+      break;
+    case "experimentEnded":
+      onExperimentEventHandling(elementToAdd);
       endExperiment();
-    }
+      break;
+    case "experimentStarted":
+      onExperimentEventHandling(elementToAdd);
+      break;
+    case "constructingWarningOccurencyLeftNode":
+      onConstructControl(elementToAdd.originalEvent);
+      break;
+    case "constructingWarningOccurencyRightNode":
+      onConstructControl(elementToAdd.originalEvent);
+      break;
+    case "playAnimationButtonClicked":
+      onPlayAnimationButtonClicked(elementToAdd);
+      break;
   }
 }
 
@@ -137,30 +179,23 @@ class ExperimentManager extends Observable {
 
   async fetchExperiment() {
     dataID = getIDFromURL();
-    console.log("dataID " + dataID);
 
     if (dataID) {
       if (dataID !== undefined) {
-        storage.getExperiment(dataID).then(function (data) {});
+        await storage.getExperiment(dataID).then(function (data) {
+          currentExperiment = data;
+        });
       } else {
         alert("Error 404!!!!!!");
       }
     } else {
-      storage.pickRandomExperiment().then(function (data) {
+      await storage.pickRandomExperiment().then(function (data) {
         dataID = data.id;
-        //   engagement = data.engagement;
         window.location.hash = dataID;
         currentExperiment = data;
-        console.log("data");
-
-        console.log(data);
-        console.log("fetch");
-        console.log(currentExperiment);
-
-        return currentExperiment;
-        //   intervalForCheckingFocus = setInterval(checkPageFocus, 60000); //60000 = 1 Min * 60 Sek (1000 MilliSek)
       });
     }
+    return currentExperiment;
   }
 
   watchForms() {

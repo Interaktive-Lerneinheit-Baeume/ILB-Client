@@ -5,10 +5,39 @@ import Storage from "./../data_storage/Storage.js";
 
 let storage,
   dataID,
-  currentExperiment = {};
+  currentExperiment = {},
+  intervalForCheckingFocus;
+
+function checkPageFocus() {
+  if (document.hasFocus()) {
+    storage.getExperiment(dataID).then(function (data) {
+      if (data.state == "open") {
+        //   mainSites.hideConstructVis();
+        //   mainSites.hideViewingVis();
+
+        //   startSite.hideTheSite(startEl);
+
+        //   showTimeOverOrEndElement("time_over");
+        clearInterval(intervalForCheckingFocus);
+
+        FormsWatcher.breakWholePlattform();
+
+        EventBus.relayEvent(
+          new Event("experimentBroken", {
+            time: Date(Date.now()).toString(),
+            value: "experiment broken",
+          })
+        );
+        storage.breakProcess(data.id);
+      }
+    });
+  }
+}
 
 function endExperiment() {
   storage.closeExperiment(currentExperiment.id, currentExperiment);
+  clearInterval(intervalForCheckingFocus);
+  FormsWatcher.endWholePlattform();
 }
 
 function onExperimentEventHandling(elementToAdd) {
@@ -33,50 +62,62 @@ function onPageLogging(elementToAdd) {
 function onConstructControl(event) {
   let elementToAdd = event.data;
 
+  console.log("constr ");
+  console.log(elementToAdd);
+
   if (currentExperiment["constructing-control"] == null) {
     currentExperiment["constructing-control"] = [];
     currentExperiment["constructing-control"].push(elementToAdd);
+    console.log("constr NULL ");
+    console.log(elementToAdd);
   } else {
-    currentExperiment["constructing-control"].forEach((element) => {
-      if (element.info === elementToAdd.info) {
-        doubleChecking(currentExperiment["constructing-control"], elementToAdd);
-      } else {
-        doubleChecking(currentExperiment["constructing-control"], elementToAdd);
-        currentExperiment["constructing-control"].push(elementToAdd);
-      }
-    });
+    // currentExperiment["constructing-control"].forEach((element) => {
+    //   if (element.info === elementToAdd.info) {
+    //     console.log("constr  INFO GLEICH");
+    //     console.log(elementToAdd);
+    doubleChecking(currentExperiment["constructing-control"], elementToAdd);
+    //   } else {
+    //     console.log("constr INFO UNGLEICH");
+    //     console.log(elementToAdd);
+    // doubleChecking(currentExperiment["constructing-control"], elementToAdd);
+    //  currentExperiment["constructing-control"].push(elementToAdd);
+    //   }
+    // });
   }
 }
 
 function onPlayAnimationButtonClicked(elementToAdd) {
-    console.log("elementToAdd.originalEvent");
-    console.log(elementToAdd.originalEvent);
+  console.log("elementToAdd.originalEvent");
+  console.log(elementToAdd.originalEvent);
   if (currentExperiment["animation-control"] == null) {
     currentExperiment["animation-control"] = [];
     currentExperiment["animation-control"].push(elementToAdd.originalEvent);
   } else {
-    doubleChecking(currentExperiment["animation-control"], elementToAdd.originalEvent);
+    doubleChecking(
+      currentExperiment["animation-control"],
+      elementToAdd.originalEvent
+    );
   }
 }
 
 function onLikertItemChanged(event) {
   console.log("onlikert");
   let elementToAdd = event.data;
-
+  console.log(elementToAdd);
   if (elementToAdd.id === "self-assessment") {
     if (currentExperiment["self-assessment"] == null) {
       currentExperiment["self-assessment"] = [];
       currentExperiment["self-assessment"].push(elementToAdd);
     } else {
-      currentExperiment["self-assessment"].push(elementToAdd);
+      console.log("LIKERT double");
+      console.log(elementToAdd);
+      doubleChecking(currentExperiment["self-assessment"], elementToAdd);
     }
   }
-
-  //   console.log(currentExperiment);
-  //   console.log(event);
 }
 
 function onFormInputChanged(event) {
+
   let elementToAdd = event.data;
 
   if (elementToAdd.id === "experience") {
@@ -84,7 +125,6 @@ function onFormInputChanged(event) {
       currentExperiment["experience"] = [];
       currentExperiment["experience"].push(elementToAdd);
     } else {
-      //   doubleChecking(currentExperiment["experience"]);
       currentExperiment["experience"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "test-questions") {
@@ -92,16 +132,7 @@ function onFormInputChanged(event) {
       currentExperiment["test-questions"] = [];
       currentExperiment["test-questions"].push(elementToAdd);
     } else {
-      //   doubleChecking(currentExperiment["test-questions"]);
       currentExperiment["test-questions"].push(elementToAdd);
-    }
-  } else if (elementToAdd.id === "self-assessment") {
-    if (currentExperiment["self-assessment"] == null) {
-      currentExperiment["self-assessment"] = [];
-      currentExperiment["self-assessment"].push(elementToAdd);
-    } else {
-      //   doubleChecking(currentExperiment["self-assessment"]);
-      currentExperiment["self-assessment"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "demographic_data") {
     if (currentExperiment["demographic_data"] == null) {
@@ -111,30 +142,79 @@ function onFormInputChanged(event) {
       doubleChecking(currentExperiment["demographic_data"], elementToAdd);
     }
   }
+
+  console.log(currentExperiment);
 }
 
 // TODO wenn wir immer die Daten von den Listeners überschreiben wollen
 //momentan nur für participan-degree - Ausbildungsinfo
 function doubleChecking(keyFieldOfExperiment, elementToAdd) {
-    console.log("elementToAdd");
-    console.log(elementToAdd);
-    console.log("keyFieldOfExperiment" + keyFieldOfExperiment.length);
-    console.log(keyFieldOfExperiment);
+  console.log("elementToAdd");
+  console.log(elementToAdd);
+  console.log("keyFieldOfExperiment" + keyFieldOfExperiment.length);
+  console.log(keyFieldOfExperiment);
+
+  let uniqueLabels = [];
+  let uniqueInfos = [];
 
   for (let index = 0; index < keyFieldOfExperiment.length; index++) {
     let demographicObject = keyFieldOfExperiment[index];
-    if (demographicObject.label === "participant-degree") {
-      demographicObject.value = elementToAdd.value;
-      demographicObject.status = elementToAdd.status;
-    }
-    if (demographicObject.info === elementToAdd.info && elementToAdd.info !== undefined) {
-      demographicObject.time = elementToAdd.time;
-      demographicObject.occurency_overall = elementToAdd.occurency_overall;
-    }
-    if (demographicObject.type === elementToAdd.type && elementToAdd.type !== undefined) {
-        demographicObject.data.time = elementToAdd.data.time;
-        demographicObject.data.occurency_overall = elementToAdd.data.occurency_overall;
+    uniqueLabels.push(demographicObject.label);
+    uniqueInfos.push(demographicObject.info);
+  }
+
+  let setOfUniqueLables = new Set(uniqueLabels);
+  let setOfUniqueInfos = new Set(uniqueInfos);
+  console.log("set");
+
+  console.log(setOfUniqueLables);
+
+  if (setOfUniqueLables.has(elementToAdd.label) && elementToAdd.label !== "participant-visited-classes") {
+    for (let index = 0; index < keyFieldOfExperiment.length; index++) {
+      let demographicObject = keyFieldOfExperiment[index];
+      console.log(demographicObject);
+      if (
+        demographicObject.label === elementToAdd.label &&
+        elementToAdd.label !== undefined
+      ) {
+        demographicObject.value = elementToAdd.value;
+        demographicObject.status = elementToAdd.status;
+        console.log(demographicObject.value);
+        console.log(elementToAdd.value);
+        console.log(elementToAdd.status);
       }
+      if (
+        demographicObject.type === elementToAdd.type &&
+        elementToAdd.type !== undefined
+      ) {
+        console.log("constr UNDEFINED TIME");
+        console.log(elementToAdd);
+        demographicObject.data.time = elementToAdd.data.time;
+        demographicObject.data.occurency_overall =
+          elementToAdd.data.occurency_overall;
+      }
+    }
+  } else {
+    keyFieldOfExperiment.push(elementToAdd);
+  }
+
+  if (setOfUniqueInfos.has(elementToAdd.info)) {
+    for (let index = 0; index < keyFieldOfExperiment.length; index++) {
+      let demographicObject = keyFieldOfExperiment[index];
+      console.log(demographicObject);
+
+      if (
+        demographicObject.info === elementToAdd.info &&
+        elementToAdd.info !== undefined
+      ) {
+        demographicObject.time = elementToAdd.time;
+        demographicObject.occurency_overall = elementToAdd.occurency_overall;
+        console.log("constr UNDEFINDE INFO");
+        console.log(elementToAdd);
+      }
+    }
+  } else {
+    keyFieldOfExperiment.push(elementToAdd);
   }
 }
 
@@ -160,6 +240,9 @@ function onGlobalEvent(event) {
       break;
     case "playAnimationButtonClicked":
       onPlayAnimationButtonClicked(elementToAdd);
+      break;
+    case "experimentBroken": //wird das erreicht?
+      onExperimentEventHandling(elementToAdd);
       break;
   }
 }
@@ -199,6 +282,8 @@ class ExperimentManager extends Observable {
   }
 
   watchForms() {
+    intervalForCheckingFocus = setInterval(checkPageFocus, 60000);
+
     FormsWatcher.init();
     FormsWatcher.addEventListener(
       "likertItemChanged",
@@ -209,10 +294,6 @@ class ExperimentManager extends Observable {
       onFormInputChanged.bind(this)
     );
   }
-
-  //   processPageSelection(page) {
-  //     onPageLogging();
-  //   }
 }
 
 export default new ExperimentManager();

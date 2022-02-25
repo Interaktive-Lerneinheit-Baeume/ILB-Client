@@ -21,3 +21,43 @@
 .splash i {
     color: var(--color-accent-one);
 }
+
+.no_experiment_available {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255,255,255,0.9);
+    text-align: center;
+    font-size: 2em;
+}
+
+.no_experiment_available h1 {
+    font-size: 1em;
+    color: var(--color-secondary);
+}
+
+.experiment_ended {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255,255,255,0.9);
+    text-align: center;
+    font-size: 2em;
+}
+
+.experiment_ended h1 {
+    font-size: 1em;
+    color: var(--color-secondary);
+}

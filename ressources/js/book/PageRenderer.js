@@ -2,6 +2,7 @@ import { Event, Observable } from "../utils/Observable.js";
 import NavController from "./NavController.js";
 import EventBus from "./../utils/EventBus.js";
 
+
 function hideAllPages(parent) {
   let pages = parent.querySelectorAll(".page");
   pages.forEach((page) => {
@@ -14,6 +15,8 @@ class PageRenderer extends Observable {
   constructor(el) {
     super();
     this.el = el;
+
+    
   }
 
   render(page) {

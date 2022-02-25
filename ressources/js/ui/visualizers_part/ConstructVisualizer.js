@@ -294,7 +294,6 @@ function proveTheRightPosition(index) {
           confirmButtonColor: grayColor,
           customClass: "kind_node_info",
           allowOutsideClick: false,
-          visible: true,
           allowEscapeKey: false,
           iconColor: grayColor,
         }).then((result) => {

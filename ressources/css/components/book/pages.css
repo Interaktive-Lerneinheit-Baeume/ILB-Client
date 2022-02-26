@@ -18,52 +18,38 @@
   right: 0;
 }
 
-.page h1,
+/* .page h1,
 h2,
 h3,
 h4 {
-  /* padding: 0 1vh; */
   font-family: var(--header-font);
-}
+} */
 
 .page h1 {
   font-size: 1.5em;
   color: var(--color-accent-one);
+  text-align: center;
 }
 
-h1.title {
-  /* margin: 1em 0 0 0; */
+.title {
   font-size: 1.6em;
   color: var(--color-accent-one);
   text-align: center;
 }
 
-p.subtitle {
-  /* margin-top: 0; */
-  /* font-size: 1em; */
-  /* font-style: italic; */
-  text-align: center;
-}
+.subtitle {
+    text-align: justify;
+    margin-top: 10vh;
+    /* padding-top: 10vh; */
+    margin-bottom: 10vh;
+  }
 
-.page p {
-  width: 100%;
-  /* padding: 0 1vh; */
-  line-height: 1.25em;
-  /* font-size: 0.85em; */
+/* .page p {
   text-align: justify;
-}
+  margin-top: 10vh;
+} */
 
 .centering {
   margin-top: 20vh;
 }
 
-[class*="side"] {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  padding: 2.5vh;
-  /* overflow-y: hidden;
-  overflow-x: hidden; */
-  background-color: var(--color-background);
-  background-size: 100% 100%;
-}

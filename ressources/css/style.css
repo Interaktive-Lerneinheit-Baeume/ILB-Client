@@ -34,7 +34,6 @@ body {
   line-height: 1.4;
 }
 
-
 .circle {
   width: 25px;
   height: 25px;
@@ -48,7 +47,6 @@ body {
   margin-bottom: 60px;
 }
 
-
 .circle:hover {
   cursor: pointer;
 }
@@ -57,21 +55,17 @@ body {
   text-align: center;
 }
 
-
 .datastructure-trees {
   /* margin-left: 25px; */
   /* font-size: 16pt; */
 }
-
 
 #another-kenntnisstand {
   clear: both;
 }
 
 .kenntnisstand {
-  /* font-size: 15pt; */
   color: var(--black);
-  /* margin-top: 40px; */
 }
 
 .hindernisse {
@@ -83,39 +77,29 @@ body {
 }
 
 .skill {
-  /* font-size: 13pt; */
   text-align: justify;
 }
 
 #skills-legend {
-  /* padding-top: 17px; */
   color: var(--black);
-  /* font-size: 15pt; */
 }
 
 #timeover-element {
   width: 100%;
   display: inline-block;
-  /* font-size: 20pt; */
 }
 
 #timeover {
   width: 100%;
   text-align: justify;
-  /* font-size: 14pt; */
 }
 
 .participant {
   width: 100%;
-  /* font-size: 15pt; */
-  /* display: flex; */
-  /* margin-top: 80px; */
-  /* margin: 15px; */
 }
 
 #another-skills {
   margin-right: 5px;
-  /* margin-left: 5px; */
 }
 
 #hello-appeal {
@@ -123,15 +107,15 @@ body {
   width: 100%;
   justify-content: center;
   color: var(--green-color);
-  /* font-size: 20pt; */
   margin-bottom: 25px;
   margin-top: 11%;
 }
 
 .datastructure-detection {
   width: 100%;
-  /* font-size: 14pt; */
-  /* margin: 10px; */
+}
+.datastructure-detection label {
+  padding-bottom: 10pt;
 }
 
 #statement-checkboxes {
@@ -141,13 +125,10 @@ body {
   width: 100%;
 }
 
-
 .question-title {
   color: var(--black);
-  /* margin: 7px; */
-  margin-top: 15px;
+  /* margin-top: 15px; */
   text-align: left;
-  /* font-size: 14pt; */
   clear: both;
   text-align: justify;
 }
@@ -158,7 +139,6 @@ body {
 }
 
 .private_data {
-  /* font-size: 11pt; */
   margin-top: 15px;
   margin-left: 15px;
   position: relative;
@@ -166,16 +146,13 @@ body {
   color: var(--own-gray);
 }
 
-
 button:hover {
   cursor: pointer;
 }
 
-
 #skills-checkboxes {
   margin-left: 15px;
 }
-
 
 .kind_node_info {
   font-family: var(--font) !important;
@@ -199,75 +176,6 @@ button:hover {
   border-color: var(--hell-brown) !important;
   background-color: var(--black) !important;
 }
-
-/*
-.form_field input::required,
-::invalid {
-  box-shadow: none;
-}
-
-input[type="checkbox"]:hover {
-  cursor: pointer;
-}
-
-.checkbox:hover {
-  cursor: pointer;
-}
-
-input[type="checkbox"] {
-  padding-top: 2px;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: var(--hell-brown);
-  width: 1em;
-  height: 1em;
-  top: 1px;
-  border: 0.15em solid var(--own-gray);
-  position: relative;
-}
-
-input[type="checkbox"]:checked+label {
-  position: relative;
-  color: var(--black);
-  font-size: 14pt;
-}
-
-input[type="checkbox"]+label {
-  position: relative;
-  color: var(--own-gray);
-  font-size: 14pt;
-}
-
-input[type="checkbox"]:checked {
-  box-shadow: 0 0 0 3px var(--black);
-  border: 0.15em solid var(--black);
-}
-
-.checkboxgroup {
-  display: inline-block;
-  text-align: center;
-  margin-right: 40px;
-}
-
-#radio-buttons>div {
-  justify-content: space-between;
-}
-
-.checkboxgroup>label {
-  color: var(--own-gray);
-}
-
-.checkboxgroup>label {
-  color: var(--own-gray);
-}
-
-.checkboxgroup>label::after {
-  color: var(--black);
-}
-
-.checkboxgroup input[type="radio"]:checked+label {
-  color: var(--black);
-} */
 
 .left_float_delete {
   clear: none;
@@ -297,10 +205,8 @@ input[type="checkbox"]:checked {
   margin-left: 50px !important;
 }
 
-
 #end-element {
   text-align: center;
-  /* font-size: 24pt; */
   width: 100%;
 }
 
@@ -311,7 +217,7 @@ input[type="checkbox"]:checked {
 
 .swal-runtime {
   color: var(--black);
-  font-family: var(--font) !important;
+  font-family: var(--font-text) !important;
   font-size: 8.5pt !important;
   width: 650px !important;
   height: 450px !important;

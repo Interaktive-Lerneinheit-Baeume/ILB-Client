@@ -5,13 +5,14 @@
   data-chapter="Vorfragebogen"
   data-can-go-back="true"
 >
+<!-- <span id="instruction" class="instruction tasks">
+  Die folgenden Angaben werden nur pseudonymisiert ausgewertet und nicht zur
+  Identifizierung Ihrer Person verwendet.</span
+> -->
   <form class="field-set">
-    <span class="instruction tasks">
-      Die folgenden Angaben werden nur pseudonymisiert ausgewertet und nicht zur
-      Identifizierung Ihrer Person verwendet.</span
-    >
+    
     <ul>
-      <li>
+      <!-- <li>
         <span class="label"
           >Lieblingsprogrammiersprache<span class="hint"></span
         ></span>
@@ -20,6 +21,82 @@
           data-question-id="demographic_data"
           placeholder="z.B. 'Java'"
         ></textarea>
+      </li> -->
+      <li>
+      <span class="label part"
+          >Höchster Abschluss<span class="hint"></span
+        ></span>
+
+        <div
+          class="single-choice-list part part-right"
+          data-question-label="participant-education-degree"
+          data-question-id="demographic_data"
+        >
+          <div class="datastructure-detection">
+            <input
+              type="radio"
+              data-value="Fachgebundene Hochschulreife"
+              name="participant-education-degree"
+            />
+            <label class="option-label"
+              >Fachgebundene Hochschulreife</label
+            >
+          </div>
+
+          <div class="datastructure-detection">
+            <input
+              type="radio"
+              data-value="Allgemeine Hochschulreife"
+              name="participant-education-degree"
+            />
+            <label class="option-label"
+              >Allgemeine Hochschulreife</label
+            >
+          </div>
+
+          <div class="datastructure-detection">
+            <input
+              type="radio"
+              data-value="Abgeschlossenes Bachelorstudium"
+              name="participant-education-degree"
+            />
+            <label class="option-label"
+              >Abgeschlossenes Bachelorstudium</label
+            >
+          </div>
+          <div class="datastructure-detection">
+            <input
+              type="radio"
+              data-value="Abgeschlossenes Masterstudium"
+              name="participant-education-degree"
+            />
+            <label class="option-label"
+              >Abgeschlossenes Masterstudium</label
+            >
+          </div>
+
+          <div class="datastructure-detection">
+            <input
+              type="radio"
+              data-value="Abgeschlossene Promotion"
+              name="participant-education-degree"
+            />
+            <label class="option-label"
+              >Abgeschlossene Promotion</label
+            >
+          </div>
+
+          <div class="datastructure-detection">
+            <input
+              type="radio"
+              data-value="Anderes"
+              name="participant-education-degree"
+            />
+            <label class="option-label"
+              >Anderes</label
+            >
+          </div>
+        </div>
       </li>
     </ul>
   
@@ -40,7 +117,7 @@
         type="checkbox" 
         data-value="Einführung in die objekt-orientierte Programmierung" 
         name="OOP"/>
-        <label class="option-label" for="OOP">Einführung in die objekt-orientierte Programmierung</span
+        <label class="option-label" for="OOP">Einführung in die objektorientierte Programmierung und Programmiersprachen</span
         >
       </div>
       <div class="datastructure-detection">

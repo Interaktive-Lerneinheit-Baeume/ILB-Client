@@ -1,16 +1,13 @@
 .side-1 {
     z-index: 2;
-    /*box-shadow: inset 10px 0 10px var(--hell-gray);*/
     transition: 0.5s;
 }
 
 .side-2 {
     transform: rotateY(180deg);
-    /*box-shadow: inset -10px 0 10px var(--hell-gray);*/
 }
 
 .flipped>.side-1 {
-    /*box-shadow: inset 10px 0 10px var(--hell-gray);*/
     transition: 0.6s;
 }
 
@@ -30,7 +27,6 @@
 .no-anim,
 .no-anim:after {
     animation: none;
-    /* disable animation when page loads */
 }
 
 @keyframes flip {

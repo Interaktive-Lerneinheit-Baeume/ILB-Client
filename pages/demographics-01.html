@@ -5,7 +5,7 @@
   data-chapter="Vorfragebogen"
   data-can-go-back="false"
 >
-  <h1 class="title">Demographische Angaben</h1>
+  <h1 id="demographic" class="title tasks">Demographische Angaben</h1>
 
   <form class="field-set">
     <span class="instruction"
@@ -33,8 +33,8 @@
           placeholder="z.B. 'weiblich'"
         />
       </li>
-      <li>
-        <span class="label part"
+      <!-- <li> -->
+        <!-- <span class="label part"
           >Höchster Abschluss<span class="hint"></span
         ></span>
 
@@ -107,7 +107,7 @@
               >Anderes</label
             >
           </div>
-        </div>
+        </div> -->
 
         <!-- <ul
           class="single-choice-list"
@@ -159,7 +159,7 @@
             <span class="option-label">Anderer</span>
           </li>
         </ul> -->
-      </li>
+      <!-- </li> -->
       <li>
         <span class="label"
           >Aktueller Studiengang<span class="hint"></span
@@ -181,6 +181,16 @@
           data-question-id="demographic_data"
           placeholder="z.B. 2"
         />
+      </li>
+      <li>
+        <span class="label"
+          >Lieblingsprogrammiersprache<span class="hint"></span
+        ></span>
+        <textarea
+          data-question-label="participant-favourite-programming-language"
+          data-question-id="demographic_data"
+          placeholder="z.B. 'Java'"
+        ></textarea>
       </li>
     </ul>
   </form>

@@ -3,17 +3,17 @@
     flex-direction: column;
 }
 
-.likert-battery .instruction {
+/* .likert-battery .instruction {
     margin: 1em 0 0.5em 0;
     font-weight: 500;
     font-size: 0.85em;
     text-align: justify;
-}
+} */
 
 .likert-battery .question {
     margin-top: 0.5em;
-    font-size: 0.9em;
-    line-height: 1.1em;
+    /* font-size: 0.9em;
+    line-height: 1.1em; */
     text-align: justify;
 }
 

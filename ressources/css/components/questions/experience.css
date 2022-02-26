@@ -5,8 +5,9 @@
     border: none;
     background-color: var(--color-background);
     outline: none;
-    resize: none;
+    resize: vertical;
     padding: 0.5em;
+    margin-top: 2vh;
     font-family: var(--font-input);
 }
 

@@ -42,6 +42,9 @@ function initViews() {
     hljs.highlightElement(el);
   });
 
+
+  console.log(document.getElementById("demographic").offsetHeight);
+
   if (currentExperiment.engagement === "constructing") {
     console.log("construcitng");
     mainSite.showConstructVis();

@@ -1,10 +1,11 @@
-.field-set {
+.instruction {
+  font-weight: 140;
+  font-size: 0.6em;
 }
 
-.field-set .instruction {
-  /* margin: 1em 0 0.5em 0; */
-  font-weight: 500;
-  font-size: 0.85em;
+#instruction {
+  margin-top: 4vh;
+  margin-bottom: 3vh;
 }
 
 .field-set ul {
@@ -18,7 +19,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* margin: 1vh 0; */
 }
 
 .label {
@@ -35,8 +35,7 @@
 .label .hint {
   margin-left: 0.5vw;
   color: var(--color-text);
-  font-weight: 300;
-  font-size: 0.9em;
+  font-weight: 150;
 }
 
 .field-set input {
@@ -46,14 +45,13 @@
   outline: none;
   font-size: 1em;
   line-height: 2em;
-  /* padding: 0 0; */
   font-family: var(--font-input);
 }
 
 .field-set input[type="text"] {
-    padding: 0.5em;
-    border: 0;
-    border-bottom: 2px solid var(--color-accent-one);
+  padding: 0.5em;
+  border: 0;
+  border-bottom: 2px solid var(--color-accent-one);
 }
 
 .field-set ul li input:focus {
@@ -73,8 +71,15 @@
 }
 
 .part {
-    float: left;
-    width: 50%;
+  float: left;
+  /* width: 50%; */
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+}
+
+.part-right {
+  width: 85%;
+  padding-top: 1vh;
 }
 
 .field-set ul li textarea:focus {
@@ -95,34 +100,7 @@
   outline: none;
 }
 
-/* .field-set ul.multiple-choice-list li,
-.field-set ul.single-choice-list li {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: row;
-}
-
-.field-set ul.multiple-choice-list li input,
-.field-set ul.single-choice-list li input {
-  flex-basis: 10%;
-} */
-
-/* .field-set ul.multiple-choice-list li .option-label, .field-set ul.single-choice-list li 
-{
-  flex-basis: 90%;
-} */
-
-/* .field-set ul.multiple-choice-list li input[type="checkbox"],
-.field-set ul.single-choice-list li input[type="radio"] {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  background-color: var(--color-primary);
-} */
-
-
-.field-set .single-choice-list input[type="radio"]{
+.field-set .single-choice-list input[type="radio"] {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -138,74 +116,19 @@
   background-color: var(--color-background);
 }
 
-.field-set .single-choice-list input[type="radio"]:hover, 
-.field-set .single-choice-list input[type="radio"]:checked 
-
-{
-    /* appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none; */
-    /* display: inline-block;
-    content: "";
-    width: 2vh;
-    height: 2vh;
-    border-radius: 50%; */
-    cursor: pointer;
-    border-style: solid;
-    border-width: 2px;
-    border-color: var(--color-accent-one);
-    background-color: var(--color-accent-one);
-  }
-
-
-
-/* .field-set ul.multiple-choice-list li input[type="checkbox"]::before {
-  display: inline-block;
-  content: "";
-  width: 2vh;
-  height: 2vh;
-  border-radius: 10%;
+.field-set .single-choice-list input[type="radio"]:hover,
+.field-set .single-choice-list input[type="radio"]:checked {
+  cursor: pointer;
   border-style: solid;
   border-width: 2px;
   border-color: var(--color-accent-one);
-  background-color: var(--color-background);
-} */
-
-/* .field-set ul.multiple-choice-list li input[type="checkbox"]:hover::before,
-.field-set ul.single-choice-list li input[type="radio"]:hover::before {
-  cursor: pointer;
-  background-color: var(--color-accent-one-transparent);
-} */
-/* 
-.field-set ul.multiple-choice-list li input[type="checkbox"]:focus,
-.field-set ul.single-choice-list li input[type="radio"]:focus {
-  background-color: var(--color-primary);
-}
-
-.field-set ul.multiple-choice-list li input[type="checkbox"]:checked::before,
-.field-set ul.single-choice-list li input[type="radio"]:checked::before {
   background-color: var(--color-accent-one);
-} */
-
-/* .field-set
-  ul.multiple-choice-list
-  li
-  input[type="checkbox"]:checked:hover::before,
-
-.field-set ul.single-choice-list li input[type="radio"]:checked:hover::before 
-
-{
-  cursor: pointer;
-  background-color: var(--color-accent-one-transparent);
-} */
-
-/* question */
+}
 
 .field-set .multiple-choice-list input[type="checkbox"] {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  /* background-color: var(--color-accent-one); */
   width: 2vh;
   height: 2vh;
   border-style: solid;
@@ -222,3 +145,14 @@
   background-color: var(--color-accent-one-transparent);
 }
 
+textarea::placeholder {
+  font-weight: inherit;
+  font-family: var(--font-input);
+}
+
+textarea {
+  /* padding: 0.5em; */
+  border: 0;
+  border-bottom: 2px solid var(--color-accent-one);
+  resize: vertical;
+}

@@ -117,7 +117,6 @@ function onLikertItemChanged(event) {
 }
 
 function onFormInputChanged(event) {
-
   let elementToAdd = event.data;
 
   if (elementToAdd.id === "experience") {
@@ -169,7 +168,10 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
 
   console.log(setOfUniqueLables);
 
-  if (setOfUniqueLables.has(elementToAdd.label) && elementToAdd.label !== "participant-visited-classes") {
+  if (
+    setOfUniqueLables.has(elementToAdd.label) &&
+    elementToAdd.label !== "participant-visited-classes"
+  ) {
     for (let index = 0; index < keyFieldOfExperiment.length; index++) {
       let demographicObject = keyFieldOfExperiment[index];
       console.log(demographicObject);
@@ -293,6 +295,10 @@ class ExperimentManager extends Observable {
       "formInputChanged",
       onFormInputChanged.bind(this)
     );
+  }
+
+  getExperiment() {
+    return currentExperiment;
   }
 }
 

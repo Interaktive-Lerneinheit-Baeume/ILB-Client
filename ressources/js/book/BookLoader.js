@@ -7,8 +7,9 @@ const BOOK_PAGE_URLS = [
     "./pages/empty.html",
     "./pages/demographics-01.html",
     "./pages/demographics-02.html",
-    "./pages/self-assessment-java.html",
-    "./pages/empty.html",
+    "./pages/self-assessment-1.html",
+    "./pages/self-assessment-2.html",
+    // "./pages/empty.html",
 
     "./pages/empty.html",
     "./pages/page-05/binary_tree_1.html",

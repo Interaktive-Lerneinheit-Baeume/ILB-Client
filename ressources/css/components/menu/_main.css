@@ -10,7 +10,7 @@
   padding: 0 3vh;
   background-color: var(--color-primary);
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  color: var(--color-secondary);
+  color: var(--color-accent-one);
 }
 
 .menu .title {
@@ -44,10 +44,10 @@
 .menu .links a {
     font-size: 0.9em;
     margin: 0 1vh;
-    color: var(--color-secondary);
+    color: var(--color-accent-one);
 }
 
 .menu .links a:hover {
     font-size: 0.9em;
-    color: var(--color-accent-one);
+    color: var(--color-accent-two);
 }

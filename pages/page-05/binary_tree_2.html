@@ -3,62 +3,63 @@
   class="page page-5-binary_tree_2"
   data-title=""
   data-chapter="Binäre Suchbäume"
-  data-can-go-back="false"
+  data-can-go-back="true"
 >
   
   <div class="tasks">
     &nbsp;&nbsp;&nbsp;Für jeden Knoten
-    <code class="">k</code> eines binären Suchbaums
+    <code class="intellij-light language-java">k</code> eines binären Suchbaums
     gilt dabei:
     <ul>
       <li>
         Alle Schlüsselwerte im linken Teilbaum
-        <code class="">k.left</code> sind <i>kleiner</i> als der
+        <code class="intellij-light language-java">k.left</code> sind <i>kleiner</i> als der
         Schlüsselwert
-        <code class="">k.data.</code>
+        <code class="intellij-light language-java">k.data.</code>
       </li>
       <li>
         Alle Schlüsselwerte im rechten Teilbaum
-        <code class="">k.right</code> sind
+        <code class="intellij-light language-java">k.right</code> sind
         <i>grösser</i> als der Schlüsselwert
-        <code class="">k.data</code>
+        <code class="language-java intellij-light">k.data</code>
       </li>
     </ul>
   </div>
   <div>Hier ist der Insert-Algorithmus für den binären Suchbaum:</div>
+  <br>
   <div id="panel-code-alg" class="panel code view">
-    <code class=""
+    <code class="language-java intellij-light"
       >public class BinarySearchTree {</code
     ><br />
     <!-- <br>     -->
-    <code class="id-number"
+    <code class="id-number intellij-light language-java"
       >private Node insertNodeRecursive(Node head, int data) {</code
     ><br />
-    <code class="id-number-this"
+    <code class="id-number-this intellij-light language-java"
       >if (head == null) {</code
     ><br />
-    <code class="id-number-this-this"
+    <code class="id-number-this-this intellij-light language-java"
       >return new Node(data);</code
     ><br />
-    <code class="id-number-this"
+    <code class="id-number-this intellij-light language-java"
       >} else if (data > head.data) {</code
     ><br />
-    <code class="id-number-this-this"
+    <code class="id-number-this-this intellij-light language-java"
       >head.right = insertNodeRecursive(head.right, data);</code
     ><br />
-    <code class="id-number-this"
+    <code class="id-number-this intellij-light language-java"
       >} else if (data <= head.data) {</code
     ><br />
-    <code class="id-number-this-this"
+    <code class="id-number-this-this intellij-light language-java"
       >head.left = insertNodeRecursive(head.left, data);</code
     ><br />
-    <code class="id-number-this">}</code><br />
-    <code class="id-number-this"
+    <code class="id-number-this intellij-light language-java">}</code><br />
+    <code class="id-number-this intellij-light language-java"
       >return head; </code
     ><br />
-    <code class="id-number">}</code><br />
+    <code class="id-number intellij-light language-java">}</code><br />
     <!-- <br> -->
-    <code class="">}</code><br />
+    <code class="language-java intellij-light language-java">}</code><br />
   </div>
   <!-- </div> -->
   <!-- .side-2 -->

@@ -6,7 +6,6 @@ import NavController from "./book/NavController.js";
 import PageController from "./book/PageController.js";
 import PageRenderer from "./book/PageRenderer.js";
 import MainSite from "./ui/MainSite.js";
-
 let currentExperiment = {};
 
 function init() {
@@ -40,6 +39,7 @@ function initViews() {
 
   document.querySelectorAll("code").forEach((el) => {
     hljs.highlightElement(el);
+    // hljs.registerLanguage("java");
   });
 
 
@@ -79,7 +79,8 @@ function onPageSelected(event) {
   NavController.setPage(event.data);
   PageRenderer.render(event.data);
 
-  //   ExperimentManager.processPageSelection(event.data, timeStamp);
+  // console.log(experiment);
+
   if (event.data.nextPage !== undefined && event.data.nextPage !== null) {
     EventBus.relayEvent(
       new Event("pageIteration", {

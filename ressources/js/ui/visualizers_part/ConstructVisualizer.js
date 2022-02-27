@@ -30,6 +30,7 @@ const grayColor = "#acacace6";
 
 const Toast = Swal.mixin({
   toast: true,
+  // center-start
   position: "top-start",
   showConfirmButton: false,
   timer: 2500,
@@ -147,7 +148,7 @@ function infoAboutPrecisePosition() {
     iconColor: grayColor,
     width: 550,
     title:
-      "Positioniere präziser.<br>Der Abstand beträgt circa 2 * Radius des Knotens!",
+      "<br>Positioniere präziser.<br>Der Abstand beträgt circa 2 * Radius des Knotens!",
   });
 }
 

@@ -36,22 +36,29 @@ function init() {
 
 function initViews() {
   let mainSite = new MainSite();
-
+  
   document.querySelectorAll("code").forEach((el) => {
     hljs.highlightElement(el);
-    // hljs.registerLanguage("java");
   });
 
-
-  console.log(document.getElementById("demographic").offsetHeight);
+  // let idNumbersConstr = document.getElementsByClassName("id-number-constr");
+  let idNumbersViewing = document.getElementsByClassName("id-number-viewing");
 
   if (currentExperiment.engagement === "constructing") {
     console.log("construcitng");
     mainSite.showConstructVis();
     mainSite.hideViewingVis();
+    // for (let index = 2; index < idNumbersConstr.length; index++) {
+    //   const mainCodeElement = idNumbersConstr[index];
+    //   mainCodeElement.style.visibility = "hidden";
+    // }
   } else {
     mainSite.hideConstructVis();
     mainSite.showViewingVis();
+    for (let index = 0; index < idNumbersViewing.length; index++) {
+      const mainCodeElement = idNumbersViewing[index];
+      mainCodeElement.style.visibility = "hidden";
+    }
   }
 }
 

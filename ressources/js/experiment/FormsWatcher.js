@@ -1,23 +1,26 @@
-import { Event, Observable } from "../utils/Observable.js";
+import {
+  Event,
+  Observable
+} from "../utils/Observable.js";
 
 let isInitialized = false;
 
 function sendBreakSplash() {
-    document.querySelector(".no_experiment_available").classList.remove("hidden");
+  document.querySelector(".no_experiment_available").classList.remove("hidden");
 }
 
 function sendEndSplash() {
-    document.querySelector(".experiment_ended").classList.remove("hidden");
+  document.querySelector(".experiment_ended").classList.remove("hidden");
 }
 
 function onRadioButtonChanged(event) {
   let likertValue = event.target.closest("label").getAttribute("data-value"),
     questionLabel = event.target
-      .closest(".likert-scale")
-      .getAttribute("data-question-label"),
+    .closest(".likert-scale")
+    .getAttribute("data-question-label"),
     questionId = event.target
-      .closest(".likert-scale")
-      .getAttribute("data-question-id");
+    .closest(".likert-scale")
+    .getAttribute("data-question-id");
 
   this.notifyAll(
     new Event("likertItemChanged", {
@@ -77,6 +80,7 @@ function findForms(context) {
 }
 
 class FormsWatcher extends Observable {
+
   constructor() {
     super();
   }
@@ -89,12 +93,26 @@ class FormsWatcher extends Observable {
     isInitialized = true;
   }
 
+  getOpenFormFields() {
+    let visibleFormFields = [...document.querySelectorAll("[data-optional]")].filter((element) => !element.closest(".page").classList.contains("hidden")),
+      unfilledRequiredFields = visibleFormFields.filter((field) => {
+        return field.getAttribute("data-optional") === "false";
+      });
+    return unfilledRequiredFields;
+  }
+
+  /**
+   * TODO: Splash screen should not be handled in FormsWatcher. This module's concerns
+   * are only for the differen forms and scales used in the experiment. If neccessary, 
+   * move splash screen actions to a new separated module (i.g. SplashScreen).
+   * 
+   */
   breakWholePlattform() {
     sendBreakSplash();
   }
 
-  endWholePlattform(){
-      sendEndSplash();
+  endWholePlattform() {
+    sendEndSplash();
   }
 }
 

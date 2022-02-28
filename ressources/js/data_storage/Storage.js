@@ -4,6 +4,7 @@ const API_BASE_URL = "http://127.0.0.1:8001/api/experiment";
 
 function makeAPICall(route, method, data) {
   let url = API_BASE_URL + route;
+  // TODO: Remove debug output
   console.log("data");
   console.log(data);
   console.log("JSON.stringify(data) ");
@@ -11,11 +12,13 @@ function makeAPICall(route, method, data) {
   if (data !== null) {
     return new Promise(function (resolve, reject) {
       fetch(url, {
-        method: method,
-        headers: { "Content-Type": "application/json" },
-        credentials: "same-origin",
-        body: JSON.stringify(data),
-      })
+          method: method,
+          headers: {
+            "Content-Type": "application/json"
+          },
+          credentials: "same-origin",
+          body: JSON.stringify(data),
+        })
         .then(function (response) {
           return response.json();
         })
@@ -26,10 +29,12 @@ function makeAPICall(route, method, data) {
   } else {
     return new Promise(function (resolve, reject) {
       fetch(url, {
-        method: method,
-        headers: { "Content-Type": "application/json" },
-        credentials: "same-origin",
-      })
+          method: method,
+          headers: {
+            "Content-Type": "application/json"
+          },
+          credentials: "same-origin",
+        })
         .then(function (response) {
           return response.json();
         })
@@ -142,6 +147,7 @@ class Storage {
     if (id !== undefined && id !== null) {
       return makeAPICall("/" + id, "GET", null);
     } else {
+      // TODO: Never use alert-function to show feedback: if neccessary, use custom UI element
       alert("Error 404!");
     }
   }
@@ -180,6 +186,7 @@ class Storage {
   // }
 
   closeExperiment(id, dataForAdding) {
+    // TODO: Remove debug output
     console.log("dataForAdding");
     console.log(dataForAdding);
     return makeAPICall("/" + id + "/close", "POST", dataForAdding);

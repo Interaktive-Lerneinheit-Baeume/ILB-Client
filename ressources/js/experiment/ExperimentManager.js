@@ -1,4 +1,7 @@
-import { Event, Observable } from "../utils/Observable.js";
+import {
+  Event,
+  Observable
+} from "../utils/Observable.js";
 import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 import Storage from "./../data_storage/Storage.js";
@@ -62,12 +65,15 @@ function onPageLogging(elementToAdd) {
 function onConstructControl(event) {
   let elementToAdd = event.data;
 
+  // TODO: Remove debug output
   console.log("constr ");
   console.log(elementToAdd);
 
   if (currentExperiment["constructing-control"] == null) {
     currentExperiment["constructing-control"] = [];
     currentExperiment["constructing-control"].push(elementToAdd);
+
+    // TODO: Remove debug output
     console.log("constr NULL ");
     console.log(elementToAdd);
   } else {
@@ -87,6 +93,8 @@ function onConstructControl(event) {
 }
 
 function onPlayAnimationButtonClicked(elementToAdd) {
+
+  // TODO: Remove debug output
   console.log("elementToAdd.originalEvent");
   console.log(elementToAdd.originalEvent);
   if (currentExperiment["animation-control"] == null) {
@@ -101,8 +109,12 @@ function onPlayAnimationButtonClicked(elementToAdd) {
 }
 
 function onLikertItemChanged(event) {
+
+  // TODO: Remove debug output
   console.log("onlikert");
   let elementToAdd = event.data;
+
+  // TODO: Remove debug output
   console.log(elementToAdd);
   if (elementToAdd.id === "self-assessment") {
     if (currentExperiment["self-assessment"] == null) {
@@ -148,6 +160,8 @@ function onFormInputChanged(event) {
 // TODO wenn wir immer die Daten von den Listeners überschreiben wollen
 //momentan nur für participan-degree - Ausbildungsinfo
 function doubleChecking(keyFieldOfExperiment, elementToAdd) {
+
+  // TODO: Remove debug output
   console.log("elementToAdd");
   console.log(elementToAdd);
   console.log("keyFieldOfExperiment" + keyFieldOfExperiment.length);
@@ -164,6 +178,8 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
 
   let setOfUniqueLables = new Set(uniqueLabels);
   let setOfUniqueInfos = new Set(uniqueInfos);
+
+  // TODO: Remove debug output
   console.log("set");
 
   console.log(setOfUniqueLables);
@@ -181,6 +197,8 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
       ) {
         demographicObject.value = elementToAdd.value;
         demographicObject.status = elementToAdd.status;
+
+        // TODO: Remove debug output
         console.log(demographicObject.value);
         console.log(elementToAdd.value);
         console.log(elementToAdd.status);
@@ -189,6 +207,8 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
         demographicObject.type === elementToAdd.type &&
         elementToAdd.type !== undefined
       ) {
+
+        // TODO: Remove debug output
         console.log("constr UNDEFINED TIME");
         console.log(elementToAdd);
         demographicObject.data.time = elementToAdd.data.time;
@@ -203,6 +223,8 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
   if (setOfUniqueInfos.has(elementToAdd.info)) {
     for (let index = 0; index < keyFieldOfExperiment.length; index++) {
       let demographicObject = keyFieldOfExperiment[index];
+
+      // TODO: Remove debug output
       console.log(demographicObject);
 
       if (
@@ -211,6 +233,8 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
       ) {
         demographicObject.time = elementToAdd.time;
         demographicObject.occurency_overall = elementToAdd.occurency_overall;
+
+        // TODO: Remove debug output
         console.log("constr UNDEFINDE INFO");
         console.log(elementToAdd);
       }

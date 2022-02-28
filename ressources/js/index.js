@@ -1,5 +1,6 @@
 import { Event } from "./utils/Observable.js";
 import EventBus from "./utils/EventBus.js";
+import FormsWatcher from "./experiment/FormsWatcher.js";
 import ExperimentManager from "./experiment/ExperimentManager.js";
 import BookLoader from "./book/BookLoader.js";
 import NavController from "./book/NavController.js";
@@ -9,7 +10,8 @@ import MainSite from "./ui/MainSite.js";
 
 let experiment = {};
 const grayColor = "#acacace6";
-let splashEnd, splashStart; 
+let splashEnd, splashStart;
+let book = document.querySelector(".book");
 
 const Toast = Swal.mixin({
   toast: true,
@@ -49,29 +51,25 @@ function infoAboutSelfAssessment() {
   });
 }
 
+function onKeyEnterPressed(e) {
+  if (e.code === "Enter") {
+    e.preventDefault();
+    splashStart.classList.add("hidden");
+    book.classList.remove("hidden");
+    NavController.enableNextPageButton();
+    document.removeEventListener("keypress", onKeyEnterPressed);
+  }
+}
+
 function init() {
   splashStart = document.querySelector(".splash-start");
   splashEnd = document.querySelector(".splash-end");
-  let book = document.querySelector(".book");
-  let nextButton = document.querySelector(".nav-button.next");
-  console.log(nextButton.classList);
+ 
+  // let nextButton = document.querySelector(".nav-button.next");
+  // console.log(nextButton.classList);
 
   console.log("before");
-  document.addEventListener("keypress", function (e) {
-    console.log("add event");
-    if (e.code === "Enter") {
-      e.preventDefault();
-      console.log("enter");
-      splashStart.classList.add("hidden");
-      book.classList.remove("hidden");
-      console.log(nextButton.classList);
-
-      NavController.enableNextPageButton();
-
-      console.log(nextButton.classList);
-
-    }
-  });
+  document.addEventListener("keypress", onKeyEnterPressed);
 
   console.log("after");
   ExperimentManager.fetchExperiment().then(
@@ -92,6 +90,7 @@ function init() {
       });
     },
     () => {
+      console.log("kein experimentß");
       document
         .querySelector(".no_experiment_available")
         .classList.remove("hidden");
@@ -138,86 +137,13 @@ function onPreviousPageRequested() {
 }
 
 function onNextPageRequested() {
-  let emptyFields = false;
-  let currentExperiment = ExperimentManager.getExperiment();
-  let page = PageController.getOpenPages();
-
-  // if (
-  //   page.title === "self-assessment-1" &&
-  //   page.nextPage.title === "self-assessment-2"
-  // ) {
-  //   if (
-  //     currentExperiment !== null &&
-  //     currentExperiment["self-assessment"] !== undefined &&
-  //     currentExperiment["self-assessment"] !== null
-  //   ) {
-  //     let uniqueLabels = [];
-
-  //     for (
-  //       let index = 0;
-  //       index < currentExperiment["self-assessment"].length;
-  //       index++
-  //     ) {
-  //       const element = currentExperiment["self-assessment"][index];
-  //       uniqueLabels.push(element.label);
-  //     }
-
-  //     let setOfUniqueLabels = new Set(uniqueLabels);
-  //     if (setOfUniqueLabels.size === 9) {
-  //       emptyFields = false;
-  //     } else {
-  //       infoAboutSelfAssessment();
-  //       emptyFields = true;
-  //     }
-  //   } else if (
-  //     currentExperiment["self-assessment"] === undefined ||
-  //     currentExperiment["self-assessment"] === null
-  //   ) {
-  //     infoAboutSelfAssessment();
-  //     emptyFields = true;
-  //   }
-  // }
-
-  // if (page.title === "demographics" && page.nextPage.title === "demographics") {
-  //   if (
-  //     currentExperiment !== null &&
-  //     currentExperiment["demographic_data"] !== undefined &&
-  //     currentExperiment["demographic_data"] !== null
-  //   ) {
-  //     let uniqueLabels = [];
-
-  //     for (
-  //       let index = 0;
-  //       index < currentExperiment["demographic_data"].length;
-  //       index++
-  //     ) {
-  //       const element = currentExperiment["demographic_data"][index];
-  //       uniqueLabels.push(element.label);
-  //     }
-
-  //     let setOfUniqueLabels = new Set(uniqueLabels);
-  //     if (
-  //       setOfUniqueLabels.size === 1 &&
-  //       setOfUniqueLabels.has("participant-education-degree")
-  //     ) {
-  //       emptyFields = false;
-  //     } else {
-  //       infoAboutDemographic();
-  //       emptyFields = true;
-  //     }
-  //   } else if (
-  //     currentExperiment["demographic_data"] === undefined ||
-  //     currentExperiment["demographic_data"] === null
-  //   ) {
-  //     infoAboutDemographic();
-  //     emptyFields = true;
-  //   }
-  // }
-
-  // if (emptyFields === true) {
-  //   return;
+  let openFormFields = FormsWatcher.getOpenFormFields();
+  // if (openFormFields.length > 0) {
+  // TODO: Handle required form fields not yet filled out
+  // TODO: Remove debug output
+  // console.error(new Error("Required fields are empty!"));
   // } else {
-    PageController.next();
+  PageController.next();
   // }
 }
 
@@ -225,6 +151,13 @@ function onPageSelected(event) {
   let timeStamp = Date(Date.now()).toString();
   NavController.setPage(event.data);
   PageRenderer.render(event.data);
+
+  /**
+   * TODO: Do not handle page type here. Instead, send page object (event.data) to
+   * ExperimentManager an let him decide how rendering of this particular page should
+   * be logged. In general: Tell ExperimentManager what has happended (everytime) and
+   * implement logic to decide if this event should be logged in the Manager module.
+   */
 
   if (event.data.nextPage !== undefined && event.data.nextPage !== null) {
     EventBus.relayEvent(

@@ -1,7 +1,4 @@
-import {
-  Event,
-  Observable
-} from "../utils/Observable.js";
+import { Event, Observable } from "../utils/Observable.js";
 
 let isInitialized = false;
 
@@ -16,11 +13,11 @@ function sendEndSplash() {
 function onRadioButtonChanged(event) {
   let likertValue = event.target.closest("label").getAttribute("data-value"),
     questionLabel = event.target
-    .closest(".likert-scale")
-    .getAttribute("data-question-label"),
+      .closest(".likert-scale")
+      .getAttribute("data-question-label"),
     questionId = event.target
-    .closest(".likert-scale")
-    .getAttribute("data-question-id");
+      .closest(".likert-scale")
+      .getAttribute("data-question-id");
 
   this.notifyAll(
     new Event("likertItemChanged", {
@@ -36,6 +33,7 @@ function getFieldDataFromTarget(el) {
     label: el.getAttribute("data-question-label"),
     id: el.getAttribute("data-question-id"),
     value: el.value,
+    end_time: Date(Date.now),
   };
 }
 
@@ -47,8 +45,10 @@ function getListDataFromTarget(el) {
     id: el.closest('[class*="-choice-list"]').getAttribute("data-question-id"),
     value: el.getAttribute("data-value"),
     status: el.checked,
+    end_time: Date(Date.now()).toString(),
   };
 }
+
 
 function onInputFormChanged(event) {
   let target = event.target,
@@ -59,6 +59,29 @@ function onInputFormChanged(event) {
     data = getFieldDataFromTarget(target); //text - type
   }
   this.notifyAll(new Event("formInputChanged", data));
+}
+
+function getFieldDataFromTargetEndTime(el) {
+  return {
+    label: el.getAttribute("data-question-label"),
+    id: el.getAttribute("data-question-id"),
+    value: el.value,
+    start_time: Date(Date.now()).toString(),
+  };
+}
+
+function onInputFormFocused(event) {
+  let target = event.target,
+    data = null;
+  console.log("focus");
+  console.log(target);
+
+  if (!["checkbox", "radio"].includes(target.getAttribute("type"))) {
+    console.log("vor dem aufruf");
+    data = getFieldDataFromTargetEndTime(target);
+  }
+
+  this.notifyAll(new Event("formInputFocused", data));
 }
 
 function findForms(context) {
@@ -77,10 +100,13 @@ function findForms(context) {
   textAreaInputs.forEach((inputs) =>
     inputs.addEventListener("change", onInputFormChanged.bind(context))
   );
+
+  textAreaInputs.forEach((inputs) =>
+    inputs.addEventListener("focus", onInputFormFocused.bind(context))
+  );
 }
 
 class FormsWatcher extends Observable {
-
   constructor() {
     super();
   }
@@ -94,7 +120,11 @@ class FormsWatcher extends Observable {
   }
 
   getOpenFormFields() {
-    let visibleFormFields = [...document.querySelectorAll("[data-optional]")].filter((element) => !element.closest(".page").classList.contains("hidden")),
+    let visibleFormFields = [
+        ...document.querySelectorAll("[data-optional]"),
+      ].filter(
+        (element) => !element.closest(".page").classList.contains("hidden")
+      ),
       unfilledRequiredFields = visibleFormFields.filter((field) => {
         return field.getAttribute("data-optional") === "false";
       });
@@ -103,9 +133,9 @@ class FormsWatcher extends Observable {
 
   /**
    * TODO: Splash screen should not be handled in FormsWatcher. This module's concerns
-   * are only for the differen forms and scales used in the experiment. If neccessary, 
+   * are only for the differen forms and scales used in the experiment. If neccessary,
    * move splash screen actions to a new separated module (i.g. SplashScreen).
-   * 
+   *
    */
   breakWholePlattform() {
     sendBreakSplash();

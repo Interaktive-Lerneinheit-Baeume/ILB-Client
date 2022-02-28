@@ -1,7 +1,4 @@
-import {
-  Event,
-  Observable
-} from "../utils/Observable.js";
+import { Event, Observable } from "../utils/Observable.js";
 import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 import Storage from "./../data_storage/Storage.js";
@@ -93,7 +90,6 @@ function onConstructControl(event) {
 }
 
 function onPlayAnimationButtonClicked(elementToAdd) {
-
   // TODO: Remove debug output
   console.log("elementToAdd.originalEvent");
   console.log(elementToAdd.originalEvent);
@@ -109,7 +105,6 @@ function onPlayAnimationButtonClicked(elementToAdd) {
 }
 
 function onLikertItemChanged(event) {
-
   // TODO: Remove debug output
   console.log("onlikert");
   let elementToAdd = event.data;
@@ -136,14 +131,16 @@ function onFormInputChanged(event) {
       currentExperiment["experience"] = [];
       currentExperiment["experience"].push(elementToAdd);
     } else {
-      currentExperiment["experience"].push(elementToAdd);
+      doubleChecking(currentExperiment["experience"], elementToAdd);
+      //   currentExperiment["experience"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "test-questions") {
     if (currentExperiment["test-questions"] == null) {
       currentExperiment["test-questions"] = [];
       currentExperiment["test-questions"].push(elementToAdd);
     } else {
-      currentExperiment["test-questions"].push(elementToAdd);
+      doubleChecking(currentExperiment["test-questions"], elementToAdd);
+      //   currentExperiment["test-questions"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "demographic_data") {
     if (currentExperiment["demographic_data"] == null) {
@@ -157,10 +154,28 @@ function onFormInputChanged(event) {
   console.log(currentExperiment);
 }
 
+function onFormInputFocused(event) {
+  let elementToAdd = event.data;
+
+  console.log("FOCUS");
+  console.log(elementToAdd);
+
+  if (elementToAdd.id === "test-questions") {
+    if (currentExperiment["test-questions"] == null) {
+      currentExperiment["test-questions"] = [];
+      currentExperiment["test-questions"].push(elementToAdd);
+    } else {
+      doubleChecking(currentExperiment["test-questions"], elementToAdd, "focused");
+      //   currentExperiment["test-questions"].push(elementToAdd);
+    }
+  }
+
+  console.log(currentExperiment);
+}
+
 // TODO wenn wir immer die Daten von den Listeners überschreiben wollen
 //momentan nur für participan-degree - Ausbildungsinfo
-function doubleChecking(keyFieldOfExperiment, elementToAdd) {
-
+function doubleChecking(keyFieldOfExperiment, elementToAdd, focused = "another") {
   // TODO: Remove debug output
   console.log("elementToAdd");
   console.log(elementToAdd);
@@ -169,11 +184,13 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
 
   let uniqueLabels = [];
   let uniqueInfos = [];
+  let uniqueValues = [];
 
   for (let index = 0; index < keyFieldOfExperiment.length; index++) {
     let demographicObject = keyFieldOfExperiment[index];
     uniqueLabels.push(demographicObject.label);
     uniqueInfos.push(demographicObject.info);
+    uniqueValues.push(demographicObject.value);
   }
 
   let setOfUniqueLables = new Set(uniqueLabels);
@@ -186,7 +203,7 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
 
   if (
     setOfUniqueLables.has(elementToAdd.label) &&
-    elementToAdd.label !== "participant-visited-classes"
+    elementToAdd.label !== "participant-visited-classes" && elementToAdd.label !== "Aufgabe 1)" && elementToAdd.label !== "Aufgabe 2)"
   ) {
     for (let index = 0; index < keyFieldOfExperiment.length; index++) {
       let demographicObject = keyFieldOfExperiment[index];
@@ -197,20 +214,13 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
       ) {
         demographicObject.value = elementToAdd.value;
         demographicObject.status = elementToAdd.status;
-
-        // TODO: Remove debug output
-        console.log(demographicObject.value);
-        console.log(elementToAdd.value);
-        console.log(elementToAdd.status);
+        demographicObject.end_time = elementToAdd.end_time;
       }
       if (
         demographicObject.type === elementToAdd.type &&
         elementToAdd.type !== undefined
       ) {
 
-        // TODO: Remove debug output
-        console.log("constr UNDEFINED TIME");
-        console.log(elementToAdd);
         demographicObject.data.time = elementToAdd.data.time;
         demographicObject.data.occurency_overall =
           elementToAdd.data.occurency_overall;
@@ -224,23 +234,29 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd) {
     for (let index = 0; index < keyFieldOfExperiment.length; index++) {
       let demographicObject = keyFieldOfExperiment[index];
 
-      // TODO: Remove debug output
-      console.log(demographicObject);
-
       if (
         demographicObject.info === elementToAdd.info &&
         elementToAdd.info !== undefined
       ) {
         demographicObject.time = elementToAdd.time;
         demographicObject.occurency_overall = elementToAdd.occurency_overall;
-
-        // TODO: Remove debug output
-        console.log("constr UNDEFINDE INFO");
-        console.log(elementToAdd);
       }
     }
   } else {
     keyFieldOfExperiment.push(elementToAdd);
+  }
+
+//   if(elementToAdd.label === "Aufgabe 1)"){
+//     if(setOfUniqueValues.has(elementToAdd.value)){
+
+//     }
+//   }
+
+  let setOfUniqueValues = new Set(uniqueValues);
+
+  for (let index = 0; index < setOfUniqueValues.length; index++) {
+      const element = setOfUniqueValues[index];
+      
   }
 }
 
@@ -315,9 +331,15 @@ class ExperimentManager extends Observable {
       "likertItemChanged",
       onLikertItemChanged.bind(this)
     );
+
     FormsWatcher.addEventListener(
       "formInputChanged",
       onFormInputChanged.bind(this)
+    );
+
+    FormsWatcher.addEventListener(
+      "formInputFocused",
+      onFormInputFocused.bind(this)
     );
   }
 

@@ -1,63 +1,83 @@
 .splash {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99999;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255,255,255,0.9);
-    text-align: center;
-    font-size: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  font-size: 2em;
 }
 
 .splash h1 {
-    font-size: 1em;
-    color: var(--color-accent-one);
+  font-size: 1em;
+  color: var(--color-accent-one);
 }
 
 .splash i {
-    color: var(--color-accent-one);
+  color: var(--color-accent-one);
 }
 
 .no_experiment_available {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99999;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255,255,255,0.9);
-    text-align: center;
-    font-size: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  font-size: 2em;
 }
 
 .no_experiment_available h1 {
-    font-size: 1em;
-    color: var(--color-secondary);
+  font-size: 1em;
+  color: var(--color-secondary);
 }
 
 .experiment_ended {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99999;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255,255,255,0.9);
-    text-align: center;
-    font-size: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  font-size: 2em;
 }
 
 .experiment_ended h1 {
-    font-size: 1em;
-    color: var(--color-secondary);
+  font-size: 1em;
+  color: var(--color-secondary);
+}
+
+#myDiv .swal2-container {
+  position: inherit;
+  /* position: absolute; */
+  /* left: 0;
+  top: 10vh;*/
+  /* height: 1vh;
+  width: 5vh;  */
+  z-index: 100;
+}
+
+body.swal2-shown {
+  position: static;
+}
+
+.swal2-content {
+  /* change the row order */
+  flex-direction: column-reverse;
+  display: flex;
 }

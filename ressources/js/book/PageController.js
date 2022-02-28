@@ -43,6 +43,10 @@ class PageController extends Observable {
         }
     }
 
+    getOpenPages() {
+        return this.currentPage;
+    }
+
 }
 
 export default new PageController();

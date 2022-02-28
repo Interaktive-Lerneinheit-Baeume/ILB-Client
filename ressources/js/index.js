@@ -6,7 +6,47 @@ import NavController from "./book/NavController.js";
 import PageController from "./book/PageController.js";
 import PageRenderer from "./book/PageRenderer.js";
 import MainSite from "./ui/MainSite.js";
-let currentExperiment = {};
+
+let experiment = {};
+const grayColor = "#acacace6";
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+//   offset: [
+//     x: '15px',
+//     y: '-5px',
+// ],
+  showConfirmButton: false,
+  timer: 4000,
+  height: 200,
+  target: document.getElementById("myDiv"),
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
+
+function infoAboutDemographic() {
+  Toast.fire({
+    icon: "info",
+    width: 500,
+    height: 200,
+    iconColor: grayColor,
+    title: "Bitte höchsten Abschluss angeben!",
+  });
+}
+
+function infoAboutSelfAssessment() {
+  Toast.fire({
+    icon: "info",
+    width: 500,
+    height: 200,
+    iconColor: grayColor,
+    title: "Bitte alle Felder befüllen!",
+  });
+}
 
 function init() {
   ExperimentManager.fetchExperiment().then(
@@ -22,7 +62,7 @@ function init() {
           })
         );
 
-        currentExperiment = experiment;
+        experiment = experiment;
         initViews();
       });
     },
@@ -36,22 +76,16 @@ function init() {
 
 function initViews() {
   let mainSite = new MainSite();
-  
+
   document.querySelectorAll("code").forEach((el) => {
     hljs.highlightElement(el);
   });
 
-  // let idNumbersConstr = document.getElementsByClassName("id-number-constr");
   let idNumbersViewing = document.getElementsByClassName("id-number-viewing");
 
-  if (currentExperiment.engagement === "constructing") {
-    console.log("construcitng");
+  if (experiment.engagement === "constructing") {
     mainSite.showConstructVis();
     mainSite.hideViewingVis();
-    // for (let index = 2; index < idNumbersConstr.length; index++) {
-    //   const mainCodeElement = idNumbersConstr[index];
-    //   mainCodeElement.style.visibility = "hidden";
-    // }
   } else {
     mainSite.hideConstructVis();
     mainSite.showViewingVis();
@@ -78,15 +112,93 @@ function onPreviousPageRequested() {
 }
 
 function onNextPageRequested() {
-  PageController.next();
+  let emptyFields = false;
+  let currentExperiment = ExperimentManager.getExperiment();
+  let page = PageController.getOpenPages();
+
+  if (
+    page.title === "self-assessment-1" &&
+    page.nextPage.title === "self-assessment-2"
+  ) {
+    if (
+      currentExperiment !== null &&
+      currentExperiment["self-assessment"] !== undefined &&
+      currentExperiment["self-assessment"] !== null
+    ) {
+      let uniqueLabels = [];
+
+      for (
+        let index = 0;
+        index < currentExperiment["self-assessment"].length;
+        index++
+      ) {
+        const element = currentExperiment["self-assessment"][index];
+        uniqueLabels.push(element.label);
+      }
+
+      let setOfUniqueLabels = new Set(uniqueLabels);
+      if (setOfUniqueLabels.size === 9) {
+        emptyFields = false;
+      } else {
+        infoAboutSelfAssessment();
+        emptyFields = true;
+      }
+    } else if (
+      currentExperiment["self-assessment"] === undefined ||
+      currentExperiment["self-assessment"] === null
+    ) {
+      infoAboutSelfAssessment();
+      emptyFields = true;
+    }
+  }
+
+  if (page.title === "demographics" && page.nextPage.title === "demographics") {
+    if (
+      currentExperiment !== null &&
+      currentExperiment["demographic_data"] !== undefined &&
+      currentExperiment["demographic_data"] !== null
+    ) {
+      let uniqueLabels = [];
+
+      for (
+        let index = 0;
+        index < currentExperiment["demographic_data"].length;
+        index++
+      ) {
+        const element = currentExperiment["demographic_data"][index];
+        uniqueLabels.push(element.label);
+      }
+
+      let setOfUniqueLabels = new Set(uniqueLabels);
+      if (
+        setOfUniqueLabels.size === 1 &&
+        setOfUniqueLabels.has("participant-education-degree")
+      ) {
+        emptyFields = false;
+      } else {
+        infoAboutDemographic();
+        emptyFields = true;
+      }
+    } else if (
+      currentExperiment["demographic_data"] === undefined ||
+      currentExperiment["demographic_data"] === null
+    ) {
+      infoAboutDemographic();
+      emptyFields = true;
+    }
+  }
+
+  if (emptyFields === true) {
+    return;
+  } else {
+    PageController.next();
+  }
 }
 
 function onPageSelected(event) {
   let timeStamp = Date(Date.now()).toString();
   NavController.setPage(event.data);
   PageRenderer.render(event.data);
-
-  // console.log(experiment);
 
   if (event.data.nextPage !== undefined && event.data.nextPage !== null) {
     EventBus.relayEvent(
@@ -100,7 +212,6 @@ function onPageSelected(event) {
   }
 
   if (event.data.title === "time-end-over") {
-    console.log("endExperiment()" + event.data.chapter);
     EventBus.relayEvent(
       new Event("experimentEnded", {
         time: timeStamp,

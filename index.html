@@ -29,6 +29,15 @@
 
   <body>
    
+    <div class="experiment_ended splash-start">
+      <h1 class="">Vielen Dank für Ihre Teilnahme an dem Experiment! 
+        <br>
+        <div class="start-end-end">Die Navigation im Experiment wird mithilfe von Umblätter-Buttons ermöglicht. 
+        <br>Nehmen Sie sich so viel Zeit, wie Sie brauchen. 
+        <br>Bei Fragen schreiben Sie in "Kontakt".
+      <br>Für den Beginn drücken Sie "Enter".</h1></div>
+    </div>
+    
     <div class="splash">
       <h1 class="title">Experiment wird geladen ...</h1>
       <span><i class="icon-spin animate-spin"></i></span>
@@ -36,8 +45,14 @@
     <div class="no_experiment_available hidden">
       <h1 class="title">Das Experiment ist nicht verfügbar!</h1>
     </div>
-    <div class="experiment_ended hidden">
-      <h1 class="title">Das Experiment ist beendet!</h1>
+    <div class="experiment_ended splash-end hidden">
+      <h1 class="title">Das Experiment ist beendet!
+        <br>Vielen Dank für Ihre Teilnahme!<br>
+        <div class="start-end-end">Wenn Sie Studierende der Uni Regensburg sind und Versuchpersonenstunden brauchen, 
+          tragen Sie Ihre Daten in dieses Formular ein: 
+          <span><a  href="https://docs.google.com/forms/d/e/1FAIpQLSc1v5w__NxBbECyDeOje0Ewx_VRRxg50Z0ZikZ7bIj8C36fzg/viewform?usp=sf_link" target="_blank">https://docs.google.com/forms/d/e/1FAIpQLSc1v5w__NxBbECyDeOje0Ewx_VRRxg50Z0ZikZ7bIj8C36fzg/viewform?usp=sf_link</a></span><br>
+        Sie erhalten für dieses Experiment 3 VPs. </div>
+      </h1>
     </div>
  
     <div class="menu">
@@ -54,10 +69,10 @@
 
     </div>
     <!-- <div class="myClass" id="myDiv"></div> -->
-    <div class="book"></div>
+    <div class="book hidden"></div>
     <div class="navigation">
       <button id="back-button" class="back-buttons nav-button previous"><i class="icon-previous"></i></button>
-      <button id="next-button" class="next-buttons nav-button next"><i class="icon-next"></i></button>
+      <button id="next-button" class="next-buttons nav-button next disabled"><i class="icon-next"></i></button>
     </div>
 
   </body>

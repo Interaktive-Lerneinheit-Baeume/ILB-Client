@@ -9,14 +9,15 @@ import MainSite from "./ui/MainSite.js";
 
 let experiment = {};
 const grayColor = "#acacace6";
+let splashEnd, splashStart; 
 
 const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
-//   offset: [
-//     x: '15px',
-//     y: '-5px',
-// ],
+  //   offset: [
+  //     x: '15px',
+  //     y: '-5px',
+  // ],
   showConfirmButton: false,
   timer: 4000,
   height: 200,
@@ -49,6 +50,30 @@ function infoAboutSelfAssessment() {
 }
 
 function init() {
+  splashStart = document.querySelector(".splash-start");
+  splashEnd = document.querySelector(".splash-end");
+  let book = document.querySelector(".book");
+  let nextButton = document.querySelector(".nav-button.next");
+  console.log(nextButton.classList);
+
+  console.log("before");
+  document.addEventListener("keypress", function (e) {
+    console.log("add event");
+    if (e.code === "Enter") {
+      e.preventDefault();
+      console.log("enter");
+      splashStart.classList.add("hidden");
+      book.classList.remove("hidden");
+      console.log(nextButton.classList);
+
+      NavController.enableNextPageButton();
+
+      console.log(nextButton.classList);
+
+    }
+  });
+
+  console.log("after");
   ExperimentManager.fetchExperiment().then(
     (experiment) => {
       BookLoader.load().then((pages) => {
@@ -82,6 +107,7 @@ function initViews() {
   });
 
   let idNumbersViewing = document.getElementsByClassName("id-number-viewing");
+  console.log("enabling");
 
   if (experiment.engagement === "constructing") {
     mainSite.showConstructVis();
@@ -116,83 +142,83 @@ function onNextPageRequested() {
   let currentExperiment = ExperimentManager.getExperiment();
   let page = PageController.getOpenPages();
 
-  if (
-    page.title === "self-assessment-1" &&
-    page.nextPage.title === "self-assessment-2"
-  ) {
-    if (
-      currentExperiment !== null &&
-      currentExperiment["self-assessment"] !== undefined &&
-      currentExperiment["self-assessment"] !== null
-    ) {
-      let uniqueLabels = [];
+  // if (
+  //   page.title === "self-assessment-1" &&
+  //   page.nextPage.title === "self-assessment-2"
+  // ) {
+  //   if (
+  //     currentExperiment !== null &&
+  //     currentExperiment["self-assessment"] !== undefined &&
+  //     currentExperiment["self-assessment"] !== null
+  //   ) {
+  //     let uniqueLabels = [];
 
-      for (
-        let index = 0;
-        index < currentExperiment["self-assessment"].length;
-        index++
-      ) {
-        const element = currentExperiment["self-assessment"][index];
-        uniqueLabels.push(element.label);
-      }
+  //     for (
+  //       let index = 0;
+  //       index < currentExperiment["self-assessment"].length;
+  //       index++
+  //     ) {
+  //       const element = currentExperiment["self-assessment"][index];
+  //       uniqueLabels.push(element.label);
+  //     }
 
-      let setOfUniqueLabels = new Set(uniqueLabels);
-      if (setOfUniqueLabels.size === 9) {
-        emptyFields = false;
-      } else {
-        infoAboutSelfAssessment();
-        emptyFields = true;
-      }
-    } else if (
-      currentExperiment["self-assessment"] === undefined ||
-      currentExperiment["self-assessment"] === null
-    ) {
-      infoAboutSelfAssessment();
-      emptyFields = true;
-    }
-  }
+  //     let setOfUniqueLabels = new Set(uniqueLabels);
+  //     if (setOfUniqueLabels.size === 9) {
+  //       emptyFields = false;
+  //     } else {
+  //       infoAboutSelfAssessment();
+  //       emptyFields = true;
+  //     }
+  //   } else if (
+  //     currentExperiment["self-assessment"] === undefined ||
+  //     currentExperiment["self-assessment"] === null
+  //   ) {
+  //     infoAboutSelfAssessment();
+  //     emptyFields = true;
+  //   }
+  // }
 
-  if (page.title === "demographics" && page.nextPage.title === "demographics") {
-    if (
-      currentExperiment !== null &&
-      currentExperiment["demographic_data"] !== undefined &&
-      currentExperiment["demographic_data"] !== null
-    ) {
-      let uniqueLabels = [];
+  // if (page.title === "demographics" && page.nextPage.title === "demographics") {
+  //   if (
+  //     currentExperiment !== null &&
+  //     currentExperiment["demographic_data"] !== undefined &&
+  //     currentExperiment["demographic_data"] !== null
+  //   ) {
+  //     let uniqueLabels = [];
 
-      for (
-        let index = 0;
-        index < currentExperiment["demographic_data"].length;
-        index++
-      ) {
-        const element = currentExperiment["demographic_data"][index];
-        uniqueLabels.push(element.label);
-      }
+  //     for (
+  //       let index = 0;
+  //       index < currentExperiment["demographic_data"].length;
+  //       index++
+  //     ) {
+  //       const element = currentExperiment["demographic_data"][index];
+  //       uniqueLabels.push(element.label);
+  //     }
 
-      let setOfUniqueLabels = new Set(uniqueLabels);
-      if (
-        setOfUniqueLabels.size === 1 &&
-        setOfUniqueLabels.has("participant-education-degree")
-      ) {
-        emptyFields = false;
-      } else {
-        infoAboutDemographic();
-        emptyFields = true;
-      }
-    } else if (
-      currentExperiment["demographic_data"] === undefined ||
-      currentExperiment["demographic_data"] === null
-    ) {
-      infoAboutDemographic();
-      emptyFields = true;
-    }
-  }
+  //     let setOfUniqueLabels = new Set(uniqueLabels);
+  //     if (
+  //       setOfUniqueLabels.size === 1 &&
+  //       setOfUniqueLabels.has("participant-education-degree")
+  //     ) {
+  //       emptyFields = false;
+  //     } else {
+  //       infoAboutDemographic();
+  //       emptyFields = true;
+  //     }
+  //   } else if (
+  //     currentExperiment["demographic_data"] === undefined ||
+  //     currentExperiment["demographic_data"] === null
+  //   ) {
+  //     infoAboutDemographic();
+  //     emptyFields = true;
+  //   }
+  // }
 
-  if (emptyFields === true) {
-    return;
-  } else {
+  // if (emptyFields === true) {
+  //   return;
+  // } else {
     PageController.next();
-  }
+  // }
 }
 
 function onPageSelected(event) {
@@ -218,6 +244,8 @@ function onPageSelected(event) {
         value: "experiment ended",
       })
     );
+    splashEnd.classList.remove("hidden");
+    splashStart.classList.add("hidden");
   }
 }
 

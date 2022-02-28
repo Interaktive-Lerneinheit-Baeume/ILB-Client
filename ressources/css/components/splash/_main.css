@@ -12,9 +12,37 @@
   text-align: center;
   font-size: 2em;
 }
+/* .splash-start h1 {
+  font-size: 0.8em;
+  color: var(--color-accent-one);
+}
+
+.splash-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-accent-one);
+  text-align: center;
+  font-size: 1.5em;
+} */
+
+.start-end-end {
+  width: 70%;
+  text-align: center;
+  font-weight: 140;
+  font-size: 0.6em;
+  color: var(--color-accent-one);
+  margin: auto;
+}
 
 .splash h1 {
-  font-size: 1em;
+  font-size: 0.6em;
   color: var(--color-accent-one);
 }
 
@@ -29,7 +57,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999;
   width: 100vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
@@ -59,7 +86,7 @@
 
 .experiment_ended h1 {
   font-size: 1em;
-  color: var(--color-secondary);
+  color: var(--color-accent-one);
 }
 
 #myDiv .swal2-container {

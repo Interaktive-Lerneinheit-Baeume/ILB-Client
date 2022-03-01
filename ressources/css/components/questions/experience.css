@@ -11,10 +11,40 @@
     font-family: var(--font-input);
 }
 
+.textarea_input_print {
+    width: 90%;
+    border: none;
+    background-color: var(--color-background);
+    outline: none;
+    resize: vertical;
+    padding: 0.5em;
+    margin-top: 2vh;
+    font-family: var(--font-input);
+}
+
+.textarea_input_print:focus {
+    background-color: var(--color-accent-one);
+    color: var(--color-background);
+}
+
 .textarea_input:focus {
     background-color: var(--color-accent-one);
     color: var(--color-background);
 }
+
+.textarea_input_print::-webkit-scrollbar {
+    width: 1em;
+}
+
+.textarea_input_print::-webkit-scrollbar-track {
+    background-color: var(--color-accent-one-transparent);
+}
+
+.textarea_input_print::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent-one);
+    outline: none;
+}
+
 
 .textarea_input::-webkit-scrollbar {
     width: 1em;

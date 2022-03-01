@@ -111,14 +111,36 @@ function onLikertItemChanged(event) {
 
   // TODO: Remove debug output
   console.log(elementToAdd);
-  if (elementToAdd.id === "self-assessment") {
-    if (currentExperiment["self-assessment"] == null) {
-      currentExperiment["self-assessment"] = [];
-      currentExperiment["self-assessment"].push(elementToAdd);
+  if (elementToAdd.id === "self-assessment-java") {
+    if (currentExperiment["self-assessment-java"] == null) {
+      currentExperiment["self-assessment-java"] = [];
+      currentExperiment["self-assessment-java"].push(elementToAdd);
     } else {
       console.log("LIKERT double");
       console.log(elementToAdd);
-      doubleChecking(currentExperiment["self-assessment"], elementToAdd);
+      doubleChecking(currentExperiment["self-assessment-java"], elementToAdd);
+    }
+  }
+
+  if (elementToAdd.id === "self-assessment-javascript") {
+    if (currentExperiment["self-assessment-javascript"] == null) {
+      currentExperiment["self-assessment-javascript"] = [];
+      currentExperiment["self-assessment-javascript"].push(elementToAdd);
+    } else {
+      console.log("LIKERT double");
+      console.log(elementToAdd);
+      doubleChecking(currentExperiment["self-assessment-javascript"], elementToAdd);
+    }
+  }
+
+  if (elementToAdd.id === "self-assessment-python") {
+    if (currentExperiment["self-assessment-python"] == null) {
+      currentExperiment["self-assessment-python"] = [];
+      currentExperiment["self-assessment-python"].push(elementToAdd);
+    } else {
+      console.log("LIKERT double");
+      console.log(elementToAdd);
+      doubleChecking(currentExperiment["self-assessment-python"], elementToAdd);
     }
   }
 }

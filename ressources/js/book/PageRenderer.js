@@ -3,10 +3,10 @@ import NavController from "./NavController.js";
 import EventBus from "./../utils/EventBus.js";
 import ExperimentManager from "../experiment/ExperimentManager.js";
 
-let currentExperiment = {};
+let currentExperiment = {}, pages;
 
 function hideAllPages(parent) {
-  let pages = parent.querySelectorAll(".page");
+  pages = parent.querySelectorAll(".page");
   pages.forEach((page) => {
     page.classList.remove("left", "right");
     page.classList.add("hidden");
@@ -38,6 +38,22 @@ class PageRenderer extends Observable {
     }
 
     NavController.setTitleOnNextButton(page.title);
+  }
+
+
+  getActualOpenPages(){
+    console.log(pages); 
+    let openPages = [];
+    for (let index = 0; index < pages.length; index++) {
+      const p = pages[index];
+      if(!(p.classList.contains("hidden"))){
+        openPages.push(p);
+      }
+      
+    }
+    // let openPages = pages.filter((page) => (page.classList.contains("hidden")));
+    console.log(openPages);
+    return openPages;
   }
 }
 

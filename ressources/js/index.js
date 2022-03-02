@@ -11,7 +11,6 @@ import SplashScreen from "./ui/visualizers_part/SplashScreens.js";
 
 let experiment = {};
 const grayColor = "#acacace6";
-let splashEnd, splashStart;
 let book = document.querySelector(".book");
 
 const Toast = Swal.mixin({
@@ -19,7 +18,6 @@ const Toast = Swal.mixin({
   position: "top-end",
   showConfirmButton: false,
   timer: 4000,
-  height: 200,
   target: document.getElementById("myDiv"),
   timerProgressBar: true,
   didOpen: (toast) => {
@@ -28,23 +26,12 @@ const Toast = Swal.mixin({
   },
 });
 
-function infoAboutDemographic() {
+function toFillAllObligatoryFields() {
   Toast.fire({
     icon: "info",
-    width: 500,
-    height: 200,
+    width: 600,
     iconColor: grayColor,
-    title: "Bitte höchsten Abschluss angeben!",
-  });
-}
-
-function infoAboutSelfAssessment() {
-  Toast.fire({
-    icon: "info",
-    width: 500,
-    height: 200,
-    iconColor: grayColor,
-    title: "Bitte alle Felder befüllen!",
+    title: "Bitte alle nicht optionalen Felder befüllen!",
   });
 }
 
@@ -67,7 +54,7 @@ function init() {
       BookLoader.load().then((pages) => {
         initPages(pages);
 
-       SplashScreen.removeDownloadSplash();
+        SplashScreen.removeDownloadSplash();
 
         EventBus.relayEvent(
           new Event("experimentStarted", {
@@ -125,13 +112,82 @@ function onPreviousPageRequested() {
 
 function onNextPageRequested() {
   let openFormFields = FormsWatcher.getOpenFormFields();
-  // if (openFormFields.length > 0) {
-  // TODO: Handle required form fields not yet filled out
-  // TODO: Remove debug output
-  // console.error(new Error("Required fields are empty!"));
-  // } else {
-  PageController.next();
-  // }
+
+  let fieldIsChecked = false;
+
+  if (openFormFields.length > 0) {
+    for (let index = 0; index < openFormFields.length; index++) {
+      const openField = openFormFields[index];
+
+      if (
+        openField.getAttribute("data-question-label") === "participant-age" ||
+        openField.getAttribute("data-question-label" === "participant-gender")
+      ) {
+        if (
+          openField.value === null ||
+          openField.value === undefined ||
+          openField.value === " " ||
+          openField.value === ""
+        ) {
+          toFillAllObligatoryFields();
+          return;
+        }
+      } else if (
+        openField.getAttribute("data-question-label") ===
+        "participant-education-degree"
+      ) {
+        for (let index = 0; index < openField.children.length; index++) {
+          const element = openField.children[index];
+          if (element.children[0].checked) {
+            fieldIsChecked = true;
+          }
+        }
+        if (fieldIsChecked === false) {
+          toFillAllObligatoryFields();
+          return;
+        }
+      } else if (openField.getAttribute("class") === "likert-scale") {
+        for (let index = 0; index < openField.children.length; index++) {
+          const openFieldChild = openField.children[index];
+
+          if (openFieldChild.getAttribute("class") === "likert-selector") {
+            let allRadioInputInThisLikertScale = openFieldChild.querySelector(
+              'input[type="radio"]'
+            );
+
+            if (allRadioInputInThisLikertScale.checked) {
+              fieldIsChecked = true;
+            }
+          }
+        }
+
+        if (fieldIsChecked === false) {
+          toFillAllObligatoryFields();
+          return;
+        }
+      }
+    }
+    PageController.next();
+  } else {
+    let openPages = PageRenderer.getActualOpenPages();
+    if (openPages[0].getAttribute("data-title") === "visualization") {
+      swal({
+        title: "Zum Wissenstest unrückgängig",
+        icon: "info",
+        iconColor: grayColor,
+        dangerMode: true,
+        buttons: true,
+      }).then((value) => {
+        if (value) {
+          PageController.next();
+        } else {
+          return;
+        }
+      });
+    } else {
+      PageController.next();
+    }
+  }
 }
 
 function onPageSelected(event) {
@@ -139,36 +195,15 @@ function onPageSelected(event) {
   NavController.setPage(event.data);
   PageRenderer.render(event.data);
 
-  /**
-   * TODO: Do not handle page type here. Instead, send page object (event.data) to
-   * ExperimentManager an let him decide how rendering of this particular page should
-   * be logged. In general: Tell ExperimentManager what has happended (everytime) and
-   * implement logic to decide if this event should be logged in the Manager module.
-   */
-
-  if (event.data.nextPage !== undefined && event.data.nextPage !== null) {
-    EventBus.relayEvent(
-      new Event("pageIteration", {
-        time: timeStamp,
-        value: "pageIteration",
-        left_page_chapter: event.data.chapter,
-        right_page_chapter: event.data.nextPage.chapter,
-      })
-    );
-  }
-
-  if (event.data.title === "time-end-over") {
-    EventBus.relayEvent(
-      new Event("experimentEnded", {
-        time: timeStamp,
-        value: "experiment ended",
-      })
-    );
-    SplashScreen.sendEndSplash();
-    SplashScreen.removeStartSplash();
-    // splashEnd.classList.remove("hidden");
-    // splashStart.classList.add("hidden");
-  }
+  EventBus.relayEvent(
+    new Event("pageIteration", {
+      time: timeStamp,
+      value: "pageIteration",
+      left_page_chapter: event.data.chapter,
+      right_page_chapter: event.data.nextPage.chapter,
+      left_page_title: event.data.title,
+    })
+  );
 }
 
 init();

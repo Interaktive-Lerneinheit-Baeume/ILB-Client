@@ -36,10 +36,11 @@
   margin-left: 0.5vw;
   color: var(--color-text);
   font-weight: 150;
+  font-size: 0.85em;
 }
 
 .field-set input {
-  flex-basis: 60%;
+  flex-basis: 30%;
   border: none;
   background-color: var(--color-background);
   outline: none;
@@ -60,7 +61,7 @@
 }
 
 .field-set ul li textarea {
-  flex-basis: 60%;
+  flex-basis: 30%;
   height: 5em;
   border: none;
   background-color: var(--color-background);

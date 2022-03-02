@@ -10,16 +10,16 @@ function onRadioButtonChanged(event) {
     questionId = event.target
       .closest(".likert-scale")
       .getAttribute("data-question-id"),
-    questionOptional = event.target
+    questionCategory = event.target
       .closest(".likert-scale")
-      .getAttribute("data-optional");
+      .getAttribute("data-category");
 
   this.notifyAll(
     new Event("likertItemChanged", {
       label: questionLabel,
       id: questionId,
       value: likertValue,
-      optional: questionOptional
+      category: questionCategory,
     })
   );
 }
@@ -123,8 +123,14 @@ class FormsWatcher extends Observable {
       unfilledRequiredFields = visibleFormFields.filter((field) => {
         return field.getAttribute("data-optional") === "false";
       });
+
+    console.log("----visibleFormFields"+visibleFormFields.length);
+    console.log(visibleFormFields);
+    console.log("----unfilledRequiredFields" + unfilledRequiredFields.length);
+    console.log(unfilledRequiredFields);
     return unfilledRequiredFields;
   }
+
 
 }
 

@@ -64,10 +64,13 @@ class NavController extends Observable {
   }
 
   setTitleOnNextButton(title) {
-    if (title === "self-assessment-1") {
+    if (title === "self-assessment-3") {
       nextPageButton.setAttribute("title", "zum Lernmaterial. Unrückgängig!");
     } else if (title === "visualization") {
       nextPageButton.setAttribute("title", "zum Wissenstest. Unrückgängig!");
+    }
+    else {
+      nextPageButton.removeAttribute("title");
     }
   }
 }

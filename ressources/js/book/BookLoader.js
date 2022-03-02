@@ -36,6 +36,7 @@ const BOOK_PAGE_URLS = [
     "./pages/page-11/experience_2.html",
 
     "./pages/page-12/empty.html",
+    "./pages/page-12/empty.html"
   ],
   ROOT_ELEMENT = document.querySelector(".book");
 

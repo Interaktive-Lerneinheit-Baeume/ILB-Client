@@ -216,7 +216,7 @@ button:hover {
 }
 
 .swal-runtime {
-  color: var(--black);
+  color: var(--color-text);
   font-family: var(--font-text) !important;
   font-size: 8.5pt !important;
   width: 650px !important;

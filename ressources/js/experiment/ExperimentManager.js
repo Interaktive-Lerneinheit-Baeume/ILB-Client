@@ -15,13 +15,7 @@ function checkPageFocus() {
       if (data.state == "open") {
         clearInterval(intervalForCheckingFocus);
         SplashScreen.breakWholePlattform();
-
-        EventBus.relayEvent(
-          new Event("experimentBroken", {
-            time: Date(Date.now()).toString(),
-            value: "experiment broken",
-          })
-        );
+        console.log("PROZESS ABGEBROCHEN");
         storage.breakProcess(data.id);
       }
     });
@@ -50,6 +44,13 @@ function onPageLogging(elementToAdd) {
   } else {
     currentExperiment["page-iterations"].push(elementToAdd.originalEvent);
   }
+
+  if (elementToAdd.originalEvent.data.left_page_title === "time-end-over") {
+    onExperimentEventHandling(elementToAdd);
+    endExperiment();
+    SplashScreen.endWholePlattform();
+    SplashScreen.removeStartSplash();
+  }
 }
 
 function onConstructControl(event) {
@@ -57,14 +58,12 @@ function onConstructControl(event) {
   if (currentExperiment["constructing-control"] == null) {
     currentExperiment["constructing-control"] = [];
     currentExperiment["constructing-control"].push(elementToAdd);
-
   } else {
     doubleChecking(currentExperiment["constructing-control"], elementToAdd);
   }
 }
 
 function onPlayAnimationButtonClicked(elementToAdd) {
- 
   if (currentExperiment["animation-control"] == null) {
     currentExperiment["animation-control"] = [];
     currentExperiment["animation-control"].push(elementToAdd.originalEvent);
@@ -78,7 +77,7 @@ function onPlayAnimationButtonClicked(elementToAdd) {
 
 function onLikertItemChanged(event) {
   let elementToAdd = event.data;
-  
+
   if (elementToAdd.id === "self-assessment-java") {
     if (currentExperiment["self-assessment-java"] == null) {
       currentExperiment["self-assessment-java"] = [];
@@ -93,7 +92,10 @@ function onLikertItemChanged(event) {
       currentExperiment["self-assessment-javascript"] = [];
       currentExperiment["self-assessment-javascript"].push(elementToAdd);
     } else {
-      doubleChecking(currentExperiment["self-assessment-javascript"], elementToAdd);
+      doubleChecking(
+        currentExperiment["self-assessment-javascript"],
+        elementToAdd
+      );
     }
   }
 
@@ -132,7 +134,6 @@ function onFormInputChanged(event) {
       doubleChecking(currentExperiment["demographic_data"], elementToAdd);
     }
   }
-
 }
 
 function onFormInputFocused(event) {
@@ -143,13 +144,20 @@ function onFormInputFocused(event) {
       currentExperiment["test-questions"] = [];
       currentExperiment["test-questions"].push(elementToAdd);
     } else {
-      doubleChecking(currentExperiment["test-questions"], elementToAdd, "focused");
+      doubleChecking(
+        currentExperiment["test-questions"],
+        elementToAdd,
+        "focused"
+      );
     }
   }
 }
 
-function doubleChecking(keyFieldOfExperiment, elementToAdd, focused = "another") {
-
+function doubleChecking(
+  keyFieldOfExperiment,
+  elementToAdd,
+  focused = "another"
+) {
   let uniqueLabels = [];
   let uniqueInfos = [];
   let uniqueValues = [];
@@ -166,7 +174,9 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd, focused = "another")
 
   if (
     setOfUniqueLables.has(elementToAdd.label) &&
-    elementToAdd.label !== "participant-visited-classes" && elementToAdd.label !== "Aufgabe 1)" && elementToAdd.label !== "Aufgabe 2)"
+    elementToAdd.label !== "participant-visited-classes" &&
+    elementToAdd.label !== "Aufgabe 1)" &&
+    elementToAdd.label !== "Aufgabe 2)"
   ) {
     for (let index = 0; index < keyFieldOfExperiment.length; index++) {
       let demographicObject = keyFieldOfExperiment[index];
@@ -182,7 +192,6 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd, focused = "another")
         demographicObject.type === elementToAdd.type &&
         elementToAdd.type !== undefined
       ) {
-
         demographicObject.data.time = elementToAdd.data.time;
         demographicObject.data.occurency_overall =
           elementToAdd.data.occurency_overall;
@@ -207,7 +216,6 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd, focused = "another")
   } else {
     keyFieldOfExperiment.push(elementToAdd);
   }
-
 }
 
 function onGlobalEvent(event) {
@@ -216,10 +224,6 @@ function onGlobalEvent(event) {
   switch (elementToAdd.originalEvent.type) {
     case "pageIteration":
       onPageLogging(event.data);
-      break;
-    case "experimentEnded":
-      onExperimentEventHandling(elementToAdd);
-      endExperiment();
       break;
     case "experimentStarted":
       onExperimentEventHandling(elementToAdd);
@@ -232,9 +236,6 @@ function onGlobalEvent(event) {
       break;
     case "playAnimationButtonClicked":
       onPlayAnimationButtonClicked(elementToAdd);
-      break;
-    case "experimentBroken": //wird das erreicht?
-      onExperimentEventHandling(elementToAdd);
       break;
   }
 }

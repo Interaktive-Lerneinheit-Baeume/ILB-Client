@@ -68,11 +68,8 @@ function getFieldDataFromTargetEndTime(el) {
 function onInputFormFocused(event) {
   let target = event.target,
     data = null;
-  console.log("focus");
-  console.log(target);
 
   if (!["checkbox", "radio"].includes(target.getAttribute("type"))) {
-    console.log("vor dem aufruf");
     data = getFieldDataFromTargetEndTime(target);
   }
 
@@ -124,10 +121,6 @@ class FormsWatcher extends Observable {
         return field.getAttribute("data-optional") === "false";
       });
 
-    console.log("----visibleFormFields"+visibleFormFields.length);
-    console.log(visibleFormFields);
-    console.log("----unfilledRequiredFields" + unfilledRequiredFields.length);
-    console.log(unfilledRequiredFields);
     return unfilledRequiredFields;
   }
 

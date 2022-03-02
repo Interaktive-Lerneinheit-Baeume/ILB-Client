@@ -15,7 +15,6 @@ function checkPageFocus() {
       if (data.state == "open") {
         clearInterval(intervalForCheckingFocus);
         SplashScreen.breakWholePlattform();
-        console.log("PROZESS ABGEBROCHEN");
         storage.breakProcess(data.id);
       }
     });

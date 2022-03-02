@@ -114,22 +114,17 @@ function onNextPageRequested() {
   let openFormFields = FormsWatcher.getOpenFormFields();
   let counterOfCheckedRadios = 0;
   let fieldIsChecked = false;
-  let allRadiosForThisUl = [];
 
   if (openFormFields.length > 0) {
     // console.log(openFormFields.querySelectorAll('input[type="radio"]').length);
 
     for (let index = 0; index < openFormFields.length; index++) {
-      const openField = openFormFields[index];
-      console.log(openField);
-
-      // console.log(
-      //   "HIER " + openField.querySelectorAll('input[type="radio"]').length
-      // );
+      // const openField = openFormFields[index];
+      // console.log(openField);
 
       if (
         openField.getAttribute("data-question-label") === "participant-age" ||
-        openField.getAttribute("data-question-label" === "participant-gender")
+        openField.getAttribute("data-question-label") === "participant-gender"
       ) {
         if (
           openField.value === null ||
@@ -138,6 +133,8 @@ function onNextPageRequested() {
           openField.value === ""
         ) {
           toFillAllObligatoryFields();
+          // console.log(openField.value);
+          // console.log("RETURN");
           return;
         }
       } else if (
@@ -216,13 +213,13 @@ function onNextPageRequested() {
         // console.log("   ----> c "+c);
         for (let index = 0; index < arr.length; index++) {
           const element = arr[index];
-          console.log(element);
+          // console.log(element);
           if (element.checked) {
-            console.log("+++");
+            // console.log("+++");
             counterOfCheckedRadios += 1;
           }
         }
-        console.log("counteOfCheckedRadios " + counterOfCheckedRadios);
+        // console.log("counteOfCheckedRadios " + counterOfCheckedRadios);
       }
     }
 

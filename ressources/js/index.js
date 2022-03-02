@@ -112,12 +112,20 @@ function onPreviousPageRequested() {
 
 function onNextPageRequested() {
   let openFormFields = FormsWatcher.getOpenFormFields();
-
+  let counterOfCheckedRadios = 0;
   let fieldIsChecked = false;
+  let allRadiosForThisUl = [];
 
   if (openFormFields.length > 0) {
+    // console.log(openFormFields.querySelectorAll('input[type="radio"]').length);
+
     for (let index = 0; index < openFormFields.length; index++) {
       const openField = openFormFields[index];
+      console.log(openField);
+
+      // console.log(
+      //   "HIER " + openField.querySelectorAll('input[type="radio"]').length
+      // );
 
       if (
         openField.getAttribute("data-question-label") === "participant-age" ||
@@ -146,25 +154,84 @@ function onNextPageRequested() {
           toFillAllObligatoryFields();
           return;
         }
-      } else if (openField.getAttribute("class") === "likert-scale") {
-        for (let index = 0; index < openField.children.length; index++) {
-          const openFieldChild = openField.children[index];
+      }
+    }
 
-          if (openFieldChild.getAttribute("class") === "likert-selector") {
-            let allRadioInputInThisLikertScale = openFieldChild.querySelector(
-              'input[type="radio"]'
-            );
+    // for (let index = 0; index < openFormFields.length; index++) {
+    //   const openField = openFormFields[index];
+    //   if (openField.getAttribute("class") === "likert-scale") {
+    //     console.log(
+    //       "ATTRIBUTE LIKERT SCALE openField.children.length 9 " +
+    //         openField.children.length
+    //     );
 
-            if (allRadioInputInThisLikertScale.checked) {
-              fieldIsChecked = true;
-            }
+    //     let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
+    //     console.log("ARR ");
+    //     console.log(arr);
+    //     for (let index = 0; index < arr.length; index++) {
+    //       const element = arr[index];
+    //       console.log(element);
+    //       if (element.checked) {
+    //         console.log("+++");
+    //         counterOfCheckedRadios += 1;
+    //       }
+    //     }
+
+    // console.log("!!!"+counterOfCheckedRadios);
+    // let c = arr.filter((inp)=> inp.checked).length;
+    // console.log("---------> "+c);
+    // for (let index = 0; index < openField.children.length; index++) {
+    //   const openFieldChild = openField.children[index]; //ul
+
+    //   console.log("openFieldChild");
+    //   console.log(openFieldChild);
+    //   console.log(openFieldChild.length);
+
+    //   if (openFieldChild.getAttribute("class") === "likert-selector") {
+    //     let allRadioInputInThisLikertScale = openFieldChild.querySelector(
+    //       'input[type="radio"]'
+    //     );
+
+    //     console.log(allRadioInputInThisLikertScale);
+    //     if (allRadioInputInThisLikertScale.checked) {
+    //       fieldIsChecked = true;
+    //       console.log("TRUE");
+    //       counterOfCheckedRadios += 1;
+    //     }
+    //   }
+    // }
+
+    for (let index = 0; index < openFormFields.length; index++) {
+      const openField = openFormFields[index];
+      if (openField.getAttribute("class") === "likert-scale") {
+        // console.log(
+        //   "ATTRIBUTE LIKERT SCALE openField.children.length 9 " +
+        //     openField.children.length
+        // );
+
+        let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
+        // console.log("ARR ");
+        // console.log(arr);
+        // let c = arr.filter((inp)=> inp.checked === "true").length;
+        // console.log("   ----> c "+c);
+        for (let index = 0; index < arr.length; index++) {
+          const element = arr[index];
+          console.log(element);
+          if (element.checked) {
+            console.log("+++");
+            counterOfCheckedRadios += 1;
           }
         }
+        console.log("counteOfCheckedRadios " + counterOfCheckedRadios);
+      }
+    }
 
-        if (fieldIsChecked === false) {
-          toFillAllObligatoryFields();
-          return;
-        }
+    if (openFormFields.length === 9) {
+      if (counterOfCheckedRadios !== 9) {
+        toFillAllObligatoryFields();
+        return;
+      } else {
+        counterOfCheckedRadios === 0;
       }
     }
     PageController.next();

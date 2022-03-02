@@ -2,22 +2,15 @@
 
 :root {
   --color-primary: #ffffff;
-  --color-secondary: #333333 ;
-  --color-disabled: #efefef ;
+  --color-secondary: #333333;
+  --color-disabled: #efefef;
   --color-accent-one: #419d78ff;
-  /* --color-accent-two: #efe9aeff; */
   --color-accent-two: #acacace6;
   --color-accent-three: #b4656fff;
   --color-accent-four: #7678edff;
   --color-accent-one-transparent: #419d78aa;
   --color-background: #fafafa;
   --color-text: rgb(0, 0, 0);
-  
+
   --font-text: "Roboto Serif", serif;
-  /* --font-header: "Roboto", sans-serif;
-  --font-buttons: "Roboto", sans-serif;
-  --font-input: "Roboto", sans-serif; */
 }
-
-
-

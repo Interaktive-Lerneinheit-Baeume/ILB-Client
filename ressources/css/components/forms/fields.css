@@ -73,7 +73,6 @@
 
 .part {
   float: left;
-  /* width: 50%; */
   margin-top: 5vh;
   margin-bottom: 2vh;
 }
@@ -152,7 +151,6 @@ textarea::placeholder {
 }
 
 textarea {
-  /* padding: 0.5em; */
   border: 0;
   border-bottom: 2px solid var(--color-accent-one);
   resize: vertical;

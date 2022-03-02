@@ -37,7 +37,6 @@ body {
 .circle {
   width: 25px;
   height: 25px;
-  /* background: red; */
   border-color: var(--own-gray);
   border-style: solid;
   border-width: 2px;
@@ -53,11 +52,6 @@ body {
 
 #circles {
   text-align: center;
-}
-
-.datastructure-trees {
-  /* margin-left: 25px; */
-  /* font-size: 16pt; */
 }
 
 #another-kenntnisstand {
@@ -127,7 +121,6 @@ body {
 
 .question-title {
   color: var(--black);
-  /* margin-top: 15px; */
   text-align: left;
   clear: both;
   text-align: justify;

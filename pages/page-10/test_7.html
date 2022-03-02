@@ -8,15 +8,22 @@
   <div class="tasks">
     <div id="tree-print-task" class="question-title">
       <strong>Aufgabe 7)</strong> Die Methode
-      <code class="hljs-title intellij-light language-java function_">print</code> wird rekursiv auf den
-      abgebildeten binären Suchbaum angewendet. Notieren Sie die Ausgabesequenz,
-      die durch den Aufruf der Methode erzeugt wird. <i>Hinweis:</i> Gehen Sie
-      davon aus, dass die jeweiligen Knoten durch den Parameter
-      <code class="intellij-light language-java">node</code> repräsentiert werden. Die zugehörige Klasse
-      <code class="intellij-light language-java">Node</code> verfügt über die Eigenschaften
-      <code class="intellij-light language-java">node.data</code> (Inhalt des Knoten),
+      <code class="hljs-title intellij-light language-java function_"
+        >print</code
+      >
+      wird rekursiv auf den abgebildeten binären Suchbaum angewendet. Notieren
+      Sie die Ausgabesequenz, die durch den Aufruf der Methode erzeugt wird.
+      <i>Hinweis:</i> Gehen Sie davon aus, dass die jeweiligen Knoten durch den
+      Parameter
+      <code class="intellij-light language-java">node</code> repräsentiert
+      werden. Die zugehörige Klasse
+      <code class="intellij-light language-java">Node</code> verfügt über die
+      Eigenschaften
+      <code class="intellij-light language-java">node.data</code> (Inhalt des
+      Knoten),
       <code class="intellij-light language-java">node.left</code>
-      (linker Kindknoten) und <code class="intellij-light language-java">node.right</code> (rechter
+      (linker Kindknoten) und
+      <code class="intellij-light language-java">node.right</code> (rechter
       Kindknoten). Nicht vorhandene Knoten werden durch den Wert null
       repräsentiert.
     </div>
@@ -27,14 +34,25 @@
       <code id="print_code" class="print-methode intellij-light language-java">
         private void print(Node node) {</code
       ><br />
-      <code class="print-methode id-number intellij-light language-java">if (node == null) {</code><br />
-      <code class="print-methode id-number-this intellij-light language-java">return;</code><br />
-      <code class="print-methode id-number intellij-light language-java">}</code><br />
-      <code class="print-methode id-number intellij-light language-java">print(node.left);</code><br />
-      <code class="print-methode id-number intellij-light language-java">System.out.print(node.data);</code
+      <code class="print-methode id-number intellij-light language-java"
+        >if (node == null) {</code
       ><br />
-      <code class="print-methode id-number intellij-light language-java">print(node.right);</code><br />
-      <code class="print-methode id-number intellij-light language-java">}</code><br />
+      <code class="print-methode id-number-this intellij-light language-java"
+        >return;</code
+      ><br />
+      <code class="print-methode id-number intellij-light language-java">}</code
+      ><br />
+      <code class="print-methode id-number intellij-light language-java"
+        >print(node.left);</code
+      ><br />
+      <code class="print-methode id-number intellij-light language-java"
+        >System.out.print(node.data);</code
+      ><br />
+      <code class="print-methode id-number intellij-light language-java"
+        >print(node.right);</code
+      ><br />
+      <code class="print-methode id-number intellij-light language-java">}</code
+      ><br />
       <code class="print-methode">}</code>
     </div>
 

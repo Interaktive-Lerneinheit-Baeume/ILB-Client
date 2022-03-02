@@ -42,7 +42,6 @@ class PageRenderer extends Observable {
 
 
   getActualOpenPages(){
-    console.log(pages); 
     let openPages = [];
     for (let index = 0; index < pages.length; index++) {
       const p = pages[index];
@@ -51,8 +50,7 @@ class PageRenderer extends Observable {
       }
       
     }
-    // let openPages = pages.filter((page) => (page.classList.contains("hidden")));
-    console.log(openPages);
+ 
     return openPages;
   }
 }

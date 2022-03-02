@@ -50,7 +50,7 @@ function init() {
   document.addEventListener("keypress", onKeyEnterPressed);
 
   ExperimentManager.fetchExperiment().then(
-    (experiment) => {
+    (currExperiment) => {
       BookLoader.load().then((pages) => {
         initPages(pages);
 
@@ -63,7 +63,7 @@ function init() {
           })
         );
 
-        experiment = experiment;
+        experiment = currExperiment;
         initViews();
       });
     },
@@ -119,7 +119,7 @@ function onNextPageRequested() {
     // console.log(openFormFields.querySelectorAll('input[type="radio"]').length);
 
     for (let index = 0; index < openFormFields.length; index++) {
-      // const openField = openFormFields[index];
+      const openField = openFormFields[index];
       // console.log(openField);
 
       if (

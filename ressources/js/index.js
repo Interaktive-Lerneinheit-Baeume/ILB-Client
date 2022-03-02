@@ -7,6 +7,7 @@ import NavController from "./book/NavController.js";
 import PageController from "./book/PageController.js";
 import PageRenderer from "./book/PageRenderer.js";
 import MainSite from "./ui/MainSite.js";
+import SplashScreen from "./ui/visualizers_part/SplashScreens.js";
 
 let experiment = {};
 const grayColor = "#acacace6";
@@ -16,10 +17,6 @@ let book = document.querySelector(".book");
 const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
-  //   offset: [
-  //     x: '15px',
-  //     y: '-5px',
-  // ],
   showConfirmButton: false,
   timer: 4000,
   height: 200,
@@ -54,7 +51,7 @@ function infoAboutSelfAssessment() {
 function onKeyEnterPressed(e) {
   if (e.code === "Enter") {
     e.preventDefault();
-    splashStart.classList.add("hidden");
+    SplashScreen.removeStartSplash();
     book.classList.remove("hidden");
     NavController.enableNextPageButton();
     document.removeEventListener("keypress", onKeyEnterPressed);
@@ -62,21 +59,15 @@ function onKeyEnterPressed(e) {
 }
 
 function init() {
-  splashStart = document.querySelector(".splash-start");
-  splashEnd = document.querySelector(".splash-end");
- 
-  // let nextButton = document.querySelector(".nav-button.next");
-  // console.log(nextButton.classList);
-
-  console.log("before");
+  SplashScreen.startWholePlattform();
   document.addEventListener("keypress", onKeyEnterPressed);
 
-  console.log("after");
   ExperimentManager.fetchExperiment().then(
     (experiment) => {
       BookLoader.load().then((pages) => {
         initPages(pages);
-        document.querySelector(".splash").classList.add("hidden");
+
+       SplashScreen.removeDownloadSplash();
 
         EventBus.relayEvent(
           new Event("experimentStarted", {
@@ -90,10 +81,7 @@ function init() {
       });
     },
     () => {
-      console.log("kein experimentß");
-      document
-        .querySelector(".no_experiment_available")
-        .classList.remove("hidden");
+      SplashScreen.breakWholePlattform();
     }
   );
 }
@@ -106,7 +94,6 @@ function initViews() {
   });
 
   let idNumbersViewing = document.getElementsByClassName("id-number-viewing");
-  console.log("enabling");
 
   if (experiment.engagement === "constructing") {
     mainSite.showConstructVis();
@@ -177,8 +164,10 @@ function onPageSelected(event) {
         value: "experiment ended",
       })
     );
-    splashEnd.classList.remove("hidden");
-    splashStart.classList.add("hidden");
+    SplashScreen.sendEndSplash();
+    SplashScreen.removeStartSplash();
+    // splashEnd.classList.remove("hidden");
+    // splashStart.classList.add("hidden");
   }
 }
 

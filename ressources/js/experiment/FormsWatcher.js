@@ -2,14 +2,6 @@ import { Event, Observable } from "../utils/Observable.js";
 
 let isInitialized = false;
 
-function sendBreakSplash() {
-  document.querySelector(".no_experiment_available").classList.remove("hidden");
-}
-
-function sendEndSplash() {
-  document.querySelector(".experiment_ended").classList.remove("hidden");
-}
-
 function onRadioButtonChanged(event) {
   let likertValue = event.target.closest("label").getAttribute("data-value"),
     questionLabel = event.target
@@ -17,13 +9,17 @@ function onRadioButtonChanged(event) {
       .getAttribute("data-question-label"),
     questionId = event.target
       .closest(".likert-scale")
-      .getAttribute("data-question-id");
+      .getAttribute("data-question-id"),
+    questionOptional = event.target
+      .closest(".likert-scale")
+      .getAttribute("data-optional");
 
   this.notifyAll(
     new Event("likertItemChanged", {
       label: questionLabel,
       id: questionId,
       value: likertValue,
+      optional: questionOptional
     })
   );
 }
@@ -48,7 +44,6 @@ function getListDataFromTarget(el) {
     end_time: Date(Date.now()).toString(),
   };
 }
-
 
 function onInputFormChanged(event) {
   let target = event.target,
@@ -131,19 +126,6 @@ class FormsWatcher extends Observable {
     return unfilledRequiredFields;
   }
 
-  /**
-   * TODO: Splash screen should not be handled in FormsWatcher. This module's concerns
-   * are only for the differen forms and scales used in the experiment. If neccessary,
-   * move splash screen actions to a new separated module (i.g. SplashScreen).
-   *
-   */
-  breakWholePlattform() {
-    sendBreakSplash();
-  }
-
-  endWholePlattform() {
-    sendEndSplash();
-  }
 }
 
 export default new FormsWatcher();

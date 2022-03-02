@@ -2,6 +2,7 @@ import { Event, Observable } from "../utils/Observable.js";
 import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 import Storage from "./../data_storage/Storage.js";
+import SplashScreen from "./../ui/visualizers_part/SplashScreens.js";
 
 let storage,
   dataID,
@@ -12,15 +13,8 @@ function checkPageFocus() {
   if (document.hasFocus()) {
     storage.getExperiment(dataID).then(function (data) {
       if (data.state == "open") {
-        //   mainSites.hideConstructVis();
-        //   mainSites.hideViewingVis();
-
-        //   startSite.hideTheSite(startEl);
-
-        //   showTimeOverOrEndElement("time_over");
         clearInterval(intervalForCheckingFocus);
-
-        FormsWatcher.breakWholePlattform();
+        SplashScreen.breakWholePlattform();
 
         EventBus.relayEvent(
           new Event("experimentBroken", {
@@ -37,7 +31,7 @@ function checkPageFocus() {
 function endExperiment() {
   storage.closeExperiment(currentExperiment.id, currentExperiment);
   clearInterval(intervalForCheckingFocus);
-  FormsWatcher.endWholePlattform();
+  SplashScreen.endWholePlattform();
 }
 
 function onExperimentEventHandling(elementToAdd) {
@@ -54,45 +48,23 @@ function onPageLogging(elementToAdd) {
     currentExperiment["page-iterations"] = [];
     currentExperiment["page-iterations"].push(elementToAdd.originalEvent);
   } else {
-    // doubleChecking(currentExperiment["page-iterations"]);
     currentExperiment["page-iterations"].push(elementToAdd.originalEvent);
   }
 }
 
 function onConstructControl(event) {
   let elementToAdd = event.data;
-
-  // TODO: Remove debug output
-  console.log("constr ");
-  console.log(elementToAdd);
-
   if (currentExperiment["constructing-control"] == null) {
     currentExperiment["constructing-control"] = [];
     currentExperiment["constructing-control"].push(elementToAdd);
 
-    // TODO: Remove debug output
-    console.log("constr NULL ");
-    console.log(elementToAdd);
   } else {
-    // currentExperiment["constructing-control"].forEach((element) => {
-    //   if (element.info === elementToAdd.info) {
-    //     console.log("constr  INFO GLEICH");
-    //     console.log(elementToAdd);
     doubleChecking(currentExperiment["constructing-control"], elementToAdd);
-    //   } else {
-    //     console.log("constr INFO UNGLEICH");
-    //     console.log(elementToAdd);
-    // doubleChecking(currentExperiment["constructing-control"], elementToAdd);
-    //  currentExperiment["constructing-control"].push(elementToAdd);
-    //   }
-    // });
   }
 }
 
 function onPlayAnimationButtonClicked(elementToAdd) {
-  // TODO: Remove debug output
-  console.log("elementToAdd.originalEvent");
-  console.log(elementToAdd.originalEvent);
+ 
   if (currentExperiment["animation-control"] == null) {
     currentExperiment["animation-control"] = [];
     currentExperiment["animation-control"].push(elementToAdd.originalEvent);
@@ -105,19 +77,13 @@ function onPlayAnimationButtonClicked(elementToAdd) {
 }
 
 function onLikertItemChanged(event) {
-  // TODO: Remove debug output
-  console.log("onlikert");
   let elementToAdd = event.data;
-
-  // TODO: Remove debug output
-  console.log(elementToAdd);
+  
   if (elementToAdd.id === "self-assessment-java") {
     if (currentExperiment["self-assessment-java"] == null) {
       currentExperiment["self-assessment-java"] = [];
       currentExperiment["self-assessment-java"].push(elementToAdd);
     } else {
-      console.log("LIKERT double");
-      console.log(elementToAdd);
       doubleChecking(currentExperiment["self-assessment-java"], elementToAdd);
     }
   }
@@ -127,8 +93,6 @@ function onLikertItemChanged(event) {
       currentExperiment["self-assessment-javascript"] = [];
       currentExperiment["self-assessment-javascript"].push(elementToAdd);
     } else {
-      console.log("LIKERT double");
-      console.log(elementToAdd);
       doubleChecking(currentExperiment["self-assessment-javascript"], elementToAdd);
     }
   }
@@ -138,8 +102,6 @@ function onLikertItemChanged(event) {
       currentExperiment["self-assessment-python"] = [];
       currentExperiment["self-assessment-python"].push(elementToAdd);
     } else {
-      console.log("LIKERT double");
-      console.log(elementToAdd);
       doubleChecking(currentExperiment["self-assessment-python"], elementToAdd);
     }
   }
@@ -154,7 +116,6 @@ function onFormInputChanged(event) {
       currentExperiment["experience"].push(elementToAdd);
     } else {
       doubleChecking(currentExperiment["experience"], elementToAdd);
-      //   currentExperiment["experience"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "test-questions") {
     if (currentExperiment["test-questions"] == null) {
@@ -162,7 +123,6 @@ function onFormInputChanged(event) {
       currentExperiment["test-questions"].push(elementToAdd);
     } else {
       doubleChecking(currentExperiment["test-questions"], elementToAdd);
-      //   currentExperiment["test-questions"].push(elementToAdd);
     }
   } else if (elementToAdd.id === "demographic_data") {
     if (currentExperiment["demographic_data"] == null) {
@@ -173,14 +133,10 @@ function onFormInputChanged(event) {
     }
   }
 
-  console.log(currentExperiment);
 }
 
 function onFormInputFocused(event) {
   let elementToAdd = event.data;
-
-  console.log("FOCUS");
-  console.log(elementToAdd);
 
   if (elementToAdd.id === "test-questions") {
     if (currentExperiment["test-questions"] == null) {
@@ -188,21 +144,11 @@ function onFormInputFocused(event) {
       currentExperiment["test-questions"].push(elementToAdd);
     } else {
       doubleChecking(currentExperiment["test-questions"], elementToAdd, "focused");
-      //   currentExperiment["test-questions"].push(elementToAdd);
     }
   }
-
-  console.log(currentExperiment);
 }
 
-// TODO wenn wir immer die Daten von den Listeners überschreiben wollen
-//momentan nur für participan-degree - Ausbildungsinfo
 function doubleChecking(keyFieldOfExperiment, elementToAdd, focused = "another") {
-  // TODO: Remove debug output
-  console.log("elementToAdd");
-  console.log(elementToAdd);
-  console.log("keyFieldOfExperiment" + keyFieldOfExperiment.length);
-  console.log(keyFieldOfExperiment);
 
   let uniqueLabels = [];
   let uniqueInfos = [];
@@ -218,18 +164,12 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd, focused = "another")
   let setOfUniqueLables = new Set(uniqueLabels);
   let setOfUniqueInfos = new Set(uniqueInfos);
 
-  // TODO: Remove debug output
-  console.log("set");
-
-  console.log(setOfUniqueLables);
-
   if (
     setOfUniqueLables.has(elementToAdd.label) &&
     elementToAdd.label !== "participant-visited-classes" && elementToAdd.label !== "Aufgabe 1)" && elementToAdd.label !== "Aufgabe 2)"
   ) {
     for (let index = 0; index < keyFieldOfExperiment.length; index++) {
       let demographicObject = keyFieldOfExperiment[index];
-      console.log(demographicObject);
       if (
         demographicObject.label === elementToAdd.label &&
         elementToAdd.label !== undefined
@@ -268,18 +208,6 @@ function doubleChecking(keyFieldOfExperiment, elementToAdd, focused = "another")
     keyFieldOfExperiment.push(elementToAdd);
   }
 
-//   if(elementToAdd.label === "Aufgabe 1)"){
-//     if(setOfUniqueValues.has(elementToAdd.value)){
-
-//     }
-//   }
-
-  let setOfUniqueValues = new Set(uniqueValues);
-
-  for (let index = 0; index < setOfUniqueValues.length; index++) {
-      const element = setOfUniqueValues[index];
-      
-  }
 }
 
 function onGlobalEvent(event) {

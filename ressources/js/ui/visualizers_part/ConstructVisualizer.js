@@ -30,7 +30,6 @@ const grayColor = "#acacace6";
 
 const Toast = Swal.mixin({
   toast: true,
-  // center-start
   position: "top-start",
   showConfirmButton: false,
   timer: 2500,

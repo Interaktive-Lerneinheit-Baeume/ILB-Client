@@ -13,25 +13,13 @@ class MainSite extends Observable {
     this.visualizerElConstructing = document.querySelector("#constructing");
 
     viewingVisualizer = new ViewingVisualizer(this.visualizerElViewing);
-    
+
     constructVisualizer = new ConstructVisualizer(
       this.visualizerElConstructing
     );
 
     questionsArea = new QuestionsArea();
   }
-
-  // getQuestionArea(){
-  //   return questionsArea;
-  // }
-
-  // hideTheElement(el) {
-  //   el.style.display = "none";
-  // }
-
-  // showTheElement(el) {
-  //   el.style.display = "block";
-  // }
 
   showConstructVis() {
     this.visualizerElConstructing.style.display = "block";
@@ -48,27 +36,6 @@ class MainSite extends Observable {
   hideViewingVis() {
     this.visualizerElViewing.style.display = "none";
   }
-
-  // sendToExperienceButtonClicked() {
-  //   let wholeQuestionAnswers = questionsArea.getAllQuestionAnswers();
-  //   let counterPopUp = constructVisualizer.getAllInfo();
-
-  //   let endTime = Date(Date.now()).toString();
-  //   let end_time = { end_time: endTime };
-
-  //   let wholeTargetInfo = Object.assign(wholeQuestionAnswers, counterPopUp);
-  //   let targetInfo = Object.assign(wholeTargetInfo, end_time);
-
-  //   let event = new Event("onSendToExperienceButtonClick", targetInfo);
-  //   this.notifyAll(event);
-  // }
-
-  // sendToQuestionsButtonClicked() {
-  //   let event = new Event("onSendToQuestionsButtonClick");
-  //   this.notifyAll(event);
-
-  //   this.showTheElement(testQuestionsAreaEl);
-  // }
 }
 
 export default MainSite;

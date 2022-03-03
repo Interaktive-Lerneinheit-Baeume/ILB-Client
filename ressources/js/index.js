@@ -18,7 +18,6 @@ const Toast = Swal.mixin({
   position: "top-end",
   showConfirmButton: false,
   timer: 4000,
-  target: document.getElementById("myDiv"),
   timerProgressBar: true,
   didOpen: (toast) => {
     toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -29,7 +28,7 @@ const Toast = Swal.mixin({
 function toFillAllObligatoryFields() {
   Toast.fire({
     icon: "info",
-    width: 600,
+    width: 550,
     iconColor: grayColor,
     title: "Bitte alle nicht optionalen Felder befüllen!",
   });

@@ -31,6 +31,14 @@
   color: var(--color-accent-one);
 }
 
+.splash p, .splash-start p, .splash-end p, .no-experiment-available p {
+  margin: 0 auto;
+  margin-bottom: 0.5vh;
+  width: 70vw;
+  line-height: 1.5em;
+  text-align: center;
+}
+
 .no_experiment_available {
   display: flex;
   flex-direction: column;

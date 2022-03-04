@@ -7,7 +7,9 @@
 >
   <div class="tasks">
     <p>
-      &nbsp;&nbsp;&nbsp;Baum ist ein aus Knoten und Kanten bestehender
+      <!-- 
+        Das war so
+        &nbsp;&nbsp;&nbsp;Baum ist ein aus Knoten und Kanten bestehender
       <i>Graph</i>, besitzt dabei immer genau <i>eine Wurzel</i> und enthält
       <i>keine Zyklen</i>. Außer der Wurzel sind alle Knoten durch genau eine
       Kante (Pfad) mit <i>einem Elternknoten</i> (Vorgänger) verbunden und wird
@@ -21,9 +23,32 @@
       <code class="intellij-light language-java">k.left</code> und einen rechten
       - <code class="intellij-light language-java">k.right</code>. Unter der
       Ordnung eines binären Baums versteht man die maximale Anzahl von
+      Kindknoten pro Knoten.<br /> -->
+
+      &nbsp;&nbsp;&nbsp;Ein Baum ist ein aus Knoten und Kanten bestehender
+      <i>Graph</i>, besitzt dabei immer genau <i>eine Wurzel</i> und enthält
+      <i>keine</i>
+      <a href="https://de.wikipedia.org/wiki/Zyklus_(Graphentheorie)">Zyklen</a
+      >. Außer der Wurzel sind alle Knoten durch genau eine Kante (Pfad) mit
+      <i>einem Elternknoten</i> (Vorgänger) verbunden und wird als dessen
+      <i>Kindknoten</i> (Nachfolger) bezeichnet. Knoten ohne Nachfolger heißen
+      <i>Blatt</i>. Alle Knoten mit Nachfolgern werden als
+      <a
+        href="https://de.wikipedia.org/wiki/Blätter_und_innere_Knoten_in_der_Graphentheorie"
+        >innere Knoten</a
+      >
+      bezeichnet. Bäume wachsen in diesem Kontext „unnatürlich“ von oben
+      (Wurzel) nach unten (Blatt).<br />
+
+      &nbsp;&nbsp;&nbsp;Ein binärer Baum ist ein geordneter Baum, bei dem jeder
+      Knoten maximal zwei Nachfolger hat: einen linken -
+      <code class="intellij-light language-java">k.left</code> und einen rechten
+      - <code class="intellij-light language-java">k.right</code>. Unter der
+      Ordnung eines binären Baums versteht man die maximale Anzahl von
       Kindknoten pro Knoten.<br />
 
-      &nbsp;&nbsp;&nbsp;Binärer Suchbaum ist ein geordneter binärer Baum, dessen
+      <!--
+        das war so &nbsp;&nbsp;&nbsp;Binärer Suchbaum ist ein geordneter binärer Baum, dessen
       Knoten Schlüsselwerte enthalten. Über diese Werte erfolgt die Suche im
       Baum. Alle Knoten
       <code class="intellij-light language-java">k</code> enthalten einen
@@ -32,7 +57,11 @@
       <code class="intellij-light language-java">k.left</code> und
       <code class="intellij-light language-java">k.right</code> zugegriffen. Die
       Höhe des Baums entspricht dem längsten Pfad von der Wurzel zum tiefesten
-      Blatt plus 1.<br />
+      Blatt plus 1.<br /> -->
+
+      &nbsp;&nbsp;&nbsp;Ein binärer Suchbaum ist ein geordneter binärer Baum,
+      dessen Knoten Schlüsselwerte enthalten. Über diese Werte erfolgt die Suche
+      im Baum.
     </p>
   </div>
 </div>

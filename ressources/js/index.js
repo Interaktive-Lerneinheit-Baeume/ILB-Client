@@ -115,11 +115,9 @@ function onNextPageRequested() {
   let fieldIsChecked = false;
 
   if (openFormFields.length > 0) {
-    // console.log(openFormFields.querySelectorAll('input[type="radio"]').length);
 
     for (let index = 0; index < openFormFields.length; index++) {
       const openField = openFormFields[index];
-      // console.log(openField);
 
       if (
         openField.getAttribute("data-question-label") === "participant-age" ||
@@ -132,8 +130,7 @@ function onNextPageRequested() {
           openField.value === ""
         ) {
           toFillAllObligatoryFields();
-          // console.log(openField.value);
-          // console.log("RETURN");
+    
           return;
         }
       } else if (
@@ -197,39 +194,30 @@ function onNextPageRequested() {
     //   }
     // }
 
-    for (let index = 0; index < openFormFields.length; index++) {
-      const openField = openFormFields[index];
-      if (openField.getAttribute("class") === "likert-scale") {
-        // console.log(
-        //   "ATTRIBUTE LIKERT SCALE openField.children.length 9 " +
-        //     openField.children.length
-        // );
+    // for (let index = 0; index < openFormFields.length; index++) {
+    //   const openField = openFormFields[index];
+    //   if (openField.getAttribute("class") === "likert-scale") {
 
-        let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
-        // console.log("ARR ");
-        // console.log(arr);
-        // let c = arr.filter((inp)=> inp.checked === "true").length;
-        // console.log("   ----> c "+c);
-        for (let index = 0; index < arr.length; index++) {
-          const element = arr[index];
-          // console.log(element);
-          if (element.checked) {
-            // console.log("+++");
-            counterOfCheckedRadios += 1;
-          }
-        }
-        // console.log("counteOfCheckedRadios " + counterOfCheckedRadios);
-      }
-    }
 
-    if (openFormFields.length === 9) {
-      if (counterOfCheckedRadios !== 9) {
-        toFillAllObligatoryFields();
-        return;
-      } else {
-        counterOfCheckedRadios === 0;
-      }
-    }
+    //     let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
+
+    //     for (let index = 0; index < arr.length; index++) {
+    //       const element = arr[index];
+    //       if (element.checked) {
+    //         counterOfCheckedRadios += 1;
+    //       }
+    //     }
+    //   }
+    // }
+
+    // if (openFormFields.length === 9) {
+    //   if (counterOfCheckedRadios !== 9) {
+    //     toFillAllObligatoryFields();
+    //     return;
+    //   } else {
+    //     counterOfCheckedRadios === 0;
+    //   }
+    // }
     PageController.next();
   } else {
     let openPages = PageRenderer.getActualOpenPages();

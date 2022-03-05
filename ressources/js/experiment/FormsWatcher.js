@@ -80,15 +80,34 @@ function findForms(context) {
   let likertScaleButtons = document.querySelectorAll(
       '.likert-scale input[type="radio"]'
     ),
-    formInputs = document.querySelectorAll(".field-set input"),
-    textAreaInputs = document.querySelectorAll("textarea"); // TODO: Combine with previous selector if possible
+    formInputs = document.querySelectorAll(".field-set input textarea");
+    console.log(formInputs);
+  let textAreaInputs = document.querySelectorAll(".field-set textarea"); 
 
   likertScaleButtons.forEach((radioButton) =>
     radioButton.addEventListener("change", onRadioButtonChanged.bind(context))
   );
+
   formInputs.forEach((inputs) =>
     inputs.addEventListener("change", onInputFormChanged.bind(context))
   );
+
+  console.log(Array.from(formInputs));
+  console.log(Array.from(formInputs).length);
+  console.log(Array.from(formInputs).filter((el) => el.tagName === "textarea"));
+
+  // Array.from(formInputs)
+  //   .filter((el) => el.tagName === "textarea")
+  //   .forEach((inputs) =>
+  //     inputs.addEventListener("change", onInputFormChanged.bind(context))
+  //   );
+
+  // Array.from(formInputs)
+  //   .filter((el) => el.tagName === "textarea")
+  //   .forEach((inputs) =>
+  //     inputs.addEventListener("focus", onInputFormFocused.bind(context))
+  //   );
+
   textAreaInputs.forEach((inputs) =>
     inputs.addEventListener("change", onInputFormChanged.bind(context))
   );
@@ -123,8 +142,6 @@ class FormsWatcher extends Observable {
 
     return unfilledRequiredFields;
   }
-
-
 }
 
 export default new FormsWatcher();

@@ -215,3 +215,7 @@ button:hover {
   width: 650px !important;
   height: 450px !important;
 }
+
+p {
+  text-align: justify;
+}

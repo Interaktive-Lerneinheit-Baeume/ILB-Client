@@ -80,7 +80,7 @@ function findForms(context) {
   let likertScaleButtons = document.querySelectorAll(
       '.likert-scale input[type="radio"]'
     ),
-    formInputs = document.querySelectorAll(".field-set input textarea");
+    formInputs = document.querySelectorAll(".field-set input");
     console.log(formInputs);
   let textAreaInputs = document.querySelectorAll(".field-set textarea"); 
 

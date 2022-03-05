@@ -2,19 +2,19 @@ import { Event, Observable } from "../utils/Observable.js";
 import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 import Storage from "./../data_storage/Storage.js";
-import SplashScreen from "./../ui/visualizers_part/SplashScreens.js";
+import SplashScreens from "./../ui/visualizers_part/SplashScreens.js";
 
 let storage,
   dataID,
   currentExperiment = {},
-  intervalForCheckingFocus;
+intervalForCheckingFocus;
 
 function checkPageFocus() {
   if (document.hasFocus()) {
     storage.getExperiment(dataID).then(function (data) {
       if (data.state == "open") {
         clearInterval(intervalForCheckingFocus);
-        SplashScreen.breakWholePlattform();
+        SplashScreens.setNoExperimentAvailableSplash();
         storage.breakProcess(data.id);
       }
     });
@@ -23,8 +23,6 @@ function checkPageFocus() {
 
 function endExperiment() {
   storage.closeExperiment(currentExperiment.id, currentExperiment);
-  clearInterval(intervalForCheckingFocus);
-  SplashScreen.endWholePlattform();
 }
 
 function onExperimentEventHandling(elementToAdd) {
@@ -47,8 +45,9 @@ function onPageLogging(elementToAdd) {
   if (elementToAdd.originalEvent.data.left_page_title === "time-end-over") {
     onExperimentEventHandling(elementToAdd);
     endExperiment();
-    SplashScreen.endWholePlattform();
-    SplashScreen.removeStartSplash();
+    SplashScreens.setSplashScreen();
+    SplashScreens.setTimeOverSplash();
+    
   }
 }
 

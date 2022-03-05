@@ -18,13 +18,6 @@
   right: 0;
 }
 
-/* .page h1,
-h2,
-h3,
-h4 {
-  font-family: var(--header-font);
-} */
-
 .page h1 {
   font-size: 1.5em;
   color: var(--color-accent-one);
@@ -38,18 +31,11 @@ h4 {
 }
 
 .subtitle {
-    text-align: justify;
-    margin-top: 10vh;
-    /* padding-top: 10vh; */
-    margin-bottom: 10vh;
-  }
-
-/* .page p {
   text-align: justify;
   margin-top: 10vh;
-} */
+  margin-bottom: 10vh;
+}
 
 .centering {
   margin-top: 20vh;
 }
-

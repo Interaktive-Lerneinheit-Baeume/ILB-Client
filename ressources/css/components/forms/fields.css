@@ -145,13 +145,12 @@
   background-color: var(--color-accent-one-transparent);
 }
 
-textarea::placeholder {
+.field-set textarea::placeholder {
   font-weight: inherit;
   font-family: var(--font-input);
 }
 
-textarea {
+.field-set textarea {
   border: 0;
-  border-bottom: 2px solid var(--color-accent-one);
   resize: vertical;
 }

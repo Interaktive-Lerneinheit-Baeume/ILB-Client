@@ -2,6 +2,7 @@ import { Event, Observable } from "../utils/Observable.js";
 import NavController from "./NavController.js";
 import EventBus from "./../utils/EventBus.js";
 import ExperimentManager from "../experiment/ExperimentManager.js";
+import SplashScreens from "../ui/visualizers_part/SplashScreens.js";
 
 let currentExperiment = {}, pages;
 
@@ -38,6 +39,8 @@ class PageRenderer extends Observable {
     }
 
     NavController.setTitleOnNextButton(page.title);
+
+    console.log("page.el.title"+page.el.title);
   }
 
 

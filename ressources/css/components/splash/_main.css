@@ -13,6 +13,10 @@
   font-size: 2em;
 }
 
+.welcome_splash {
+  z-index: 1000;
+}
+
 .start-end-end {
   width: 70%;
   text-align: center;
@@ -23,7 +27,7 @@
 }
 
 .splash h1 {
-  font-size: 0.6em;
+  font-size: 1.6em;
   color: var(--color-accent-one);
 }
 
@@ -31,57 +35,12 @@
   color: var(--color-accent-one);
 }
 
-.splash p, .splash-start p, .splash-end p, .no-experiment-available p {
+.splash p {
   margin: 0 auto;
   margin-bottom: 0.5vh;
   width: 70vw;
   line-height: 1.5em;
   text-align: center;
-}
-
-.no_experiment_available {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  text-align: center;
-  font-size: 2em;
-  z-index: 99999;
-}
-
-.no_experiment_available h1 {
-  font-size: 1em;
-  color: var(--color-secondary);
-}
-
-.experiment_ended {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99999;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  text-align: center;
-  font-size: 2em;
-}
-
-.experiment_ended h1 {
-  font-size: 1em;
-  color: var(--color-accent-one);
-}
-
-#myDiv .swal2-container {
-  position: inherit;
-  z-index: 100;
 }
 
 body.swal2-shown {

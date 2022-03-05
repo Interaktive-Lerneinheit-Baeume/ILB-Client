@@ -3,7 +3,6 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  list-style-image: url("./../assets/leaf.png");
 }
 
 .tasks ul li {

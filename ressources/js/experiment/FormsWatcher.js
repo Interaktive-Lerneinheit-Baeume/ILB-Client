@@ -51,7 +51,7 @@ function onInputFormChanged(event) {
   if (["checkbox", "radio"].includes(target.getAttribute("type"))) {
     data = getListDataFromTarget(target);
   } else {
-    data = getFieldDataFromTarget(target); //text - type
+    data = getFieldDataFromTarget(target); //type = text
   }
   this.notifyAll(new Event("formInputChanged", data));
 }
@@ -80,9 +80,9 @@ function findForms(context) {
   let likertScaleButtons = document.querySelectorAll(
       '.likert-scale input[type="radio"]'
     ),
-    formInputs = document.querySelectorAll(".field-set input");
-    console.log(formInputs);
-  let textAreaInputs = document.querySelectorAll(".field-set textarea"); 
+    formInputs = document.querySelectorAll(
+      ".field-set input, .field-set textarea"
+    );
 
   likertScaleButtons.forEach((radioButton) =>
     radioButton.addEventListener("change", onRadioButtonChanged.bind(context))
@@ -92,29 +92,11 @@ function findForms(context) {
     inputs.addEventListener("change", onInputFormChanged.bind(context))
   );
 
-  console.log(Array.from(formInputs));
-  console.log(Array.from(formInputs).length);
-  console.log(Array.from(formInputs).filter((el) => el.tagName === "textarea"));
-
-  // Array.from(formInputs)
-  //   .filter((el) => el.tagName === "textarea")
-  //   .forEach((inputs) =>
-  //     inputs.addEventListener("change", onInputFormChanged.bind(context))
-  //   );
-
-  // Array.from(formInputs)
-  //   .filter((el) => el.tagName === "textarea")
-  //   .forEach((inputs) =>
-  //     inputs.addEventListener("focus", onInputFormFocused.bind(context))
-  //   );
-
-  textAreaInputs.forEach((inputs) =>
-    inputs.addEventListener("change", onInputFormChanged.bind(context))
-  );
-
-  textAreaInputs.forEach((inputs) =>
-    inputs.addEventListener("focus", onInputFormFocused.bind(context))
-  );
+  Array.from(formInputs)
+    .filter((el) => el.classList.contains("textarea_input"))
+    .forEach((inputs) =>
+      inputs.addEventListener("focus", onInputFormFocused.bind(context))
+    );
 }
 
 class FormsWatcher extends Observable {

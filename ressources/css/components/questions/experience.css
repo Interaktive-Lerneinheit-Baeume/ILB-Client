@@ -11,16 +11,16 @@
     font-family: var(--font-input);
 }
 
-/* .textarea_input_print {
+.textarea_input_print {
     width: 100%;
     border: none;
+    height: 6vh;
     background-color: var(--color-background);
     outline: none;
     resize: vertical;
     padding: 0.5em;
-    margin-top: 2vh;
     font-family: var(--font-input);
-} */
+}
 
 .textarea_input_print:focus {
     background-color: var(--color-accent-one);

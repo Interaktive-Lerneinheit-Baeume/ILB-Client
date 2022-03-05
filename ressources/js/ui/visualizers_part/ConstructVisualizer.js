@@ -145,7 +145,7 @@ function infoAboutPrecisePosition() {
   Toast.fire({
     icon: "info",
     iconColor: grayColor,
-    width: 550,
+    width: 620,
     title:
       "<br>Positioniere präziser.<br>Der Abstand beträgt circa 2 * Radius des Knotens!",
   });

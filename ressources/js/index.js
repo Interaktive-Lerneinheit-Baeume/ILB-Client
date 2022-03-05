@@ -114,9 +114,9 @@ function onPreviousPageRequested() {
 }
 
 function onNextPageRequested() {
-  let openFormFields = FormsWatcher.getOpenFormFields();
-  let counterOfCheckedRadios = 0;
-  let fieldIsChecked = false;
+  // let openFormFields = FormsWatcher.getOpenFormFields();
+  // let counterOfCheckedRadios = 0;
+  // let fieldIsChecked = false;
 
   // if (openFormFields.length > 0) {
 
@@ -134,7 +134,7 @@ function onNextPageRequested() {
   //         openField.value === ""
   //       ) {
   //         toFillAllObligatoryFields();
-
+         
   //         return;
   //       }
   //     } else if (
@@ -154,74 +154,29 @@ function onNextPageRequested() {
   //     }
   //   }
 
-  // for (let index = 0; index < openFormFields.length; index++) {
-  //   const openField = openFormFields[index];
-  //   if (openField.getAttribute("class") === "likert-scale") {
-  //     console.log(
-  //       "ATTRIBUTE LIKERT SCALE openField.children.length 9 " +
-  //         openField.children.length
-  //     );
+    // for (let index = 0; index < openFormFields.length; index++) {
+    //   const openField = openFormFields[index];
+    //   if (openField.getAttribute("class") === "likert-scale") {
+    //     let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
+  
+    //     for (let index = 0; index < arr.length; index++) {
+    //       const element = arr[index];
+    //       if (element.checked) {
+    //         counterOfCheckedRadios += 1;
+    //       }
+    //     }
+    //   }
+    // }
 
-  //     let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
-  //     console.log("ARR ");
-  //     console.log(arr);
-  //     for (let index = 0; index < arr.length; index++) {
-  //       const element = arr[index];
-  //       console.log(element);
-  //       if (element.checked) {
-  //         console.log("+++");
-  //         counterOfCheckedRadios += 1;
-  //       }
-  //     }
-
-  // console.log("!!!"+counterOfCheckedRadios);
-  // let c = arr.filter((inp)=> inp.checked).length;
-  // console.log("---------> "+c);
-  // for (let index = 0; index < openField.children.length; index++) {
-  //   const openFieldChild = openField.children[index]; //ul
-
-  //   console.log("openFieldChild");
-  //   console.log(openFieldChild);
-  //   console.log(openFieldChild.length);
-
-  //   if (openFieldChild.getAttribute("class") === "likert-selector") {
-  //     let allRadioInputInThisLikertScale = openFieldChild.querySelector(
-  //       'input[type="radio"]'
-  //     );
-
-  //     console.log(allRadioInputInThisLikertScale);
-  //     if (allRadioInputInThisLikertScale.checked) {
-  //       fieldIsChecked = true;
-  //       console.log("TRUE");
-  //       counterOfCheckedRadios += 1;
-  //     }
-  //   }
-  // }
-
-  // for (let index = 0; index < openFormFields.length; index++) {
-  //   const openField = openFormFields[index];
-  //   if (openField.getAttribute("class") === "likert-scale") {
-
-  //     let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
-
-  //     for (let index = 0; index < arr.length; index++) {
-  //       const element = arr[index];
-  //       if (element.checked) {
-  //         counterOfCheckedRadios += 1;
-  //       }
-  //     }
-  //   }
-  // }
-
-  // if (openFormFields.length === 9) {
-  //   if (counterOfCheckedRadios !== 9) {
-  //     toFillAllObligatoryFields();
-  //     return;
-  //   } else {
-  //     counterOfCheckedRadios === 0;
-  //   }
-  // }
-  //   PageController.next();
+    // if (openFormFields.length === 9) {
+    //   if (counterOfCheckedRadios !== 9) {
+    //     toFillAllObligatoryFields();
+    //     return;
+    //   } else {
+    //     counterOfCheckedRadios === 0;
+    //   }
+    // }
+    PageController.next();
   // } else {
   //   let openPages = PageRenderer.getActualOpenPages();
   //   if (openPages[0].getAttribute("data-title") === "visualization") {
@@ -239,8 +194,8 @@ function onNextPageRequested() {
   //       }
   //     });
   //   } else {
-  PageController.next();
-  // }
+  //     PageController.next();
+  //   }
   // }
 }
 

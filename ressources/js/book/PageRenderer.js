@@ -40,7 +40,6 @@ class PageRenderer extends Observable {
 
     NavController.setTitleOnNextButton(page.title);
 
-    console.log("page.el.title"+page.el.title);
   }
 
 

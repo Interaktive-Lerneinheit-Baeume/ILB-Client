@@ -6,20 +6,7 @@ import SplashScreens from "./../ui/visualizers_part/SplashScreens.js";
 
 let storage,
   dataID,
-  currentExperiment = {},
-intervalForCheckingFocus;
-
-function checkPageFocus() {
-  if (document.hasFocus()) {
-    storage.getExperiment(dataID).then(function (data) {
-      if (data.state == "open") {
-        clearInterval(intervalForCheckingFocus);
-        SplashScreens.setNoExperimentAvailableSplash();
-        storage.breakProcess(data.id);
-      }
-    });
-  }
-}
+  currentExperiment = {};
 
 function endExperiment() {
   storage.closeExperiment(currentExperiment.id, currentExperiment);
@@ -273,8 +260,6 @@ class ExperimentManager extends Observable {
   }
 
   watchForms() {
-    intervalForCheckingFocus = setInterval(checkPageFocus, 60000);
-
     FormsWatcher.init();
     FormsWatcher.addEventListener(
       "likertItemChanged",

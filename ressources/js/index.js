@@ -114,89 +114,88 @@ function onPreviousPageRequested() {
 }
 
 function onNextPageRequested() {
-  // let openFormFields = FormsWatcher.getOpenFormFields();
-  // let counterOfCheckedRadios = 0;
-  // let fieldIsChecked = false;
+  let openFormFields = FormsWatcher.getOpenFormFields();
+  let counterOfCheckedRadios = 0;
+  let fieldIsChecked = false;
 
-  // if (openFormFields.length > 0) {
+  if (openFormFields.length > 0) {
+    for (let index = 0; index < openFormFields.length; index++) {
+      const openField = openFormFields[index];
 
-  //   for (let index = 0; index < openFormFields.length; index++) {
-  //     const openField = openFormFields[index];
+      if (
+        openField.getAttribute("data-question-label") === "participant-age" ||
+        openField.getAttribute("data-question-label") === "participant-gender"
+      ) {
+        if (
+          openField.value === null ||
+          openField.value === undefined ||
+          openField.value === " " ||
+          openField.value === ""
+        ) {
+          toFillAllObligatoryFields();
 
-  //     if (
-  //       openField.getAttribute("data-question-label") === "participant-age" ||
-  //       openField.getAttribute("data-question-label") === "participant-gender"
-  //     ) {
-  //       if (
-  //         openField.value === null ||
-  //         openField.value === undefined ||
-  //         openField.value === " " ||
-  //         openField.value === ""
-  //       ) {
-  //         toFillAllObligatoryFields();
-         
-  //         return;
-  //       }
-  //     } else if (
-  //       openField.getAttribute("data-question-label") ===
-  //       "participant-education-degree"
-  //     ) {
-  //       for (let index = 0; index < openField.children.length; index++) {
-  //         const element = openField.children[index];
-  //         if (element.children[0].checked) {
-  //           fieldIsChecked = true;
-  //         }
-  //       }
-  //       if (fieldIsChecked === false) {
-  //         toFillAllObligatoryFields();
-  //         return;
-  //       }
-  //     }
-  //   }
+          return;
+        }
+      } else if (
+        openField.getAttribute("data-question-label") ===
+        "participant-education-degree"
+      ) {
+        for (let index = 0; index < openField.children.length; index++) {
+          const element = openField.children[index];
+          if (element.children[0].checked) {
+            fieldIsChecked = true;
+          }
+        }
+        if (fieldIsChecked === false) {
+          toFillAllObligatoryFields();
+          return;
+        }
+      }
+    }
 
-    // for (let index = 0; index < openFormFields.length; index++) {
-    //   const openField = openFormFields[index];
-    //   if (openField.getAttribute("class") === "likert-scale") {
-    //     let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
-  
-    //     for (let index = 0; index < arr.length; index++) {
-    //       const element = arr[index];
-    //       if (element.checked) {
-    //         counterOfCheckedRadios += 1;
-    //       }
-    //     }
-    //   }
-    // }
+    for (let index = 0; index < openFormFields.length; index++) {
+      const openField = openFormFields[index];
+      if (openField.getAttribute("class") === "likert-scale") {
+        let arr = Array.from(openField.querySelectorAll('input[type="radio"]'));
 
-    // if (openFormFields.length === 9) {
-    //   if (counterOfCheckedRadios !== 9) {
-    //     toFillAllObligatoryFields();
-    //     return;
-    //   } else {
-    //     counterOfCheckedRadios === 0;
-    //   }
-    // }
+        for (let index = 0; index < arr.length; index++) {
+          const element = arr[index];
+          if (element.checked) {
+            counterOfCheckedRadios += 1;
+          }
+        }
+      }
+    }
+
+    if (openFormFields.length === 9) {
+      if (counterOfCheckedRadios !== 9) {
+        toFillAllObligatoryFields();
+        return;
+      } else {
+        counterOfCheckedRadios === 0;
+      }
+    }
     PageController.next();
-  // } else {
-  //   let openPages = PageRenderer.getActualOpenPages();
-  //   if (openPages[0].getAttribute("data-title") === "visualization") {
-  //     swal({
-  //       title: "Zum Wissenstest unrückgängig",
-  //       icon: "info",
-  //       iconColor: grayColor,
-  //       dangerMode: true,
-  //       buttons: true,
-  //     }).then((value) => {
-  //       if (value) {
-  //         PageController.next();
-  //       } else {
-  //         return;
-  //       }
-  //     });
-  //   } else {
-  //     PageController.next();
-  //   }
-  // }
+  } else {
+    let openPages = PageRenderer.getActualOpenPages();
+    if (openPages[0].getAttribute("data-title") === "visualization") {
+      swal({
+        title: "Zum Wissenstest unrückgängig",
+        icon: "info",
+        iconColor: grayColor,
+        dangerMode: true,
+        buttons: true,
+      }).then((value) => {
+        if (value) {
+          PageController.next();
+        } else {
+          return;
+        }
+      });
+    } else {
+      PageController.next();
+    }
+  }
 }
 
 function onPageSelected(event) {

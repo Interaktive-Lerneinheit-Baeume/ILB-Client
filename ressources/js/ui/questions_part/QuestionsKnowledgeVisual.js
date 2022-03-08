@@ -12,7 +12,7 @@ let panelKnowledge_1,
   nodeGroupElements = [],
   nodeGroupElementLocations = [],
   widthOfPanel = 350,
-  heightOfPanel = 350,
+  heightOfPanel = 300,
   verticalSpacing = 65,
   radius = 25,
   angle = 55;

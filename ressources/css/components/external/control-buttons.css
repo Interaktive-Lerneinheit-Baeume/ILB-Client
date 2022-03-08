@@ -64,12 +64,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .buttons-group {
-  margin: 5%;
-  margin-left: 5%;
-  width: 90%;
-  padding: 3%;
-  padding: 20px;
   margin-left: 15%;
+  width: 90%;
+  padding: 20px;
+  margin-bottom: 5%;
 }
 
 .button {

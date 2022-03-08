@@ -1,42 +1,34 @@
 import Page from "./Page.js";
 
 const BOOK_PAGE_URLS = [
-    "./pages/precover.html",
-    "./pages/cover.html",
-    "./pages/preface.html",
-    "./pages/empty.html",
-    "./pages/demographics-01.html",
-    "./pages/demographics-02.html",
-    "./pages/self-assessment/self-assessment-java-1.html",
-    "./pages/self-assessment/self-assessment-java-2.html",
-    "./pages/self-assessment/self-assessment-javascript-1.html",
-    "./pages/self-assessment/self-assessment-javascript-2.html",
-    "./pages/self-assessment/self-assessment-python-1.html",
-    "./pages/self-assessment/self-assessment-python-2.html",
-
-    "./pages/empty.html",
-    "./pages/page-05/binary_tree_1.html",
-    "./pages/page-05/binary_tree_2.html",
-
-    "./pages/page-06/binary_tree_3.html",
-    "./pages/page-06/binary_tree_4.html",
-
-    "./pages/page-07/binary_tree_5.html",
-
-    "./pages/page-08/test_1.html",
-    "./pages/page-08/test_2.html",
-
-    "./pages/page-09/test_3_4.html",
-    "./pages/page-09/test_5.html",
-
-    "./pages/page-10/test_6.html",
-    "./pages/page-10/test_7.html",
-
-    "./pages/page-11/experience_1.html",
-    "./pages/page-11/experience_2.html",
-
-    "./pages/page-12/empty.html",
-    "./pages/page-12/empty.html"
+    "./pages/precover.html", // checked
+    "./pages/cover.html", // checked
+    "./pages/preface.html", // checked
+    "./pages/empty.html", // checked
+    "./pages/demographics-01.html", // checked
+    "./pages/demographics-02.html", // checked
+    "./pages/self-assessment/self-assessment-java-1.html", // checked
+    "./pages/self-assessment/self-assessment-java-2.html", // checked
+    "./pages/self-assessment/self-assessment-javascript-1.html", // checked
+    "./pages/self-assessment/self-assessment-javascript-2.html", // checked
+    "./pages/self-assessment/self-assessment-python-1.html", // checked
+    "./pages/self-assessment/self-assessment-python-2.html", // checked
+    "./pages/binary-tree/binary_tree_1.html", // checked // Leere Seite vor dieser Seite für bessere Darstellung entfernt
+    "./pages/binary-tree/binary_tree_2.html", // Erklärung zum Code fehlt!
+    "./pages/binary-tree/binary_tree_3.html", // checked
+    "./pages/empty.html", // checked // Leere Seite hier für bessere Darstellung eingefügt
+    "./pages/binary-tree/binary_tree_4.html", // Erklärung fehlt!
+    "./pages/binary-tree/binary_tree_5.html", // Erklärung fehlt!
+    "./pages/quiz/test_1.html", // checked // Einleitung feht! // Prüfen ob aktuellste Version der Fragen
+    "./pages/quiz/test_2.html", // checked // Prüfen ob aktuellste Version der Fragen
+    "./pages/quiz/test_3_4.html", // checked // Prüfen ob aktuellste Version der Fragen
+    "./pages/quiz/test_5.html", // checked // Prüfen ob aktuellste Version der Fragen
+    "./pages/quiz/test_6.html", // checked // Prüfen ob aktuellste Version der Fragen
+    "./pages/quiz/test_7.html", // checked // Prüfen ob aktuellste Version der Fragen
+    "./pages/questionnaire/experience_1.html", // checked
+    "./pages/questionnaire/experience_2.html", // checked
+    "./pages/end/empty.html", // checked // Wofür wird diese Seite benötigt!
+    "./pages/end/empty.html" // checked // Wofür wird diese Seite benötigt!
   ],
   ROOT_ELEMENT = document.querySelector(".book");
 

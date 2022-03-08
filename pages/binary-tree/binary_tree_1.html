@@ -1,0 +1,25 @@
+<div id="page-5-binary_tree_1" class="page page-5-binary_tree_1" data-title=""
+  data-chapter="Beginn der Theorie für binäre Bäume" data-can-go-back="false">
+  <div class="tasks">
+    <h1>Binäre Bäume in der Programmierung</h1>
+    <p>Ein Baum ist ein aus Knoten und Kanten bestehender <i>Graph</i>, besitzt dabei immer genau eine <i>Wurzel</i> und enthält keine
+      <i>Zyklen</i>. Außer der Wurzel sind alle Knoten durch genau eine Kante (Pfad) mit einem <i>Elternknoten</i> (Vorgänger)
+      verbunden und wird als dessen Kindknoten (Nachfolger) bezeichnet. Knoten ohne Nachfolger heißen <i>Blatt</i>. Alle Knoten
+      mit Nachfolger werden als innere Knoten bezeichnet. Bäume wachsen in diesem Kontext „unnatürlich“ von oben
+      (Wurzel) nach unten (Blatt).
+    </p>
+    <p>Ein binärer Baum ist ein geordneter Baum, bei dem jeder Knoten maximal zwei Nachfolger hat: einen linken und
+      einen rechten. Unter der Ordnung eines binären Baums versteht man die maximale Anzahl von Kindknoten pro Knoten.
+    </p>
+    <h2>Binäre Suchbäume</h2>
+    <p>Ein binärer Suchbaum ist ein geordneter binärer Baum, dessen Knoten Schlüsselwerte enthalten. Über diese Werte
+      erfolgt die Suche im Baum. Für jeden Knoten k eines binären Suchbaums gilt dabei:
+    </p>
+    <ul>
+      <li>Alle Knoten enthalten einen Schlüsselwert data. Auf die Kindknoten wird über <i>left</i> und <i>right</i> zugegriffen. Alle
+        Schlüsselwerte im linken Teilbaum <code>k.left</code> sind kleiner als der Schlüsselwert <code>k.data</code>. Alle Schlüsselwerte im
+        rechten Teilbaum <code>k.right</code> sind grösser als der Schlüsselwert <code>k.data</code>.</li>
+      <li>Die Höhe des Baums entspricht dem längsten Pfad von der Wurzel zum tiefesten Blatt <i>plus 1</i>.</li>
+    </ul>
+  </div>
+</div>

@@ -2,29 +2,14 @@ import { Event, Observable } from "../utils/Observable.js";
 import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 import Storage from "./../data_storage/Storage.js";
-import SplashScreen from "./../ui/visualizers_part/SplashScreens.js";
+import SplashScreens from "./../ui/visualizers_part/SplashScreens.js";
 
 let storage,
   dataID,
-  currentExperiment = {},
-  intervalForCheckingFocus;
-
-function checkPageFocus() {
-  if (document.hasFocus()) {
-    storage.getExperiment(dataID).then(function (data) {
-      if (data.state == "open") {
-        clearInterval(intervalForCheckingFocus);
-        SplashScreen.breakWholePlattform();
-        storage.breakProcess(data.id);
-      }
-    });
-  }
-}
+  currentExperiment = {};
 
 function endExperiment() {
   storage.closeExperiment(currentExperiment.id, currentExperiment);
-  clearInterval(intervalForCheckingFocus);
-  SplashScreen.endWholePlattform();
 }
 
 function onExperimentEventHandling(elementToAdd) {
@@ -47,8 +32,9 @@ function onPageLogging(elementToAdd) {
   if (elementToAdd.originalEvent.data.left_page_title === "time-end-over") {
     onExperimentEventHandling(elementToAdd);
     endExperiment();
-    SplashScreen.endWholePlattform();
-    SplashScreen.removeStartSplash();
+    SplashScreens.setSplashScreen();
+    SplashScreens.setTimeOverSplash();
+    
   }
 }
 
@@ -274,8 +260,6 @@ class ExperimentManager extends Observable {
   }
 
   watchForms() {
-    intervalForCheckingFocus = setInterval(checkPageFocus, 60000);
-
     FormsWatcher.init();
     FormsWatcher.addEventListener(
       "likertItemChanged",

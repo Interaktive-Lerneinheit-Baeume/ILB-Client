@@ -1,7 +1,7 @@
 <div
-  id="page-6-binary_tree_4"
-  class="page page-6-binary_tree_4"
-  data-title="visualization"
+  id="page-6-binary_tree_5"
+  class="page page-6-binary_tree_5"
+  data-title=""
   data-chapter="Binäre Suchbäume"
   data-can-go-back="true"
 >
@@ -25,60 +25,47 @@
       >this.data = data;</code
     ><br />
     <code class="id-number-this language-java intellij-light"
-      >this.left = left;</code
+      >this.left = null;</code
     ><br />
     <code class="id-number-this language-java intellij-light"
-      >this.right = right;</code
+      >this.right = null;</code
     ><br />
     <code class="id-number language-java intellij-light">}</code><br />
 
-    <code class="id-number language-java intellij-light"
-      >public static void main(String[] args) {</code
-    ><br />
-    <code class="id-number-this language-java intellij-light"
-      >BinarySearchTree bst = new BinarySearchTree();</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >Node root = new Node(59);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 63); </code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 71);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 83);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 92);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 52);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 36);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 69);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 48);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 14);</code
-    ><br />
-    <code class="id-number language-java intellij-light">}</code><br />
     <code class="language-java intellij-light">}</code><br />
+    <br />
+
+    <div id="panel-code-alg" class="panel code view">
+      <code class="language-java intellij-light"
+        >public class BinarySearchTree {</code
+      ><br />
+      <code class="id-number intellij-light language-java"
+        >private Node insertNodeRecursive(Node head, int data) {</code
+      ><br />
+      <code class="id-number-this intellij-light language-java"
+        >if (head == null) {</code
+      ><br />
+      <code class="id-number-this-this intellij-light language-java"
+        >return new Node(data);</code
+      ><br />
+      <code class="id-number-this intellij-light language-java"
+        >} else if (data > head.data) {</code
+      ><br />
+      <code class="id-number-this-this intellij-light language-java"
+        >head.right = insertNodeRecursive(head.right, data);</code
+      ><br />
+      <code class="id-number-this intellij-light language-java"
+        >} else if (data <= head.data) {</code
+      ><br />
+      <code class="id-number-this-this intellij-light language-java"
+        >head.left = insertNodeRecursive(head.left, data);</code
+      ><br />
+      <code class="id-number-this intellij-light language-java">}</code><br />
+      <code class="id-number-this intellij-light language-java"
+        >return head; </code
+      ><br />
+      <code class="id-number intellij-light language-java">}</code><br />
+      <code class="language-java intellij-light language-java">}</code><br />
+    </div>
   </div>
 </div>

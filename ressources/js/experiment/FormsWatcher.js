@@ -51,7 +51,7 @@ function onInputFormChanged(event) {
   if (["checkbox", "radio"].includes(target.getAttribute("type"))) {
     data = getListDataFromTarget(target);
   } else {
-    data = getFieldDataFromTarget(target); //text - type
+    data = getFieldDataFromTarget(target); //type = text
   }
   this.notifyAll(new Event("formInputChanged", data));
 }
@@ -80,22 +80,23 @@ function findForms(context) {
   let likertScaleButtons = document.querySelectorAll(
       '.likert-scale input[type="radio"]'
     ),
-    formInputs = document.querySelectorAll(".field-set input"),
-    textAreaInputs = document.querySelectorAll("textarea"); // TODO: Combine with previous selector if possible
+    formInputs = document.querySelectorAll(
+      ".field-set input, .field-set textarea"
+    );
 
   likertScaleButtons.forEach((radioButton) =>
     radioButton.addEventListener("change", onRadioButtonChanged.bind(context))
   );
+
   formInputs.forEach((inputs) =>
     inputs.addEventListener("change", onInputFormChanged.bind(context))
   );
-  textAreaInputs.forEach((inputs) =>
-    inputs.addEventListener("change", onInputFormChanged.bind(context))
-  );
 
-  textAreaInputs.forEach((inputs) =>
-    inputs.addEventListener("focus", onInputFormFocused.bind(context))
-  );
+  Array.from(formInputs)
+    .filter((el) => el.classList.contains("textarea_input"))
+    .forEach((inputs) =>
+      inputs.addEventListener("focus", onInputFormFocused.bind(context))
+    );
 }
 
 class FormsWatcher extends Observable {
@@ -123,8 +124,6 @@ class FormsWatcher extends Observable {
 
     return unfilledRequiredFields;
   }
-
-
 }
 
 export default new FormsWatcher();

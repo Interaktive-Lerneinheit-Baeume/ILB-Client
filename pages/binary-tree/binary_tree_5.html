@@ -1,66 +1,41 @@
 <div
-  id="page-7-binary_tree_5"
-  class="page page-7-binary_tree_5"
+  id="page-6-binary_tree_4"
+  class="page page-6-binary_tree_4"
   data-title=""
-  data-chapter="Visualisierung für binäre Suchbäume"
+  data-chapter="Binäre Bäume, Laufzeitkomplexität"
   data-can-go-back="true"
 >
-  <div id="viewing">
-    <div id="viewing_aufgabe" class="aufgabe tasks">
-      <!-- &nbsp;&nbsp;&nbsp;Schauen Sie sich die Animation an. Sie können die
-      Animation selbst kontrollieren, indem Sie sie pausieren oder vorspulen
-      können. Der binäre Suchbaum
-      <code class="language-java intellij-light">bst</code> wird aus der Menge der schrittweise
-      hinzugefügten Schlüsselwerte konstruiert. -->
-      <!-- Die Wurzel
-      <code class="language-java intellij-light">root</code> des Suchbaums mit dem Wert
-      <code class="language-java intellij-light">data</code> 59 kommt als erster Knoten.  -->
-      Jeder Knoten wird in den Suchbaum gemäß der Funktion
-      <code class="hljs-title intellij-light function_"
-        >insertNodeRecursive</code
-      ><code class="language-java intellij-light">(Node head, int data)</code>
-      hinzugefügt.<br />
-
-      &nbsp;&nbsp;&nbsp;Berücksichtigen Sie Programmcode auf linker Seite.
-    </div>
-    <div class="buttons-group">
-      <button id="start-button" class="start button" title="start/backward">
-        <img src="./../../ressources/css/assets/backward.png" />
-      </button>
-      <button
-        id="pause-button"
-        class="button pause"
-        title="pause/play"
-      ></button>
-      <input
-        type="range"
-        class="speed-slider button"
-        id="speed-range"
-        min="1"
-        max="100"
-        value="50"
-      />
-    </div>
-    <div id="panel-viewing" class="panel viewing"></div>
-  </div>
-  <div id="constructing">
-    <div class="tasks">
-      <p>
-        &nbsp;&nbsp;&nbsp;Konstruieren Sie einen binären Suchbaum
-        <code class="language-java intellij-light">bst</code> aus der Menge der schrittweise angebotenen
-        Schlüsselwerte. Die Wurzel <code class="language-java intellij-light">root</code> des Suchbaums ist
-        schon gegeben und steht an der richtigen Position. Den weiteren Knoten
-        mit dem Wert 63, sowie alle nachfolgenden Schlüsselwerte, sollen Sie per
-        Drag-and-Drop des Knotens selbst richtig positionieren. Jeder Knoten
-        wird in den Suchbaum gemäß der Funktion
-        <code class="hljs-title intellij-light function_">insertNodeRecursive</code
-        ><code class="language-java intellij-light">(Node head, int data)</code> hinzugefügt.<br />
-        &nbsp;&nbsp;&nbsp;Berücksichtigen Sie Programmcode auf linker Seite. Jeder Knoten mit dem Schlüsselwert
-        <code class="language-java intellij-light">data</code> soll präzise lokalisiert werden. Das System
-        meldet den Hinweis, wenn ein Schritt falsch gemacht wird. Die Zeit steht
-        Ihnen für die Aufgabe unbegrenzt zur Verfügung.
-      </p>
-    </div>
-    <div id="panel-constructing" class="panel constructing"></div>
+  <div class="tasks">
+    <h2>Laufzeitkomplexität in binären Suchbäumen</h2>
+    <p>
+      Bei der Umsetzung eines binären Suchbaums wird dessen rekursive
+      Verarbeitung dadurch sichergestellt, dass jeder Knoten Verweise auf seine
+      jeweiligen Kinder besitzt. Bei dem rekursiven Einfügen in den Baum wird zuerst
+      die Wurzel des Baums angegeben, alle anderen Knoten sind durch das
+      Verfolgen der Verweise erreichbar.
+    </p>
+    <p>
+      Die Laufzeiten der Algorithmen für das Einfügen in binären Suchbaum hängen
+      von der Form des Baums ab, die wiederum von der Reihenfolge abhängt, in
+      der die Schlüssel eingefügt werden.
+    </p>
+    <ul>
+      <li>
+        Im <b>best-case (günstigsten) Fall</b> könnte ein Baum mit
+        <code>n</code> Knoten perfekt ausgeglichen sein (jeder innere Knoten
+        besitzt zwei Nachfolger): mit <math>∼O(lg N)</math> Knoten zwischen der
+        Wurzel und jeder <code>null</code>-Referenz (Blatt).
+      </li>
+      <li>
+        Der <b>durchschnittliche Fall</b> nach <code>N</code> zufälligen
+        Einfügeoperationen beträgt <math>∼O(1.39 lg N)</math>.
+      </li>
+      <li>
+        Im <b>worst-case (ungünstigsten) Fall</b> beträgt die
+        Laufzeitkomplexität <math>O(N)</math>, wenn alle <code>N</code> Knoten
+        genau auf einem Suchpfad liegen, und die Laufzeitkomplexität somit der
+        Höhe des Baums entspricht.
+      </li>
+    </ul>
   </div>
 </div>

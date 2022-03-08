@@ -16,9 +16,12 @@ const BOOK_PAGE_URLS = [
     "./pages/binary-tree/binary_tree_1.html", // checked // Leere Seite vor dieser Seite für bessere Darstellung entfernt
     "./pages/binary-tree/binary_tree_2.html", // Erklärung zum Code fehlt!
     "./pages/binary-tree/binary_tree_3.html", // checked
-    "./pages/empty.html", // checked // Leere Seite hier für bessere Darstellung eingefügt
-    "./pages/binary-tree/binary_tree_4.html", // Erklärung fehlt!
+    "./pages/binary-tree/binary_tree_4.html",
+    // "./pages/empty.html", // checked // Leere Seite hier für bessere Darstellung eingefügt
     "./pages/binary-tree/binary_tree_5.html", // Erklärung fehlt!
+    "./pages/empty.html",
+    "./pages/binary-tree/binary_tree_6.html", // Erklärung fehlt!
+    "./pages/binary-tree/binary_tree_7.html",
     "./pages/quiz/test_1.html", // checked // Einleitung feht! // Prüfen ob aktuellste Version der Fragen
     "./pages/quiz/test_2.html", // checked // Prüfen ob aktuellste Version der Fragen
     "./pages/quiz/test_3_4.html", // checked // Prüfen ob aktuellste Version der Fragen

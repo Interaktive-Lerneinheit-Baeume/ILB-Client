@@ -40,13 +40,14 @@
   align-items: center;
 }
 
-.menu .links a {
-  font-size: 0.9em;
-  margin: 0 1vh;
-  color: var(--color-accent-one);
-}
 
-.menu .links a:hover {
-  font-size: 0.9em;
-  color: var(--color-accent-two);
-}
+ a {
+    font-size: 0.9em;
+    margin: 0 1vh;
+    color: var(--color-accent-one);
+  }
+  
+ a:hover {
+    font-size: 0.9em;
+    color: var(--color-accent-two);
+  }

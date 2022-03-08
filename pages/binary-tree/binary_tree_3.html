@@ -1,26 +1,71 @@
-<div id="page-6-binary_tree_3" class="page page-6-binary_tree_3" data-title=""
-    data-chapter="Binäre Bäume, Laufzeitkomplexität" data-can-go-back="true">
-    <div class="tasks">
-        <h2>Laufzeitkomplexität in binären Suchbäumen</h2>
-        <p>Bei der Umsetzung eines binären Suchbaums wird dessen rekursive Verarbeitung dadurch sichergestellt, dass
-            jeder Knoten Verweise auf seine jeweiligen Kinder besitzt. Bei der rekursiven Suche im Baum wird zuerst die
-            Wurzel des Baums angegeben, alle anderen Knoten sind durch das Verfolgen der Verweise erreichbar.
-        </p>
-        <p>Die Laufzeiten der Algorithmen für die Suche in binären Suchbäumen hängen von der Form des Baums ab, die
-            wiederum von der Reihenfolge abhängt, in der die Schlüssel eingefügt werden.</p>
-        <ul>
-            <li>Im <b>best-case (günstigsten) Fall</b> könnte ein Baum mit <code>n</code> Knoten perfekt ausgeglichen
-                sein (jeder innere
-                Knoten besitzt zwei Nachfolger): mit <math>∼O(lg N)</math> Knoten zwischen der Wurzel und jeder
-                <code>null</code>-Referenz (Blatt).
-            </li>
-            <li>Der <b>durchschnittliche Fall</b> nach <code>N</code> zufälligen Einfügeoperationen beträgt
-                <math>∼O(1.39 lg N)</math>.
-            </li>
-            <li>Im <b>worst-case (ungünstigsten) Fall</b> beträgt die Laufzeitkomplexität <math>O(N)</math>, wenn alle
-                <code>N</code> Knoten genau auf einem Suchpfad liegen, und die Laufzeitkomplexität somit der Höhe des
-                Baums entspricht.
-            </li>
-        </ul>
-    </div>
+<div
+  id="page-5-binary_tree_3"
+  class="page page-5-binary_tree_3"
+  data-title=""
+  data-chapter="Binäre Bäume, Einfügen-Algorithm"
+  data-can-go-back="true"
+>
+  <div class="tasks">
+    <h2>Implementierung des Einfügens in den Binärbaum</h2>
+    <p>
+      Das Einfügen eines Knotens erfordert das Suchen der richtigen
+      Einfügestelle im Baum. In jedem Knoten wird eine Vergleichsoperation
+      ausgeführt und entschieden, ob der einzufügende Knoten im linken oder
+      rechten Teilbaum gespeichert werden soll. Dieser Vergleich wird rekursiv
+      ausgeführt bis der jeweilige Teilbaum leer ist. Der folgende Algorithmus
+      <code class="hljs-title intellij-light language-java function_"
+        >insertNodeRecursive</code
+      >
+      fügt einen gegebenen Schlüssel
+      <code class="language-java intellij-light">data</code> in den binären
+      Suchbaum <code class="language-java intellij-light">head</code> ein, falls
+      dieser noch nicht vorhanden ist. Die Methode liefert eine Referenz auf die
+      Wurzel des Teilbaums zurück, in den eingefügt wurde. Falls der Baum noch
+      leer ist oder die richtige Einfügestelle gefunden wird, wird der neu
+      angelegte und eingefügte Knoten zurückgeliefert.
+    </p>
+
+    <p>
+      Für die Implementierung eines Baums wird zunächst eine Klasse
+      <code class="language-java intellij-light">Node</code>
+      benötigt. Diese Knoten-Klasse erhält Attribut
+      <code class="language-java intellij-light">data</code> und setzt
+      die Referenzen von den beiden Kindknoten
+      <code class="language-java intellij-light">left</code> und
+      <code class="language-java intellij-light">right</code> auf
+      <code class="language-java intellij-light">null</code>.
+    </p>
+    <!-- <div id="panel-code-alg" class="panel code view">
+      <code class="language-java intellij-light"
+        >public class BinarySearchTree {</code
+      ><br />
+      <code class="id-number intellij-light language-java"
+        >private Node insertNodeRecursive(Node head, int data) {</code
+      ><br />
+      <code class="id-number-this intellij-light language-java"
+        >if (head == null) {</code
+      ><br />
+      <code class="id-number-this-this intellij-light language-java"
+        >return new Node(data);</code
+      ><br />
+      <code class="id-number-this intellij-light language-java"
+        >} else if (data > head.data) {</code
+      ><br />
+      <code class="id-number-this-this intellij-light language-java"
+        >head.right = insertNodeRecursive(head.right, data);</code
+      ><br />
+      <code class="id-number-this intellij-light language-java"
+        >} else if (data <= head.data) {</code
+      ><br />
+      <code class="id-number-this-this intellij-light language-java"
+        >head.left = insertNodeRecursive(head.left, data);</code
+      ><br />
+      <code class="id-number-this intellij-light language-java">}</code><br />
+      <code class="id-number-this intellij-light language-java"
+        >return head; </code
+      ><br />
+      <code class="id-number intellij-light language-java">}</code><br />
+      <code class="language-java intellij-light language-java">}</code><br />
+    </div> -->
+  </div>
 </div>

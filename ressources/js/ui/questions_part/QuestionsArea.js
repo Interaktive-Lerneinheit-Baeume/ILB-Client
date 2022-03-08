@@ -1,9 +1,8 @@
 import Observable from "../../utils/Observable.js";
 import QuestionsKnowledgeVisual from "./QuestionsKnowledgeVisual.js";
 import QuestionsApplAnalysisSynthVisual from "./QuestionsApplAnalysisSynthVisual.js";
-import QuestionComprehensionVisual from "../../unnoetige_dateien/QuestionsComprehensionVisual.js";
 
-let questionsKnowledgeVisual, questionsComprVisual, questionsApplAnSynVisual;
+let questionsKnowledgeVisual, questionsApplAnSynVisual;
 
 function initQuestions() {
   let questionsKnowledgeVisualEl = document.querySelector(
@@ -15,9 +14,6 @@ function initQuestions() {
 
   let questionsComprVisualEl = document.querySelector(
     ".questions-comprehension"
-  );
-  questionsComprVisual = new QuestionComprehensionVisual(
-    questionsComprVisualEl
   );
 
   let questionsApplAnSynVisualEl = document.querySelector(

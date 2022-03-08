@@ -6,9 +6,27 @@ import SplashScreens from "./../ui/visualizers_part/SplashScreens.js";
 
 let storage,
   dataID,
-  currentExperiment = {};
+  currentExperiment = {},
+  intervalForCheckingFocus;
+
+function checkPageFocus() {
+  if (document.hasFocus()) {
+    storage.getExperiment(dataID).then(function (data) {
+      if (data.state == "open") {
+        console.log("data id "+data.id + " OPEN state "+data.state);
+        clearInterval(intervalForCheckingFocus);
+        storage.breakProcess(data.id);
+        SplashScreens.setNoExperimentAvailableSplash();
+        SplashScreens.removeWelcomeSplash();
+        SplashScreens.setSplashScreen();
+      }
+      console.log("data id "+data.id + " OR state "+data.state);
+    });
+  }
+}
 
 function endExperiment() {
+  clearInterval(intervalForCheckingFocus);
   storage.closeExperiment(currentExperiment.id, currentExperiment);
 }
 
@@ -34,7 +52,6 @@ function onPageLogging(elementToAdd) {
     endExperiment();
     SplashScreens.setSplashScreen();
     SplashScreens.setTimeOverSplash();
-    
   }
 }
 
@@ -235,6 +252,8 @@ class ExperimentManager extends Observable {
     super();
     storage = new Storage();
 
+    setInterval(checkPageFocus, 600000); //for 10 Minutes testing!!! remove after that
+    // setInterval(checkPageFocus, 72000000); //for 2 hours
     EventBus.addEventListener("globalEvent", onGlobalEvent.bind(this));
   }
 

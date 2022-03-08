@@ -13,21 +13,21 @@ const BOOK_PAGE_URLS = [
     "./pages/self-assessment/self-assessment-javascript-2.html", // checked
     "./pages/self-assessment/self-assessment-python-1.html", // checked
     "./pages/self-assessment/self-assessment-python-2.html", // checked
-    "./pages/binary-tree/binary_tree_1.html", // checked // Leere Seite vor dieser Seite für bessere Darstellung entfernt
-    "./pages/binary-tree/binary_tree_2.html", // Erklärung zum Code fehlt!
+    "./pages/binary-tree/binary_tree_1.html", // checked 
+    "./pages/binary-tree/binary_tree_2.html", // 
     "./pages/binary-tree/binary_tree_3.html", // checked
     "./pages/binary-tree/binary_tree_4.html",
     // "./pages/empty.html", // checked // Leere Seite hier für bessere Darstellung eingefügt
-    "./pages/binary-tree/binary_tree_5.html", // Erklärung fehlt!
+    "./pages/binary-tree/binary_tree_5.html", 
     "./pages/empty.html",
-    "./pages/binary-tree/binary_tree_6.html", // Erklärung fehlt!
+    "./pages/binary-tree/binary_tree_6.html",
     "./pages/binary-tree/binary_tree_7.html",
-    "./pages/quiz/test_1.html", // checked // Einleitung feht! // Prüfen ob aktuellste Version der Fragen
-    "./pages/quiz/test_2.html", // checked // Prüfen ob aktuellste Version der Fragen
-    "./pages/quiz/test_3_4.html", // checked // Prüfen ob aktuellste Version der Fragen
-    "./pages/quiz/test_5.html", // checked // Prüfen ob aktuellste Version der Fragen
-    "./pages/quiz/test_6.html", // checked // Prüfen ob aktuellste Version der Fragen
-    "./pages/quiz/test_7.html", // checked // Prüfen ob aktuellste Version der Fragen
+    "./pages/quiz/test_1.html", // checked 
+    "./pages/quiz/test_2.html", // checked  
+    "./pages/quiz/test_3_4.html", // checked  
+    "./pages/quiz/test_5.html", // checked  
+    "./pages/quiz/test_6.html", // checked  
+    "./pages/quiz/test_7.html", // checked  
     "./pages/questionnaire/experience_1.html", // checked
     "./pages/questionnaire/experience_2.html", // checked
     "./pages/end/empty.html", // checked // Wofür wird diese Seite benötigt!

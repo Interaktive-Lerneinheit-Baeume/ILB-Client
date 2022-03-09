@@ -160,7 +160,10 @@ function drawThreeTrees() {
             heightPanel,
             vertSpaceLocal,
             angleLocal,
-            6
+            6,
+            0.8,
+            0.8,
+            0.9
           );
       }
 

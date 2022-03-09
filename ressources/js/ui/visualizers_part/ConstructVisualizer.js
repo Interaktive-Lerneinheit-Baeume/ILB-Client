@@ -105,7 +105,6 @@ var letMouseUpEvent = function (ev) {
 };
 
 function iterateNextNodeGroupAndArrows() {
-  console.log("iterate");
   if (indexPosition === valueArray.length - 1) {
     Toast.fire({
       icon: "success",
@@ -118,7 +117,6 @@ function iterateNextNodeGroupAndArrows() {
   for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
     const element = actualKindNodesViewingGroups[index];
     panelConstructing.removeElement(element);
-    console.log("deleting");
   }
 
   if (indexPosition < valueArray.length - 1) {
@@ -187,7 +185,6 @@ function beginConstructing() {
   addOnPanel(nodeGroupViewingElements[indexPosition]);
   indexPosition += 1;
   continueContructing();
-  // constructTransparentCircles();
 }
 
 function continueContructing() {
@@ -215,7 +212,6 @@ function continueContructing() {
 
 function proveTheRightPosition(index) {
   if (index === 0) {
-    console.log("Wurzel!");
   } else {
     let parent = BST.getParent(nodeElements[index]);
     let xPosOfParent = parent.vector.getX();
@@ -271,7 +267,6 @@ function proveTheRightPosition(index) {
               nodeGroupElementLocations[index]
             );
 
-            console.log("correctPosition");
             let event = new Event("correctPosition");
             BST.notifyAll(event);
 
@@ -295,7 +290,6 @@ function proveTheRightPosition(index) {
             }
           } else {
             infoAboutPrecisePosition();
-            console.log("präziser! " + indexPosition);
             TreePanelController.designOfSelectedNode(
               nodeGroupViewingElements[indexPosition].getElementAt(0),
               radius * 1.1
@@ -339,7 +333,6 @@ function proveTheRightPosition(index) {
           ) > radius
         ) {
           infoAboutPrecisePosition();
-          console.log("präziser! " + indexPosition);
           TreePanelController.designOfSelectedNode(
             nodeGroupViewingElements[indexPosition].getElementAt(0),
             radius * 1.1
@@ -392,24 +385,14 @@ function constructTransparentCircles() {
     nodeElementsTransparent[index] = nodeElement;
   }
 
-  console.log("bst " + bst.root.data);
-  console.log(indexPosition);
   if (indexPosition === 0) {
-    console.log("nur root");
     actualNodeParent = bst.getRootNode();
   } else {
     nodeValue = valueArrayTransparent[indexPosition];
-    console.log(
-      "not!!! root" +
-        nodeValue +
-        "bst.getCurrentNode(nodeValue) " +
-        bst.getCurrentNode(nodeValue).data
-    );
+   
     actualNodeParent = bst.getParent(bst.getCurrentNode(nodeValue));
   }
 
-  // console.log("nodevalue " + nodeValue + " position " + indexPosition);
-  // console.log("left "+actualNode.left.data + " right "+actualNode.right.data);
   let actualKindNodes = [];
   actualKindNodesViewingGroups = [];
   actualKindNodesViewingGroupsVektors = [];
@@ -592,7 +575,6 @@ class ConstructVisualizer extends Observable {
 
     constructTreeInBackground();
     beginConstructing();
-    console.log("constructor ");
     constructTransparentCircles();
     BST.addEventListener("correctPosition", iterateNextNodeGroupAndArrows);
   }

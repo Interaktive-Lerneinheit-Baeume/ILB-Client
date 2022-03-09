@@ -46,7 +46,9 @@ function drawOnPanel_1() {
         1,
         1,
         1
+        
       );
+      
     nodeGroupElementLocations[index] = nodeGroupViewingElementVektor;
 
     nodeGroupViewingElement.setLocation(nodeGroupElementLocations[index]);

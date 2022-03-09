@@ -12,10 +12,6 @@ function initQuestions() {
     questionsKnowledgeVisualEl
   );
 
-  let questionsComprVisualEl = document.querySelector(
-    ".questions-comprehension"
-  );
-
   let questionsApplAnSynVisualEl = document.querySelector(
     ".questions-appl-anal-synth"
   );

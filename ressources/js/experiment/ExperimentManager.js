@@ -252,7 +252,7 @@ class ExperimentManager extends Observable {
     super();
     storage = new Storage();
 
-    setInterval(checkPageFocus, 600000); //for 10 Minutes testing!!! remove after that
+    setInterval(checkPageFocus, 120000); //for 2 Minutes testing!!! remove after that
     // setInterval(checkPageFocus, 72000000); //for 2 hours
     EventBus.addEventListener("globalEvent", onGlobalEvent.bind(this));
   }

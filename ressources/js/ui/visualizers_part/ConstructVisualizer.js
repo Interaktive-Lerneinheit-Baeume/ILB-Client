@@ -11,6 +11,8 @@ let BST,
   nodeElements = [],
   nodeGroupViewingElements = [],
   nodeElementsTransparent = [],
+  actualKindNodesViewingGroups = [],
+  actualKindNodesViewingGroupsVektors = [],
   nodeGroupViewingElementsTransparent = [],
   nodeGroupElementLocationsTransparent = [],
   valueArrayTransparent = new Array(
@@ -40,7 +42,7 @@ let BST,
   widthOfPanel = 560,
   heightOfPanel = 400,
   radius = 20,
-  verticalSpacing = 70,
+  verticalSpacing = 60,
   a = 65,
   xStart = 40,
   yStart = 100,
@@ -68,8 +70,7 @@ function infoAboutPrecisePosition() {
   Toast.fire({
     icon: "info",
     iconColor: grayColor,
-    width: 550,
-    title: "<br>Positioniere präziser",
+    title: "Positioniere präziser",
   });
 }
 
@@ -104,6 +105,7 @@ var letMouseUpEvent = function (ev) {
 };
 
 function iterateNextNodeGroupAndArrows() {
+  console.log("iterate");
   if (indexPosition === valueArray.length - 1) {
     Toast.fire({
       icon: "success",
@@ -111,15 +113,12 @@ function iterateNextNodeGroupAndArrows() {
       iconColor: grayColor,
     });
     unsetListenersOnGroupElement(indexPosition);
+  }
 
-    for (
-      let index = 0;
-      index < nodeGroupViewingElementsTransparent.length;
-      index++
-    ) {
-      const element = nodeGroupViewingElementsTransparent[index];
-      panelConstructing.removeElement(element);
-    }
+  for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
+    const element = actualKindNodesViewingGroups[index];
+    panelConstructing.removeElement(element);
+    console.log("deleting");
   }
 
   if (indexPosition < valueArray.length - 1) {
@@ -127,6 +126,8 @@ function iterateNextNodeGroupAndArrows() {
     indexPosition += 1;
     continueContructing();
   }
+
+  constructTransparentCircles();
 }
 
 function startAnimatorPlaying(index) {
@@ -186,6 +187,7 @@ function beginConstructing() {
   addOnPanel(nodeGroupViewingElements[indexPosition]);
   indexPosition += 1;
   continueContructing();
+  // constructTransparentCircles();
 }
 
 function continueContructing() {
@@ -263,12 +265,13 @@ function proveTheRightPosition(index) {
               nodeGroupElementLocations[index].getY() -
                 nodeGroupViewingElements[index].getY()
             ) <
-            radius * 0.7
+            radius * 0.8
           ) {
             nodeGroupViewingElements[index].setLocation(
               nodeGroupElementLocations[index]
             );
 
+            console.log("correctPosition");
             let event = new Event("correctPosition");
             BST.notifyAll(event);
 
@@ -292,6 +295,7 @@ function proveTheRightPosition(index) {
             }
           } else {
             infoAboutPrecisePosition();
+            console.log("präziser! " + indexPosition);
             TreePanelController.designOfSelectedNode(
               nodeGroupViewingElements[indexPosition].getElementAt(0),
               radius * 1.1
@@ -335,6 +339,7 @@ function proveTheRightPosition(index) {
           ) > radius
         ) {
           infoAboutPrecisePosition();
+          console.log("präziser! " + indexPosition);
           TreePanelController.designOfSelectedNode(
             nodeGroupViewingElements[indexPosition].getElementAt(0),
             radius * 1.1
@@ -378,48 +383,143 @@ function proveTheRightPosition(index) {
 }
 
 function constructTransparentCircles() {
-  let bst = new BinarySearchTree();
-
+  let bst = new BinarySearchTree(),
+    nodeValue,
+    actualNodeParent;
   for (let index = 0; index < valueArrayTransparent.length; index++) {
-    const nodeValue = valueArrayTransparent[index];
-    let nodeTransparent = TreePanelController.createNewNodeElement(
-      nodeValue,
-      bst
-    );
-    // createNewNodeElement(nodeValue, bst);
+    const element = valueArrayTransparent[index];
+    let nodeElement = TreePanelController.createNewNodeElement(element, bst);
+    nodeElementsTransparent[index] = nodeElement;
+  }
 
-    let nodeGroupViewingTransparent =
+  console.log("bst " + bst.root.data);
+  console.log(indexPosition);
+  if (indexPosition === 0) {
+    console.log("nur root");
+    actualNodeParent = bst.getRootNode();
+  } else {
+    nodeValue = valueArrayTransparent[indexPosition];
+    console.log(
+      "not!!! root" +
+        nodeValue +
+        "bst.getCurrentNode(nodeValue) " +
+        bst.getCurrentNode(nodeValue).data
+    );
+    actualNodeParent = bst.getParent(bst.getCurrentNode(nodeValue));
+  }
+
+  // console.log("nodevalue " + nodeValue + " position " + indexPosition);
+  // console.log("left "+actualNode.left.data + " right "+actualNode.right.data);
+  let actualKindNodes = [];
+  actualKindNodesViewingGroups = [];
+  actualKindNodesViewingGroupsVektors = [];
+
+  if (actualNodeParent.left !== null) {
+    actualKindNodes.push(actualNodeParent.left);
+  }
+
+  if (actualNodeParent.right !== null) {
+    actualKindNodes.push(actualNodeParent.right);
+  }
+
+  for (let index = 0; index < actualKindNodes.length; index++) {
+    const element = actualKindNodes[index];
+
+    actualKindNodesViewingGroups.push(
       TreePanelController.createNewNodeGroupViewingElementTransparent(
         panelConstructing,
-        nodeTransparent,
-        index,
+        element,
+        indexPosition,
         radius
-      );
+      )
+    );
 
-    nodeGroupViewingElementsTransparent[index] = nodeGroupViewingTransparent;
-
-    let nodeGroupViewingElementVektorTransparent =
+    actualKindNodesViewingGroupsVektors.push(
       TreePanelController.createNewNodeGroupViewingElementVektor(
-        nodeTransparent,
+        element,
         widthOfPanel,
         heightOfPanel,
         verticalSpacing,
         a
-      );
-
-    nodeGroupElementLocationsTransparent[index] =
-      nodeGroupViewingElementVektorTransparent;
+      )
+    );
   }
 
-  for (
-    let index = 0;
-    index < nodeGroupViewingElementsTransparent.length;
-    index++
-  ) {
-    const element = nodeGroupViewingElementsTransparent[index];
-    element.setLocation(nodeGroupElementLocationsTransparent[index]);
+  // actualKindNodesViewingGroups.push(
+  //   TreePanelController.createNewNodeGroupViewingElementTransparent(
+  //     panelConstructing,
+  //     actualKindNodes[1],
+  //     indexPosition,
+  //     radius
+  //   )
+  // );
+
+  // actualKindNodesViewingGroupsVektors.push(
+  //   TreePanelController.createNewNodeGroupViewingElementVektor(
+  //     actualKindNodes[0],
+  //     widthOfPanel,
+  //     heightOfPanel,
+  //     verticalSpacing,
+  //     a
+  //   )
+  // );
+
+  // actualKindNodesViewingGroupsVektors.push(
+  //   TreePanelController.createNewNodeGroupViewingElementVektor(
+  //     actualKindNodes[1],
+  //     widthOfPanel,
+  //     heightOfPanel,
+  //     verticalSpacing,
+  //     a
+  //   )
+  // );
+
+  for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
+    const element = actualKindNodesViewingGroups[index];
+    element.setLocation(actualKindNodesViewingGroupsVektors[index]);
     addOnPanel(element);
   }
+
+  // for (let index = 0; index < valueArrayTransparent.length; index++) {
+  //   const nodeValue = valueArrayTransparent[index];
+  //   let nodeTransparent = TreePanelController.createNewNodeElement(
+  //     nodeValue,
+  //     bst
+  //   );
+  //   // createNewNodeElement(nodeValue, bst);
+
+  //   let nodeGroupViewingTransparent =
+  //     TreePanelController.createNewNodeGroupViewingElementTransparent(
+  //       panelConstructing,
+  //       nodeTransparent,
+  //       index,
+  //       radius
+  //     );
+
+  //   nodeGroupViewingElementsTransparent[index] = nodeGroupViewingTransparent;
+
+  //   let nodeGroupViewingElementVektorTransparent =
+  //     TreePanelController.createNewNodeGroupViewingElementVektor(
+  //       nodeTransparent,
+  //       widthOfPanel,
+  //       heightOfPanel,
+  //       verticalSpacing,
+  //       a
+  //     );
+
+  //   nodeGroupElementLocationsTransparent[index] =
+  //     nodeGroupViewingElementVektorTransparent;
+  // }
+
+  // for (
+  //   let index = 0;
+  //   index < nodeGroupViewingElementsTransparent.length;
+  //   index++
+  // ) {
+  //   const element = nodeGroupViewingElementsTransparent[index];
+  //   element.setLocation(nodeGroupElementLocationsTransparent[index]);
+  //   addOnPanel(element);
+  // }
 }
 
 function startPositionOfNode() {
@@ -445,10 +545,7 @@ function addOnPanel(nodeGroupConstructElement) {
 function constructTreeInBackground() {
   for (let index = 0; index < valueArray.length; index++) {
     const element = valueArray[index];
-    let nodeElement = TreePanelController.createNewNodeElement(
-      valueArray[index],
-      BST
-    );
+    let nodeElement = TreePanelController.createNewNodeElement(element, BST);
     nodeElements[index] = nodeElement;
 
     let nodeGroupViewingElement =
@@ -474,7 +571,7 @@ function constructTreeInBackground() {
     myAnimators[index] = new jsgl.util.Animator();
   }
 
-  constructTransparentCircles();
+  // constructTransparentCircles();
 }
 
 class ConstructVisualizer extends Observable {
@@ -495,7 +592,8 @@ class ConstructVisualizer extends Observable {
 
     constructTreeInBackground();
     beginConstructing();
-
+    console.log("constructor ");
+    constructTransparentCircles();
     BST.addEventListener("correctPosition", iterateNextNodeGroupAndArrows);
   }
 

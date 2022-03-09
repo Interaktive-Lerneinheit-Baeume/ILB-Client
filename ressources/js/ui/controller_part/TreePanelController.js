@@ -44,6 +44,7 @@ class TreePanelController {
     this.designOfNodeTransparent(nodeGroupElement.circle, radius);
 
     viewingGroup.addElement(nodeGroupElement.circle); //0-Position
+    viewingGroup.zIndex = -1;
     return viewingGroup;
   }
 
@@ -54,10 +55,10 @@ class TreePanelController {
     verticalSpacing,
     angle,
     heightOfFirstNode = 5,
-    coeff_0 = 0.5,
-    coeff_1 = 0.8,
+    coeff_0 = 0.4,
+    coeff_1 = 0.7,
     coeff_2 = 1,
-    coeff_else = 1
+    coeff_else = 0.9
   ) {
     let angleHere = angle;
     let angleLocal = angle;

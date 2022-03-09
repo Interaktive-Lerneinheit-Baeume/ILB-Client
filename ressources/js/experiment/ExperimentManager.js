@@ -13,14 +13,14 @@ function checkPageFocus() {
   if (document.hasFocus()) {
     storage.getExperiment(dataID).then(function (data) {
       if (data.state == "open") {
-        console.log("data id "+data.id + " OPEN state "+data.state);
+        // console.log("data id "+data.id + " OPEN state "+data.state);
         clearInterval(intervalForCheckingFocus);
         storage.breakProcess(data.id);
         SplashScreens.setNoExperimentAvailableSplash();
         SplashScreens.removeWelcomeSplash();
         SplashScreens.setSplashScreen();
       }
-      console.log("data id "+data.id + " OR state "+data.state);
+      // console.log("data id "+data.id + " OR state "+data.state);
     });
   }
 }
@@ -251,9 +251,8 @@ class ExperimentManager extends Observable {
   constructor() {
     super();
     storage = new Storage();
-
-    setInterval(checkPageFocus, 120000); //for 2 Minutes testing!!! remove after that
-    // setInterval(checkPageFocus, 72000000); //for 2 hours
+     intervalForCheckingFocus = setInterval(checkPageFocus, 6000); //for 1 Minutes testing!!! remove after that
+     // intervalForCheckingFocus = setInterval(checkPageFocus, 72000000); //for 2 hours
     EventBus.addEventListener("globalEvent", onGlobalEvent.bind(this));
   }
 

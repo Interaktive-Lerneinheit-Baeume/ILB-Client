@@ -1,13 +1,13 @@
 @import url("theme/ilb-default-theme.css");
 @import url("theme/fixes.css");
 @import url("theme/lists.css");
-@import url("components/splash/_main.css");
-@import url("components/external/_main.css");
-@import url("components/menu/_main.css");
-@import url("components/book/_main.css");
-@import url("components/navigation/_main.css");
-@import url("components/forms/_main.css");
-@import url("components/questions/_main.css");
+@import url("components/splash/main.css");
+@import url("components/external/main.css");
+@import url("components/menu/main.css");
+@import url("components/book/main.css");
+@import url("components/navigation/main.css");
+@import url("components/forms/main.css");
+@import url("components/questions/main.css");
 
 *,
 *::before,

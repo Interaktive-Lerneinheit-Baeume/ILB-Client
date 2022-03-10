@@ -112,11 +112,10 @@ function iterateNextNodeGroupAndArrows() {
       iconColor: grayColor,
     });
     unsetListenersOnGroupElement(indexPosition);
-  }
-
-  for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
-    const element = actualKindNodesViewingGroups[index];
-    panelConstructing.removeElement(element);
+    for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
+      const element = actualKindNodesViewingGroups[index];
+      panelConstructing.removeElement(element);
+    }
   }
 
   if (indexPosition < valueArray.length - 1) {

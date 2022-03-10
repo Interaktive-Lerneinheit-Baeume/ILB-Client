@@ -37,6 +37,12 @@ class BinarySearchTree extends Observable {
     return node.vector;
   }
 
+  getLeavesAndHalfFullNodes(root){
+    if(root.left == null) {
+      
+    }
+  }
+
   insert(data) {
     var newNode = new Node(data);
 

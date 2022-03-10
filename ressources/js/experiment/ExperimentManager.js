@@ -1,5 +1,5 @@
 import { Event, Observable } from "../utils/Observable.js";
-import Time from "../utils/Time.js";
+import * as Time from "../utils/Time.js";
 import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 import Storage from "./../data_storage/Storage.js";

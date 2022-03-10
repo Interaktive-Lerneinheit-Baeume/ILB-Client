@@ -1,4 +1,5 @@
 import { Event, Observable } from "../utils/Observable.js";
+import Time from "../utils/Time.js";
 import EventBus from "../utils/EventBus.js";
 import FormsWatcher from "./FormsWatcher.js";
 import Storage from "./../data_storage/Storage.js";
@@ -251,8 +252,7 @@ class ExperimentManager extends Observable {
   constructor() {
     super();
     storage = new Storage();
-     intervalForCheckingFocus = setInterval(checkPageFocus, 6000); //for 1 Minutes testing!!! remove after that
-     // intervalForCheckingFocus = setInterval(checkPageFocus, 72000000); //for 2 hours
+    intervalForCheckingFocus = setInterval(checkPageFocus, Time.ONE_HOUR * 2); //for 2 hours
     EventBus.addEventListener("globalEvent", onGlobalEvent.bind(this));
   }
 
@@ -265,7 +265,7 @@ class ExperimentManager extends Observable {
           currentExperiment = data;
         });
       } else {
-        alert("Error 404!!!!!!");
+        // alert("Error 404!!!!!!");
       }
     } else {
       await storage.pickRandomExperiment().then(function (data) {

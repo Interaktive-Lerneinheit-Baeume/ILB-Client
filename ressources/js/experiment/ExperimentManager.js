@@ -14,14 +14,14 @@ function checkPageFocus() {
   if (document.hasFocus()) {
     storage.getExperiment(dataID).then(function (data) {
       if (data.state == "open") {
-        // console.log("data id "+data.id + " OPEN state "+data.state);
+       
         clearInterval(intervalForCheckingFocus);
         storage.breakProcess(data.id);
         SplashScreens.setNoExperimentAvailableSplash();
         SplashScreens.removeWelcomeSplash();
         SplashScreens.setSplashScreen();
       }
-      // console.log("data id "+data.id + " OR state "+data.state);
+     
     });
   }
 }
@@ -190,12 +190,14 @@ function doubleChecking(
         demographicObject.value = elementToAdd.value;
         demographicObject.status = elementToAdd.status;
         demographicObject.end_time = elementToAdd.end_time;
+        demographicObject.end_time_milliseconds = elementToAdd.end_time_milliseconds;
       }
       if (
         demographicObject.type === elementToAdd.type &&
         elementToAdd.type !== undefined
       ) {
         demographicObject.data.time = elementToAdd.data.time;
+        demographicObject.data_time_milliseconds = elementToAdd.data.time_milliseconds;
         demographicObject.data.occurency_overall =
           elementToAdd.data.occurency_overall;
       }
@@ -213,6 +215,7 @@ function doubleChecking(
         elementToAdd.info !== undefined
       ) {
         demographicObject.time = elementToAdd.time;
+        demographicObject.time_milliseconds = elementToAdd.time_milliseconds;
         demographicObject.occurency_overall = elementToAdd.occurency_overall;
       }
     }

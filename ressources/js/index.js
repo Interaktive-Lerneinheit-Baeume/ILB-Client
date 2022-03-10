@@ -62,6 +62,7 @@ function init() {
         EventBus.relayEvent(
           new Event("experimentStarted", {
             time: Date(Date.now()).toString(),
+            time_milliseconds: Date.now(),
             value: "experiment started",
           })
         );
@@ -200,12 +201,14 @@ function onNextPageRequested() {
 
 function onPageSelected(event) {
   let timeStamp = Date(Date.now()).toString();
+  let timeStampInMilliSec = Date.now();
   NavController.setPage(event.data);
   PageRenderer.render(event.data);
 
   EventBus.relayEvent(
     new Event("pageIteration", {
       time: timeStamp,
+      time_milliseconds : timeStampInMilliSec,
       value: "pageIteration",
       left_page_chapter: event.data.chapter,
       right_page_chapter: event.data.nextPage.chapter,

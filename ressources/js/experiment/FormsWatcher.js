@@ -29,7 +29,8 @@ function getFieldDataFromTarget(el) {
     label: el.getAttribute("data-question-label"),
     id: el.getAttribute("data-question-id"),
     value: el.value,
-    end_time: Date(Date.now),
+    end_time: Date(Date.now()).toString(),
+    end_time_milliseconds: Date.now()
   };
 }
 
@@ -42,6 +43,7 @@ function getListDataFromTarget(el) {
     value: el.getAttribute("data-value"),
     status: el.checked,
     end_time: Date(Date.now()).toString(),
+    end_time_milliseconds: Date.now()
   };
 }
 
@@ -62,6 +64,7 @@ function getFieldDataFromTargetEndTime(el) {
     id: el.getAttribute("data-question-id"),
     value: el.value,
     start_time: Date(Date.now()).toString(),
+    start_time_milliseconds: Date.now()
   };
 }
 

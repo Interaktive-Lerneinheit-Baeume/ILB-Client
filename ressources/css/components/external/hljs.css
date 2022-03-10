@@ -1,0 +1,68 @@
+.print-methode.hljs {
+  font-size: 8pt !important;
+}
+.print-methode > .hljs-number {
+  font-size: 8pt !important;
+}
+.print-methode > .hljs-title {
+  font-size: 8pt !important;
+}
+.print-methode > .hljs-variable {
+  font-size: 8pt !important;
+}
+.print-methode > .hljs-params {
+  font-size: 8pt !important;
+}
+.print-methode > .hljs-literal {
+  font-size: 8pt !important;
+}
+.print-methode > .hljs-keyword {
+  font-size: 8pt !important;
+}
+.print-methode > .hljs-operator {
+  font-size: 8pt !important;
+}
+.print-methode > .hljs-type {
+  font-size: 8pt !important;
+}
+
+.hljs-number {
+  color: #1750eb;
+}
+
+#id_1.hljs {
+  font-size: 18pt !important;
+}
+
+#id_1 > .hljs-number {
+  font-size: 18pt !important;
+}
+#id_1 > .hljs-title {
+  font-size: 18pt !important;
+}
+#id_1 > .hljs-variable {
+  font-size: 18pt !important;
+}
+#id_1 > .hljs-keyword {
+  font-size: 18pt !important;
+}
+#id_1 > .hljs-operator {
+  font-size: 18pt !important;
+}
+#id_1 > .hljs-type {
+  font-size: 18pt !important;
+}
+#id_1 > .hljs-params {
+  font-size: 18pt !important;
+}
+#id_1 > .hljs-literal {
+  font-size: 18pt !important;
+}
+
+#print_code .hljs {
+  font-size: 18pt !important;
+}
+
+#print_code code.hljs {
+  font-size: 18pt !important;
+}

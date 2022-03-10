@@ -4,12 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="content-type" content="text/html" />
-    <title>Bachelorarbeit</title>
+    <title>Lektion: Binäre Suchbäume</title>
     <link type="text/css" rel="stylesheet" href="./ressources/css/style.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./vendors/fontello/css/animation.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./vendors/fontello/css/fontello.css"
+    />
+
     <!-- client code in client side index.js -->
+
     <script type="application/javascript" src="./vendors/jsgl.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.6/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.6/sweetalert2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/css.min.js"></script>
 
@@ -24,9 +37,89 @@
   </head>
 
   <body>
-    <button id="next-button" class="next-buttons">Weiter</button>
+    <div class="splash">
+      <div class="splash_download">
+        <h1>Experiment wird geladen ...</h1>
+        <span><i class="icon-spin animate-spin"></i></span>
+      </div>
 
-    <div class="book"></div>
+      <div class="splash_welcome hidden">
+        <h1>Herzlich willkommen</h1>
+        <p>
+          In dieser Studie testen Sie eine digitale Lerneinheit zum Thema
+          "Suchalgorithmen". Alle Informationen zum Ablauf der Studie und zur
+          Verwendung der Plattform finden Sie auf der Webseite selber. Mithilfe
+          der beiden <i>Buttons</i> am unteren Bildschirmrand können Sie
+          zwischen den einzelnen Abschnitten der Einheit hin und her blättern.
+          Bei Fragen zur Studie können Sie sich gerne per
+          <a
+            href="mailto:iuliia.borisenko@stud.uni-regensburg.de"
+            target="_blank"
+            >E-Mail</a
+          >
+          an mich wenden.
+        </p>
+        <p>
+          Bitte starten Sie das Experiment jetzt durch das Drücken der
+          <code>Eingabe</code>-Taste.
+        </p>
+      </div>
+
+      <div class="splash_no_experiment_available hidden">
+        <h1 class="title">
+          Aktuell ist keine Teilnahme am Experiment möglich!
+        </h1>
+        <p>
+          Vielen Dank für Ihr Interesse an dieser Studie. Aktuell ist keine
+          Teilnahme mehr möglich. Gerne können Sie in den nächsten Tagen erneut
+          vorbeischauen.
+        </p>
+      </div>
+
+      <div class="splash_end hidden">
+        <h1 class="title">Vielen Dank für Ihre Teilnahme!</h1>
+        <p>
+          Vielen Dank dafür, dass Sie sich die Zeit genommen haben, an diesem
+          Experiment teilzunehmen. Studierende der Medieninformatik an der
+          Universität Regensburg erhalten über dieses
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSc1v5w__NxBbECyDeOje0Ewx_VRRxg50Z0ZikZ7bIj8C36fzg/viewform?usp=sf_link"
+            target="_blank"
+            >Formular</a
+          >
+          entsprechende Versuchpersonenstunden.
+        </p>
+      </div>
+    </div>
+
+    <div class="menu">
+      <!-- <span class="title"><a href="#">Lektion: Binäre Suchbäume</a></span> -->
+      <span class="title"></span>
+
+      <span class="chapter"></span>
+      <span class="links">
+        <a
+          href="mailto:iuliia.borisenko@stud.uni-regensburg.de"
+          target=" _blank"
+          >Kontakt</a
+        >
+        <a
+          href="https://www.uni-regensburg.de/sprache-literatur-kultur/medieninformatik/aktuelles/index.html"
+          target="_blank"
+          >Impressum</a
+        >
+      </span>
+      <!-- <div class="myClass" id="myDiv"></div> -->
+    </div>
+    <div class="book hidden"></div>
+    <div class="navigation">
+      <button id="back-button" class="back-buttons nav-button previous">
+        <i class="icon-previous"></i>
+      </button>
+      <button id="next-button" class="next-buttons nav-button next disabled">
+        <i class="icon-next"></i>
+      </button>
+    </div>
   </body>
 
   <script type="module" src="./ressources/js/index.js"></script>

@@ -12,7 +12,7 @@ let panelKnowledge_1,
   nodeGroupElements = [],
   nodeGroupElementLocations = [],
   widthOfPanel = 350,
-  heightOfPanel = 350,
+  heightOfPanel = 300,
   verticalSpacing = 65,
   radius = 25,
   angle = 55;
@@ -46,7 +46,9 @@ function drawOnPanel_1() {
         1,
         1,
         1
+        
       );
+      
     nodeGroupElementLocations[index] = nodeGroupViewingElementVektor;
 
     nodeGroupViewingElement.setLocation(nodeGroupElementLocations[index]);
@@ -298,59 +300,14 @@ function drawOnPanel_2() {
 class QuestionsKnowledgeVisual extends Observable {
   constructor(el) {
     super();
-    panelKnowledge_1 = new jsgl.Panel(el.querySelector("#panel-knowledge-1"));
-    panelKnowledge_2 = new jsgl.Panel(el.querySelector("#panel-knowledge-2"));
-
-    this.zyklus = el.querySelector("#zyklus");
-    this.binaryTree = el.querySelector("#binary-tree");
-    this.binarySearchTree = el.querySelector("#binary-search-tree");
-    this.nodeGraph = el.querySelector("#node-graph");
-    this.arrayCheckbox = el.querySelector("#array");
-
-    this.zyklusKnowl_2 = el.querySelector("#knowledge-2-zyklus");
-    this.binaryTreeKnowl_2 = el.querySelector("#knowledge-2-binary-tree");
-    this.binarySearchTreeKnowl_2 = el.querySelector(
-      "#knowledge-2-binary-search-tree"
+    panelKnowledge_1 = new jsgl.Panel(
+      document.querySelector("#panel-knowledge-1")
     );
-    this.nodeGraphKnowl_2 = el.querySelector("#knowledge-2-node-graph");
-    this.arrayCheckboxKnowl_2 = el.querySelector("#knowledge-2-array");
-
+    panelKnowledge_2 = new jsgl.Panel(
+      document.querySelector("#panel-knowledge-2")
+    );
     drawOnPanel_1();
     drawOnPanel_2();
-  }
-
-  getAllInfo() {
-    let dataStrucuteCheckedAsString = this.getTreesSelectedInfo();
-    console.log(" getTreesSelectedInfo() ", dataStrucuteCheckedAsString);
-    return {
-      knowl_zyklusChecked: this.zyklus.checked,
-      knowl_binaryTreeChecked: this.binaryTree.checked,
-      knowl_binarySearchTreeChecked: this.binarySearchTree.checked,
-      knowl_nodeGraphChecked: this.nodeGraph.checked,
-      knowl_arrayCheckboxChecked: this.arrayCheckbox.checked,
-      knowl_2_datastructure_checked: dataStrucuteCheckedAsString,
-    };
-  }
-
-  getTreesSelectedInfo() {
-    let dataStrucuteCheckedAsString = "";
-    if (this.zyklusKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "zyklus checked, ";
-    }
-    if (this.binarySearchTreeKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "binarySearchTree checked, ";
-    }
-    if (this.binaryTreeKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "binaryTree checked, ";
-    }
-    if (this.arrayCheckboxKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "array checked, ";
-    }
-    if (this.nodeGraphKnowl_2.checked) {
-      dataStrucuteCheckedAsString += "nodeGraph checked, ";
-    }
-
-    return dataStrucuteCheckedAsString;
   }
 }
 

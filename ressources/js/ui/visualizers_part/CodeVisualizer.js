@@ -9,13 +9,9 @@ class CodeVisualizer extends Observable {
 
     if (approach == "constructing") {
       this.panelElementCodeAlg = document.querySelector("#panel-code-alg");
-      this.panelElementMainCode = document.querySelector(
-        "#panel-main-code-constructing"
-      );
     } else {
       //"viewing"
       this.panelElementCodeAlg = document.querySelector("#panel-code-alg");
-      this.panelElementMainCode = document.querySelector("#panel-main-code-viewing");
     }
   }
 

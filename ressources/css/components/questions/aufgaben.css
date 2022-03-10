@@ -1,0 +1,47 @@
+.in_der_aufgabe {
+  text-align: justify;
+}
+
+.aufgabe {
+  width: 100%;
+  text-align: justify;
+}
+
+.trees-selection {
+  width: 30%;
+  height: 230px;
+  float: left;
+  margin-bottom: 10px;
+}
+
+.numeration-of-trees {
+  text-align: center;
+  color: var(--noble-brown);
+}
+
+.keys-cloud {
+  float: left;
+}
+
+#sequence-constructing-task {
+  width: 58%;
+}
+
+#cloud {
+  width: 38%;
+  height: 200px;
+}
+
+#sequence-constructing {
+  clear: both;
+}
+
+#print-sequence {
+  clear: both;
+}
+
+.print-tree {
+  float: left;
+  height: 280px;
+  margin-top: 2vh;
+}

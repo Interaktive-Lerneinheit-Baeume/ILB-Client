@@ -1,0 +1,75 @@
+.likert-battery {
+  display: flex;
+  flex-direction: column;
+}
+
+.likert-battery .question {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  text-align: justify;
+}
+
+.likert-battery ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  list-style: none;
+  margin: 1vh 0;
+  padding: 0;
+}
+
+.likert-battery ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.likert-battery ul li.text {
+  font-size: 0.85em;
+}
+
+.likert-battery ul li.text.left {
+  text-align: right;
+  margin-right: 2vh;
+}
+
+.likert-battery ul li.text.right {
+  text-align: left;
+  margin-left: 2vh;
+}
+
+.likert-battery ul li.likert-selector {
+  margin: 0 1vh;
+}
+
+.likert-battery ul li.likert-selector label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.likert-battery ul li.likert-selector label input {
+  display: none;
+}
+
+.likert-battery ul li.likert-selector label .radiobutton {
+  display: block;
+  width: 2vh;
+  height: 2vh;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--color-accent-one);
+  background-color: var(--color-background);
+}
+
+.likert-battery ul li.likert-selector label:hover input ~ .radiobutton {
+  cursor: pointer;
+  background-color: var(--color-accent-one);
+}
+
+.likert-battery ul li.likert-selector label input:checked ~ .radiobutton {
+  background-color: var(--color-accent-one);
+}

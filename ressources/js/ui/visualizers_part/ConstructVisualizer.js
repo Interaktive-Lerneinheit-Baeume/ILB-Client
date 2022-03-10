@@ -2,27 +2,55 @@ import TreePanelController from "../controller_part/TreePanelController.js";
 import { Observable, Event } from "../../utils/Observable.js";
 import BinarySearchTree from "../binary_search_tree/BinarySearchTree.js";
 import CodeVisualizer from "./CodeVisualizer.js";
+import EventBus from "./../../utils/EventBus.js";
 
 let BST,
   panelConstructing,
   codeVisualizerConstr,
   idNumbersConstr = [],
   nodeElements = [],
-  nodeGroupElements = [],
+  nodeGroupViewingElements = [],
+  nodeElementsTransparent = [],
+  actualKindNodesViewingGroups = [],
+  actualKindNodesViewingGroupsVektors = [],
+  nodeGroupViewingElementsTransparent = [],
+  nodeGroupElementLocationsTransparent = [],
+  valueArrayTransparent = new Array(
+    59,
+    63,
+    71,
+    83,
+    92,
+    52,
+    36,
+    69,
+    48,
+    14,
+    81,
+    54,
+    61,
+    53,
+    57,
+    60,
+    62,
+    7,
+    16
+  ),
   nodeGroupElementLocations = [],
   myAnimators = [],
   valueArray = new Array(59, 63, 71, 83, 92, 52, 36, 69, 48, 14),
-  widthOfPanel = 470,
-  heightOfPanel = 450,
+  widthOfPanel = 560,
+  heightOfPanel = 400,
   radius = 20,
-  verticalSpacing = 75,
+  verticalSpacing = 60,
   a = 65,
-  xStart = 50,
+  xStart = 40,
   yStart = 100,
   selectedMainRow,
   indexMainPosition = 1,
   indexPosition = 0,
-  counterOfErrorPopUp = 0;
+  counterOfErrorPopUpLeftNode = 0,
+  counterOfErrorPopUpRightNode = 0;
 
 const grayColor = "#acacace6";
 
@@ -30,7 +58,7 @@ const Toast = Swal.mixin({
   toast: true,
   position: "top-start",
   showConfirmButton: false,
-  timer: 2500,
+  timer: 3000,
   timerProgressBar: true,
   didOpen: (toast) => {
     toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -38,114 +66,11 @@ const Toast = Swal.mixin({
   },
 });
 
-function createNewNodeElement(data, BST) {
-  BST.insert(data);
-  let currentInsertedNode = BST.getCurrentNode(data);
-
-  return currentInsertedNode;
-}
-
-function createNewNodeGroupViewingElement(
-  panelConstructing,
-  nodeElement,
-  index,
-  radius
-) {
-  let circle = panelConstructing.createCircle();
-  let label = panelConstructing.createLabel();
-  let viewingGroup = panelConstructing.createGroup();
-
-  let nodeGroupElement = new Object();
-  nodeGroupElement.circle = circle;
-  nodeGroupElement.label = label;
-
-  nodeGroupElement.circle.setCenterLocationXY(0, 0);
-
-  TreePanelController.designOfNode(nodeGroupElement.circle, radius);
-  TreePanelController.designOfLabel(nodeGroupElement.label, nodeElement.data);
-
-  nodeGroupElement.label.setLocationXY(0, 0);
-
-  viewingGroup.addElement(nodeGroupElement.circle); //0-Position
-  viewingGroup.addElement(nodeGroupElement.label); //1-Position
-  viewingGroup.setZIndex(3);
-  return viewingGroup;
-}
-
-function createNewNodeGroupViewingElementVektor(
-  currentInsertedNode,
-  widthOfPanel,
-  heightOfPanel,
-  verticalSpacing,
-  angle,
-  heightOfFirstNode = 5,
-  coeff_0 = 0.6,
-  coeff_1 = 0.8,
-  coeff_else = 1
-) {
-  let angleHere = angle;
-  let angleLocal = angle;
-
-  let lengthOfPath = currentInsertedNode.pathOfNode.length;
-  let ownEndPositionY = heightOfPanel / heightOfFirstNode;
-  let ownEndPositionX = widthOfPanel / 2;
-
-  let horizontalSpacing =
-    verticalSpacing / Math.tan((angleLocal * Math.PI) / 180);
-
-  if (lengthOfPath === 0) {
-    let newVec = new jsgl.Vector2D(ownEndPositionX, ownEndPositionY);
-    currentInsertedNode.vector = newVec;
-    currentInsertedNode.arrayOfVectors.push(newVec);
-
-    return newVec;
-  } else {
-    let firstVec = new jsgl.Vector2D(ownEndPositionX, ownEndPositionY);
-    currentInsertedNode.arrayOfVectors.push(firstVec);
-
-    for (let index = 0; index < lengthOfPath; index++) {
-      const currPathLetter = currentInsertedNode.pathOfNode[index];
-
-      if (index == 0) {
-        angleLocal = coeff_0 * angleHere;
-        horizontalSpacing =
-          verticalSpacing / Math.tan((angleLocal * Math.PI) / 180);
-      } else if (index == 1) {
-        angleLocal = coeff_1 * angleHere;
-        horizontalSpacing =
-          verticalSpacing / Math.tan((angleLocal * Math.PI) / 180);
-      } else {
-        angleLocal = coeff_else * angleHere;
-        horizontalSpacing =
-          verticalSpacing / Math.tan((angleLocal * Math.PI) / 180);
-      }
-
-      if (currPathLetter === "R") {
-        ownEndPositionY += verticalSpacing;
-        ownEndPositionX += horizontalSpacing + 0;
-      } else {
-        ownEndPositionY += verticalSpacing;
-        ownEndPositionX -= horizontalSpacing;
-      }
-
-      let hereVector = new jsgl.Vector2D(ownEndPositionX, ownEndPositionY);
-      currentInsertedNode.arrayOfVectors.push(hereVector);
-    }
-
-    let newVec = new jsgl.Vector2D(ownEndPositionX, ownEndPositionY);
-
-    currentInsertedNode.vector = newVec;
-    return newVec;
-  }
-}
-
 function infoAboutPrecisePosition() {
   Toast.fire({
     icon: "info",
     iconColor: grayColor,
-    width: 550,
-    title:
-      "Positioniere präziser.<br>Der Abstand beträgt circa 2 * Radius des Knotens!",
+    title: "Positioniere präziser",
   });
 }
 
@@ -165,7 +90,7 @@ function infoAboutWorstCaseRuntime() {
 }
 
 var setGroupMoved = function (event) {
-  nodeGroupElements[indexPosition].setLocation(
+  nodeGroupViewingElements[indexPosition].setLocation(
     new jsgl.Vector2D(event.getX(), event.getY())
   );
 };
@@ -189,11 +114,18 @@ function iterateNextNodeGroupAndArrows() {
     unsetListenersOnGroupElement(indexPosition);
   }
 
+  for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
+    const element = actualKindNodesViewingGroups[index];
+    panelConstructing.removeElement(element);
+  }
+
   if (indexPosition < valueArray.length - 1) {
     unsetListenersOnGroupElement(indexPosition);
     indexPosition += 1;
     continueContructing();
   }
+
+  constructTransparentCircles();
 }
 
 function startAnimatorPlaying(index) {
@@ -205,8 +137,8 @@ function startAnimatorPlaying(index) {
 
   myAnimators[index].addStartListener(function () {
     tmp.startPoint = startPositionAnimation();
-    nodeGroupElements[index].setLocation(tmp.startPoint);
-    addOnPanel(nodeGroupElements[index]);
+    nodeGroupViewingElements[index].setLocation(tmp.startPoint);
+    addOnPanel(nodeGroupViewingElements[index]);
 
     tmp.endPoint = endPositionAnimation();
     tmp.direction = tmp.endPoint.subtract(tmp.startPoint);
@@ -224,29 +156,33 @@ function startAnimatorPlaying(index) {
       tmp.startPoint.getX() + t * tmp.direction.getX(),
       tmp.startPoint.getY() + t * tmp.direction.getY()
     );
-    nodeGroupElements[index].setLocation(tmp.newLocation);
+    nodeGroupViewingElements[index].setLocation(tmp.newLocation);
   });
 
-  myAnimators[index].addEndListener(function () {
-
-  });
+  myAnimators[index].addEndListener(function () {});
 }
 
 function setListenersOnGroupElement(indexPosition) {
-  nodeGroupElements[indexPosition].addMouseDownListener(letMouseDownEvent);
-  nodeGroupElements[indexPosition].addMouseUpListener(letMouseUpEvent);
+  nodeGroupViewingElements[indexPosition].addMouseDownListener(
+    letMouseDownEvent
+  );
+  nodeGroupViewingElements[indexPosition].addMouseUpListener(letMouseUpEvent);
 }
 
 function unsetListenersOnGroupElement(indexPosition) {
-  nodeGroupElements[indexPosition].removeMouseDownListener(letMouseDownEvent);
-  nodeGroupElements[indexPosition].removeMouseUpListener(letMouseUpEvent);
+  nodeGroupViewingElements[indexPosition].removeMouseDownListener(
+    letMouseDownEvent
+  );
+  nodeGroupViewingElements[indexPosition].removeMouseUpListener(
+    letMouseUpEvent
+  );
 }
 
 function beginConstructing() {
-  nodeGroupElements[indexPosition].setLocation(
+  nodeGroupViewingElements[indexPosition].setLocation(
     nodeGroupElementLocations[indexPosition]
   );
-  addOnPanel(nodeGroupElements[indexPosition]);
+  addOnPanel(nodeGroupViewingElements[indexPosition]);
   indexPosition += 1;
   continueContructing();
 }
@@ -255,15 +191,17 @@ function continueContructing() {
   startAnimatorPlaying(indexPosition);
   myAnimators[indexPosition].play();
 
-  nodeGroupElements[indexPosition].setLocation(startPositionOfNode());
+  nodeGroupViewingElements[indexPosition].setLocation(startPositionOfNode());
 
   TreePanelController.designOfSelectedNode(
-    nodeGroupElements[indexPosition].getElementAt(0),
+    nodeGroupViewingElements[indexPosition].getElementAt(0),
     radius * 1.1
   );
-  addOnPanel(nodeGroupElements[indexPosition]);
+  addOnPanel(nodeGroupViewingElements[indexPosition]);
 
   idNumbersConstr[indexMainPosition].style.visibility = "visible";
+  idNumbersConstr[0].style.visibility = "visible";
+  idNumbersConstr[1].style.visibility = "visible";
   indexMainPosition += 1;
   selectedMainRow.removeAttribute("id");
 
@@ -274,15 +212,14 @@ function continueContructing() {
 
 function proveTheRightPosition(index) {
   if (index === 0) {
-    console.log("Wurzel!");
   } else {
     let parent = BST.getParent(nodeElements[index]);
     let xPosOfParent = parent.vector.getX();
 
-    if (nodeGroupElements[index].getX() > xPosOfParent) {
+    if (nodeGroupViewingElements[index].getX() > xPosOfParent) {
       if (nodeGroupElementLocations[index].getX() < xPosOfParent) {
         TreePanelController.designOfUncorrectNode(
-          nodeGroupElements[index].getElementAt(0)
+          nodeGroupViewingElements[index].getElementAt(0)
         );
         Swal.fire({
           title: "Dieser Knoten ist ein linkes Kind von seinem Vaterknoten",
@@ -290,36 +227,43 @@ function proveTheRightPosition(index) {
           confirmButtonColor: grayColor,
           customClass: "kind_node_info",
           allowOutsideClick: false,
-          visible: true,
           allowEscapeKey: false,
           iconColor: grayColor,
         }).then((result) => {
           if (result.isConfirmed) {
-            counterOfErrorPopUp += 1;
+            counterOfErrorPopUpLeftNode += 1;
+
+            EventBus.relayEvent(
+              new Event("constructingWarningOccurencyLeftNode", {
+                time: Date(Date.now()).toString(),
+                info: "Dieser Knoten ist ein linkes Kind von seinem Vaterknoten",
+                occurency_overall: counterOfErrorPopUpLeftNode,
+              })
+            );
           }
         });
       } else {
         if (
           Math.abs(
             nodeGroupElementLocations[index].getX() -
-              nodeGroupElements[index].getX()
+              nodeGroupViewingElements[index].getX()
           ) >
           radius * 0.8
         ) {
           infoAboutPrecisePosition();
           TreePanelController.designOfSelectedNode(
-            nodeGroupElements[indexPosition].getElementAt(0),
+            nodeGroupViewingElements[indexPosition].getElementAt(0),
             radius * 1.1
           );
         } else {
           if (
             Math.abs(
               nodeGroupElementLocations[index].getY() -
-                nodeGroupElements[index].getY()
+                nodeGroupViewingElements[index].getY()
             ) <
-            radius * 0.7
+            radius * 0.8
           ) {
-            nodeGroupElements[index].setLocation(
+            nodeGroupViewingElements[index].setLocation(
               nodeGroupElementLocations[index]
             );
 
@@ -333,7 +277,7 @@ function proveTheRightPosition(index) {
               radius
             );
             TreePanelController.designOfNode(
-              nodeGroupElements[index].getElementAt(0),
+              nodeGroupViewingElements[index].getElementAt(0),
               radius
             );
 
@@ -347,7 +291,7 @@ function proveTheRightPosition(index) {
           } else {
             infoAboutPrecisePosition();
             TreePanelController.designOfSelectedNode(
-              nodeGroupElements[indexPosition].getElementAt(0),
+              nodeGroupViewingElements[indexPosition].getElementAt(0),
               radius * 1.1
             );
           }
@@ -356,7 +300,7 @@ function proveTheRightPosition(index) {
     } else {
       if (nodeGroupElementLocations[index].getX() > xPosOfParent) {
         TreePanelController.designOfUncorrectNode(
-          nodeGroupElements[index].getElementAt(0)
+          nodeGroupViewingElements[index].getElementAt(0)
         );
 
         Swal.fire({
@@ -370,31 +314,38 @@ function proveTheRightPosition(index) {
           iconColor: grayColor,
         }).then((result) => {
           if (result.isConfirmed) {
-            counterOfErrorPopUp += 1;
+            counterOfErrorPopUpRightNode += 1;
+
+            EventBus.relayEvent(
+              new Event("constructingWarningOccurencyRightNode", {
+                time: Date(Date.now()).toString(),
+                info: "Dieser Knoten ist ein rechtes Kind von seinem Vaterknoten",
+                occurency_overall: counterOfErrorPopUpRightNode,
+              })
+            );
           }
         });
-
       } else {
         if (
           Math.abs(
             nodeGroupElementLocations[index].getX() -
-              nodeGroupElements[index].getX()
+              nodeGroupViewingElements[index].getX()
           ) > radius
         ) {
           infoAboutPrecisePosition();
           TreePanelController.designOfSelectedNode(
-            nodeGroupElements[indexPosition].getElementAt(0),
+            nodeGroupViewingElements[indexPosition].getElementAt(0),
             radius * 1.1
           );
         } else {
           if (
             Math.abs(
               nodeGroupElementLocations[index].getY() -
-                nodeGroupElements[index].getY()
+                nodeGroupViewingElements[index].getY()
             ) <
             radius * 0.7
           ) {
-            nodeGroupElements[index].setLocation(
+            nodeGroupViewingElements[index].setLocation(
               nodeGroupElementLocations[index]
             );
 
@@ -408,13 +359,13 @@ function proveTheRightPosition(index) {
               radius
             );
             TreePanelController.designOfNode(
-              nodeGroupElements[index].getElementAt(0),
+              nodeGroupViewingElements[index].getElementAt(0),
               radius
             );
           } else {
             infoAboutPrecisePosition();
             TreePanelController.designOfSelectedNode(
-              nodeGroupElements[indexPosition].getElementAt(0),
+              nodeGroupViewingElements[indexPosition].getElementAt(0),
               radius * 1.1
             );
           }
@@ -422,6 +373,136 @@ function proveTheRightPosition(index) {
       }
     }
   }
+}
+
+function constructTransparentCircles() {
+  let bst = new BinarySearchTree(),
+    nodeValue,
+    actualNodeParent;
+  for (let index = 0; index < valueArrayTransparent.length; index++) {
+    const element = valueArrayTransparent[index];
+    let nodeElement = TreePanelController.createNewNodeElement(element, bst);
+    nodeElementsTransparent[index] = nodeElement;
+  }
+
+  if (indexPosition === 0) {
+    actualNodeParent = bst.getRootNode();
+  } else {
+    nodeValue = valueArrayTransparent[indexPosition];
+   
+    actualNodeParent = bst.getParent(bst.getCurrentNode(nodeValue));
+  }
+
+  let actualKindNodes = [];
+  actualKindNodesViewingGroups = [];
+  actualKindNodesViewingGroupsVektors = [];
+
+  if (actualNodeParent.left !== null) {
+    actualKindNodes.push(actualNodeParent.left);
+  }
+
+  if (actualNodeParent.right !== null) {
+    actualKindNodes.push(actualNodeParent.right);
+  }
+
+  for (let index = 0; index < actualKindNodes.length; index++) {
+    const element = actualKindNodes[index];
+
+    actualKindNodesViewingGroups.push(
+      TreePanelController.createNewNodeGroupViewingElementTransparent(
+        panelConstructing,
+        element,
+        indexPosition,
+        radius
+      )
+    );
+
+    actualKindNodesViewingGroupsVektors.push(
+      TreePanelController.createNewNodeGroupViewingElementVektor(
+        element,
+        widthOfPanel,
+        heightOfPanel,
+        verticalSpacing,
+        a
+      )
+    );
+  }
+
+  // actualKindNodesViewingGroups.push(
+  //   TreePanelController.createNewNodeGroupViewingElementTransparent(
+  //     panelConstructing,
+  //     actualKindNodes[1],
+  //     indexPosition,
+  //     radius
+  //   )
+  // );
+
+  // actualKindNodesViewingGroupsVektors.push(
+  //   TreePanelController.createNewNodeGroupViewingElementVektor(
+  //     actualKindNodes[0],
+  //     widthOfPanel,
+  //     heightOfPanel,
+  //     verticalSpacing,
+  //     a
+  //   )
+  // );
+
+  // actualKindNodesViewingGroupsVektors.push(
+  //   TreePanelController.createNewNodeGroupViewingElementVektor(
+  //     actualKindNodes[1],
+  //     widthOfPanel,
+  //     heightOfPanel,
+  //     verticalSpacing,
+  //     a
+  //   )
+  // );
+
+  for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
+    const element = actualKindNodesViewingGroups[index];
+    element.setLocation(actualKindNodesViewingGroupsVektors[index]);
+    addOnPanel(element);
+  }
+
+  // for (let index = 0; index < valueArrayTransparent.length; index++) {
+  //   const nodeValue = valueArrayTransparent[index];
+  //   let nodeTransparent = TreePanelController.createNewNodeElement(
+  //     nodeValue,
+  //     bst
+  //   );
+  //   // createNewNodeElement(nodeValue, bst);
+
+  //   let nodeGroupViewingTransparent =
+  //     TreePanelController.createNewNodeGroupViewingElementTransparent(
+  //       panelConstructing,
+  //       nodeTransparent,
+  //       index,
+  //       radius
+  //     );
+
+  //   nodeGroupViewingElementsTransparent[index] = nodeGroupViewingTransparent;
+
+  //   let nodeGroupViewingElementVektorTransparent =
+  //     TreePanelController.createNewNodeGroupViewingElementVektor(
+  //       nodeTransparent,
+  //       widthOfPanel,
+  //       heightOfPanel,
+  //       verticalSpacing,
+  //       a
+  //     );
+
+  //   nodeGroupElementLocationsTransparent[index] =
+  //     nodeGroupViewingElementVektorTransparent;
+  // }
+
+  // for (
+  //   let index = 0;
+  //   index < nodeGroupViewingElementsTransparent.length;
+  //   index++
+  // ) {
+  //   const element = nodeGroupViewingElementsTransparent[index];
+  //   element.setLocation(nodeGroupElementLocationsTransparent[index]);
+  //   addOnPanel(element);
+  // }
 }
 
 function startPositionOfNode() {
@@ -447,32 +528,33 @@ function addOnPanel(nodeGroupConstructElement) {
 function constructTreeInBackground() {
   for (let index = 0; index < valueArray.length; index++) {
     const element = valueArray[index];
-    let nodeElement = createNewNodeElement(element, BST);
+    let nodeElement = TreePanelController.createNewNodeElement(element, BST);
     nodeElements[index] = nodeElement;
 
-    let nodeGroupViewingElement = createNewNodeGroupViewingElement(
-      panelConstructing,
-      nodeElement,
-      index,
-      radius
-    );
-    nodeGroupElements[index] = nodeGroupViewingElement;
+    let nodeGroupViewingElement =
+      TreePanelController.createNewNodeGroupViewingElement(
+        panelConstructing,
+        nodeElement,
+        index,
+        radius
+      );
+    nodeGroupViewingElements[index] = nodeGroupViewingElement;
 
-    let nodeGroupConstrElementVektor = createNewNodeGroupViewingElementVektor(
-      nodeElement,
-      widthOfPanel,
-      heightOfPanel,
-      verticalSpacing,
-      a,
-      5,
-      0.85,
-      0.95,
-      1
-    );
+    let nodeGroupConstrElementVektor =
+      TreePanelController.createNewNodeGroupViewingElementVektor(
+        nodeElement,
+        widthOfPanel,
+        heightOfPanel,
+        verticalSpacing,
+        a
+      );
+
     nodeGroupElementLocations[index] = nodeGroupConstrElementVektor;
 
     myAnimators[index] = new jsgl.util.Animator();
   }
+
+  // constructTransparentCircles();
 }
 
 class ConstructVisualizer extends Observable {
@@ -488,17 +570,12 @@ class ConstructVisualizer extends Observable {
 
     idNumbersConstr = document.getElementsByClassName("id-number-constr");
 
-    for (let index = 2; index < idNumbersConstr.length; index++) {
-      const mainCodeElement = idNumbersConstr[index];
-      mainCodeElement.style.visibility = "hidden";
-    }
-
     selectedMainRow = idNumbersConstr[1];
     selectedMainRow.setAttribute("id", "id_1");
 
     constructTreeInBackground();
     beginConstructing();
-
+    constructTransparentCircles();
     BST.addEventListener("correctPosition", iterateNextNodeGroupAndArrows);
   }
 

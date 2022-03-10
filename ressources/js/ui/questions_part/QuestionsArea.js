@@ -1,23 +1,15 @@
 import Observable from "../../utils/Observable.js";
 import QuestionsKnowledgeVisual from "./QuestionsKnowledgeVisual.js";
 import QuestionsApplAnalysisSynthVisual from "./QuestionsApplAnalysisSynthVisual.js";
-import QuestionComprehensionVisual from "./QuestionsComprehensionVisual.js";
 
-let questionsKnowledgeVisual, questionsComprVisual, questionsApplAnSynVisual;
+let questionsKnowledgeVisual, questionsApplAnSynVisual;
 
-function initQuestions(testQuestionsAreaEl) {
-  let questionsKnowledgeVisualEl = testQuestionsAreaEl.querySelector(
+function initQuestions() {
+  let questionsKnowledgeVisualEl = document.querySelector(
     ".questions-knowledge"
   );
   questionsKnowledgeVisual = new QuestionsKnowledgeVisual(
     questionsKnowledgeVisualEl
-  );
-
-  let questionsComprVisualEl = testQuestionsAreaEl.querySelector(
-    ".questions-comprehension"
-  );
-  questionsComprVisual = new QuestionComprehensionVisual(
-    questionsComprVisualEl
   );
 
   let questionsApplAnSynVisualEl = document.querySelector(
@@ -29,19 +21,10 @@ function initQuestions(testQuestionsAreaEl) {
 }
 
 class QuestionsArea extends Observable {
-  constructor(el) {
+  constructor() {
     super();
 
-    initQuestions(el);
-  }
-
-  getAllQuestionAnswers() {
-    let wholeInfoTarget = Object.assign(
-      questionsKnowledgeVisual.getAllInfo(),
-      questionsComprVisual.getAllInfo(),
-      questionsApplAnSynVisual.getAllInfo()
-    );
-    return wholeInfoTarget;
+    initQuestions();
   }
 }
 

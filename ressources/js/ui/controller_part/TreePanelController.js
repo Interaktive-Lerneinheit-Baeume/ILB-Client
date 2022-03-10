@@ -32,6 +32,22 @@ class TreePanelController {
     return viewingGroup;
   }
 
+  static createNewNodeGroupViewingElementTransparent(panel, nodeElement, index, radius){
+    let circle = panel.createCircle();
+    let viewingGroup = panel.createGroup();
+
+    let nodeGroupElement = new Object();
+    nodeGroupElement.circle = circle;
+
+    nodeGroupElement.circle.setCenterLocationXY(0, 0);
+
+    this.designOfNodeTransparent(nodeGroupElement.circle, radius);
+
+    viewingGroup.addElement(nodeGroupElement.circle); //0-Position
+    viewingGroup.zIndex = -1;
+    return viewingGroup;
+  }
+
   static createNewNodeGroupViewingElementVektor(
     currentInsertedNode,
     widthOfPanel,
@@ -39,9 +55,10 @@ class TreePanelController {
     verticalSpacing,
     angle,
     heightOfFirstNode = 5,
-    coeff_0 = 0.6,
-    coeff_1 = 0.8,
-    coeff_else = 1
+    coeff_0 = 0.4,
+    coeff_1 = 0.7,
+    coeff_2 = 1,
+    coeff_else = 0.9
   ) {
     let angleHere = angle;
     let angleLocal = angle;
@@ -73,7 +90,17 @@ class TreePanelController {
           angleLocal = coeff_1 * angleHere;
           horizontalSpacing =
             verticalSpacing / Math.tan((angleLocal * Math.PI) / 180);
-        } else {
+        } else if(index == 2){
+          angleLocal = coeff_2 * angleHere;
+          horizontalSpacing =
+            verticalSpacing / Math.tan((angleLocal * Math.PI) / 180);
+        }
+        else if(index == 3){
+          angleLocal = coeff_else * 1.1 * angleHere;
+          horizontalSpacing =
+            verticalSpacing / Math.tan((angleLocal * Math.PI) / 180);
+        }
+        else {
           angleLocal = coeff_else * angleHere;
           horizontalSpacing =
             verticalSpacing / Math.tan((angleLocal * Math.PI) / 180);
@@ -445,6 +472,15 @@ class TreePanelController {
     element.getStroke().setColor(ownGrayStrokeOfNodeColor);
     element.setRadius(radius);
     element.getFill().setColor(hellGrayOfNodeInnerColor);
+  }
+
+  static designOfNodeTransparent(circle, radius) {
+    circle.getStroke().setWeight(3);
+    circle.getStroke().setColor(ownGrayStrokeOfNodeColor);
+    circle.setRadius(radius);
+    // circle.setStroke().EndcapType(jsgl.EndcapTypes.ROUND);
+    // circle.getFill().setColor(hellGrayOfNodeInnerColor);
+    circle.getStroke().setOpacity(0.3);
   }
 
   static designEllipse(element) {

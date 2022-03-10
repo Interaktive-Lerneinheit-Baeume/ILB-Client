@@ -160,7 +160,10 @@ function drawThreeTrees() {
             heightPanel,
             vertSpaceLocal,
             angleLocal,
-            6
+            6,
+            0.8,
+            0.8,
+            0.9
           );
       }
 
@@ -292,63 +295,26 @@ function drawCloud() {
 }
 
 class QuestionsApplAnalysisSynthVisual extends Observable {
-  constructor(el) {
+  constructor() {
     super();
 
-    treesSelectionCheckboxesDiv = el.querySelector("#statement-checkboxes");
+    panelsTrees.push(
+      new jsgl.Panel(document.querySelector("#first-tree-panel"))
+    );
+    panelsTrees.push(new jsgl.Panel(document.querySelector("#sec-tree-panel")));
+    panelsTrees.push(
+      new jsgl.Panel(document.querySelector("#third-tree-panel"))
+    );
 
-    sequenceConstructingTextArea = el.querySelector("#sequence-constructing");
-    printSequenceTextArea = el.querySelector("#print-sequence");
-    treeHeightTextArea = el.querySelector("#tree-height-textarea");
+    panelCloud = new jsgl.Panel(document.querySelector("#cloud"));
 
-    panelsTrees.push(new jsgl.Panel(el.querySelector("#first-tree-panel")));
-    panelsTrees.push(new jsgl.Panel(el.querySelector("#sec-tree-panel")));
-    panelsTrees.push(new jsgl.Panel(el.querySelector("#third-tree-panel")));
-
-    panelCloud = new jsgl.Panel(el.querySelector("#cloud"));
-
-    printTreePanel = new jsgl.Panel(el.querySelector("#print-tree-panel"));
+    printTreePanel = new jsgl.Panel(
+      document.querySelector("#print-tree-panel")
+    );
 
     drawThreeTrees();
     drawPrintTreeAndCode();
     drawCloud();
-  }
-
-  getAllInfo() {
-    let treesSelectedChecked = this.getTreesSelectedInfo();
-
-    return {
-      applAnSyn_treeHeightSequence: treeHeightTextArea.value,
-      applAnSyn_sequencesConstructed: sequenceConstructingTextArea.value,
-      applAnSyn_treesSelected: treesSelectedChecked,
-      applAnSyn_printMethod: printSequenceTextArea.value,
-    };
-  }
-
-  getTreesSelectedInfo() {
-    let wholeSkillsAsString = "";
-    if (treesSelectionCheckboxesDiv.querySelector("#first-statement").checked) {
-      wholeSkillsAsString +=
-        "Abbildung 2 zeigt möglichen Suchbaum für die zufällig eingefügten Schlüssel";
-    }
-    if (
-      treesSelectionCheckboxesDiv.querySelector("#second-statement").checked
-    ) {
-      wholeSkillsAsString +=
-        "Abbildungen 2 und 3 zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
-    }
-    if (treesSelectionCheckboxesDiv.querySelector("#third-statement").checked) {
-      wholeSkillsAsString +=
-        "Alle Abbildungen zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
-    }
-    if (
-      treesSelectionCheckboxesDiv.querySelector("#fourth-statement").checked
-    ) {
-      wholeSkillsAsString +=
-        "Abbildungen 1 und 2 zeigen möglichen Suchbaum für die zufällig eingefügten Schlüssel";
-    }
-
-    return wholeSkillsAsString;
   }
 }
 

@@ -1,0 +1,13 @@
+@import url("panels.css");
+@import url("aufgaben.css");
+@import url("experience.css");
+
+.tasks {
+  width: 100%;
+  margin-top: 2vh;
+  text-align: justify;
+}
+
+.like-tasks {
+    margin-top: 2vh;
+}

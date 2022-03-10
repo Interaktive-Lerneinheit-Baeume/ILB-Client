@@ -1,0 +1,41 @@
+<div
+  id="page-6-binary_tree_4"
+  class="page page-6-binary_tree_4"
+  data-title=""
+  data-chapter="Binäre Suchbäume"
+  data-can-go-back="true"
+>
+  <div class="tasks">
+    <h2>Laufzeitkomplexität in binären Suchbäumen</h2>
+    <p>
+      Bei der Umsetzung eines binären Suchbaums wird dessen rekursive
+      Verarbeitung dadurch sichergestellt, dass jeder Knoten Verweise auf seine
+      jeweiligen Kinder besitzt. Bei dem rekursiven Einfügen in den Baum wird zuerst
+      die Wurzel des Baums angegeben, alle anderen Knoten sind durch das
+      Verfolgen der Verweise erreichbar.
+    </p>
+    <p>
+      Die Laufzeiten der Algorithmen für das Einfügen in den binären Suchbaum hängen
+      von der Form des Baums ab, die wiederum von der Reihenfolge abhängt, in
+      der die Schlüssel eingefügt werden.
+    </p>
+    <ul>
+      <li>
+        Im <b>best-case (günstigsten) Fall</b> könnte ein Baum mit
+        <code>n</code> Knoten perfekt ausgeglichen sein (jeder innere Knoten
+        besitzt zwei Nachfolger): mit <math>∼O(lg N)</math> Knoten zwischen der
+        Wurzel und jeder <code>null</code>-Referenz (Blatt).
+      </li>
+      <li>
+        Der <b>durchschnittliche Fall</b> nach <code>N</code> zufälligen
+        Einfügeoperationen beträgt <math>∼O(1.39 lg N)</math>.
+      </li>
+      <li>
+        Im <b>worst-case (ungünstigsten) Fall</b> beträgt die
+        Laufzeitkomplexität <math>O(N)</math>, wenn alle <code>N</code> Knoten
+        genau auf einem Suchpfad liegen, und die Laufzeitkomplexität somit der
+        Höhe des Baums entspricht.
+      </li>
+    </ul>
+  </div>
+</div>

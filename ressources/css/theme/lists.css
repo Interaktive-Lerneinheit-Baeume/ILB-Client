@@ -1,0 +1,42 @@
+.tasks ul {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style-image: url("./../assets/leaf.png");
+}
+
+.tasks ul li {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 2vh;
+}
+
+.tasks ul li:not(:last-child) {
+  margin-bottom: 1vh;
+}
+
+/* https://icon-icons.com/de/symbol/Bl%C3%A4tter-Blatt-Natur-Anlage-gr%C3%BCn-%C3%B6kologie/150469 */
+/* https://www.flaticon.com/de/kostenloses-icon/blatt-hand-gezeichnete-form_35624 */
+.tasks ul li:before {
+  content: "";
+  position: absolute;
+  left: -3vh;
+  margin-top: -1vh;
+  border-radius: 50%;
+  background-image: url("./../assets/leaf.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 25px;
+  width: 35px;
+}
+
+.tasks ul li:after {
+  position: absolute;
+  content: "";
+  border: 0.5em solid transparent;
+  left: -1em;
+  top: 50%;
+  margin-top: -0.5em;
+  transition: all 0.3s ease-out;
+}

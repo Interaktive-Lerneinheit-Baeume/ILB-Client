@@ -1,74 +1,39 @@
-<div
-  id="page-6-binary_tree_5"
-  class="page page-6-binary_tree_5"
-  data-title="visualization"
-  data-chapter="Binäre Suchbäume"
-  data-can-go-back="true"
->
+<div id="page-6-binary_tree_5" class="page page-6-binary_tree_5" data-title="visualization"
+  data-chapter="Binäre Suchbäume" data-can-go-back="true">
   <div class="tasks">
     <p>
-      Die
-      <code class="language-java intellij-light">main</code>-Methode erstellt
-      ein root-Node-Objekt und weist dem <code>root</code>-Knoten den
-      Schlüsselwert
-      <code class="hljs-number intellij-light language-java">59</code> zu. Die
-      früher kennengelernte Einfügen-Methode
-      <code class="hljs-title intellij-light language-java function_"
-        >insertNodeRecursive</code
-      >
-      aus der Klasse
-      <code class="intellij-light language-java">BinarySearchTree</code>
-      setzt ausgehend aus dem Wurzelknoten andere Werte in den binären Suchbaum
-      nacheinander ein. Dafür wird die Instanz <code>bst</code> erzeugt, über
-      welche der Zugriff auf Einfügemethode möglich.
+      Die Funktionsweise des <i>Insert</i>-Algorithmus können Sie mihilfe dieser interaktiven Visualisierung
+      nachvollziehen. Die Darstellung folgt dabei dem hier notierten Code-Beispiel:
     </p>
+    <code class="id-number language-java intellij-light">public static void main(String[] args) {</code><br />
+    <code class="id-number-this language-java intellij-light">BinarySearchTree bst = new
+      BinarySearchTree();</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">Node root = new Node(59);</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root, 63);
+    </code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root,
+      71);</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root,
+      83);</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root,
+      92);</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root,
+      52);</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root,
+      36);</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root,
+      69);</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root,
+      48);</code><br />
+    <code class="id-number-constr language-java intellij-light id-number-viewing">bst.insertNodeRecursive(root,
+      14);</code><br />
+    <code class="language-java intellij-light">}</code>
 
-    <code class="id-number language-java intellij-light"
-      >public static void main(String[] args) {</code
-    ><br />
-    <code class="id-number-this language-java intellij-light"
-      >BinarySearchTree bst = new BinarySearchTree();</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >Node root = new Node(59);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 63); </code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 71);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 83);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 92);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 52);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 36);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 69);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 48);</code
-    ><br />
-    <code
-      class="id-number-constr language-java intellij-light id-number-viewing"
-      >bst.insertNodeRecursive(root, 14);</code
-    ><br />
-    <code class="language-java intellij-light">}</code><br />
+    <p>
+      In der <code class="language-java intellij-light">main</code>-Methode wird zuerst der leere Baum und anschließend
+      der Wurzelknoten mit dem Wert <code class="hljs-number intellij-light language-java">59</code> erstellt. Die
+      zuletzt vorgestellte Methode <code
+        class="hljs-title intellij-light language-java function_">insertNodeRecursive</code> wird im Anschluss dazu verwendet, mehrere weitere Werte in den Suchbaum einzufügen. 
+    </p>
   </div>
 </div>

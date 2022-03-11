@@ -375,6 +375,24 @@ function proveTheRightPosition(index) {
 }
 
 function constructTransparentCircles() {
+  if (nodesPutOnPanel.length !== 9) {
+    for (let index = 0; index < actualNodesPutOnPanel.length; index++) {
+      const actualNodePutOnPanel = actualNodesPutOnPanel[index];
+      for (let i = 0; i < nodesPutOnPanel.length; i++) {
+        const nodePutOnPanel = nodesPutOnPanel[i];
+        if (
+          actualNodePutOnPanel.getLocation().getX() ===
+            nodePutOnPanel.getLocation().getX() &&
+          actualNodePutOnPanel.getLocation().getY() ===
+            nodePutOnPanel.getLocation().getY()
+        ) {
+          panelConstructing.removeElement(actualNodePutOnPanel);
+          actualNodesPutOnPanel.splice(index, 1);
+        }
+      }
+    }
+  }
+
   let bst = new BinarySearchTree(),
     nodeValue,
     actualNodeParent;
@@ -385,14 +403,14 @@ function constructTransparentCircles() {
   }
 
   if (indexPosition === 0) {
+    console.log("ROOT");
     actualNodeParent = bst.getRootNode();
   } else {
     nodeValue = valueArrayTransparent[indexPosition];
-   
     actualNodeParent = bst.getParent(bst.getCurrentNode(nodeValue));
   }
 
-  let actualKindNodes = [];
+  actualKindNodes = [];
   actualKindNodesViewingGroups = [];
   actualKindNodesViewingGroupsVektors = [];
 
@@ -402,6 +420,15 @@ function constructTransparentCircles() {
 
   if (actualNodeParent.right !== null) {
     actualKindNodes.push(actualNodeParent.right);
+  }
+
+  if (
+    actualNodeParent.data === 71 &&
+    actualNodeParent.left.data === 69 &&
+    nodesPutOnPanel.length > 5
+  ) {
+    actualKindNodes.push(bst.getCurrentNode(36).left);
+    actualKindNodes.push(bst.getCurrentNode(36).right);
   }
 
   for (let index = 0; index < actualKindNodes.length; index++) {
@@ -427,81 +454,12 @@ function constructTransparentCircles() {
     );
   }
 
-  // actualKindNodesViewingGroups.push(
-  //   TreePanelController.createNewNodeGroupViewingElementTransparent(
-  //     panelConstructing,
-  //     actualKindNodes[1],
-  //     indexPosition,
-  //     radius
-  //   )
-  // );
-
-  // actualKindNodesViewingGroupsVektors.push(
-  //   TreePanelController.createNewNodeGroupViewingElementVektor(
-  //     actualKindNodes[0],
-  //     widthOfPanel,
-  //     heightOfPanel,
-  //     verticalSpacing,
-  //     a
-  //   )
-  // );
-
-  // actualKindNodesViewingGroupsVektors.push(
-  //   TreePanelController.createNewNodeGroupViewingElementVektor(
-  //     actualKindNodes[1],
-  //     widthOfPanel,
-  //     heightOfPanel,
-  //     verticalSpacing,
-  //     a
-  //   )
-  // );
-
   for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
     const element = actualKindNodesViewingGroups[index];
     element.setLocation(actualKindNodesViewingGroupsVektors[index]);
     addOnPanel(element);
+    actualNodesPutOnPanel.push(element);
   }
-
-  // for (let index = 0; index < valueArrayTransparent.length; index++) {
-  //   const nodeValue = valueArrayTransparent[index];
-  //   let nodeTransparent = TreePanelController.createNewNodeElement(
-  //     nodeValue,
-  //     bst
-  //   );
-  //   // createNewNodeElement(nodeValue, bst);
-
-  //   let nodeGroupViewingTransparent =
-  //     TreePanelController.createNewNodeGroupViewingElementTransparent(
-  //       panelConstructing,
-  //       nodeTransparent,
-  //       index,
-  //       radius
-  //     );
-
-  //   nodeGroupViewingElementsTransparent[index] = nodeGroupViewingTransparent;
-
-  //   let nodeGroupViewingElementVektorTransparent =
-  //     TreePanelController.createNewNodeGroupViewingElementVektor(
-  //       nodeTransparent,
-  //       widthOfPanel,
-  //       heightOfPanel,
-  //       verticalSpacing,
-  //       a
-  //     );
-
-  //   nodeGroupElementLocationsTransparent[index] =
-  //     nodeGroupViewingElementVektorTransparent;
-  // }
-
-  // for (
-  //   let index = 0;
-  //   index < nodeGroupViewingElementsTransparent.length;
-  //   index++
-  // ) {
-  //   const element = nodeGroupViewingElementsTransparent[index];
-  //   element.setLocation(nodeGroupElementLocationsTransparent[index]);
-  //   addOnPanel(element);
-  // }
 }
 
 function startPositionOfNode() {

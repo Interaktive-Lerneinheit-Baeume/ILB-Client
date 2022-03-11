@@ -25,6 +25,8 @@ const Toast = Swal.mixin({
   },
 });
 
+
+
 function toFillAllObligatoryFields() {
   Toast.fire({
     icon: "info",

@@ -9,6 +9,8 @@ let BST,
   codeVisualizerConstr,
   idNumbersConstr = [],
   nodeElements = [],
+  nodesPutOnPanel = [],
+  actualNodesPutOnPanel = [],
   nodeGroupViewingElements = [],
   nodeElementsTransparent = [],
   actualKindNodesViewingGroups = [],
@@ -509,8 +511,6 @@ function constructTreeInBackground() {
 
     myAnimators[index] = new jsgl.util.Animator();
   }
-
-  // constructTransparentCircles();
 }
 
 class ConstructVisualizer extends Observable {

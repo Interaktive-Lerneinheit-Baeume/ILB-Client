@@ -121,13 +121,16 @@ function iterateNextNodeGroupAndArrows() {
   }
 
   
+  
   if (indexPosition < valueArray.length - 1) {
     unsetListenersOnGroupElement(indexPosition);
+    nodesPutOnPanel.push(nodeGroupViewingElements[indexPosition]);
     indexPosition += 1;
+
     continueContructing();
   }
 
-  // nodesPutOnPanel.push(BST.getCurrentNode(valueArray[indexPosition]));
+
 
   constructTransparentCircles();
 }
@@ -187,6 +190,7 @@ function beginConstructing() {
     nodeGroupElementLocations[indexPosition]
   );
   addOnPanel(nodeGroupViewingElements[indexPosition]);
+  nodesPutOnPanel.push(nodeGroupViewingElements[indexPosition]);
   indexPosition += 1;
   continueContructing();
 }
@@ -426,15 +430,11 @@ function constructTransparentCircles() {
     actualKindNodes.push(actualNodeParent.right);
   }
 
-  console.log("actualNodeParent.data "+actualNodeParent.data);
-  console.log("actualNodeParent.left.data "+actualNodeParent.left.data);
-  console.log("nodesPutOnPanel.length "+nodesPutOnPanel.length);
   if (
     actualNodeParent.data === 71 &&
     actualNodeParent.left.data === 69 &&
     nodesPutOnPanel.length > 5
   ) {
-    console.log("hier actualNodeParent.data");
     actualKindNodes.push(bst.getCurrentNode(36).left);
     actualKindNodes.push(bst.getCurrentNode(36).right);
   }

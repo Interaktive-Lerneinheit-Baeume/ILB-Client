@@ -113,17 +113,21 @@ function iterateNextNodeGroupAndArrows() {
       iconColor: grayColor,
     });
     unsetListenersOnGroupElement(indexPosition);
-    for (let index = 0; index < actualKindNodesViewingGroups.length; index++) {
-      const element = actualKindNodesViewingGroups[index];
+
+    for (let index = 0; index < actualNodesPutOnPanel.length; index++) {
+      const element = actualNodesPutOnPanel[index];
       panelConstructing.removeElement(element);
     }
   }
 
+  
   if (indexPosition < valueArray.length - 1) {
     unsetListenersOnGroupElement(indexPosition);
     indexPosition += 1;
     continueContructing();
   }
+
+  // nodesPutOnPanel.push(BST.getCurrentNode(valueArray[indexPosition]));
 
   constructTransparentCircles();
 }
@@ -422,11 +426,15 @@ function constructTransparentCircles() {
     actualKindNodes.push(actualNodeParent.right);
   }
 
+  console.log("actualNodeParent.data "+actualNodeParent.data);
+  console.log("actualNodeParent.left.data "+actualNodeParent.left.data);
+  console.log("nodesPutOnPanel.length "+nodesPutOnPanel.length);
   if (
     actualNodeParent.data === 71 &&
     actualNodeParent.left.data === 69 &&
     nodesPutOnPanel.length > 5
   ) {
+    console.log("hier actualNodeParent.data");
     actualKindNodes.push(bst.getCurrentNode(36).left);
     actualKindNodes.push(bst.getCurrentNode(36).right);
   }

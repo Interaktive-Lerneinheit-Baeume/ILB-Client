@@ -403,7 +403,6 @@ function constructTransparentCircles() {
   }
 
   if (indexPosition === 0) {
-    console.log("ROOT");
     actualNodeParent = bst.getRootNode();
   } else {
     nodeValue = valueArrayTransparent[indexPosition];

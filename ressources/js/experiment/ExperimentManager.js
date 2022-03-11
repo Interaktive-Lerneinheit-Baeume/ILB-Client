@@ -197,7 +197,7 @@ function doubleChecking(
         elementToAdd.type !== undefined
       ) {
         demographicObject.data.time = elementToAdd.data.time;
-        demographicObject.data_time_milliseconds = elementToAdd.data.time_milliseconds;
+        demographicObject.data.time_milliseconds = elementToAdd.data.time_milliseconds;
         demographicObject.data.occurency_overall =
           elementToAdd.data.occurency_overall;
       }
